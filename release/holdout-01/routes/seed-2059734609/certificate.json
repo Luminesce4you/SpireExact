@@ -1,0 +1,49 @@
+{
+  "schema": "spire-mode1-certificate/v1",
+  "objective": {
+    "id": "whole_run_victory/v1",
+    "information": "full",
+    "maximum": 1,
+    "minimum": 0,
+    "secondary_objective": null
+  },
+  "identity": {
+    "context": {
+      "acts": "native-default",
+      "ascension": 10,
+      "character": "IRONCLAD",
+      "game_mode": "Standard",
+      "gameplay_mods": [],
+      "objective": {
+        "id": "whole_run_victory/v1",
+        "information": "full",
+        "maximum": 1,
+        "minimum": 0,
+        "secondary_objective": null
+      },
+      "seed": "2059734609",
+      "unlocks": "all"
+    },
+    "native": {
+      "bootstrap": "CombatSolver 4d2c550; independent host, no CombatSolver engine or RitsuLib dependency",
+      "game_assembly": "sts2, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
+      "game_sha256": "0861bfa1df347538d932f22d580e75420f08082792eb914e53b4882764acdbe9",
+      "godot_sha256": "0e4897ecdfb31456a97c7d8028dfb8d7dbdc632e2f73fc9b438d7b266a139289",
+      "harmony_sha256": "ef1898322c9f5c86dc1b0758b272a9c440823b4a41ca9a0b82a3aa6b3d206387",
+      "host_sha256": "082f6ce76fae09dedeb521fef7593d31facd68b7833252d0ba21417ffd703f84",
+      "host_version": "1",
+      "schema": "spire-native-identity/v1"
+    }
+  },
+  "trace_sha256": "002ba2c2fe25cd4d5a122dcf0fbe47e91b6464d3cbac48aa892e6d196ecd3dc2",
+  "trace_length": 871,
+  "lower_bound": 1,
+  "upper_bound": 1,
+  "upper_bound_reason": "Boolean objective domain: no legal result exceeds 1",
+  "proof_scope": "installed game commands in offline TestMode",
+  "optimal_in_backend": true,
+  "game_equivalence_verified": false,
+  "proves_no_better_boolean_value": true,
+  "proves_highest_score": false,
+  "proves_unsatisfiable_seeds": false
+}

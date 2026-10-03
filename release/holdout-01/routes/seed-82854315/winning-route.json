@@ -1,0 +1,3798 @@
+{
+  "context": {
+    "seed": "82854315",
+    "character": "IRONCLAD",
+    "ascension": 10,
+    "unlocks": "all",
+    "game_mode": "Standard",
+    "acts": "native-default",
+    "gameplay_mods": [],
+    "objective": {
+      "id": "whole_run_victory/v1",
+      "information": "full",
+      "maximum": 1,
+      "minimum": 0,
+      "secondary_objective": null
+    }
+  },
+  "trace": [
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "NEOW.pages.INITIAL.options.STONE_HUMIDIFIER"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 1,
+      "card": "POMMEL_STRIKE"
+    },
+    {
+      "kind": "map",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 0,
+      "card": "SHRUG_IT_OFF"
+    },
+    {
+      "kind": "map",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 1,
+      "card": "SECOND_WIND"
+    },
+    {
+      "kind": "map",
+      "col": 2,
+      "row": 4
+    },
+    {
+      "kind": "buy",
+      "index": 3,
+      "item_type": "MerchantCardEntry",
+      "cost": 77
+    },
+    {
+      "kind": "map",
+      "col": 1,
+      "row": 5
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "WOOD_CARVINGS.pages.INITIAL.options.BIRD"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        0
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 2,
+      "row": 6
+    },
+    {
+      "kind": "map",
+      "col": 1,
+      "row": 7
+    },
+    {
+      "kind": "rest",
+      "index": 1,
+      "option": "SMITH"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        9
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 0,
+      "row": 8
+    },
+    {
+      "kind": "open_chest"
+    },
+    {
+      "kind": "treasure",
+      "index": 0,
+      "relic": "PLANISPHERE"
+    },
+    {
+      "kind": "map",
+      "col": 0,
+      "row": 9
+    },
+    {
+      "kind": "open_chest"
+    },
+    {
+      "kind": "treasure",
+      "index": 0,
+      "relic": "VAMBRACE"
+    },
+    {
+      "kind": "map",
+      "col": 0,
+      "row": 10
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "PECK",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "FLAME_BARRIER",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "use_potion",
+      "slot": 1,
+      "potion": "WEAK_POTION",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "PECK",
+      "target": 2
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 1,
+      "card": "POMMEL_STRIKE"
+    },
+    {
+      "kind": "map",
+      "col": 0,
+      "row": 11
+    },
+    {
+      "kind": "event",
+      "index": 1,
+      "key": "TABLET_OF_TRUTH.pages.INITIAL.options.SMASH"
+    },
+    {
+      "kind": "map",
+      "col": 0,
+      "row": 12
+    },
+    {
+      "kind": "rest",
+      "index": 1,
+      "option": "SMITH"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        13
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 0,
+      "row": 13
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "FLAME_BARRIER",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 4
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "POMMEL_STRIKE",
+      "target": 4
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STRIKE_IRONCLAD",
+      "target": 5
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "PECK",
+      "target": 5
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "PECK",
+      "target": 5
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 4
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "RelicReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 0,
+      "card": "MOLTEN_FIST"
+    },
+    {
+      "kind": "map",
+      "col": 0,
+      "row": 14
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "FLAME_BARRIER",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 0,
+      "card": "TAUNT"
+    },
+    {
+      "kind": "map",
+      "col": 1,
+      "row": 15
+    },
+    {
+      "kind": "rest",
+      "index": 0,
+      "option": "HEAL"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 16
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "DEXTERITY_POTION",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "TAUNT",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "MOLTEN_FIST",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "FLAME_BARRIER",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "TAUNT",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FLAME_BARRIER",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FLAME_BARRIER",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "TAUNT",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "TAUNT",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FLAME_BARRIER",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BASH",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "FLAME_BARRIER",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "TAUNT",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "TAUNT",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "FLAME_BARRIER",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BASH",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 1,
+      "card": "OFFERING"
+    },
+    {
+      "kind": "next_act"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "PAEL.pages.INITIAL.options.PAELS_TEARS"
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "TAUNT",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FLAME_BARRIER",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "POMMEL_STRIKE",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 2
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "LOST_WISP.pages.INITIAL.options.CLAIM"
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 3
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "STRENGTH_POTION",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FLAME_BARRIER",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "MOLTEN_FIST",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "PECK",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 4
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "AMALGAMATOR.pages.INITIAL.options.COMBINE_STRIKES"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        0,
+        1
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 5
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FLAME_BARRIER",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "PECK",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "OFFERING",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "ULTIMATE_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 0,
+      "card": "POMMEL_STRIKE"
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 6
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "SELF_HELP_BOOK.pages.INITIAL.options.READ_THE_BACK"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        3
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 7
+    },
+    {
+      "kind": "rest",
+      "index": 1,
+      "option": "SMITH"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        11
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 8
+    },
+    {
+      "kind": "open_chest"
+    },
+    {
+      "kind": "treasure",
+      "index": 0,
+      "relic": "JOSS_PAPER"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 9
+    },
+    {
+      "kind": "rest",
+      "index": 1,
+      "option": "SMITH"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        11
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 10
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "GIGANTIFICATION_POTION",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "TAUNT",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "ULTIMATE_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "TOXIC",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "FLAME_BARRIER",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "PECK",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "TOXIC",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 1,
+      "card": "COLOSSUS"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 11
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "COLORLESS_POTION",
+      "target": 0
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        1
+      ]
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "ETERNAL_ARMOR",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "ULTIMATE_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "PECK",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 12
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "TAUNT",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "POWER_POTION",
+      "target": 0
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        1
+      ]
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "CRIMSON_MANTLE",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "FLAME_BARRIER",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "ULTIMATE_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "ULTIMATE_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 13
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "OFFERING",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "PECK",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "LUCKY_TONIC",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "ULTIMATE_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "MOLTEN_FIST",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "PECK",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "ULTIMATE_STRIKE",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 3
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 2,
+      "card": "POMMEL_STRIKE"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 14
+    },
+    {
+      "kind": "rest",
+      "index": 1,
+      "option": "SMITH"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        11
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 15
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "OFFERING",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "ULTIMATE_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BASH",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "TAUNT",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "ULTIMATE_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "MOLTEN_FIST",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BASH",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "ULTIMATE_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "ULTIMATE_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "ULTIMATE_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "ULTIMATE_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "ULTIMATE_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 2,
+      "card": "OFFERING"
+    },
+    {
+      "kind": "next_act"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "TANX.pages.INITIAL.options.IRON_CLUB"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "MOLTEN_FIST",
+      "target": 3
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "SKILL_POTION",
+      "target": 0
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        2
+      ]
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BASH",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "OFFERING",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 8,
+      "card": "ULTIMATE_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "POMMEL_STRIKE",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "FLAME_BARRIER",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BASH",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 2
+    },
+    {
+      "kind": "buy",
+      "index": 4,
+      "item_type": "MerchantCardEntry",
+      "cost": 75
+    },
+    {
+      "kind": "buy",
+      "index": 9,
+      "item_type": "MerchantRelicEntry",
+      "cost": 195
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        4,
+        6,
+        7
+      ]
+    },
+    {
+      "kind": "buy",
+      "index": 10,
+      "item_type": "MerchantPotionEntry",
+      "cost": 75
+    },
+    {
+      "kind": "buy",
+      "index": 11,
+      "item_type": "MerchantPotionEntry",
+      "cost": 75
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 3
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "HUNGRY_FOR_MUSHROOMS.pages.INITIAL.options.BIG_MUSHROOM"
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 4
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "SLIPPERY_BRIDGE.pages.INITIAL.options.OVERCOME"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 5
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "OFFERING",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "TAUNT",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "STABLE_SERUM",
+      "target": 0
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "use_potion",
+      "slot": 1,
+      "potion": "BLESSING_OF_THE_FORGE",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "ULTIMATE_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "ULTIMATE_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 6
+    },
+    {
+      "kind": "rest",
+      "index": 1,
+      "option": "SMITH"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        13
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 7
+    },
+    {
+      "kind": "open_chest"
+    },
+    {
+      "kind": "treasure",
+      "index": 0,
+      "relic": "LANTERN"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 8
+    },
+    {
+      "kind": "rest",
+      "index": 1,
+      "option": "SMITH"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        12
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 9
+    },
+    {
+      "kind": "event",
+      "index": 1,
+      "key": "GRAVE_OF_THE_FORGOTTEN.pages.INITIAL.options.ACCEPT"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 10
+    },
+    {
+      "kind": "rest",
+      "index": 1,
+      "option": "SMITH"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        9
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 11
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "TINKER_TIME.pages.INITIAL.options.CHOOSE_CARD_TYPE"
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "TINKER_TIME.pages.CHOOSE_CARD_TYPE.options.SKILL"
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "TINKER_TIME.pages.CHOOSE_RIDER.options.CHAOS"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 12
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "OFFERING",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "ULTIMATE_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 9,
+      "card": "MAD_SCIENCE",
+      "target": null
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "BLOOD_POTION",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 8,
+      "card": "DOMINATE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "ULTIMATE_STRIKE",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 13
+    },
+    {
+      "kind": "rest",
+      "index": 1,
+      "option": "SMITH"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        3
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 14
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "CRUELTY",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "PECK",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "ULTIMATE_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "MAD_SCIENCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "UNMOVABLE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "OFFERING",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "MAD_SCIENCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 8,
+      "card": "DOMINATE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "ULTIMATE_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "MAD_SCIENCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "ASHEN_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "MAD_SCIENCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "LUCKY_TONIC",
+      "target": 0
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "PECK",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "ASHEN_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "ULTIMATE_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "ASHEN_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "ULTIMATE_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "PECK",
+      "target": 1
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 15
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "OFFERING",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "MAD_SCIENCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "ARMAMENTS",
+      "target": null
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        1
+      ]
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "CRUELTY",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "ULTIMATE_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "ULTIMATE_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "MAD_SCIENCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "ARMAMENTS",
+      "target": null
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        0
+      ]
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "PECK",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "OFFERING",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "MAD_SCIENCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "ARMAMENTS",
+      "target": null
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        0
+      ]
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "ULTIMATE_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "MAD_SCIENCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "CRIMSON_MANTLE",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "ARMAMENTS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "MAD_SCIENCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "TEAR_ASUNDER",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "MAD_SCIENCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "ARMAMENTS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "ARMAMENTS",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "ARMAMENTS",
+      "target": null
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        2
+      ]
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "MAD_SCIENCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "ARMAMENTS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SECOND_WIND",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "MAD_SCIENCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SPITE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "TEAR_ASUNDER",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "TEAR_ASUNDER",
+      "target": 1
+    },
+    {
+      "kind": "next_act"
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "THE_ARCHITECT.dialogue.0"
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "PROCEED"
+    }
+  ]
+}

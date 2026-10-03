@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SpireBoard</title>
+<script>try{const t=localStorage.getItem('spireboard.theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/route.css"><link rel="stylesheet" href="/gate_model.css"></head>
+<body>
+<aside class="sidebar">
+<a class="brand" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5 4.5 22.5h15L12 1.5Z" fill="currentColor"/><path d="M12 1.5 9.1 9.6h5.8L12 1.5Z" fill="#fff" opacity=".55"/><path d="M7.4 14.4h9.2l1 2.8H6.4l1-2.8Z" fill="#fff" opacity=".28"/></svg><span>SpireBoard</span></a>
+<nav aria-label="主导航">
+<button class="nav" data-tab="runs"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3.5h12M2 8h12M2 12.5h12"/></svg>全部运行</button>
+<div class="nav-group">当前运行</div>
+<button class="nav active" data-tab="scalars"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 13.5h12M4 11V7.5M8 11V3.5M12 11V6"/></svg>概览</button>
+<button class="nav" data-tab="route"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13.5c0-4 10-3 10-7a2.5 2.5 0 0 0-5 0"/><circle cx="3" cy="13.5" r="1"/></svg>胜利轨迹</button>
+<button class="nav" data-tab="model"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.8 13.5 5v6L8 14.2 2.5 11V5L8 1.8ZM8 8v6.2M2.5 5 8 8l5.5-3"/></svg>关口模型</button>
+<button class="nav" data-tab="events"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 4.5V8l2.5 1.5"/></svg>事件日志</button>
+<button class="nav" data-tab="config"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4.5h7M12 4.5h2M2 11.5h2M7 11.5h7"/><circle cx="10.5" cy="4.5" r="1.5"/><circle cx="5.5" cy="11.5" r="1.5"/></svg>运行配置</button>
+</nav>
+<div class="sidebar-foot">
+<span id="connection" class="connection pending"><i></i>连接中</span>
+<small id="last-update">等待首个数据事件</small>
+<div class="sidebar-actions"><button id="refresh" class="ghost-button" title="重新建立实时数据连接">重新连接</button><button id="theme-toggle" class="ghost-button" title="切换浅色 / 深色">深色</button></div>
+</div>
+</aside>
+<div class="shell">
+<header class="topbar">
+<h1 id="page-title">概览</h1>
+<div class="run-picker"><label for="run-select" id="run-select-label">当前运行</label><select id="run-select" aria-label="选择运行"></select></div>
+<span class="spacer"></span>
+<button id="new-solve" class="primary-button">新建求解</button>
+</header>
+<main>
+<section id="run-context" class="run-context">
+<div class="run-identity"><strong id="run-name">正在连接本地求解服务…</strong><span id="run-status" class="status-badge">等待数据</span></div>
+<div id="run-meta" class="chips"></div>
+<button class="ghost-button" id="export" title="把当前页面收到的运行数据保存为 JSON">导出快照</button>
+</section>
+
+<section id="scalars-view" class="view">
+<div class="kpi-grid">
+<article class="kpi"><div class="kpi-label">已运行时间</div><div class="kpi-value mono" id="elapsed">--:--:--</div><div class="budget-track"><i id="budget-progress"></i><span id="budget-mark" class="hidden" title="150 分钟报告点"></span></div><div class="kpi-note" id="budget-note">等待运行预算</div></article>
+<article class="kpi"><div class="kpi-label" id="floor-label">最远到达层数</div><div class="kpi-value" id="floor">—</div><div class="kpi-note" id="act-note">取自已完成的原生评估</div></article>
+<article class="kpi"><div class="kpi-label">累计搜索节点</div><div class="kpi-value mono" id="nodes">—</div><div class="kpi-note"><span id="eval-count">0</span> 次已完成评估</div></article>
+<article class="kpi"><div class="kpi-label" id="wins-label">已验证胜利</div><div class="kpi-value" id="wins">—</div><div class="kpi-note" id="win-note">只有独立完整重放通过才计为胜利</div></article>
+</div>
+<div class="section-heading"><h2>搜索进展</h2><div class="chart-controls"><div class="segmented" role="group" aria-label="横轴"><button class="selected" data-axis="time">按运行时间</button><button data-axis="step">按评估次数</button></div><label class="check-control"><input type="checkbox" id="log-x">对数横轴</label><label class="smoothing" for="smoothing">节点曲线平滑<input id="smoothing" type="range" min="0" max="95" value="0"><output id="smooth-value">0.00</output></label></div></div>
+<div class="chart-grid">
+<article class="chart-card"><div class="card-heading"><div><h3 id="progress-title">最远到达层数</h3><p id="progress-note">每次评估结束后更新的最远楼层</p></div><span class="chart-pill" id="floor-pill">—</span></div><div class="plot" id="progress-chart" role="img" aria-label="最远到达层数曲线"></div></article>
+<article class="chart-card"><div class="card-heading"><div><h3>累计搜索节点</h3><p>只累计已完成评估展开的战斗节点</p></div><span class="chart-pill" id="nodes-pill">—</span></div><div class="plot" id="nodes-chart" role="img" aria-label="累计搜索节点曲线"></div></article>
+</div>
+<div class="section-heading"><h2>资源占用</h2><span class="hint">运行期间每秒采样一次</span></div>
+<div class="chart-grid">
+<article class="chart-card"><div class="card-heading"><div><h3>CPU 记账占比</h3><p id="cpu-note">Windows 采样值，不等于 worker 占用率</p></div><span class="chart-pill" id="cpu-pill">—</span></div><div class="plot" id="cpu-chart" role="img" aria-label="CPU 记账占比曲线"></div></article>
+<article class="chart-card"><div class="card-heading"><div><h3>内存使用</h3><p id="memory-note">进程树私有提交量</p></div><span class="chart-pill" id="memory-pill">—</span></div><div class="plot" id="memory-chart" role="img" aria-label="内存提交量曲线"></div></article>
+</div>
+<div class="bottom-grid">
+<article class="panel"><div class="card-heading"><div><h3>最近事件</h3></div><button class="link-button" data-goto="events">查看全部</button></div><div id="recent-events" class="event-list"></div></article>
+<article class="panel"><div class="card-heading"><div><h3>评估结果分布</h3><p>候选评估的结束原因，不等于整局胜率</p></div></div><div id="classification" class="distribution"></div></article>
+</div>
+</section>
+
+<section id="runs-view" class="view hidden">
+<div class="table-toolbar"><input id="run-search" class="search" type="search" placeholder="搜索运行名称或种子" aria-label="搜索运行"><select id="status-filter" aria-label="状态筛选"><option value="all">全部状态</option><option value="verified">验证通过</option><option value="running">运行中</option></select><select id="protocol-filter" aria-label="协议筛选"><option value="A10">当前协议（A10）</option><option value="all">全部协议</option></select><span id="runs-count" class="hint"></span></div>
+<div class="table-wrap"><table><thead><tr><th>运行</th><th>种子</th><th>状态</th><th class="numeric">最远层数</th><th class="numeric">验证胜利</th><th class="numeric">评估次数</th><th>开始时间</th><th></th></tr></thead><tbody id="runs-body"><tr><td colspan="8" class="empty">正在读取运行列表…</td></tr></tbody></table></div>
+<p class="footnote">点击任意一行查看该运行。旧协议（A0）的批次结果与当前 A10 结果不可直接比较；未在预算内解出不代表种子无解。</p>
+</section>
+
+<section id="route-view" class="view hidden" aria-label="胜利轨迹">
+<div id="route-status" class="route-status" role="status" aria-live="polite">选择一个胜利运行以查看轨迹。</div>
+<div id="route-content" class="hidden">
+<div class="route-bar"><div class="segmented" role="group" aria-label="查看方式"><button id="route-mode-guide" class="selected" aria-pressed="true">跟打</button><button id="route-mode-audit" aria-pressed="false">证据核查</button></div><span id="route-mode-hint" class="hint"></span><span class="spacer"></span><button id="route-focus" class="ghost-button" aria-pressed="false" title="隐藏导航和页眉，方便把窗口缩窄放在游戏旁边（Esc 退出）">专注模式</button><button id="route-download" class="outline-button" disabled>导出原始证据</button></div>
+
+<div id="route-guide" class="guide">
+<details id="guide-setup" class="panel g-setup"></details>
+<div class="g-layout">
+<aside class="panel g-outline" aria-label="楼层导航"><div id="guide-flags" class="g-flags hidden"><span id="guide-flags-count"></span><button id="guide-flags-copy" class="link-button">复制记录</button></div><div id="guide-outline-list"></div></aside>
+<div class="g-main">
+<div id="guide-floor" class="panel g-floor"></div>
+<div class="g-bar"><button id="guide-prev" class="outline-button" title="快捷键 ←">← 上一步</button><div class="g-progress"><span id="guide-progress-label"></span><div class="g-progress-track"><i id="guide-progress"></i></div></div><button id="guide-flag" class="outline-button">与游戏不一致…</button><button id="guide-next-group" class="outline-button" title="快捷键 Shift + →">完成本回合</button><button id="guide-next" class="primary-button" title="快捷键 空格 或 →">完成，下一步</button></div>
+<p class="route-footnote">空格 / → 下一步，← 上一步，Shift + ← → 按回合跳转。进度和不一致记录保存在这个浏览器里。「之后应变为」比较的是到下一个决策点为止的记录，可能包含敌方行动与自动结算。</p>
+</div>
+</div>
+</div>
+
+<div id="route-audit" class="hidden">
+<div id="route-proof" class="route-proof"></div>
+<div class="route-controls"><label>幕 / 层<select id="route-floor"><option value="">全部层</option></select></label><label>决策类型<select id="route-kind"><option value="">全部类型</option></select></label><label class="route-search-label">搜索动作或卡牌<input id="route-search" type="search" placeholder="中文名称、卡牌 ID、事件、药水"></label><label>跳到第几步<input id="route-jump" type="number" min="1" value="1"></label><button id="route-jump-button" class="outline-button">跳转</button></div>
+<div class="route-workspace"><section class="panel route-timeline" aria-label="全部决策列表"><div class="route-list-heading"><strong id="route-list-count"></strong><div><button id="route-prev-page" aria-label="上一页">←</button><span id="route-page-label"></span><button id="route-next-page" aria-label="下一页">→</button></div></div><ol id="route-list"></ol></section>
+<section class="panel route-detail" aria-label="决策详情"><div class="route-detail-navigation"><button id="route-prev-step" class="link-button">← 上一步</button><span id="route-step-position"></span><button id="route-next-step" class="link-button">下一步 →</button></div><div id="route-detail-body">选择左侧任意一步。</div></section></div>
+<p class="route-footnote">步骤编号从 1 开始；动作、手牌和槽位索引保留原始的 0 起始编号。两次观测之间可能包含敌方行动、触发效果和自动结算，这里只展示实际记录的信息，不补推未记录的状态。中文名称参考 <a href="https://slaythespire2.net/zh-CN/card" target="_blank" rel="noopener noreferrer">STS2 Wiki</a>；括号内保留内部 ID，原始 JSON 与导出保留原值。</p>
+</div>
+</div>
+</section>
+
+<section id="model-view" class="view hidden" aria-label="关口模型">
+<div id="model-status" class="model-status" role="status" aria-live="polite">正在读取模型快照…</div>
+<div id="model-content" class="hidden">
+<div class="model-kpis"><article><span>入场样本</span><strong id="model-samples">—</strong><small>各关口已收集样本合计</small></article><article><span>已用于拟合</span><strong id="model-fitted">—</strong><small>最新一次拟合覆盖的样本</small></article><article><span>模型更新次数</span><strong id="model-version">—</strong><small>所有关口的拟合次数合计</small></article><article><span>记录过关 / 入场</span><strong id="model-survived">—</strong><small>各关口合计，不是整局胜率</small></article></div>
+<div class="model-workspace"><aside id="model-gates" class="panel model-gate-list" aria-label="选择首领关口"></aside><article class="panel model-detail-panel"><div class="model-feature-controls"><input id="model-feature-search" type="search" aria-label="搜索模型特征" placeholder="搜索卡牌、遗物或内部 ID"><select id="model-feature-type" aria-label="模型特征类型"><option value="">全部特征</option><option value="card">卡牌</option><option value="up">升级</option><option value="relic">遗物</option><option value="potion">药水</option></select></div><div id="model-detail"></div></article></div>
+<article class="chart-card model-history"><div class="card-heading"><div><h3>入场样本增长</h3><p>只包含打开页面之后看到的模型快照，刷新后重新记录</p></div><span id="model-history-count" class="chart-pill">—</span></div><div id="model-training-chart" class="plot" role="img" aria-label="入场样本增长曲线"></div></article>
+<details class="panel raw"><summary>完整模型快照与来源</summary><pre id="model-raw" class="model-raw"></pre></details>
+</div>
+<details class="panel model-explanation"><summary>这个模型怎么读</summary><p>每个首领关口单独学习牌组、升级、遗物、药水和生命与战斗结果的关系；父子路线的差分模型补充选项变化的信息。样本够了才拟合，之后随新结果更新。最终幕的两个首领分开建模。</p><p>结果分数：未过关时是敌方生命削减比例（同一关口统一分母）；过关时是 1 + 保留生命比例。残差和特征评分只基于本次搜索收集的数据，不能当作独立验证过的预测准确率或过关概率。模型不跨种子累积，胜利仍以完整原生重放为准。</p></details>
+</section>
+
+<section id="events-view" class="view hidden"><div class="table-toolbar"><select id="event-filter" aria-label="事件筛选"><option value="all">全部事件</option><option value="important">不含逐层推进</option></select><span class="hint">时间为事件发生时的已运行时长</span></div><div id="all-events" class="panel event-list expanded"></div></section>
+
+<section id="config-view" class="view hidden"><div class="config-grid"><article class="panel"><div class="card-heading"><div><h3>运行参数</h3><p>取自这次运行的清单文件</p></div></div><dl id="config-list"></dl></article><article class="panel scope"><div class="card-heading"><div><h3>证据范围</h3><p>这里的「胜利」说明了什么、没说明什么</p></div></div><ul class="scope-list"><li class="yes">胜利由新的原生进程从开局完整重放，并观察到原生的胜利结束。</li><li class="yes">运行环境是原游戏 DLL 的离线 TestMode。</li><li class="no">尚未认证与正常 Godot 游戏场景等价；可在「胜利轨迹」里跟打核对。</li><li class="no">超时、候选死亡或未搜索的分支，都不能证明种子无解。</li></ul><p class="footnote">页面只读取实验记录并提交新的求解；不修改游戏规则和存档。</p></article></div><details class="panel raw"><summary>原始运行清单</summary><pre id="raw-config"></pre></details></section>
+</main></div>
+
+<dialog id="launch-dialog" class="dialog" aria-labelledby="launch-title">
+<form id="launch-form">
+<div class="dialog-head"><h2 id="launch-title">新建求解</h2><button type="button" id="launch-close" class="ghost-button" aria-label="关闭">关闭</button></div>
+<p class="dialog-note">固定配置：铁甲战士 · 进阶 10 · 全解锁 · 全信息，使用 8 个逻辑 CPU 和 16 GiB 内存，从全新的一局开始。</p>
+<label>游戏种子<input id="solve-seed" name="seed" type="text" maxlength="64" required placeholder="例如 1922586569" autocomplete="off" pattern="[A-Za-z0-9][A-Za-z0-9_-]{0,63}"><small>1–64 位字母、数字、下划线或连字符。</small></label>
+<label>时间上限<select id="solve-minutes"><option value="1">1 分钟（试运行）</option><option value="15">15 分钟</option><option value="30" selected>30 分钟</option><option value="45">45 分钟</option><option value="150">150 分钟</option><option value="180">180 分钟</option></select><small>到时间仍未解出不代表种子无解。</small></label>
+<p id="launch-message" role="status" aria-live="polite">已有求解占用资源时会自动排队，排队时间不计入上限。</p>
+<div class="dialog-actions"><button id="launch-button" class="primary-button" type="submit">开始求解</button></div>
+</form>
+</dialog>
+<div id="tooltip" class="tooltip hidden"></div><div id="toast" class="toast hidden" role="status"></div>
+<script src="/app.js"></script><script src="/route_zh_data.js"></script><script src="/route_zh.js"></script><script src="/guide.js"></script><script src="/route.js"></script><script src="/gate_model.js"></script>
+</body></html>

@@ -1,0 +1,7 @@
+{
+  "workspace": "experiments/local-validated-freeze",
+  "runtime_profile": "server-large-gen0",
+  "long_run_ready": false,
+  "queue_policy": "fifo",
+  "notes": "Source-only holdout-01 release. Use the documented CLI. Dashboard job launching requires your own separately validated frozen workspace and is not release-validated."
+}

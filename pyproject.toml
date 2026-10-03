@@ -1,0 +1,9 @@
+[project]
+name = "spire-exact"
+version = "0.3.0"
+description = "holdout-01 source release of the full-information Ironclad A10 route searcher with independent native replay"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.pyright]
+pythonVersion = "3.11"

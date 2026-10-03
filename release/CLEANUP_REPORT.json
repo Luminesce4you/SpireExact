@@ -1,0 +1,26 @@
+{
+  "schema": "spire-public-clean-export/v1",
+  "date": "2026-10-03",
+  "copied_files": 315,
+  "copied_bytes": 3175604,
+  "selection": "Git-visible source candidates plus independent path, extension and reparse rejection",
+  "excluded_categories": [
+    "game and Workshop runtime dependencies",
+    "vendor source and build products",
+    "SDK/NuGet/local config caches",
+    "native bin/obj and symbols",
+    "outputs, runs and experiment archives",
+    "dashboard runtime/state/environment files",
+    "three author-specific historical tools",
+    "nested Git repositories and reparse points"
+  ],
+  "excluded_legacy_tools": [
+    "tools/diagnose_solver_pcore.py",
+    "tools/profile_solver_panel.py",
+    "tools/publish_run_report.py"
+  ],
+  "additional_rejected_candidates": [],
+  "original_files_preserved": true,
+  "private_dependency_files_copied": false,
+  "new_native_requests_executed": false
+}

@@ -1,0 +1,1464 @@
+{
+  "schema": "spire-public-evidence-provenance/v1",
+  "panel": "holdout-01",
+  "original_source_version": "bc57922b87b8b132cf9bd5f3cceffdd58efbec8e615128c67a38caf258a79c2d",
+  "export_date": "2026-10-03",
+  "original_refs_are_portable_labels_not_public_downloads": true,
+  "export_policy": {
+    "sanitized_or_extracted_files": [
+      "panel.json",
+      "summary.json",
+      "results.md",
+      "manifests/*.json"
+    ],
+    "byte_preserved_files": [
+      "routes/*/certificate.json",
+      "routes/*/winning-route.json"
+    ],
+    "excluded": [
+      "game/DLL binaries",
+      "full serialized game saves",
+      "per-action observations",
+      "raw evaluation ledgers",
+      "private absolute paths",
+      "coordination dialogue"
+    ],
+    "new_game_runs": 0,
+    "original_source_artifacts_modified": false,
+    "new_build_validation_inherited": false
+  },
+  "validation_checks": [
+    {
+      "seed": "2059734609",
+      "certificate_context_matches": true,
+      "certificate_trace_hash_matches": true,
+      "certificate_trace_length_matches": true,
+      "historical_host_hash_matches": true,
+      "final_verified_report_within_budget": true
+    },
+    {
+      "seed": "70753827",
+      "certificate_context_matches": true,
+      "certificate_trace_hash_matches": true,
+      "certificate_trace_length_matches": true,
+      "historical_host_hash_matches": true,
+      "final_verified_report_within_budget": true
+    },
+    {
+      "seed": "82854315",
+      "certificate_context_matches": true,
+      "certificate_trace_hash_matches": true,
+      "certificate_trace_length_matches": true,
+      "historical_host_hash_matches": true,
+      "final_verified_report_within_budget": true
+    },
+    {
+      "seed": "147409771",
+      "certificate_context_matches": true,
+      "certificate_trace_hash_matches": true,
+      "certificate_trace_length_matches": true,
+      "historical_host_hash_matches": true,
+      "final_verified_report_within_budget": true
+    },
+    {
+      "seed": "1350866973",
+      "certificate_context_matches": true,
+      "certificate_trace_hash_matches": true,
+      "certificate_trace_length_matches": true,
+      "historical_host_hash_matches": true,
+      "final_verified_report_within_budget": true
+    },
+    {
+      "seed": "940335177",
+      "certificate_context_matches": true,
+      "certificate_trace_hash_matches": true,
+      "certificate_trace_length_matches": true,
+      "historical_host_hash_matches": true,
+      "final_verified_report_within_budget": true
+    },
+    {
+      "seed": "1150782509",
+      "certificate_context_matches": true,
+      "certificate_trace_hash_matches": true,
+      "certificate_trace_length_matches": true,
+      "historical_host_hash_matches": true,
+      "final_verified_report_within_budget": true
+    },
+    {
+      "seed": "1014125957",
+      "certificate_context_matches": true,
+      "certificate_trace_hash_matches": true,
+      "certificate_trace_length_matches": true,
+      "historical_host_hash_matches": true,
+      "final_verified_report_within_budget": true
+    },
+    {
+      "seed": "247940282",
+      "certificate_context_matches": true,
+      "certificate_trace_hash_matches": true,
+      "certificate_trace_length_matches": true,
+      "historical_host_hash_matches": true,
+      "final_verified_report_within_budget": true
+    },
+    {
+      "seed": "39174622",
+      "certificate_context_matches": true,
+      "certificate_trace_hash_matches": true,
+      "certificate_trace_length_matches": true,
+      "historical_host_hash_matches": true,
+      "final_verified_report_within_budget": true
+    },
+    {
+      "seed": "29598892",
+      "certificate_context_matches": true,
+      "certificate_trace_hash_matches": true,
+      "certificate_trace_length_matches": true,
+      "historical_host_hash_matches": true,
+      "final_verified_report_within_budget": true
+    },
+    {
+      "seed": "1433807030",
+      "certificate_context_matches": true,
+      "certificate_trace_hash_matches": true,
+      "certificate_trace_length_matches": true,
+      "historical_host_hash_matches": true,
+      "final_verified_report_within_budget": true
+    },
+    {
+      "seed": "1899537279",
+      "certificate_context_matches": true,
+      "certificate_trace_hash_matches": true,
+      "certificate_trace_length_matches": true,
+      "historical_host_hash_matches": true,
+      "final_verified_report_within_budget": true
+    },
+    {
+      "seed": "584844114",
+      "certificate_context_matches": true,
+      "certificate_trace_hash_matches": true,
+      "certificate_trace_length_matches": true,
+      "historical_host_hash_matches": true,
+      "final_verified_report_within_budget": true
+    },
+    {
+      "seed": "1375284397",
+      "certificate_context_matches": true,
+      "certificate_trace_hash_matches": true,
+      "certificate_trace_length_matches": true,
+      "historical_host_hash_matches": true,
+      "final_verified_report_within_budget": true
+    },
+    {
+      "seed": "361226862",
+      "certificate_context_matches": true,
+      "certificate_trace_hash_matches": true,
+      "certificate_trace_length_matches": true,
+      "historical_host_hash_matches": true,
+      "final_verified_report_within_budget": true
+    },
+    {
+      "seed": "2098492050",
+      "certificate_context_matches": true,
+      "certificate_trace_hash_matches": true,
+      "certificate_trace_length_matches": true,
+      "historical_host_hash_matches": true,
+      "final_verified_report_within_budget": true
+    }
+  ],
+  "inputs": [
+    {
+      "reference": "experiments/panels/A10-seed-v2/holdout-01.json",
+      "role": "original panel",
+      "sha256": "54f33edd53fd350f63c400536c4acc8b083095688394be45cc9fd410b183d4ca",
+      "byte_length": 1430
+    },
+    {
+      "reference": "experiments/iteration-055/plan.md",
+      "role": "preregistered plan; not copied",
+      "sha256": "fade190a72a7a990b094fdf525674290f6e4a793b4578f299c730440b96188ef",
+      "byte_length": 5909
+    },
+    {
+      "reference": "experiments/iteration-055/results.md",
+      "role": "historical report; section 0 used, not copied",
+      "sha256": "77425abd1e543589f925b55d8208aff7bdf38f1fd3ba582d5afdd977d9a5c66a",
+      "byte_length": 14649
+    },
+    {
+      "reference": "experiments/iteration-055/queue.log.jsonl",
+      "role": "original queue log; not copied",
+      "sha256": "2c07eed806136314c030d88514ccc92d2547ba0ccadee0e3c4da967a72df270d",
+      "byte_length": 4452
+    },
+    {
+      "reference": "experiments/iteration-055/queue-2.log.jsonl",
+      "role": "original queue log; not copied",
+      "sha256": "2040468b34727cd43b2c39926594b6901976dae3fe4b322f147d6652270fdcd0",
+      "byte_length": 604
+    },
+    {
+      "reference": "experiments/iteration-055/queue-3.log.jsonl",
+      "role": "original queue log; not copied",
+      "sha256": "881206db2da3db76e741819fdb2d15772059187c5ef3515d25c84f507ea270f8",
+      "byte_length": 5575
+    },
+    {
+      "reference": "iteration-055/holdout30-2059734609/seed-2059734609/result.json",
+      "role": "original completed solver report",
+      "sha256": "74b3c70d21ed1946a1c118736bce668020e8f554374a93c1bbeae56b3a1f933a",
+      "byte_length": 690318
+    },
+    {
+      "reference": "iteration-055/holdout30-2059734609/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "1d7f02eab26de509170b2db6d340b43fdc8a302027c396cda0228de93fe6c3de",
+      "byte_length": 2230
+    },
+    {
+      "reference": "iteration-055/holdout30-2059734609/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "872ff7aef111aaa58d72912fd1a4d2fdf406d3e2fdb89bcffb10308b67484600",
+      "byte_length": 1112
+    },
+    {
+      "reference": "iteration-055/holdout30-2059734609/seed-2059734609-resources.json",
+      "role": "original enforced resources",
+      "sha256": "03e5fd00b9f4f2e7cd25fb8211790b1c21495837bc9da3a5efec37b4b7f1f3a8",
+      "byte_length": 714
+    },
+    {
+      "reference": "iteration-055/holdout30-2059734609/seed-2059734609/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-2059734609/seed-2059734609/certificate.json",
+      "role": "original certificate",
+      "sha256": "f61882b84c2f303a2c9ec79451dab4b2cf8f393c33da04d92a59e41d5abcb259",
+      "byte_length": 1784
+    },
+    {
+      "reference": "iteration-055/holdout30-2059734609/seed-2059734609/winning-route.json",
+      "role": "original complete action witness",
+      "sha256": "765417f7f4260dc75839ed1154bd19966e08df9698d8dc8f6963b275f38fc758",
+      "byte_length": 80956
+    },
+    {
+      "reference": "iteration-055/holdout30-70753827/seed-70753827/result.json",
+      "role": "original completed solver report",
+      "sha256": "82af2de82071daf64fdd1e318d32ceca150c3cc78aeec40a78a2caa8811adead",
+      "byte_length": 3249206
+    },
+    {
+      "reference": "iteration-055/holdout30-70753827/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "8cc7180506abca75b769889da91f867148a723ca030033c12ec25ee51ad28d1a",
+      "byte_length": 2224
+    },
+    {
+      "reference": "iteration-055/holdout30-70753827/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "931bcc21d9848617978ac3db03a391ceb00b3b31e0fa83fb261438428bbe346f",
+      "byte_length": 1112
+    },
+    {
+      "reference": "iteration-055/holdout30-70753827/seed-70753827-resources.json",
+      "role": "original enforced resources",
+      "sha256": "714593df2bfa1d6600f2977806119a625825c7e289bfc4aa33622601379a25ed",
+      "byte_length": 716
+    },
+    {
+      "reference": "iteration-055/holdout30-70753827/seed-70753827/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-70753827/seed-70753827/certificate.json",
+      "role": "original certificate",
+      "sha256": "edeb4408d3cad4983a36e2f5334c6b7402afbc62f2a1744fc0447a83e4257d7a",
+      "byte_length": 1782
+    },
+    {
+      "reference": "iteration-055/holdout30-70753827/seed-70753827/winning-route.json",
+      "role": "original complete action witness",
+      "sha256": "a4d8b69676797b47e1e0391a8709d4c2e76ee7fb1f95cd015b7e38b4a96ec037",
+      "byte_length": 57710
+    },
+    {
+      "reference": "iteration-055/holdout30-82854315/seed-82854315/result.json",
+      "role": "original completed solver report",
+      "sha256": "8d30f87cdbc3d01539eb503b96ed6ba1842d5d1875f5ad92477bfc2f6c87e752",
+      "byte_length": 2260958
+    },
+    {
+      "reference": "iteration-055/holdout30-82854315/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "a7684b2cfde3a5ec86f0a8687d6ef157900c7188c6be63a2fef00e83993a9f1f",
+      "byte_length": 2224
+    },
+    {
+      "reference": "iteration-055/holdout30-82854315/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "4489956a048c500c29029fb6cf4b301e2311b5ada9249a6c44800f1d0f66c9b6",
+      "byte_length": 1106
+    },
+    {
+      "reference": "iteration-055/holdout30-82854315/seed-82854315-resources.json",
+      "role": "original enforced resources",
+      "sha256": "7ebca0d914ae07f2a1fcf18d0786e5183add3c9a83efca270fde09549be1442c",
+      "byte_length": 712
+    },
+    {
+      "reference": "iteration-055/holdout30-82854315/seed-82854315/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-82854315/seed-82854315/certificate.json",
+      "role": "original certificate",
+      "sha256": "a229b8364baed62aee672a7f54d98cd4224be4dc5c55ca96b363ceb227d433cc",
+      "byte_length": 1782
+    },
+    {
+      "reference": "iteration-055/holdout30-82854315/seed-82854315/winning-route.json",
+      "role": "original complete action witness",
+      "sha256": "ba4ea5f57c89f3ffb67d3cabe710d561cc093991fd84b5889d9ee28a722a2d2c",
+      "byte_length": 65782
+    },
+    {
+      "reference": "iteration-055/holdout30-147409771/seed-147409771/result.json",
+      "role": "original completed solver report",
+      "sha256": "aaf20d8df057c7fbc955d7d459e0f498defa361be0bd1363f5d0f155675ffb15",
+      "byte_length": 3180756
+    },
+    {
+      "reference": "iteration-055/holdout30-147409771/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "6b039ebe7201e52c333c75216c24a15011212d90ac633242445ea7fb484e7350",
+      "byte_length": 2227
+    },
+    {
+      "reference": "iteration-055/holdout30-147409771/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "4f658b6445d7c8c0270ab49b6d42baecb2174a912b22c3812769cfac829fbc45",
+      "byte_length": 1103
+    },
+    {
+      "reference": "iteration-055/holdout30-147409771/seed-147409771-resources.json",
+      "role": "original enforced resources",
+      "sha256": "281a373c1d77e0eacea5bd91e60f8ebe2f073dbb61a63b982c57eef2b11cb197",
+      "byte_length": 713
+    },
+    {
+      "reference": "iteration-055/holdout30-147409771/seed-147409771/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-147409771/seed-147409771/certificate.json",
+      "role": "original certificate",
+      "sha256": "9c59101eeb9a93d0fcb1cddb441aed9437a667f5718475160bdc76042b8fa89e",
+      "byte_length": 1783
+    },
+    {
+      "reference": "iteration-055/holdout30-147409771/seed-147409771/winning-route.json",
+      "role": "original complete action witness",
+      "sha256": "22e756a5f0ce2121d2dcf8484020d06625ff566bd461ca729b991ab2e68da34f",
+      "byte_length": 68142
+    },
+    {
+      "reference": "iteration-055/holdout30-304804409/seed-304804409/result.json",
+      "role": "original completed solver report",
+      "sha256": "725ac0c1576c14fe3bcb48499d81dac625a5456d9dd882b6792c914d32c37d69",
+      "byte_length": 4210880
+    },
+    {
+      "reference": "iteration-055/holdout30-304804409/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "62b020cdefafd4cb388ed45f490544216ebb61202d7b4511a3a0b4da84a2ec3c",
+      "byte_length": 2227
+    },
+    {
+      "reference": "iteration-055/holdout30-304804409/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "6c2354f30f8a914d88d5a2cfa5917be3981641179102e41e3d910576675e7748",
+      "byte_length": 1113
+    },
+    {
+      "reference": "iteration-055/holdout30-304804409/seed-304804409-resources.json",
+      "role": "original enforced resources",
+      "sha256": "cc6bfa5b2bc684d162655c041305f5cb3d8ede15e01b0f2602733905c1285c64",
+      "byte_length": 715
+    },
+    {
+      "reference": "iteration-055/holdout30-304804409/seed-304804409/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-1350866973/seed-1350866973/result.json",
+      "role": "original completed solver report",
+      "sha256": "a789b4ce9a8b98ef324869d76833df2f78f151a5c98532e0c955fca8bcdc6f67",
+      "byte_length": 1333433
+    },
+    {
+      "reference": "iteration-055/holdout30-1350866973/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "494ff1b2b18c90b2081a98f13a2d1e07c9db4d0d5088e4a397ed1717980df3c1",
+      "byte_length": 2230
+    },
+    {
+      "reference": "iteration-055/holdout30-1350866973/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "1a15c1fc870719ac29bfccc0e63c9d372a853e81fe34d09e19453402ddd04516",
+      "byte_length": 1111
+    },
+    {
+      "reference": "iteration-055/holdout30-1350866973/seed-1350866973-resources.json",
+      "role": "original enforced resources",
+      "sha256": "e30488e7d3ee06976d75ca4cf067ac6836fffdde42fcdccf69cc581964eb810d",
+      "byte_length": 713
+    },
+    {
+      "reference": "iteration-055/holdout30-1350866973/seed-1350866973/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-1350866973/seed-1350866973/certificate.json",
+      "role": "original certificate",
+      "sha256": "4d56ccacc2bf71989ddc7320dfa74c9faaf685aa0ad0fdfc36845f4d8704dd46",
+      "byte_length": 1784
+    },
+    {
+      "reference": "iteration-055/holdout30-1350866973/seed-1350866973/winning-route.json",
+      "role": "original complete action witness",
+      "sha256": "c3724ec1f39c80986df2d7c3b250161af14c5aa7d637fe5e2e70a04c1de58cd3",
+      "byte_length": 48175
+    },
+    {
+      "reference": "iteration-055/holdout30-940335177/seed-940335177/result.json",
+      "role": "original completed solver report",
+      "sha256": "1cf379e485b295939f718c4225c5f91e06de32697b0aa7ef939020b08e89bdf8",
+      "byte_length": 858064
+    },
+    {
+      "reference": "iteration-055/holdout30-940335177/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "2fa0613b360aa04121f77eef16f2854690aca15cc9d4d9f3aa597ae49302d07f",
+      "byte_length": 2227
+    },
+    {
+      "reference": "iteration-055/holdout30-940335177/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "523bff9c1d1bb3d52b0fd53c7b8cc938f0f850792b852ebe91ed76c8cd70ee6a",
+      "byte_length": 1112
+    },
+    {
+      "reference": "iteration-055/holdout30-940335177/seed-940335177-resources.json",
+      "role": "original enforced resources",
+      "sha256": "4f98774f3a30ea66652e1a3b158487563dc4e141b729c6cd5af1c9eebf265f73",
+      "byte_length": 715
+    },
+    {
+      "reference": "iteration-055/holdout30-940335177/seed-940335177/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-940335177/seed-940335177/certificate.json",
+      "role": "original certificate",
+      "sha256": "e59215d5469fda3a7762cad95ca1cffff685f726028782c05f31f760e07fc48f",
+      "byte_length": 1783
+    },
+    {
+      "reference": "iteration-055/holdout30-940335177/seed-940335177/winning-route.json",
+      "role": "original complete action witness",
+      "sha256": "e82866f0fa4fdccfb864ca6c91a5f18423b23f902f977b2caa77198e829d2ce9",
+      "byte_length": 90324
+    },
+    {
+      "reference": "iteration-055/holdout30-524130501/seed-524130501/result.json",
+      "role": "original completed solver report",
+      "sha256": "769ff0f02dcaa49fa976f465ae39db271ce03616306edb26be4f3b8c4578d663",
+      "byte_length": 10760035
+    },
+    {
+      "reference": "iteration-055/holdout30-524130501/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "c7059f99e92d3424c678636d6f84232385800d89b374f5769793c97c917d31ca",
+      "byte_length": 2227
+    },
+    {
+      "reference": "iteration-055/holdout30-524130501/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "dc90358e70b01ac3a9377e48a6ed27fbe5b3168ac16f55cf683bad6c27f58c8b",
+      "byte_length": 1115
+    },
+    {
+      "reference": "iteration-055/holdout30-524130501/seed-524130501-resources.json",
+      "role": "original enforced resources",
+      "sha256": "788937c297a2f35c66c2389ba52ca4ef1ef718cd90c1d3f32cfc62033b52f36f",
+      "byte_length": 717
+    },
+    {
+      "reference": "iteration-055/holdout30-524130501/seed-524130501/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-1596179791/seed-1596179791/result.json",
+      "role": "original completed solver report",
+      "sha256": "d4d508f75acccf8e5558756dcafc7f78459d467a81289412b5ef6838c9d108d3",
+      "byte_length": 3562418
+    },
+    {
+      "reference": "iteration-055/holdout30-1596179791/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "86da725ff2bb40a1eff44ed02ed18b0d218c8431f1baaf383969fe7d63461cfa",
+      "byte_length": 2230
+    },
+    {
+      "reference": "iteration-055/holdout30-1596179791/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "fd6f02770cf73241a2b541b6f72f28495722caf66935ddff4d08722597b82c77",
+      "byte_length": 1116
+    },
+    {
+      "reference": "iteration-055/holdout30-1596179791/seed-1596179791-resources.json",
+      "role": "original enforced resources",
+      "sha256": "4b910682ea690897a0ed8b28a094c840dd1a8f4155dae530a10412dc919009a1",
+      "byte_length": 717
+    },
+    {
+      "reference": "iteration-055/holdout30-1596179791/seed-1596179791/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-1150782509/seed-1150782509/result.json",
+      "role": "original completed solver report",
+      "sha256": "0fcaef8a9fab9cee172aa4a46ad52540aae53466f3f4e8952db39ef531cd43c2",
+      "byte_length": 4060026
+    },
+    {
+      "reference": "iteration-055/holdout30-1150782509/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "0cc96460deb3ddb44da381e5681e5f6b26f9310f0b878eb27d18d6d86d2ff4ca",
+      "byte_length": 2230
+    },
+    {
+      "reference": "iteration-055/holdout30-1150782509/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "6d4a37ddbd718792f9a90b64c0ef2a2b76da8466285879d2ef1124ed7026f7a0",
+      "byte_length": 1112
+    },
+    {
+      "reference": "iteration-055/holdout30-1150782509/seed-1150782509-resources.json",
+      "role": "original enforced resources",
+      "sha256": "3cea8b0f99ecdc3d292aeb24bea87fbbe26b5aff5b708386f17319368f54c1d4",
+      "byte_length": 714
+    },
+    {
+      "reference": "iteration-055/holdout30-1150782509/seed-1150782509/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-1150782509/seed-1150782509/certificate.json",
+      "role": "original certificate",
+      "sha256": "86b84257c25d25b6dc2c676ffb10958d79233ca6f659b6b2856562d05aca377f",
+      "byte_length": 1784
+    },
+    {
+      "reference": "iteration-055/holdout30-1150782509/seed-1150782509/winning-route.json",
+      "role": "original complete action witness",
+      "sha256": "281e2c5b99ba37d22471fec7fa92e4c102ed170585e2f8644af82dba622c7fc4",
+      "byte_length": 59000
+    },
+    {
+      "reference": "iteration-055/holdout30-1014125957/seed-1014125957/result.json",
+      "role": "original completed solver report",
+      "sha256": "4ce6248def2f87a8bd74226f3c04d90f7be2a3b870d623d91cabdaa095adb30c",
+      "byte_length": 6508018
+    },
+    {
+      "reference": "iteration-055/holdout30-1014125957/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "e6af1e4efc1d7d8cd93fb02908d3f0436e6b29989fcb0b9b4c2ef0b96fa5859b",
+      "byte_length": 2230
+    },
+    {
+      "reference": "iteration-055/holdout30-1014125957/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "7cca566953bee5975967eabe2ea7551c98ebf804c50d65e8068a8a0ee763a7c0",
+      "byte_length": 1114
+    },
+    {
+      "reference": "iteration-055/holdout30-1014125957/seed-1014125957-resources.json",
+      "role": "original enforced resources",
+      "sha256": "0abfa02070090ddf51b710c9b57fb756d213ee7d98446105cded8f6c9db72a89",
+      "byte_length": 715
+    },
+    {
+      "reference": "iteration-055/holdout30-1014125957/seed-1014125957/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-1014125957/seed-1014125957/certificate.json",
+      "role": "original certificate",
+      "sha256": "ce41e9747e9702a97ba0dcdae7a6ca3b156f734c2d1f9dbbafc624a685de6287",
+      "byte_length": 1784
+    },
+    {
+      "reference": "iteration-055/holdout30-1014125957/seed-1014125957/winning-route.json",
+      "role": "original complete action witness",
+      "sha256": "a15e22969cf15251c5174c142cd145da5b290454425248c50e4fc89d69125f74",
+      "byte_length": 56028
+    },
+    {
+      "reference": "iteration-055/holdout30-247940282/seed-247940282/result.json",
+      "role": "original completed solver report",
+      "sha256": "c5093479c4880e1414fbe027a570e4f645aee606c4d992059d9aec2d792caf0c",
+      "byte_length": 3885868
+    },
+    {
+      "reference": "iteration-055/holdout30-247940282/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "6696612f25bbbd5eb83ef7d2a9ece2d0aaa22fc5bbfb729c7dbb7155271c0cb5",
+      "byte_length": 2227
+    },
+    {
+      "reference": "iteration-055/holdout30-247940282/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "3fb912b166a098f5086457e9e099885ba7934b0156b211b39fb2ad87d676e443",
+      "byte_length": 1113
+    },
+    {
+      "reference": "iteration-055/holdout30-247940282/seed-247940282-resources.json",
+      "role": "original enforced resources",
+      "sha256": "c323ed4d2ed168606fc326dc2697f28647bbacc8430d903663a6cbe88060429f",
+      "byte_length": 717
+    },
+    {
+      "reference": "iteration-055/holdout30-247940282/seed-247940282/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-247940282/seed-247940282/certificate.json",
+      "role": "original certificate",
+      "sha256": "be29291fef5330185d15b967a92fa7d1cd3d9c8ef4eba15a92370bb4e4673d1d",
+      "byte_length": 1783
+    },
+    {
+      "reference": "iteration-055/holdout30-247940282/seed-247940282/winning-route.json",
+      "role": "original complete action witness",
+      "sha256": "dc599f4a14bbc6d21293fb483106f0f8f44a86d91a3d2dca0ee7b8a2e44e8aa6",
+      "byte_length": 47706
+    },
+    {
+      "reference": "iteration-055/holdout30-39174622/seed-39174622/result.json",
+      "role": "original completed solver report",
+      "sha256": "3921bdd72acfdd11849f5231c99799641ba8ab0f0489d1d7e8111b9ae028eb04",
+      "byte_length": 1880880
+    },
+    {
+      "reference": "iteration-055/holdout30-39174622/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "9025fc46250475141cc2fcb259db330f5c7dbb2f9d8ab2ef70eb99e116e78ac2",
+      "byte_length": 2224
+    },
+    {
+      "reference": "iteration-055/holdout30-39174622/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "89efb5521149d8ff6784c7631a384e3047508e96a009e440bd112961290c1264",
+      "byte_length": 1111
+    },
+    {
+      "reference": "iteration-055/holdout30-39174622/seed-39174622-resources.json",
+      "role": "original enforced resources",
+      "sha256": "cfea47b6a97b6f948e85638011a9fc1f8ea5c20bfda991a16742ae1082b0e1b4",
+      "byte_length": 716
+    },
+    {
+      "reference": "iteration-055/holdout30-39174622/seed-39174622/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-39174622/seed-39174622/certificate.json",
+      "role": "original certificate",
+      "sha256": "cbc26533684fad65cdb95112502cb64b45c72003d8a4ab68e536808f401f3bf1",
+      "byte_length": 1783
+    },
+    {
+      "reference": "iteration-055/holdout30-39174622/seed-39174622/winning-route.json",
+      "role": "original complete action witness",
+      "sha256": "3ff9d7d1300a8f096bb3ebbb2eb720364b12ab2c87abdf66c5e48a1490d3c14c",
+      "byte_length": 96167
+    },
+    {
+      "reference": "iteration-055/holdout30-29598892/seed-29598892/result.json",
+      "role": "original completed solver report",
+      "sha256": "8001bec9ed68a22e0765b28d8e678972ba767c5acc3bfc6664d5ea7e261fd208",
+      "byte_length": 1164194
+    },
+    {
+      "reference": "iteration-055/holdout30-29598892/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "66db2a84d7e48e2ee92687276f4815ea46caa582399517937c90a985fab9acc7",
+      "byte_length": 2224
+    },
+    {
+      "reference": "iteration-055/holdout30-29598892/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "13eba76074caa0edd52d2cdc0fc39e51939a4ad818c433ed1e13e9aaf2e8ce9d",
+      "byte_length": 1109
+    },
+    {
+      "reference": "iteration-055/holdout30-29598892/seed-29598892-resources.json",
+      "role": "original enforced resources",
+      "sha256": "a378b64c49a52f861ecc54d4207e53140f672916a5194aac164197dbb0167e24",
+      "byte_length": 714
+    },
+    {
+      "reference": "iteration-055/holdout30-29598892/seed-29598892/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-29598892/seed-29598892/certificate.json",
+      "role": "original certificate",
+      "sha256": "84b59ab09f6a083e008cd8fe544980c3834144e7d083ea62cc5b13c118ec4bfa",
+      "byte_length": 1782
+    },
+    {
+      "reference": "iteration-055/holdout30-29598892/seed-29598892/winning-route.json",
+      "role": "original complete action witness",
+      "sha256": "6b8dfd6051a6768e9ecad4632ceaca3a844bde85af9b12e4606e50b5961c9f0e",
+      "byte_length": 48113
+    },
+    {
+      "reference": "iteration-055/holdout30-1433807030/seed-1433807030/result.json",
+      "role": "original completed solver report",
+      "sha256": "cd01590c8003a7023c422c41a847eec829950fc4516238be51f5c35bafa2cb48",
+      "byte_length": 4669233
+    },
+    {
+      "reference": "iteration-055/holdout30-1433807030/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "1ccef1a6d62678b8601ca7bdabbdfa9b4705d77622b07bab2ead2fe7899f7ad5",
+      "byte_length": 2230
+    },
+    {
+      "reference": "iteration-055/holdout30-1433807030/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "470c9c6d647f64156198669b0c6658458756603e1011e2e541321779e08b94da",
+      "byte_length": 1114
+    },
+    {
+      "reference": "iteration-055/holdout30-1433807030/seed-1433807030-resources.json",
+      "role": "original enforced resources",
+      "sha256": "f919636d5187323a907d155655353b9c2686de9d1bd4d44616563d6b2d094a32",
+      "byte_length": 716
+    },
+    {
+      "reference": "iteration-055/holdout30-1433807030/seed-1433807030/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-1433807030/seed-1433807030/certificate.json",
+      "role": "original certificate",
+      "sha256": "261559d66275a72338f475ea61e5b63c1707721a34956726de097065b1284c55",
+      "byte_length": 1784
+    },
+    {
+      "reference": "iteration-055/holdout30-1433807030/seed-1433807030/winning-route.json",
+      "role": "original complete action witness",
+      "sha256": "1a93df4061943076b5f777b36432671601a942575a7e745e155b8994da9a2198",
+      "byte_length": 80436
+    },
+    {
+      "reference": "iteration-055/holdout30-1899537279/seed-1899537279/result.json",
+      "role": "original completed solver report",
+      "sha256": "a602dee8eff451fc2c9d2ed227730fa6fce6b619d0eccb9695da699b9c53bac8",
+      "byte_length": 612355
+    },
+    {
+      "reference": "iteration-055/holdout30-1899537279/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "a4e18fa5712a0ffb4d31423bb3727780b689f7d1d3b4cb483c26f1b981bc15c9",
+      "byte_length": 2230
+    },
+    {
+      "reference": "iteration-055/holdout30-1899537279/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "8ac1d98ad91e667f4eacf9978fbbd1e559d37e4978aea445f64c63d8e020ec0f",
+      "byte_length": 1114
+    },
+    {
+      "reference": "iteration-055/holdout30-1899537279/seed-1899537279-resources.json",
+      "role": "original enforced resources",
+      "sha256": "fb6dbcc85bf25124b4eab7a963585b35d0617d6aa588d75483fe2d088933ff04",
+      "byte_length": 716
+    },
+    {
+      "reference": "iteration-055/holdout30-1899537279/seed-1899537279/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-1899537279/seed-1899537279/certificate.json",
+      "role": "original certificate",
+      "sha256": "9d32def807569d2dbb0654923c0fbcb369a273c86fba320a9ae39bc272e43cda",
+      "byte_length": 1784
+    },
+    {
+      "reference": "iteration-055/holdout30-1899537279/seed-1899537279/winning-route.json",
+      "role": "original complete action witness",
+      "sha256": "bfd950cd479581a53ae7c7db7f12ba3fc9947aa0c9ca3efe66d3ca88261b8738",
+      "byte_length": 55123
+    },
+    {
+      "reference": "iteration-055/holdout30-584844114/seed-584844114/result.json",
+      "role": "original completed solver report",
+      "sha256": "33326c66a825b3ce35a4e97554e36508b9eef6908af066ec5d318a7b08fd2088",
+      "byte_length": 4637392
+    },
+    {
+      "reference": "iteration-055/holdout30-584844114/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "665b0bb5436cbba45c9169b73f3e2ba1cf0d8125ac617609e845afeb011d75f2",
+      "byte_length": 2227
+    },
+    {
+      "reference": "iteration-055/holdout30-584844114/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "d62f427c1e1b94c0eb0304bda138d94f55a06945432dc34f39fd2121bd848286",
+      "byte_length": 1115
+    },
+    {
+      "reference": "iteration-055/holdout30-584844114/seed-584844114-resources.json",
+      "role": "original enforced resources",
+      "sha256": "9e3b6080d714916681ae7803f71741e94bdf41eba692a291b54dc649c88e91d7",
+      "byte_length": 717
+    },
+    {
+      "reference": "iteration-055/holdout30-584844114/seed-584844114/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-584844114/seed-584844114/certificate.json",
+      "role": "original certificate",
+      "sha256": "8daf0968bb3363097872d3b31169a8680048318c086116d3dc6fc2c611594d22",
+      "byte_length": 1783
+    },
+    {
+      "reference": "iteration-055/holdout30-584844114/seed-584844114/winning-route.json",
+      "role": "original complete action witness",
+      "sha256": "8500973c70105ceeeabefe17359e7e2637914355a87006c8cc6d8b435822fbf0",
+      "byte_length": 70698
+    },
+    {
+      "reference": "iteration-055/holdout30-1375284397/seed-1375284397/result.json",
+      "role": "original completed solver report",
+      "sha256": "a080f5bdf735584730d9b8ba80d4459bfdbdc5fd3256befc6a7c06fb7957c771",
+      "byte_length": 1517979
+    },
+    {
+      "reference": "iteration-055/holdout30-1375284397/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "f0301534984891ec745eb6ca4ee2d53519d81d9a582832a2f3213abfe6793ca3",
+      "byte_length": 2230
+    },
+    {
+      "reference": "iteration-055/holdout30-1375284397/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "83125b1e144bcd5d37eae2108ef0c1ad50d5eb503fa33b8de4fd45017d513f7f",
+      "byte_length": 1115
+    },
+    {
+      "reference": "iteration-055/holdout30-1375284397/seed-1375284397-resources.json",
+      "role": "original enforced resources",
+      "sha256": "71dfe1b3e0bae8f21f108a9076f7317a238d65011af9cc201d548c8f17ec3d8d",
+      "byte_length": 717
+    },
+    {
+      "reference": "iteration-055/holdout30-1375284397/seed-1375284397/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-1375284397/seed-1375284397/certificate.json",
+      "role": "original certificate",
+      "sha256": "ced57b0099d0aae96d3fe90749e06ccde21665da7089a6a54f62d5223b0793b2",
+      "byte_length": 1784
+    },
+    {
+      "reference": "iteration-055/holdout30-1375284397/seed-1375284397/winning-route.json",
+      "role": "original complete action witness",
+      "sha256": "8fd23149c723598dc5fc6e6978d9cf4997df89b0ec7c3102ab690ebd392a0b43",
+      "byte_length": 71283
+    },
+    {
+      "reference": "iteration-055/holdout30-361226862/seed-361226862/result.json",
+      "role": "original completed solver report",
+      "sha256": "446d8821291cce4768bf421b9f9f9425450bedb057fa744d73843fed093a9d0b",
+      "byte_length": 2307821
+    },
+    {
+      "reference": "iteration-055/holdout30-361226862/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "23aeb9d6023f0354a623de1664138f8e3eaabbb1a1219f6180d6447e0a535e42",
+      "byte_length": 2227
+    },
+    {
+      "reference": "iteration-055/holdout30-361226862/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "95fc2cd0cc63481d8c2381f9c8576c9b0628fc49997c32676a6d56271cb9e9aa",
+      "byte_length": 1114
+    },
+    {
+      "reference": "iteration-055/holdout30-361226862/seed-361226862-resources.json",
+      "role": "original enforced resources",
+      "sha256": "1cf80ba186b5552fb4c82e35ac959b55432f71f67bafe29ec2678ae7600ebd3a",
+      "byte_length": 717
+    },
+    {
+      "reference": "iteration-055/holdout30-361226862/seed-361226862/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-361226862/seed-361226862/certificate.json",
+      "role": "original certificate",
+      "sha256": "7789bff545d7d32df804d9e3a684747545f78a937c9f9cd32eb6ed3d226dfff4",
+      "byte_length": 1783
+    },
+    {
+      "reference": "iteration-055/holdout30-361226862/seed-361226862/winning-route.json",
+      "role": "original complete action witness",
+      "sha256": "c6a195a9c21c19aec3a0730d0a68490dc51dd7b35517617a684ab5a29bd1be02",
+      "byte_length": 77931
+    },
+    {
+      "reference": "iteration-055/holdout30-2098492050/seed-2098492050/result.json",
+      "role": "original completed solver report",
+      "sha256": "3aa965568d0b3ab69e30abf58499aafec9a0cad4c8c17dbb0e4a5f728a79d9ad",
+      "byte_length": 545441
+    },
+    {
+      "reference": "iteration-055/holdout30-2098492050/validation-manifest.json",
+      "role": "original run manifest",
+      "sha256": "27d6d5796649a0109c3570ac69834105e120e890c1e663aae1632758ae3e2a1d",
+      "byte_length": 2230
+    },
+    {
+      "reference": "iteration-055/holdout30-2098492050/baseline-report.json",
+      "role": "original wrapper report",
+      "sha256": "1c6b29f81ea4053f4af4ee67d9d6bc7c31c5560126e5d57521690e7e245a72ed",
+      "byte_length": 1111
+    },
+    {
+      "reference": "iteration-055/holdout30-2098492050/seed-2098492050-resources.json",
+      "role": "original enforced resources",
+      "sha256": "d491c5a3e29d713024d49df07971fe12c03a123b2f1cf0932e465e7424b17df5",
+      "byte_length": 714
+    },
+    {
+      "reference": "iteration-055/holdout30-2098492050/seed-2098492050/advisor-provenance.json",
+      "role": "original solver/harness fingerprint",
+      "sha256": "e9c12f8ad027cafd1d79f7b06d916e7f00c1d7228c66c991695d1e48762d96b3",
+      "byte_length": 1401
+    },
+    {
+      "reference": "iteration-055/holdout30-2098492050/seed-2098492050/certificate.json",
+      "role": "original certificate",
+      "sha256": "29630324918a367c861a1ab5e69ec63bb4c4a3f399d6ba3de6d0855582b5d314",
+      "byte_length": 1784
+    },
+    {
+      "reference": "iteration-055/holdout30-2098492050/seed-2098492050/winning-route.json",
+      "role": "original complete action witness",
+      "sha256": "a721433615a3e11715096e4315c66f868c6c6667146e04150a40358b0746e0fe",
+      "byte_length": 65182
+    }
+  ],
+  "exports": [
+    {
+      "path": "panel.json",
+      "sha256": "f769c4e9a91365f0fd23e44f8df9ac1382f3c5b8a832c2b2fa54a2ecf329deaf",
+      "byte_length": 1362,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "54f33edd53fd350f63c400536c4acc8b083095688394be45cc9fd410b183d4ca",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "summary.json",
+      "sha256": "52830b9202d0e63b63360f0a2dd93bfa47319edba1fc72aeceff058eb67e1d2c",
+      "byte_length": 59081,
+      "representation": "sanitized_or_extracted"
+    },
+    {
+      "path": "results.md",
+      "sha256": "0b0853504c396d94b0905de789086f49f12bb7c06bf0364ac26aeaf3115315b1",
+      "byte_length": 4595,
+      "representation": "sanitized_or_extracted"
+    },
+    {
+      "path": "manifests/holdout30-2059734609.json",
+      "sha256": "888ae0f0fc3d6cbb14d0712a85127a04ff45f97798580c300637c2c4265e3964",
+      "byte_length": 3395,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "1d7f02eab26de509170b2db6d340b43fdc8a302027c396cda0228de93fe6c3de",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "routes/seed-2059734609/certificate.json",
+      "sha256": "f61882b84c2f303a2c9ec79451dab4b2cf8f393c33da04d92a59e41d5abcb259",
+      "byte_length": 1784,
+      "representation": "original_bytes",
+      "original_sha256": "f61882b84c2f303a2c9ec79451dab4b2cf8f393c33da04d92a59e41d5abcb259",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "routes/seed-2059734609/winning-route.json",
+      "sha256": "765417f7f4260dc75839ed1154bd19966e08df9698d8dc8f6963b275f38fc758",
+      "byte_length": 80956,
+      "representation": "original_bytes",
+      "original_sha256": "765417f7f4260dc75839ed1154bd19966e08df9698d8dc8f6963b275f38fc758",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "manifests/holdout30-70753827.json",
+      "sha256": "fc7eac7f4423864cdadd480d2bb9f0bcc39fc37a9bbe4498d3d77e320629f529",
+      "byte_length": 3387,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "8cc7180506abca75b769889da91f867148a723ca030033c12ec25ee51ad28d1a",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "routes/seed-70753827/certificate.json",
+      "sha256": "edeb4408d3cad4983a36e2f5334c6b7402afbc62f2a1744fc0447a83e4257d7a",
+      "byte_length": 1782,
+      "representation": "original_bytes",
+      "original_sha256": "edeb4408d3cad4983a36e2f5334c6b7402afbc62f2a1744fc0447a83e4257d7a",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "routes/seed-70753827/winning-route.json",
+      "sha256": "a4d8b69676797b47e1e0391a8709d4c2e76ee7fb1f95cd015b7e38b4a96ec037",
+      "byte_length": 57710,
+      "representation": "original_bytes",
+      "original_sha256": "a4d8b69676797b47e1e0391a8709d4c2e76ee7fb1f95cd015b7e38b4a96ec037",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "manifests/holdout30-82854315.json",
+      "sha256": "5dde3043a764cd62d1f2d5f5e5b4f404bfba5e86590ef895b3bc76a9710ec5fc",
+      "byte_length": 3387,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "a7684b2cfde3a5ec86f0a8687d6ef157900c7188c6be63a2fef00e83993a9f1f",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "routes/seed-82854315/certificate.json",
+      "sha256": "a229b8364baed62aee672a7f54d98cd4224be4dc5c55ca96b363ceb227d433cc",
+      "byte_length": 1782,
+      "representation": "original_bytes",
+      "original_sha256": "a229b8364baed62aee672a7f54d98cd4224be4dc5c55ca96b363ceb227d433cc",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "routes/seed-82854315/winning-route.json",
+      "sha256": "ba4ea5f57c89f3ffb67d3cabe710d561cc093991fd84b5889d9ee28a722a2d2c",
+      "byte_length": 65782,
+      "representation": "original_bytes",
+      "original_sha256": "ba4ea5f57c89f3ffb67d3cabe710d561cc093991fd84b5889d9ee28a722a2d2c",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "manifests/holdout30-147409771.json",
+      "sha256": "46a97a0938ecaf32a1d5f4d39ed9082bb2348917c08e26ef9af3fc4081901008",
+      "byte_length": 3391,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "6b039ebe7201e52c333c75216c24a15011212d90ac633242445ea7fb484e7350",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "routes/seed-147409771/certificate.json",
+      "sha256": "9c59101eeb9a93d0fcb1cddb441aed9437a667f5718475160bdc76042b8fa89e",
+      "byte_length": 1783,
+      "representation": "original_bytes",
+      "original_sha256": "9c59101eeb9a93d0fcb1cddb441aed9437a667f5718475160bdc76042b8fa89e",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "routes/seed-147409771/winning-route.json",
+      "sha256": "22e756a5f0ce2121d2dcf8484020d06625ff566bd461ca729b991ab2e68da34f",
+      "byte_length": 68142,
+      "representation": "original_bytes",
+      "original_sha256": "22e756a5f0ce2121d2dcf8484020d06625ff566bd461ca729b991ab2e68da34f",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "manifests/holdout30-304804409.json",
+      "sha256": "46310f4da15c906bb5aa6f791198f7535a3db9b31ff52cb9a819aa0a4733d134",
+      "byte_length": 3123,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "62b020cdefafd4cb388ed45f490544216ebb61202d7b4511a3a0b4da84a2ec3c",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "manifests/holdout30-1350866973.json",
+      "sha256": "e75e21b6a8099e3515f772b3b648211710f621415c3fdd79825a093e6832bcc0",
+      "byte_length": 3395,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "494ff1b2b18c90b2081a98f13a2d1e07c9db4d0d5088e4a397ed1717980df3c1",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "routes/seed-1350866973/certificate.json",
+      "sha256": "4d56ccacc2bf71989ddc7320dfa74c9faaf685aa0ad0fdfc36845f4d8704dd46",
+      "byte_length": 1784,
+      "representation": "original_bytes",
+      "original_sha256": "4d56ccacc2bf71989ddc7320dfa74c9faaf685aa0ad0fdfc36845f4d8704dd46",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "routes/seed-1350866973/winning-route.json",
+      "sha256": "c3724ec1f39c80986df2d7c3b250161af14c5aa7d637fe5e2e70a04c1de58cd3",
+      "byte_length": 48175,
+      "representation": "original_bytes",
+      "original_sha256": "c3724ec1f39c80986df2d7c3b250161af14c5aa7d637fe5e2e70a04c1de58cd3",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "manifests/holdout30-940335177.json",
+      "sha256": "21eaba0e6946cb80be705a93c7eda29ba6ea33d97a2c4298e670d5920b8f01ae",
+      "byte_length": 3391,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "2fa0613b360aa04121f77eef16f2854690aca15cc9d4d9f3aa597ae49302d07f",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "routes/seed-940335177/certificate.json",
+      "sha256": "e59215d5469fda3a7762cad95ca1cffff685f726028782c05f31f760e07fc48f",
+      "byte_length": 1783,
+      "representation": "original_bytes",
+      "original_sha256": "e59215d5469fda3a7762cad95ca1cffff685f726028782c05f31f760e07fc48f",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "routes/seed-940335177/winning-route.json",
+      "sha256": "e82866f0fa4fdccfb864ca6c91a5f18423b23f902f977b2caa77198e829d2ce9",
+      "byte_length": 90324,
+      "representation": "original_bytes",
+      "original_sha256": "e82866f0fa4fdccfb864ca6c91a5f18423b23f902f977b2caa77198e829d2ce9",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "manifests/holdout30-524130501.json",
+      "sha256": "0bee70b6e7193c6a015ee2dff8c92468e1dab6ecfd94b9c5946fc9f782828ee9",
+      "byte_length": 3123,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "c7059f99e92d3424c678636d6f84232385800d89b374f5769793c97c917d31ca",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "manifests/holdout30-1596179791.json",
+      "sha256": "5526d7dd54c8a411e669dc309506736e51eaf94c0b16fa20c71ed9abeb3599da",
+      "byte_length": 3127,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "86da725ff2bb40a1eff44ed02ed18b0d218c8431f1baaf383969fe7d63461cfa",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "manifests/holdout30-1150782509.json",
+      "sha256": "5da658831f350cb09b2f387bfa845ac4eab49b07ced94932b3d0cf71670223d7",
+      "byte_length": 3395,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "0cc96460deb3ddb44da381e5681e5f6b26f9310f0b878eb27d18d6d86d2ff4ca",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "routes/seed-1150782509/certificate.json",
+      "sha256": "86b84257c25d25b6dc2c676ffb10958d79233ca6f659b6b2856562d05aca377f",
+      "byte_length": 1784,
+      "representation": "original_bytes",
+      "original_sha256": "86b84257c25d25b6dc2c676ffb10958d79233ca6f659b6b2856562d05aca377f",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "routes/seed-1150782509/winning-route.json",
+      "sha256": "281e2c5b99ba37d22471fec7fa92e4c102ed170585e2f8644af82dba622c7fc4",
+      "byte_length": 59000,
+      "representation": "original_bytes",
+      "original_sha256": "281e2c5b99ba37d22471fec7fa92e4c102ed170585e2f8644af82dba622c7fc4",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "manifests/holdout30-1014125957.json",
+      "sha256": "97ae311d1bd24ca374ee926432c19aae2ddb196bfa88ed923025c399766c1b92",
+      "byte_length": 3395,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "e6af1e4efc1d7d8cd93fb02908d3f0436e6b29989fcb0b9b4c2ef0b96fa5859b",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "routes/seed-1014125957/certificate.json",
+      "sha256": "ce41e9747e9702a97ba0dcdae7a6ca3b156f734c2d1f9dbbafc624a685de6287",
+      "byte_length": 1784,
+      "representation": "original_bytes",
+      "original_sha256": "ce41e9747e9702a97ba0dcdae7a6ca3b156f734c2d1f9dbbafc624a685de6287",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "routes/seed-1014125957/winning-route.json",
+      "sha256": "a15e22969cf15251c5174c142cd145da5b290454425248c50e4fc89d69125f74",
+      "byte_length": 56028,
+      "representation": "original_bytes",
+      "original_sha256": "a15e22969cf15251c5174c142cd145da5b290454425248c50e4fc89d69125f74",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "manifests/holdout30-247940282.json",
+      "sha256": "6c483c5fe6313381a6f603ecca9ddda4d5a9e8e930a3c0631215dc89ea89f2e0",
+      "byte_length": 3391,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "6696612f25bbbd5eb83ef7d2a9ece2d0aaa22fc5bbfb729c7dbb7155271c0cb5",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "routes/seed-247940282/certificate.json",
+      "sha256": "be29291fef5330185d15b967a92fa7d1cd3d9c8ef4eba15a92370bb4e4673d1d",
+      "byte_length": 1783,
+      "representation": "original_bytes",
+      "original_sha256": "be29291fef5330185d15b967a92fa7d1cd3d9c8ef4eba15a92370bb4e4673d1d",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "routes/seed-247940282/winning-route.json",
+      "sha256": "dc599f4a14bbc6d21293fb483106f0f8f44a86d91a3d2dca0ee7b8a2e44e8aa6",
+      "byte_length": 47706,
+      "representation": "original_bytes",
+      "original_sha256": "dc599f4a14bbc6d21293fb483106f0f8f44a86d91a3d2dca0ee7b8a2e44e8aa6",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "manifests/holdout30-39174622.json",
+      "sha256": "38c1422d2aab9fc04ceddc8dd2dd0cfa84fe4393362f4d0c8dee8811c4670ec0",
+      "byte_length": 3387,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "9025fc46250475141cc2fcb259db330f5c7dbb2f9d8ab2ef70eb99e116e78ac2",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "routes/seed-39174622/certificate.json",
+      "sha256": "cbc26533684fad65cdb95112502cb64b45c72003d8a4ab68e536808f401f3bf1",
+      "byte_length": 1783,
+      "representation": "original_bytes",
+      "original_sha256": "cbc26533684fad65cdb95112502cb64b45c72003d8a4ab68e536808f401f3bf1",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "routes/seed-39174622/winning-route.json",
+      "sha256": "3ff9d7d1300a8f096bb3ebbb2eb720364b12ab2c87abdf66c5e48a1490d3c14c",
+      "byte_length": 96167,
+      "representation": "original_bytes",
+      "original_sha256": "3ff9d7d1300a8f096bb3ebbb2eb720364b12ab2c87abdf66c5e48a1490d3c14c",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "manifests/holdout30-29598892.json",
+      "sha256": "c551b2ba36df0a2f373b64a54ada35d351398301bebfbe423983a70b813140a8",
+      "byte_length": 3387,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "66db2a84d7e48e2ee92687276f4815ea46caa582399517937c90a985fab9acc7",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "routes/seed-29598892/certificate.json",
+      "sha256": "84b59ab09f6a083e008cd8fe544980c3834144e7d083ea62cc5b13c118ec4bfa",
+      "byte_length": 1782,
+      "representation": "original_bytes",
+      "original_sha256": "84b59ab09f6a083e008cd8fe544980c3834144e7d083ea62cc5b13c118ec4bfa",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "routes/seed-29598892/winning-route.json",
+      "sha256": "6b8dfd6051a6768e9ecad4632ceaca3a844bde85af9b12e4606e50b5961c9f0e",
+      "byte_length": 48113,
+      "representation": "original_bytes",
+      "original_sha256": "6b8dfd6051a6768e9ecad4632ceaca3a844bde85af9b12e4606e50b5961c9f0e",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "manifests/holdout30-1433807030.json",
+      "sha256": "90130d9f251c8587bc55ee256828f9a5204ab866d104054c5717082ae0be163e",
+      "byte_length": 3395,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "1ccef1a6d62678b8601ca7bdabbdfa9b4705d77622b07bab2ead2fe7899f7ad5",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "routes/seed-1433807030/certificate.json",
+      "sha256": "261559d66275a72338f475ea61e5b63c1707721a34956726de097065b1284c55",
+      "byte_length": 1784,
+      "representation": "original_bytes",
+      "original_sha256": "261559d66275a72338f475ea61e5b63c1707721a34956726de097065b1284c55",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "routes/seed-1433807030/winning-route.json",
+      "sha256": "1a93df4061943076b5f777b36432671601a942575a7e745e155b8994da9a2198",
+      "byte_length": 80436,
+      "representation": "original_bytes",
+      "original_sha256": "1a93df4061943076b5f777b36432671601a942575a7e745e155b8994da9a2198",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "manifests/holdout30-1899537279.json",
+      "sha256": "16dafab0fc5ee4f229b33b388f7443110883f4eb08d3d5b268b9bfceb9bf30a7",
+      "byte_length": 3395,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "a4e18fa5712a0ffb4d31423bb3727780b689f7d1d3b4cb483c26f1b981bc15c9",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "routes/seed-1899537279/certificate.json",
+      "sha256": "9d32def807569d2dbb0654923c0fbcb369a273c86fba320a9ae39bc272e43cda",
+      "byte_length": 1784,
+      "representation": "original_bytes",
+      "original_sha256": "9d32def807569d2dbb0654923c0fbcb369a273c86fba320a9ae39bc272e43cda",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "routes/seed-1899537279/winning-route.json",
+      "sha256": "bfd950cd479581a53ae7c7db7f12ba3fc9947aa0c9ca3efe66d3ca88261b8738",
+      "byte_length": 55123,
+      "representation": "original_bytes",
+      "original_sha256": "bfd950cd479581a53ae7c7db7f12ba3fc9947aa0c9ca3efe66d3ca88261b8738",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "manifests/holdout30-584844114.json",
+      "sha256": "19dc8b2f80eabea45a9872f3b6b8aeb70ca34873ad2325ab03f5f512344bb94b",
+      "byte_length": 3391,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "665b0bb5436cbba45c9169b73f3e2ba1cf0d8125ac617609e845afeb011d75f2",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "routes/seed-584844114/certificate.json",
+      "sha256": "8daf0968bb3363097872d3b31169a8680048318c086116d3dc6fc2c611594d22",
+      "byte_length": 1783,
+      "representation": "original_bytes",
+      "original_sha256": "8daf0968bb3363097872d3b31169a8680048318c086116d3dc6fc2c611594d22",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "routes/seed-584844114/winning-route.json",
+      "sha256": "8500973c70105ceeeabefe17359e7e2637914355a87006c8cc6d8b435822fbf0",
+      "byte_length": 70698,
+      "representation": "original_bytes",
+      "original_sha256": "8500973c70105ceeeabefe17359e7e2637914355a87006c8cc6d8b435822fbf0",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "manifests/holdout30-1375284397.json",
+      "sha256": "3b66065c269b08b656787fb1dcdc440c2aad0077efd047e7f7e7c14c76a75dc1",
+      "byte_length": 3395,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "f0301534984891ec745eb6ca4ee2d53519d81d9a582832a2f3213abfe6793ca3",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "routes/seed-1375284397/certificate.json",
+      "sha256": "ced57b0099d0aae96d3fe90749e06ccde21665da7089a6a54f62d5223b0793b2",
+      "byte_length": 1784,
+      "representation": "original_bytes",
+      "original_sha256": "ced57b0099d0aae96d3fe90749e06ccde21665da7089a6a54f62d5223b0793b2",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "routes/seed-1375284397/winning-route.json",
+      "sha256": "8fd23149c723598dc5fc6e6978d9cf4997df89b0ec7c3102ab690ebd392a0b43",
+      "byte_length": 71283,
+      "representation": "original_bytes",
+      "original_sha256": "8fd23149c723598dc5fc6e6978d9cf4997df89b0ec7c3102ab690ebd392a0b43",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "manifests/holdout30-361226862.json",
+      "sha256": "581e9c8d5f5c412f1f9d31a30c4b3a3cc0104412c27042a52826d4f178d10554",
+      "byte_length": 3391,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "23aeb9d6023f0354a623de1664138f8e3eaabbb1a1219f6180d6447e0a535e42",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "routes/seed-361226862/certificate.json",
+      "sha256": "7789bff545d7d32df804d9e3a684747545f78a937c9f9cd32eb6ed3d226dfff4",
+      "byte_length": 1783,
+      "representation": "original_bytes",
+      "original_sha256": "7789bff545d7d32df804d9e3a684747545f78a937c9f9cd32eb6ed3d226dfff4",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "routes/seed-361226862/winning-route.json",
+      "sha256": "c6a195a9c21c19aec3a0730d0a68490dc51dd7b35517617a684ab5a29bd1be02",
+      "byte_length": 77931,
+      "representation": "original_bytes",
+      "original_sha256": "c6a195a9c21c19aec3a0730d0a68490dc51dd7b35517617a684ab5a29bd1be02",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "manifests/holdout30-2098492050.json",
+      "sha256": "6be2a6a712bba70bf2ac93f5dfb57b9ff4f7699e1ec6a9104b10d7e69fae60f0",
+      "byte_length": 3395,
+      "representation": "sanitized_or_extracted",
+      "original_sha256": "27d6d5796649a0109c3570ac69834105e120e890c1e663aae1632758ae3e2a1d",
+      "byte_identical_to_original": false
+    },
+    {
+      "path": "routes/seed-2098492050/certificate.json",
+      "sha256": "29630324918a367c861a1ab5e69ec63bb4c4a3f399d6ba3de6d0855582b5d314",
+      "byte_length": 1784,
+      "representation": "original_bytes",
+      "original_sha256": "29630324918a367c861a1ab5e69ec63bb4c4a3f399d6ba3de6d0855582b5d314",
+      "byte_identical_to_original": true
+    },
+    {
+      "path": "routes/seed-2098492050/winning-route.json",
+      "sha256": "a721433615a3e11715096e4315c66f868c6c6667146e04150a40358b0746e0fe",
+      "byte_length": 65182,
+      "representation": "original_bytes",
+      "original_sha256": "a721433615a3e11715096e4315c66f868c6c6667146e04150a40358b0746e0fe",
+      "byte_identical_to_original": true
+    }
+  ]
+}

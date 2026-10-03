@@ -1,0 +1,51 @@
+{
+  "schema": "spire-explicit-model/v1",
+  "model_id": "delayed-reward-and-cycle",
+  "root": "root",
+  "states": {
+    "root": {
+      "edges": [
+        {
+          "action": {
+            "id": "greedy"
+          },
+          "to": "cheap"
+        },
+        {
+          "action": {
+            "id": "setup"
+          },
+          "to": "setup"
+        },
+        {
+          "action": {
+            "id": "wait"
+          },
+          "to": "root"
+        }
+      ]
+    },
+    "cheap": {
+      "value": [
+        1,
+        5
+      ]
+    },
+    "setup": {
+      "edges": [
+        {
+          "action": {
+            "id": "finish"
+          },
+          "to": "best"
+        }
+      ]
+    },
+    "best": {
+      "value": [
+        1,
+        10
+      ]
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="all" />
+    <Publicize Include="sts2" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false" />
+    <Reference Include="sts2" HintPath="$(Sts2DataDir)/sts2.dll" Private="false" />
+    <Reference Include="GodotSharp" HintPath="$(Sts2DataDir)/GodotSharp.dll" Private="false" />
+    <Reference Include="0Harmony" HintPath="$(Sts2DataDir)/0Harmony.dll" Private="false" />
+    <RuntimeHostConfigurationOption Include="Sts2DataDir" Value="$(Sts2DataDir)" />
+  </ItemGroup>
+  <Target Name="ValidateGame" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition="!Exists('$(Sts2DataDir)/sts2.dll')" Text="Set Sts2DataDir to your installed game's data directory." />
+  </Target>
+</Project>

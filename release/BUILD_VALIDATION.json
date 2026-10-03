@@ -1,0 +1,72 @@
+{
+  "schema": "spire-public-build-validation/v1",
+  "date": "2026-10-03",
+  "baseline": "holdout-01/frozen-i054a",
+  "compiled": true,
+  "setup_checks_passed": true,
+  "source_build_identity_current": true,
+  "native_host_identity_current": true,
+  "identity_gate_qualified": true,
+  "sdk_versions": [
+    "9.0.318"
+  ],
+  "upstream_repository": "https://github.com/Torch1230/CombatSolver.git",
+  "upstream_commit": "4d2c55069f2cf9f8c621631594857b412cf9660f",
+  "artifacts": {
+    "native_host": {
+      "relative_path": "native/SpireNativeHost/bin/Release/net9.0/SpireNativeHost.dll",
+      "exists": true,
+      "sha256": "59e3e1d93f6cfed3798e83c00d919dea8e2bab3b988773e514cd4e911cd7ee74"
+    },
+    "combat_solver": {
+      "relative_path": "vendor/CombatSolver/.godot/mono/temp/bin/Release/CombatSolver.dll",
+      "exists": true,
+      "sha256": "ddb4c4b6cbcee6c2a99610c19cdb149c7e031264823b78c71decb81cefe1c0c5"
+    },
+    "offline_harness": {
+      "relative_path": "vendor/CombatSolver/tools/OfflineSearchHarness/bin/Release/net9.0/OfflineSearchHarness.dll",
+      "exists": true,
+      "sha256": "c142f7fd145530cb47d0171f71336b8ad8cf7aac1d37b85ab49883193f977527"
+    },
+    "static_contract_inspector": {
+      "relative_path": "tools/solver_contract/bin/Release/net9.0/SolverContract.dll",
+      "exists": true,
+      "sha256": "3621674a16095bc9bcb1168e69430f5d9cd69eafe1eb3a86022ac7fcb15269f4"
+    }
+  },
+  "build_steps": [
+    {
+      "step": "pinned_harness_patch",
+      "exit_code": 0
+    },
+    {
+      "step": "static_contract_inspector",
+      "exit_code": 0
+    },
+    {
+      "step": "native_host",
+      "exit_code": 0
+    },
+    {
+      "step": "combat_solver",
+      "exit_code": 0
+    },
+    {
+      "step": "offline_harness",
+      "exit_code": 0
+    }
+  ],
+  "native_requests_executed": false,
+  "new_search_or_probe_experiments_executed": false,
+  "new_winning_route_replay_executed": false,
+  "normal_godot_equivalence_verified": false,
+  "packaged_source_version": "bc843552980d62bf0285afea017cb015f0d424bc838e01e3f8f4532ed4795c16",
+  "scope": "Actual compilation from the public pinned source with user-owned private game/Ritsu dependencies; PE metadata/CIL guard checks. Does not establish execution or new victory evidence.",
+  "automatic_build_configuration_inputs_checked": 46,
+  "private_build_overrides_rejected": [
+    "local.props",
+    ".local/presence.props",
+    ".local/showcase.props"
+  ],
+  "source_identity_hardening_recompiled": false
+}

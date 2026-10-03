@@ -1,0 +1,681 @@
+{
+  "schema": "spire-reference-ir/v1",
+  "model_id": "reference-two-room-resource-tradeoff-v1",
+  "description": "Synthetic two-room example. Not STS2 rules or native RNG. All played cards exhaust; no recycling.",
+  "initial": {
+    "phase": "start",
+    "win": 0,
+    "hp": 12,
+    "max_hp": 12,
+    "potion": 1,
+    "enemy_hp": 9,
+    "enemy_attack": 0,
+    "energy": 2,
+    "block": 0,
+    "round": 1,
+    "damage_bonus": 0,
+    "cards": {
+      "strike_A": 1,
+      "strike_B": 1,
+      "strike_C": 1,
+      "guard_A": 1
+    }
+  },
+  "rng_streams": [
+    "encounters",
+    "rewards"
+  ],
+  "terminal": {
+    "in": [
+      {
+        "get": "phase"
+      },
+      [
+        "won",
+        "dead"
+      ]
+    ]
+  },
+  "objective": [
+    {
+      "get": "win"
+    },
+    {
+      "get": "hp"
+    },
+    {
+      "get": "potion"
+    }
+  ],
+  "actions": [
+    {
+      "id": "start",
+      "when": {
+        "eq": [
+          {
+            "get": "phase"
+          },
+          "start"
+        ]
+      },
+      "effects": [
+        {
+          "op": "rng_int",
+          "path": "enemy_attack",
+          "stream": "encounters",
+          "min": 4,
+          "max": 5
+        },
+        {
+          "op": "set",
+          "path": "phase",
+          "value": "fight1"
+        }
+      ]
+    },
+    {
+      "id": "play_strike_A",
+      "when": {
+        "and": [
+          {
+            "in": [
+              {
+                "get": "phase"
+              },
+              [
+                "fight1",
+                "boss"
+              ]
+            ]
+          },
+          {
+            "gt": [
+              {
+                "get": "energy"
+              },
+              0
+            ]
+          },
+          {
+            "gt": [
+              {
+                "get": "cards.strike_A"
+              },
+              0
+            ]
+          }
+        ]
+      },
+      "effects": [
+        {
+          "op": "inc",
+          "path": "energy",
+          "value": -1
+        },
+        {
+          "op": "inc",
+          "path": "cards.strike_A",
+          "value": -1
+        },
+        {
+          "op": "set",
+          "path": "enemy_hp",
+          "value": {
+            "max": [
+              0,
+              {
+                "sub": [
+                  {
+                    "get": "enemy_hp"
+                  },
+                  {
+                    "add": [
+                      3,
+                      {
+                        "get": "damage_bonus"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "play_strike_B",
+      "when": {
+        "and": [
+          {
+            "in": [
+              {
+                "get": "phase"
+              },
+              [
+                "fight1",
+                "boss"
+              ]
+            ]
+          },
+          {
+            "gt": [
+              {
+                "get": "energy"
+              },
+              0
+            ]
+          },
+          {
+            "gt": [
+              {
+                "get": "cards.strike_B"
+              },
+              0
+            ]
+          }
+        ]
+      },
+      "effects": [
+        {
+          "op": "inc",
+          "path": "energy",
+          "value": -1
+        },
+        {
+          "op": "inc",
+          "path": "cards.strike_B",
+          "value": -1
+        },
+        {
+          "op": "set",
+          "path": "enemy_hp",
+          "value": {
+            "max": [
+              0,
+              {
+                "sub": [
+                  {
+                    "get": "enemy_hp"
+                  },
+                  {
+                    "add": [
+                      3,
+                      {
+                        "get": "damage_bonus"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "play_strike_C",
+      "when": {
+        "and": [
+          {
+            "in": [
+              {
+                "get": "phase"
+              },
+              [
+                "fight1",
+                "boss"
+              ]
+            ]
+          },
+          {
+            "gt": [
+              {
+                "get": "energy"
+              },
+              0
+            ]
+          },
+          {
+            "gt": [
+              {
+                "get": "cards.strike_C"
+              },
+              0
+            ]
+          }
+        ]
+      },
+      "effects": [
+        {
+          "op": "inc",
+          "path": "energy",
+          "value": -1
+        },
+        {
+          "op": "inc",
+          "path": "cards.strike_C",
+          "value": -1
+        },
+        {
+          "op": "set",
+          "path": "enemy_hp",
+          "value": {
+            "max": [
+              0,
+              {
+                "sub": [
+                  {
+                    "get": "enemy_hp"
+                  },
+                  {
+                    "add": [
+                      3,
+                      {
+                        "get": "damage_bonus"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "play_guard_A",
+      "when": {
+        "and": [
+          {
+            "in": [
+              {
+                "get": "phase"
+              },
+              [
+                "fight1",
+                "boss"
+              ]
+            ]
+          },
+          {
+            "gt": [
+              {
+                "get": "energy"
+              },
+              0
+            ]
+          },
+          {
+            "gt": [
+              {
+                "get": "cards.guard_A"
+              },
+              0
+            ]
+          }
+        ]
+      },
+      "effects": [
+        {
+          "op": "inc",
+          "path": "energy",
+          "value": -1
+        },
+        {
+          "op": "inc",
+          "path": "cards.guard_A",
+          "value": -1
+        },
+        {
+          "op": "inc",
+          "path": "block",
+          "value": 4
+        }
+      ]
+    },
+    {
+      "id": "use_potion",
+      "when": {
+        "and": [
+          {
+            "in": [
+              {
+                "get": "phase"
+              },
+              [
+                "fight1",
+                "boss"
+              ]
+            ]
+          },
+          {
+            "gt": [
+              {
+                "get": "potion"
+              },
+              0
+            ]
+          }
+        ]
+      },
+      "effects": [
+        {
+          "op": "inc",
+          "path": "potion",
+          "value": -1
+        },
+        {
+          "op": "set",
+          "path": "enemy_hp",
+          "value": {
+            "max": [
+              0,
+              {
+                "sub": [
+                  {
+                    "get": "enemy_hp"
+                  },
+                  6
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "end_turn",
+      "when": {
+        "in": [
+          {
+            "get": "phase"
+          },
+          [
+            "fight1",
+            "boss"
+          ]
+        ]
+      },
+      "effects": [
+        {
+          "op": "set",
+          "path": "hp",
+          "value": {
+            "max": [
+              0,
+              {
+                "sub": [
+                  {
+                    "get": "hp"
+                  },
+                  {
+                    "max": [
+                      0,
+                      {
+                        "sub": [
+                          {
+                            "get": "enemy_attack"
+                          },
+                          {
+                            "get": "block"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "op": "set",
+          "path": "block",
+          "value": 0
+        },
+        {
+          "op": "set",
+          "path": "energy",
+          "value": 2
+        },
+        {
+          "op": "inc",
+          "path": "round",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "camp_rest",
+      "when": {
+        "eq": [
+          {
+            "get": "phase"
+          },
+          "camp"
+        ]
+      },
+      "effects": [
+        {
+          "op": "set",
+          "path": "hp",
+          "value": {
+            "min": [
+              {
+                "get": "max_hp"
+              },
+              {
+                "add": [
+                  {
+                    "get": "hp"
+                  },
+                  3
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "op": "set",
+          "path": "phase",
+          "value": "boss"
+        },
+        {
+          "op": "set",
+          "path": "enemy_hp",
+          "value": 12
+        },
+        {
+          "op": "set",
+          "path": "energy",
+          "value": 2
+        },
+        {
+          "op": "set",
+          "path": "block",
+          "value": 0
+        },
+        {
+          "op": "set",
+          "path": "round",
+          "value": 1
+        },
+        {
+          "op": "set",
+          "path": "cards",
+          "value": {
+            "lit": {
+              "strike_A": 1,
+              "strike_B": 1,
+              "strike_C": 1,
+              "guard_A": 1
+            }
+          }
+        },
+        {
+          "op": "rng_int",
+          "path": "enemy_attack",
+          "stream": "encounters",
+          "min": 6,
+          "max": 8
+        }
+      ]
+    },
+    {
+      "id": "camp_upgrade",
+      "when": {
+        "eq": [
+          {
+            "get": "phase"
+          },
+          "camp"
+        ]
+      },
+      "effects": [
+        {
+          "op": "inc",
+          "path": "damage_bonus",
+          "value": 1
+        },
+        {
+          "op": "set",
+          "path": "phase",
+          "value": "boss"
+        },
+        {
+          "op": "set",
+          "path": "enemy_hp",
+          "value": 12
+        },
+        {
+          "op": "set",
+          "path": "energy",
+          "value": 2
+        },
+        {
+          "op": "set",
+          "path": "block",
+          "value": 0
+        },
+        {
+          "op": "set",
+          "path": "round",
+          "value": 1
+        },
+        {
+          "op": "set",
+          "path": "cards",
+          "value": {
+            "lit": {
+              "strike_A": 1,
+              "strike_B": 1,
+              "strike_C": 1,
+              "guard_A": 1
+            }
+          }
+        },
+        {
+          "op": "rng_int",
+          "path": "enemy_attack",
+          "stream": "encounters",
+          "min": 6,
+          "max": 8
+        }
+      ]
+    }
+  ],
+  "after_each": [
+    {
+      "op": "if",
+      "condition": {
+        "and": [
+          {
+            "eq": [
+              {
+                "get": "phase"
+              },
+              "fight1"
+            ]
+          },
+          {
+            "le": [
+              {
+                "get": "enemy_hp"
+              },
+              0
+            ]
+          }
+        ]
+      },
+      "then": [
+        {
+          "op": "set",
+          "path": "phase",
+          "value": "camp"
+        }
+      ],
+      "else": []
+    },
+    {
+      "op": "if",
+      "condition": {
+        "and": [
+          {
+            "eq": [
+              {
+                "get": "phase"
+              },
+              "boss"
+            ]
+          },
+          {
+            "le": [
+              {
+                "get": "enemy_hp"
+              },
+              0
+            ]
+          }
+        ]
+      },
+      "then": [
+        {
+          "op": "set",
+          "path": "phase",
+          "value": "won"
+        },
+        {
+          "op": "set",
+          "path": "win",
+          "value": 1
+        }
+      ],
+      "else": []
+    },
+    {
+      "op": "if",
+      "condition": {
+        "le": [
+          {
+            "get": "hp"
+          },
+          0
+        ]
+      },
+      "then": [
+        {
+          "op": "set",
+          "path": "phase",
+          "value": "dead"
+        },
+        {
+          "op": "set",
+          "path": "win",
+          "value": 0
+        }
+      ],
+      "else": []
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WindowsPerformanceRecorder Version="1.0"><Profiles>
+  <SystemCollector Id="SpireSingleCollector" Name="SpireSingleCollector"><BufferSize Value="1024" /><Buffers Value="64" /></SystemCollector>
+  <SystemProvider Id="SpireSingleProvider"><Keywords><Keyword Value="ProcessThread" /><Keyword Value="Loader" /><Keyword Value="CSwitch" /></Keywords></SystemProvider>
+  <HardwareCounter Id="SpireSingleCounter" Strict="true"><Counters><Counter Value="InstructionRetired" /></Counters><Events><Event Value="CSwitch" /></Events></HardwareCounter>
+  <Profile Id="SpireSingle.Verbose.File" Name="SpireSingle" LoggingMode="File" DetailLevel="Verbose" Description="One generic PMC availability preflight">
+    <Collectors Operation="Add"><SystemCollectorId Value="SpireSingleCollector"><SystemProviderId Value="SpireSingleProvider" /><HardwareCounterId Value="SpireSingleCounter" /></SystemCollectorId></Collectors>
+  </Profile>
+</Profiles></WindowsPerformanceRecorder>

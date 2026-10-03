@@ -1,0 +1,28 @@
+{
+  "baseline": "holdout-01",
+  "frozen_workspace": "frozen-i054a",
+  "original_source_version": "bc57922b87b8b132cf9bd5f3cceffdd58efbec8e615128c67a38caf258a79c2d",
+  "source_folders": [
+    "spire_exact",
+    "native",
+    "tools",
+    "tests",
+    "examples"
+  ],
+  "supplemental_sources": [
+    "dashboard from current working tree",
+    "selected docs from current working tree"
+  ],
+  "packaging_changes": [
+    "public setup/launch/replay scripts",
+    "public NuGet source",
+    "user-owned dependency SHA lock",
+    "portable metadata/CIL identity gate retaining original compensation",
+    "supplemental dashboard/docs sources",
+    "sanitized historical result exports"
+  ],
+  "game_binaries_included": false,
+  "new_solver_experiments_run": 0,
+  "packaged_source_version": "bc843552980d62bf0285afea017cb015f0d424bc838e01e3f8f4532ed4795c16",
+  "historical_result_source_version": "bc57922b87b8b132cf9bd5f3cceffdd58efbec8e615128c67a38caf258a79c2d"
+}

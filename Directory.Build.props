@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <!-- Package snapshot only: avoid external vulnerability lookups during offline restore. -->
+    <NuGetAudit>false</NuGetAudit>
+    <CopyModOnBuild>false</CopyModOnBuild>
+  </PropertyGroup>
+</Project>

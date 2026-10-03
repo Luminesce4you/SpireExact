@@ -1,0 +1,37 @@
+# User-provided proprietary dependencies and generated runtime layout
+/runtime/
+/vendor/
+/.tools/
+/local.json
+/storage-policy.json
+
+# Build products and local execution evidence
+**/bin/
+**/obj/
+/outputs/
+/runs/
+/experiments/
+/research/
+**/__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Local dashboard state and private configuration
+/dashboard/.env
+/dashboard/.env.*
+!/dashboard/.env.example
+/dashboard/*.log
+/dashboard/state/
+/dashboard/runtime/
+
+# Editors and OS metadata
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+/tools/diagnose_solver_pcore.py
+/tools/profile_solver_panel.py
+/tools/publish_run_report.py

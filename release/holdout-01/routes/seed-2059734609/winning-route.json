@@ -1,0 +1,4662 @@
+{
+  "context": {
+    "seed": "2059734609",
+    "character": "IRONCLAD",
+    "ascension": 10,
+    "unlocks": "all",
+    "game_mode": "Standard",
+    "acts": "native-default",
+    "gameplay_mods": [],
+    "objective": {
+      "id": "whole_run_victory/v1",
+      "information": "full",
+      "maximum": 1,
+      "minimum": 0,
+      "secondary_objective": null
+    }
+  },
+  "trace": [
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "NEOW.pages.INITIAL.options.NUTRITIOUS_OYSTER"
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 2
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "SAPPHIRE_SEED.pages.INITIAL.options.EAT"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        9
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 3
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 1,
+      "card": "EVIL_EYE"
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 4
+    },
+    {
+      "kind": "event",
+      "index": 1,
+      "key": "THIS_OR_THAT.pages.INITIAL.options.ORNATE"
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 5
+    },
+    {
+      "kind": "buy",
+      "index": 3,
+      "item_type": "MerchantCardEntry",
+      "cost": 51
+    },
+    {
+      "kind": "buy",
+      "index": 10,
+      "item_type": "MerchantPotionEntry",
+      "cost": 50
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 6
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "POWDERED_DEMISE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "use_potion",
+      "slot": 1,
+      "potion": "ENERGY_POTION",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BASH",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 0,
+      "card": "BULLY"
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 7
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BASH",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 0,
+      "card": "TAUNT"
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 8
+    },
+    {
+      "kind": "rest",
+      "index": 0,
+      "option": "HEAL"
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 9
+    },
+    {
+      "kind": "open_chest"
+    },
+    {
+      "kind": "treasure",
+      "index": 0,
+      "relic": "ODDLY_SMOOTH_STONE"
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 10
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "THE_LEGENDS_WERE_TRUE.pages.INITIAL.options.NAB_THE_MAP"
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 11
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 12
+    },
+    {
+      "kind": "rest",
+      "index": 1,
+      "option": "SMITH"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        0
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 13
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "TAUNT",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "TAUNT",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BULLY",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 2,
+      "card": "BATTLE_TRANCE"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 14
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "VULNERABLE_POTION",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BULLY",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "TAUNT",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 2,
+      "card": "BATTLE_TRANCE"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 15
+    },
+    {
+      "kind": "rest",
+      "index": 0,
+      "option": "HEAL"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 16
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "BEETLE_JUICE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 1,
+      "card": "STOKE"
+    },
+    {
+      "kind": "next_act"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "kind": "event",
+      "index": 1,
+      "key": "OROBAS.pages.INITIAL.options.RADIANT_PEARL"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "LUMINESCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "ANGER",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "HEMOKINESIS",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "TREMBLE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "IRON_WAVE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "POMMEL_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 0,
+      "card": "MOLTEN_FIST"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "LUMINESCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "TAUNT",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BULLY",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BASH",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "FIRE_POTION",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BULLY",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "INFERNAL_BLADE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "CINDER",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 3
+    },
+    {
+      "kind": "buy",
+      "index": 0,
+      "item_type": "MerchantCardEntry",
+      "cost": 152
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 4
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "THRASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "LUMINESCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "TRUE_GRIT",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "CURE_ALL",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "THRASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SETUP_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "PILLAGE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 5
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "LUMINESCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "THRASH",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BULLY",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "THRASH",
+      "target": 2
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 1,
+      "card": "SHRUG_IT_OFF"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 6
+    },
+    {
+      "kind": "open_chest"
+    },
+    {
+      "kind": "treasure",
+      "index": 0,
+      "relic": "VAMBRACE"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 7
+    },
+    {
+      "kind": "rest",
+      "index": 0,
+      "option": "HEAL"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 8
+    },
+    {
+      "kind": "open_chest"
+    },
+    {
+      "kind": "treasure",
+      "index": 0,
+      "relic": "KUNAI"
+    },
+    {
+      "kind": "map",
+      "col": 2,
+      "row": 9
+    },
+    {
+      "kind": "rest",
+      "index": 0,
+      "option": "HEAL"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 10
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "LUMINESCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "THRASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 2,
+      "row": 11
+    },
+    {
+      "kind": "rest",
+      "index": 1,
+      "option": "SMITH"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        12
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 2,
+      "row": 12
+    },
+    {
+      "kind": "buy",
+      "index": 7,
+      "item_type": "MerchantRelicEntry",
+      "cost": 249
+    },
+    {
+      "kind": "buy",
+      "index": 8,
+      "item_type": "MerchantRelicEntry",
+      "cost": 158
+    },
+    {
+      "kind": "buy",
+      "index": 11,
+      "item_type": "MerchantPotionEntry",
+      "cost": 50
+    },
+    {
+      "kind": "buy",
+      "index": 4,
+      "item_type": "MerchantCardEntry",
+      "cost": 73
+    },
+    {
+      "kind": "buy",
+      "index": 10,
+      "item_type": "MerchantPotionEntry",
+      "cost": 50
+    },
+    {
+      "kind": "buy",
+      "index": 13,
+      "item_type": "MerchantCardRemovalEntry",
+      "cost": 100
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        0
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 1,
+      "row": 13
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "LUMINESCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SETUP_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "WHIRLWIND",
+      "target": null
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "FIRE_POTION",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "use_potion",
+      "slot": 1,
+      "potion": "BLOCK_POTION",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "FEEL_NO_PAIN",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BULLY",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "TOXIC",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "TOXIC",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "TAUNT",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "MOLTEN_FIST",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 9,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "UPPERCUT",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 2,
+      "row": 14
+    },
+    {
+      "kind": "rest",
+      "index": 0,
+      "option": "HEAL"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 15
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "STRENGTH_POTION",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "LUMINESCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "ANGER",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SWORD_BOOMERANG",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STOMP",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "ANGER",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "FRANTIC_ESCAPE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "FRANTIC_ESCAPE",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "FRANTIC_ESCAPE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "FRANTIC_ESCAPE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "FRANTIC_ESCAPE",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FRANTIC_ESCAPE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "ANGER",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "ANGER",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "ANGER",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "FRANTIC_ESCAPE",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STOMP",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SWORD_BOOMERANG",
+      "target": null
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 1,
+      "card": "PYRE"
+    },
+    {
+      "kind": "next_act"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "kind": "event",
+      "index": 2,
+      "key": "DARV.pages.INITIAL.options.PHILOSOPHERS_STONE"
+    },
+    {
+      "kind": "map",
+      "col": 0,
+      "row": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "LUMINESCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DARK_EMBRACE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "UNMOVABLE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "VICIOUS",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FEEL_NO_PAIN",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "THRASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 9,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "TREMBLE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BLOODLETTING",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "BLOODLETTING",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "FIEND_FIRE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "PACTS_END",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "ANGER",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 0,
+      "row": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "LUMINESCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "HOWL_FROM_BEYOND",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BASH",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "TAUNT",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "MOLTEN_FIST",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 1,
+      "row": 3
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "THE_FUTURE_OF_POTIONS.pages.INITIAL.options.POTION"
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 2,
+      "card": "CRUELTY"
+    },
+    {
+      "kind": "map",
+      "col": 2,
+      "row": 4
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "SELF_HELP_BOOK.pages.INITIAL.options.READ_THE_BACK"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        7
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 5
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 8,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 8,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 9,
+      "card": "FEEL_NO_PAIN",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "LUMINESCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "THRASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "use_potion",
+      "slot": 1,
+      "potion": "GAMBLERS_BREW",
+      "target": 0
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        0,
+        3,
+        2
+      ]
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "THRASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "CRUELTY",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "HAVOC",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BASH",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "TAUNT",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "COLOSSUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "FORGOTTEN_RITUAL",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "PERFECTED_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "POMMEL_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "TEAR_ASUNDER",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BASH",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "ASHEN_STRIKE",
+      "target": 3
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 1,
+      "card": "MOLTEN_FIST"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 6
+    },
+    {
+      "kind": "rest",
+      "index": 1,
+      "option": "SMITH"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        18
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 7
+    },
+    {
+      "kind": "open_chest"
+    },
+    {
+      "kind": "treasure",
+      "index": 0,
+      "relic": "KUSARIGAMA"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 8
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "THRASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FEEL_NO_PAIN",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "LUMINESCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "PYRE",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SETUP_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SWORD_BOOMERANG",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DISMANTLE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BASH",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DISMANTLE",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SETUP_STRIKE",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SWORD_BOOMERANG",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "TAUNT",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "THRASH",
+      "target": 2
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "RelicReward"
+    },
+    {
+      "kind": "reward",
+      "index": 3,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 2,
+      "card": "FEEL_NO_PAIN"
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 9
+    },
+    {
+      "kind": "rest",
+      "index": 0,
+      "option": "HEAL"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 10
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "TINKER_TIME.pages.INITIAL.options.CHOOSE_CARD_TYPE"
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "TINKER_TIME.pages.CHOOSE_CARD_TYPE.options.ATTACK"
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "TINKER_TIME.pages.CHOOSE_RIDER.options.CHOKING"
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 11
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "FLEX_POTION",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "MAD_SCIENCE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "LUMINESCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "THRASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "FEEL_NO_PAIN",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "PYRE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "CRUELTY",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "FEEL_NO_PAIN",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "UNRELENTING",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SLIMED",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SLIMED",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "THRASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SLIMED",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "MAD_SCIENCE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SLIMED",
+      "target": null
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 0,
+      "card": "FORGOTTEN_RITUAL"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 12
+    },
+    {
+      "kind": "buy",
+      "index": 9,
+      "item_type": "MerchantRelicEntry",
+      "cost": 201
+    },
+    {
+      "kind": "buy",
+      "index": 11,
+      "item_type": "MerchantPotionEntry",
+      "cost": 50
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 13
+    },
+    {
+      "kind": "rest",
+      "index": 0,
+      "option": "HEAL"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 14
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "CURE_ALL",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "LUMINESCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "FORGOTTEN_RITUAL",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "CRUELTY",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "FEEL_NO_PAIN",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "LUMINESCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "UPPERCUT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DOMINATE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SETUP_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DISMANTLE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FEEL_NO_PAIN",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "IRON_WAVE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "UPPERCUT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "DISMANTLE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "THRASH",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SETUP_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "use_potion",
+      "slot": 1,
+      "potion": "WEAK_POTION",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "FIEND_FIRE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SETUP_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "TAUNT",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "THRASH",
+      "target": 1
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 15
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "FEEL_NO_PAIN",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 9,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "LUMINESCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "LUMINESCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "CRUELTY",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BULLY",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "FORGOTTEN_RITUAL",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "CRUELTY",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "THRASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FEEL_NO_PAIN",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "EVIL_EYE",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "CRUELTY",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "UNRELENTING",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "PERFECTED_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "INFLAME",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SWORD_BOOMERANG",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BASH",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "UNRELENTING",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "THRASH",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "PERFECTED_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "UNRELENTING",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "THRASH",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BATTLE_TRANCE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STOKE",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "TAUNT",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BURNING_PACT",
+      "target": null
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        4
+      ]
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "THRASH",
+      "target": 2
+    },
+    {
+      "kind": "next_act"
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "THE_ARCHITECT.dialogue.0"
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "PROCEED"
+    }
+  ]
+}

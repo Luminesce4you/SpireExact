@@ -1,0 +1,44 @@
+{
+  "schema": "spire-information-model/v1",
+  "description": "Synthetic information-leak regression, not STS2. Inspect reveals which world; guessing without inspecting must share one action across both worlds.",
+  "worlds": [
+    {
+      "id": "left",
+      "probability": [1, 2],
+      "root": "r",
+      "states": {
+        "r": {"observation": "closed door", "actions": [
+          {"action": {"id": "guess-left"}, "to": "win"},
+          {"action": {"id": "guess-right"}, "to": "lose"},
+          {"action": {"id": "inspect"}, "to": "seen"}
+        ]},
+        "seen": {"observation": "left revealed", "actions": [
+          {"action": {"id": "left"}, "to": "safe"},
+          {"action": {"id": "right"}, "to": "lose"}
+        ]},
+        "win": {"observation": "victory 100", "terminal": {"victory": true, "score": 100}},
+        "safe": {"observation": "victory 80", "terminal": {"victory": true, "score": 80}},
+        "lose": {"observation": "defeat 0", "terminal": {"victory": false, "score": 0}}
+      }
+    },
+    {
+      "id": "right",
+      "probability": [1, 2],
+      "root": "r",
+      "states": {
+        "r": {"observation": "closed door", "actions": [
+          {"action": {"id": "guess-left"}, "to": "lose"},
+          {"action": {"id": "guess-right"}, "to": "win"},
+          {"action": {"id": "inspect"}, "to": "seen"}
+        ]},
+        "seen": {"observation": "right revealed", "actions": [
+          {"action": {"id": "left"}, "to": "lose"},
+          {"action": {"id": "right"}, "to": "safe"}
+        ]},
+        "win": {"observation": "victory 100", "terminal": {"victory": true, "score": 100}},
+        "safe": {"observation": "victory 80", "terminal": {"victory": true, "score": 80}},
+        "lose": {"observation": "defeat 0", "terminal": {"victory": false, "score": 0}}
+      }
+    }
+  ]
+}

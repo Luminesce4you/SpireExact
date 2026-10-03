@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WindowsPerformanceRecorder Version="1.0"><Profiles>
+  <SystemCollector Id="SpireGenericCollector" Name="SpireGenericCollector"><BufferSize Value="1024" /><Buffers Value="128" /></SystemCollector>
+  <SystemProvider Id="SpireGenericProvider"><Keywords><Keyword Value="ProcessThread" /><Keyword Value="Loader" /><Keyword Value="CSwitch" /></Keywords></SystemProvider>
+  <HardwareCounter Id="SpireGenericCounters" Strict="true"><Counters><Counter Value="InstructionRetired" /><Counter Value="UnhaltedCoreCycles" /><Counter Value="LLCReference" /><Counter Value="LLCMisses" /></Counters><Events><Event Value="CSwitch" /></Events></HardwareCounter>
+  <Profile Id="SpireGeneric.Verbose.File" Name="SpireGeneric" LoggingMode="File" DetailLevel="Verbose" Description="Generic PMCs for Spire controlled benchmark">
+    <Collectors Operation="Add"><SystemCollectorId Value="SpireGenericCollector"><SystemProviderId Value="SpireGenericProvider" /><HardwareCounterId Value="SpireGenericCounters" /></SystemCollectorId></Collectors>
+  </Profile>
+</Profiles></WindowsPerformanceRecorder>

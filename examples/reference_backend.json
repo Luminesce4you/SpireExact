@@ -1,0 +1,4 @@
+{
+  "command": ["{python}", "-m", "spire_exact", "rpc-server", "--model", "examples/delayed_reward.json"],
+  "timeout_seconds": 30
+}

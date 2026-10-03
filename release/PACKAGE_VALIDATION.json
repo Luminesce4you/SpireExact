@@ -1,0 +1,19 @@
+{
+  "schema": "spire-public-source-package-validation/v1",
+  "date": "2026-10-03",
+  "selection": "clean source export; generated dependencies and build products excluded",
+  "independent_reviews": 2,
+  "readme_and_build_links_checked": true,
+  "historical_setting_lists_exact_matches": 20,
+  "historical_records": 20,
+  "historical_verified_wins": 17,
+  "historical_action_routes": 17,
+  "historical_actions": 12323,
+  "source_build_verified": true,
+  "identity_gate_static_checks_passed": true,
+  "native_requests_executed": false,
+  "new_solver_experiments_executed": false,
+  "new_victory_replays_executed": false,
+  "source_originals_preserved": true,
+  "private_dependencies_included": false
+}

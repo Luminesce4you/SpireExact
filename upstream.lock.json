@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/Torch1230/CombatSolver.git",
+  "commit": "4d2c55069f2cf9f8c621631594857b412cf9660f",
+  "commit_date": "2026-09-20",
+  "baseline_label": "0.43.1 source baseline, deliberately pinned; not claimed latest",
+  "license": "MIT",
+  "source_verified_via": "https://github.com/Torch1230/CombatSolver/commit/4d2c550.patch",
+  "downloaded_in_delivery_environment": false,
+  "native_build_verified": false,
+  "native_game_equivalence_verified": false
+}

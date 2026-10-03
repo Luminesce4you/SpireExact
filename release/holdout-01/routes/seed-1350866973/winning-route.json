@@ -1,0 +1,2772 @@
+{
+  "context": {
+    "seed": "1350866973",
+    "character": "IRONCLAD",
+    "ascension": 10,
+    "unlocks": "all",
+    "game_mode": "Standard",
+    "acts": "native-default",
+    "gameplay_mods": [],
+    "objective": {
+      "id": "whole_run_victory/v1",
+      "information": "full",
+      "maximum": 1,
+      "minimum": 0,
+      "secondary_objective": null
+    }
+  },
+  "trace": [
+    {
+      "kind": "event",
+      "index": 2,
+      "key": "NEOW.pages.INITIAL.options.SILVER_CRUCIBLE"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BASH",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 2,
+      "card": "SETUP_STRIKE"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 2
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "BYRDONIS_NEST.pages.INITIAL.options.EAT"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 3
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SETUP_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "ENERGY_POTION",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 1,
+      "card": "FIGHT_ME"
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 4
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SETUP_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FIGHT_ME",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 1,
+      "card": "THUNDERCLAP"
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 5
+    },
+    {
+      "kind": "event",
+      "index": 1,
+      "key": "TABLET_OF_TRUTH.pages.INITIAL.options.SMASH"
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 6
+    },
+    {
+      "kind": "rest",
+      "index": 1,
+      "option": "SMITH"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        0
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 7
+    },
+    {
+      "kind": "event",
+      "index": 1,
+      "key": "ROOM_FULL_OF_CHEESE.pages.INITIAL.options.SEARCH"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 8
+    },
+    {
+      "kind": "rest",
+      "index": 1,
+      "option": "SMITH"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        0
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 9
+    },
+    {
+      "kind": "open_chest"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 10
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SETUP_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "BLOCK_POTION",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "FIGHT_ME",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SETUP_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 1,
+      "card": "HEMOKINESIS"
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 11
+    },
+    {
+      "kind": "buy",
+      "index": 0,
+      "item_type": "MerchantCardEntry",
+      "cost": 72
+    },
+    {
+      "kind": "buy",
+      "index": 12,
+      "item_type": "MerchantPotionEntry",
+      "cost": 50
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 12
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "WOOD_CARVINGS.pages.INITIAL.options.BIRD"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        2
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 2,
+      "row": 13
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FIGHT_ME",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "use_potion",
+      "slot": 1,
+      "potion": "ENERGY_POTION",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 1,
+      "card": "CINDER"
+    },
+    {
+      "kind": "map",
+      "col": 1,
+      "row": 14
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "FIGHT_ME",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "PECK",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "CINDER",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 2,
+      "card": "RAMPAGE"
+    },
+    {
+      "kind": "map",
+      "col": 1,
+      "row": 15
+    },
+    {
+      "kind": "rest",
+      "index": 1,
+      "option": "SMITH"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        7
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 16
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BASH",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "POWER_POTION",
+      "target": 0
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        1
+      ]
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "RAMPAGE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "HEMOKINESIS",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STAMPEDE",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "CINDER",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SETUP_STRIKE",
+      "target": 3
+    },
+    {
+      "kind": "use_potion",
+      "slot": 1,
+      "potion": "SWIFT_POTION",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "CINDER",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "PECK",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 0,
+      "card": "IMPERVIOUS"
+    },
+    {
+      "kind": "next_act"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "PAEL.pages.INITIAL.options.PAELS_FLESH"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SETUP_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "IMPERVIOUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "RAMPAGE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "CINDER",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SETUP_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "RAMPAGE",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 2,
+      "card": "SHRUG_IT_OFF"
+    },
+    {
+      "kind": "map",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "FIGHT_ME",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "CINDER",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SETUP_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "SpecialCardReward"
+    },
+    {
+      "kind": "reward",
+      "index": 3,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 2,
+      "card": "BREAKTHROUGH"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 3
+    },
+    {
+      "kind": "event",
+      "index": 1,
+      "key": "SYMBIOTE.pages.INITIAL.options.KILL_WITH_FIRE"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        14
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 4,
+      "row": 4
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "RADIANT_TINCTURE",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "FIGHT_ME",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "HELLRAISER",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "RAMPAGE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "IMPERVIOUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 5
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "STONE_OF_ALL_TIME.pages.INITIAL.options.LIFT"
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 6
+    },
+    {
+      "kind": "event",
+      "index": 1,
+      "key": "ZEN_WEAVER.pages.INITIAL.options.EMOTIONAL_AWARENESS"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        2
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 7
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FIGHT_ME",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "PECK",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "RAMPAGE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "IMPERVIOUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "HELLRAISER",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BREAKTHROUGH",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "RelicReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 8
+    },
+    {
+      "kind": "open_chest"
+    },
+    {
+      "kind": "treasure",
+      "index": 0,
+      "relic": "ART_OF_WAR"
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 9
+    },
+    {
+      "kind": "rest",
+      "index": 0,
+      "option": "HEAL"
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 10
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "COLOSSAL_FLOWER.pages.INITIAL.options.EXTRACT_CURRENT_PRIZE_1"
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 11
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "FIGHT_ME",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "PECK",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "IMPERVIOUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "RAMPAGE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "HELLRAISER",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "RAMPAGE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "PECK",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 0,
+      "card": "SHRUG_IT_OFF"
+    },
+    {
+      "kind": "map",
+      "col": 5,
+      "row": 12
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "RAMPAGE",
+      "target": 1
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "TOUCH_OF_INSANITY",
+      "target": 0
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        2
+      ]
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FIGHT_ME",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "IMPERVIOUS",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SETUP_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 0,
+      "card": "MOLTEN_FIST"
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 13
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "FIGHT_ME",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "IMPERVIOUS",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BASH",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "PECK",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BREAKTHROUGH",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "MOLTEN_FIST",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 2,
+      "card": "BLOOD_WALL"
+    },
+    {
+      "kind": "map",
+      "col": 6,
+      "row": 14
+    },
+    {
+      "kind": "rest",
+      "index": 0,
+      "option": "HEAL"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 15
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "FIGHT_ME",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "RAMPAGE",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "HEMOKINESIS",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "PECK",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "BREAKTHROUGH",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SETUP_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "RAMPAGE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "PECK",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "BREAKTHROUGH",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FRANTIC_ESCAPE",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 2,
+      "card": "DEMON_FORM"
+    },
+    {
+      "kind": "next_act"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 0
+    },
+    {
+      "kind": "event",
+      "index": 1,
+      "key": "TANX.pages.INITIAL.options.IRON_CLUB"
+    },
+    {
+      "kind": "map",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "IMPERVIOUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "SETUP_STRIKE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 1,
+      "card": "BREAKTHROUGH"
+    },
+    {
+      "kind": "map",
+      "col": 2,
+      "row": 2
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "ROUND_TEA_PARTY.pages.INITIAL.options.ENJOY_TEA"
+    },
+    {
+      "kind": "map",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "POTION_COURIER.pages.INITIAL.options.GRAB_POTIONS"
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 1,
+      "row": 4
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "STRENGTH_POTION",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BLOOD_WALL",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 8,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "HELLRAISER",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FIGHT_ME",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "PECK",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 0,
+      "card": "FORGOTTEN_RITUAL"
+    },
+    {
+      "kind": "map",
+      "col": 2,
+      "row": 5
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "TRIAL.pages.INITIAL.options.ACCEPT"
+    },
+    {
+      "kind": "event",
+      "index": 1,
+      "key": "TRIAL.pages.NONDESCRIPT.options.INNOCENT"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        2,
+        12
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 2,
+      "row": 6
+    },
+    {
+      "kind": "rest",
+      "index": 1,
+      "option": "SMITH"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        7
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 7
+    },
+    {
+      "kind": "open_chest"
+    },
+    {
+      "kind": "treasure",
+      "index": 0,
+      "relic": "TUNING_FORK"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 8
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "REFLECTIONS.pages.INITIAL.options.TOUCH_A_MIRROR"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 9
+    },
+    {
+      "kind": "rest",
+      "index": 1,
+      "option": "SMITH"
+    },
+    {
+      "kind": "select_cards",
+      "indices": [
+        11
+      ]
+    },
+    {
+      "kind": "map",
+      "col": 2,
+      "row": 10
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "RESTLESSNESS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "use_potion",
+      "slot": 1,
+      "potion": "FOUL_POTION",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "INFLAME",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "FIGHT_ME",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "FORGOTTEN_RITUAL",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "HEMOKINESIS",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "RAMPAGE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SETUP_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BREAKTHROUGH",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_alternative",
+      "index": 0,
+      "alternative": "CardRewardAlternative"
+    },
+    {
+      "kind": "rewards_skip"
+    },
+    {
+      "kind": "map",
+      "col": 1,
+      "row": 11
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "FORGOTTEN_RITUAL",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "FIGHT_ME",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BLOOD_WALL",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "IMPERVIOUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "BREAKTHROUGH",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "HEMOKINESIS",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "MOLTEN_FIST",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "BREAKTHROUGH",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STRIKE_IRONCLAD",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BASH",
+      "target": 3
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "FIGHT_ME",
+      "target": 3
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "RelicReward"
+    },
+    {
+      "kind": "reward",
+      "index": 3,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 0,
+      "card": "IRON_WAVE"
+    },
+    {
+      "kind": "map",
+      "col": 1,
+      "row": 12
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "RAMPAGE",
+      "target": 2
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "INFLAME",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 7,
+      "card": "FIGHT_ME",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "FORGOTTEN_RITUAL",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "IRON_WAVE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "MOLTEN_FIST",
+      "target": 2
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STRIKE_IRONCLAD",
+      "target": 3
+    },
+    {
+      "kind": "reward",
+      "index": 0,
+      "reward": "GoldReward"
+    },
+    {
+      "kind": "reward",
+      "index": 1,
+      "reward": "PotionReward"
+    },
+    {
+      "kind": "reward",
+      "index": 2,
+      "reward": "CardReward"
+    },
+    {
+      "kind": "card_reward",
+      "index": 0,
+      "card": "MOLTEN_FIST"
+    },
+    {
+      "kind": "map",
+      "col": 1,
+      "row": 13
+    },
+    {
+      "kind": "rest",
+      "index": 0,
+      "option": "HEAL"
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 14
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEMON_FORM",
+      "target": null
+    },
+    {
+      "kind": "use_potion",
+      "slot": 1,
+      "potion": "ENERGY_POTION",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "INFLAME",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "SETUP_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "FIGHT_ME",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "BLOOD_WALL",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "IRON_WAVE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "IMPERVIOUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FORGOTTEN_RITUAL",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "FIGHT_ME",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "RAMPAGE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "RESTLESSNESS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "STRIKE_IRONCLAD",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BLOOD_WALL",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 6,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 5,
+      "card": "SETUP_STRIKE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "HEMOKINESIS",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "HELLRAISER",
+      "target": null
+    },
+    {
+      "kind": "map",
+      "col": 3,
+      "row": 15
+    },
+    {
+      "kind": "use_potion",
+      "slot": 0,
+      "potion": "LIQUID_BRONZE",
+      "target": 0
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "INFLAME",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "HELLRAISER",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "HEMOKINESIS",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "IRON_WAVE",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "THUNDERCLAP",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "FIGHT_ME",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "FORGOTTEN_RITUAL",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BREAKTHROUGH",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "MOLTEN_FIST",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "RESTLESSNESS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "IMPERVIOUS",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BREAKTHROUGH",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "DEMON_FORM",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 3,
+      "card": "BLOOD_WALL",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "DEFEND_IRONCLAD",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 0,
+      "card": "SHRUG_IT_OFF",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BLOOD_WALL",
+      "target": null
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "FIGHT_ME",
+      "target": 1
+    },
+    {
+      "kind": "play",
+      "index": 2,
+      "card": "BASH",
+      "target": 1
+    },
+    {
+      "kind": "end_turn"
+    },
+    {
+      "kind": "play",
+      "index": 1,
+      "card": "CONFLAGRATION",
+      "target": null
+    },
+    {
+      "kind": "play",
+      "index": 4,
+      "card": "RAMPAGE",
+      "target": 1
+    },
+    {
+      "kind": "next_act"
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "THE_ARCHITECT.dialogue.0"
+    },
+    {
+      "kind": "event",
+      "index": 0,
+      "key": "PROCEED"
+    }
+  ]
+}

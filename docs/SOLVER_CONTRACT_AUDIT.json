@@ -1,0 +1,137 @@
+{
+  "schema": "spire-public-packaging-contract-audit/v1",
+  "date": "2026-10-03",
+  "source_release": "holdout-01/frozen-i054a",
+  "scope": "public source packaging adaptation; no search strategy change and no new holdout result",
+  "canonical_schema": "spire-solver-contract-cil/v1",
+  "guarded_type": "CombatSolver.CorePowerSupport",
+  "approved_reference_solver_sha256": "0AF01356BE8B46BCE4D2D17088E83184D7205C8958C089C8D9DCAEC312E38C32",
+  "public_source_rebuild_solver_sha256": "DDB4C4B6CBCEE6C2A99610C19CDB149C7E031264823B78C71DECB81CEFE1C0C5",
+  "reference_contract_sha256": "D654B44B786C7B1ED0103521BD72ACC9D47ADC5A030985593FF2D471792B3E0E",
+  "source_rebuild_contract_sha256": "D654B44B786C7B1ED0103521BD72ACC9D47ADC5A030985593FF2D471792B3E0E",
+  "canonical_payload_identical": true,
+  "canonical_bytes": 330217,
+  "type_count": 3,
+  "method_count": 23,
+  "included": [
+    "entire guarded type and all nested generated types",
+    "type, field, method, property and event signatures and attributes",
+    "generic constraints and custom attributes",
+    "every method CIL opcode and normalized operand",
+    "locals, max stack and exception regions",
+    "metadata tokens resolved to stable names and signatures"
+  ],
+  "excluded_build_noise": [
+    "MVID",
+    "PDB and debug records",
+    "file paths",
+    "PE section/RVA locations",
+    "raw metadata token indices"
+  ],
+  "negative_check": {
+    "changed_one_guarded_CIL_opcode": true,
+    "altered_contract_sha256": "968A5CBBF913F26D250A8FE44A371B4D5E42BD70BC598A83FAF9491B7CA6E529",
+    "altered_copy_rejected": true,
+    "inspected_assembly_loaded_or_executed": false,
+    "source_and_dependency_checks": {
+      "allowed_filename_arbitrary_change_rejected": true,
+      "source_rejection": "Unexpected pinned harness Program.cs contents",
+      "dependency_byte_change_rejected": true,
+      "dependency_rejection_paths": [
+        "steamapps/common/Slay the Spire 2/release_info.json"
+      ],
+      "original_upstream_restored": true,
+      "original_dependencies_restored": true,
+      "native_requests_executed": false
+    }
+  },
+  "guard_behavior": {
+    "legacy_full_binary_allowlist_preserved": true,
+    "fallback_reads_actual_PE_each_initialization": true,
+    "external_self_reported_registration_trusted": false,
+    "compensation_disabled_or_bypassed": false
+  },
+  "build_validation": {
+    "sdk": "9.0.318",
+    "python": "3.12.14",
+    "public_GitHub_pin_fetched": true,
+    "public_NuGet_restore_used": true,
+    "all_projects_compiled": true,
+    "zero_build_errors_and_warnings": true,
+    "native_host_sha256": "59e3e1d93f6cfed3798e83c00d919dea8e2bab3b988773e514cd4e911cd7ee74",
+    "offline_harness_sha256": "c142f7fd145530cb47d0171f71336b8ad8cf7aac1d37b85ab49883193f977527",
+    "setup_runtime_ready": true,
+    "runtime_ready_meaning": "source/dependencies/artifacts and static guard eligibility; not a gameplay execution result"
+  },
+  "limits": {
+    "native_host_requests_executed": false,
+    "search_or_probe_experiments_executed": false,
+    "guard_Runtime_Configure_executed": false,
+    "new_gameplay_equivalence_or_holdout_claim": false
+  },
+  "source_identity_hardening": {
+    "private_import_files_rejected": [
+      "local.props",
+      ".local/presence.props",
+      ".local/showcase.props"
+    ],
+    "build_configuration_sha256": {
+      "Directory.Build.props": "61411f26e8fd7d8fda564e498f21d23768452554a0bce2e2d0ee144de5bc7490",
+      "Directory.Build.targets": "MISSING",
+      "Directory.Packages.props": "MISSING",
+      "global.json": "MISSING",
+      "native/Directory.Build.props": "MISSING",
+      "native/Directory.Build.targets": "MISSING",
+      "native/Directory.Packages.props": "MISSING",
+      "native/global.json": "MISSING",
+      "native/NuGet.Config": "MISSING",
+      "native/SpireNativeHost/Directory.Build.props": "MISSING",
+      "native/SpireNativeHost/Directory.Build.targets": "MISSING",
+      "native/SpireNativeHost/Directory.Packages.props": "MISSING",
+      "native/SpireNativeHost/global.json": "MISSING",
+      "native/SpireNativeHost/NuGet.Config": "MISSING",
+      "NuGet.Config": "add2258e157cc9cd2a21635b6f205ff5873b0541affd0341cc489ba6e89261fb",
+      "tools/Directory.Build.props": "MISSING",
+      "tools/Directory.Build.targets": "MISSING",
+      "tools/Directory.Packages.props": "MISSING",
+      "tools/global.json": "MISSING",
+      "tools/NuGet.Config": "MISSING",
+      "tools/solver_contract/Directory.Build.props": "MISSING",
+      "tools/solver_contract/Directory.Build.targets": "MISSING",
+      "tools/solver_contract/Directory.Packages.props": "MISSING",
+      "tools/solver_contract/global.json": "MISSING",
+      "tools/solver_contract/NuGet.Config": "MISSING",
+      "tools/source_dependencies.lock.json": "63ba668d73c760f5be60dd7af9d059258db2507f890ae559cc33c38c14c69264",
+      "vendor/CombatSolver/Directory.Build.props": "MISSING",
+      "vendor/CombatSolver/Directory.Build.targets": "MISSING",
+      "vendor/CombatSolver/Directory.Packages.props": "MISSING",
+      "vendor/CombatSolver/global.json": "MISSING",
+      "vendor/CombatSolver/NuGet.Config": "MISSING",
+      "vendor/CombatSolver/tools/Directory.Build.props": "MISSING",
+      "vendor/CombatSolver/tools/Directory.Build.targets": "MISSING",
+      "vendor/CombatSolver/tools/Directory.Packages.props": "MISSING",
+      "vendor/CombatSolver/tools/global.json": "MISSING",
+      "vendor/CombatSolver/tools/NuGet.Config": "MISSING",
+      "vendor/CombatSolver/tools/OfflineSearchHarness/Directory.Build.props": "MISSING",
+      "vendor/CombatSolver/tools/OfflineSearchHarness/Directory.Build.targets": "MISSING",
+      "vendor/CombatSolver/tools/OfflineSearchHarness/Directory.Packages.props": "MISSING",
+      "vendor/CombatSolver/tools/OfflineSearchHarness/global.json": "MISSING",
+      "vendor/CombatSolver/tools/OfflineSearchHarness/NuGet.Config": "MISSING",
+      "vendor/Directory.Build.props": "MISSING",
+      "vendor/Directory.Build.targets": "MISSING",
+      "vendor/Directory.Packages.props": "MISSING",
+      "vendor/global.json": "MISSING",
+      "vendor/NuGet.Config": "MISSING"
+    },
+    "existing_successful_build_stamp_upgraded_after_exact_input_verification": true,
+    "additional_compilation_or_native_execution": false,
+    "upgrade_basis": [
+      "public NuGet.Config exact authored bytes",
+      "Directory.Build.props exact original frozen bytes",
+      "dependency lock SHA already recorded by successful actual build",
+      "all four artifact hashes unchanged",
+      "other automatic recipe configuration files absent",
+      "no optional private upstream import files"
+    ]
+  }
+}

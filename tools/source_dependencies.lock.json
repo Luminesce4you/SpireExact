@@ -1,0 +1,33 @@
+{
+  "schema": "spire-source-dependencies/v1",
+  "source_release": "holdout-01/frozen-i054a",
+  "required_runtime_sha256": {
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/0Harmony.dll": "ef1898322c9f5c86dc1b0758b272a9c440823b4a41ca9a0b82a3aa6b3d206387",
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/GodotSharp.dll": "0e4897ecdfb31456a97c7d8028dfb8d7dbdc632e2f73fc9b438d7b266a139289",
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/JetBrains.Annotations.dll": "5f2b1475a7d80033a1ad25ea2710bd4b5fed40c28316cb0439bfb9aada2ef86b",
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/MonoMod.Backports.dll": "ac3f32bfd44aab83abf71abdff6dde548d57b7c0f8a1fe6d8964e348b4eeafb1",
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/MonoMod.ILHelpers.dll": "fdd0e3538340fd78b8f521e62b8cac1ebb7683ac1f27f6aaedfc1044b14bf4bb",
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/Sentry.dll": "4f1619b048d0b0f604265075bc5311f9f2e4a0ecdc09662009b7ee11d50c216c",
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/Sentry.Godot.dll": "bef522b322662f6dbf280891e23e2001483107f8bb981f1692c264928753112a",
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/SharpGen.Runtime.COM.dll": "2686187b458aba592e845d8c47f28c730efcca23eae77e3950a5178a9846d9ba",
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/SharpGen.Runtime.dll": "0e6acd59ab2173a6467626d69cf9f5b5b7651111ffee6e30fb7818de59335b4b",
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/SmartFormat.dll": "6220cde1dafffde5c51a4e23db4bb16e8ec620ef52bac51c0ad5f48c4769f168",
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/SmartFormat.ZString.dll": "723e9ffdb9cec9565d9bbbdb27b4d19a9b0ba4ff006e1ab8b94022ae5c426450",
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/Steamworks.NET.dll": "e1cd0bf2436cefbb8bfcfcc1cea0587e5b9c740769e8340f7b9e9de72785fcf0",
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.deps.json": "b4daebc073d305d38992016352e3f5ad0542891436c40d05733ca5dbc9a708b6",
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll": "0861bfa1df347538d932f22d580e75420f08082792eb914e53b4882764acdbe9",
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/System.IO.Hashing.dll": "fbe8c2fcb4adc01da5c3c8ed0d727903b8fda1e6b84da3c447c9794615f30664",
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/Vortice.DirectX.dll": "5e1da8c22e0a33cc24078965c80ca4093a2c806aa580076441eb0f27ef38b56f",
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/Vortice.DXGI.dll": "616983bed0d84c6ad499d1963edf12bb5bfe701e60a3ba860d1768516bf56d20",
+    "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/Vortice.Mathematics.dll": "bf8aa203d01c565a26811e5b32afba5030c7c6e05298487c6d24608e4fb43fad",
+    "steamapps/common/Slay the Spire 2/release_info.json": "74f244b13e9c6849149bec3b37e1729777a7f21306c56383405c2949eea62e22",
+    "steamapps/workshop/content/2868840/3747602295/compat/0.111.0/STS2-RitsuLib.dll": "7427da5493306c8c6a859ed3690257914528a4d2bf29821320b31391bbb36d5d",
+    "steamapps/workshop/content/2868840/3747602295/compat/0.111.0/STS2-RitsuLib.Runtime.dll": "f321aa102f18e939ac48dd2dc60610284fa5b4697b84385775494593d9ed4a7c",
+    "steamapps/workshop/content/2868840/3747602295/RitsuLib.References.props": "8502d98315e7641a34113b81370a2f2e20f6c224cf68631c08e46fd0dedb607f",
+    "steamapps/workshop/content/2868840/3747602295/shared/STS2-RitsuLib.Settings.dll": "4d330716d2be2d354c3d07fc8c1040edbbd0f0fae7b17c5ad955bd364df1438e",
+    "steamapps/workshop/content/2868840/3747602295/shared/STS2-RitsuLib.Shared.dll": "550a183fa853fe1f0102a0daaa8bae27381a43bb8defff327552620eff737f0d",
+    "steamapps/workshop/content/2868840/3747602295/shared/STS2-RitsuLib.Ui.dll": "4bfcac6383cd1beb9fa61ea63e63c6fa434e7ce06a43f8a9247c3afbf94dda04"
+  },
+  "additional_assemblies_allowed": true,
+  "binaries_redistributed": false
+}

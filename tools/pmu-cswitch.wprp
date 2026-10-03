@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WindowsPerformanceRecorder Version="1.0">
+  <Profiles>
+    <SystemCollector Id="SpirePMCCollector" Name="SpirePMCCollector">
+      <BufferSize Value="1024" />
+      <Buffers Value="128" />
+    </SystemCollector>
+    <SystemProvider Id="SpirePMCProvider">
+      <Keywords>
+        <Keyword Value="ProcessThread" />
+        <Keyword Value="Loader" />
+        <Keyword Value="CSwitch" />
+      </Keywords>
+    </SystemProvider>
+    <HardwareCounter Id="SpireCounters" Strict="true">
+      <Counters>
+        <Counter Value="InstructionsRetiredFixed" />
+        <Counter Value="UnhaltedCoreCyclesFixed" />
+        <Counter Value="LLCReference" />
+        <Counter Value="LLCMisses" />
+      </Counters>
+      <Events><Event Value="CSwitch" /></Events>
+    </HardwareCounter>
+    <Profile Id="SpirePMC.Verbose.File" Name="SpirePMC" LoggingMode="File" DetailLevel="Verbose" Description="Spire exact benchmark PMCs on context switches">
+      <Collectors Operation="Add">
+        <SystemCollectorId Value="SpirePMCCollector">
+          <SystemProviderId Value="SpirePMCProvider" />
+          <HardwareCounterId Value="SpireCounters" />
+        </SystemCollectorId>
+      </Collectors>
+    </Profile>
+  </Profiles>
+</WindowsPerformanceRecorder>
