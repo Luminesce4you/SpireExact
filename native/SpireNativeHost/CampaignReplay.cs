@@ -19,6 +19,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
+using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.TestSupport;
 using MegaCrit.Sts2.Core.Unlocks;
 using OfflineSearchHarness;
@@ -41,6 +42,7 @@ internal sealed partial class CampaignReplay : ICardSelector
     readonly bool lowIo;
     readonly bool eventDrivenSettle;
     JsonObject? restoredCheckpoint;
+    ResearchProgressLifecycle? researchProgress;
     bool restoreMenuChecked;
     int restoredPrefix;
     int replayedActions;
@@ -73,6 +75,13 @@ internal sealed partial class CampaignReplay : ICardSelector
     readonly List<object> decisionEvidence = [];
     readonly string journal;
     BeamAdvisor? advisor;
+    readonly bool captureF1Winners;
+    readonly JsonObject? f1WinnerProposal;
+    readonly List<JsonObject> f1WinnerCandidates=[];
+    readonly List<string> observedF1BossWins=[];
+    bool f1ProposalEntryChecked;
+    bool f1ProposalGuardAttempted, f1ProposalSecondBossEntered;
+    string? f1ProposalFailedGuard;
     readonly HashSet<TreasureRoom> openedChests = [];
     readonly HashSet<TreasureRoom> completedTreasureRooms = [];
     readonly List<Task> roomTasks = [];
@@ -103,6 +112,22 @@ internal sealed partial class CampaignReplay : ICardSelector
         choiceLimit = request.TryGetProperty("max_choices", out var limit) ? limit.GetInt32() : 10000;
         if (choiceLimit < 1) throw new ArgumentOutOfRangeException("max_choices");
         generateCandidate = request.TryGetProperty("generate_candidate", out var candidate) && candidate.GetBoolean();
+        captureF1Winners=request.TryGetProperty("capture_f1_winners",out var captureF1)&&captureF1.GetBoolean();
+        if(request.TryGetProperty("f1_winner_proposal",out var winner))
+            f1WinnerProposal=JsonNode.Parse(winner.GetRawText())?.AsObject()
+                ??throw new ArgumentException("F1_WINNER_PROPOSAL_REQUIRED");
+        if(captureF1Winners||f1WinnerProposal!=null)
+        {
+            if(!generateCandidate||!request.TryGetProperty("advisor",out _))throw new ArgumentException("F1_WINNERS_NEED_ADVISOR");
+            if(request.TryGetProperty("probe",out _)||request.TryGetProperty("card_menu_probe",out _))
+                throw new ArgumentException("F1_WINNERS_NOT_SYNTHETIC");
+            if(request.TryGetProperty("expected_evidence",out _))throw new ArgumentException("F1_WINNERS_NOT_VERIFICATION");
+            // Capture-only sources retain the normal cache/checkpoint/worker
+            // path. Opt-in Progress lifecycle restores their real initial/CP
+            // save DTO; consumers still replay fresh and retain all guards.
+            if(f1WinnerProposal!=null&&(captureCheckpoints||request.TryGetProperty("checkpoint",out _)))
+                throw new ArgumentException("F1_WINNER_REPLAY_MUST_START_FROM_INITIAL_STATE_WITHOUT_CHECKPOINTS");
+        }
         stopAtStrategicDecision=request.TryGetProperty("stop_at_strategic_decision",out var strategicStop)&&strategicStop.GetBoolean();
         maxDecisions = request.TryGetProperty("max_decisions", out var steps) ? steps.GetInt32() : 3000;
         policyRandom = new Random(request.TryGetProperty("policy_seed", out var ps) ? ps.GetInt32() : 0);
@@ -115,6 +140,12 @@ internal sealed partial class CampaignReplay : ICardSelector
                 if (weights.Any(w => w != 0)) prior[tier.Name] = weights;
             }
         ProbeInit(request);
+        CardMenuProbeInit(request);
+        MapRouteInit(request);
+        ShopPreparationInit(request);
+        ResourceTelemetryInit(request);
+        CompletedPrefixInit(request);
+        PreparationMenusInit(request);
     }
 
     internal static object Run(JsonElement request, MainLoopContext loop)
@@ -127,6 +158,8 @@ internal sealed partial class CampaignReplay : ICardSelector
             using (session.Perf.Enter("run_setup_or_restore")) session.Start(request);
             if (session.generateCandidate && request.TryGetProperty("advisor", out var config))
                 session.advisor = new BeamAdvisor(config, Path.Combine(request.GetProperty("out").GetString()!, "advisor"));
+            if(session.captureF1Winners||session.f1WinnerProposal!=null)
+                session.advisor!.ConfigureF1WinnerReuse(session.captureF1Winners,session.f1WinnerProposal);
             using var selector = CardSelectCmd.UseSelector(session);
             RewardsSet.testSelector = session.SelectRewards;
             if (session.restoredCheckpoint == null)
@@ -135,18 +168,24 @@ internal sealed partial class CampaignReplay : ICardSelector
             {
                 using (session.Perf.Enter("settle")) session.Settle();
                 session.CheckTasks();
+                session.CommitCompletedBoundary();
                 if (session.victory.HasValue || session.player.Creature.IsDead) break;
                 session.executions.Clear();
                 using (session.Perf.Enter("legal_menu")) session.BuildMenu();
                 var action = session.Choose(session.phase, session.executions.Keys.Select(s => JsonNode.Parse(s)!).Cast<object>().ToArray());
                 string key = action.ToJsonString();
+                if(session.captureResourceTelemetry)session.RecordResourceAttempt(action);
+                if(WorkerMemoryTelemetry.Enabled)session.completedOuterActionInFlight=true;
                 using (session.Perf.Enter(session.cursor <= session.history.Length && session.generatedActions == 0
                     ? "prefix_native_execute" : "new_native_execute")) session.Wait(session.executions[key]());
+                session.MarkOuterActionCompleted();
+                if(session.mapRoutePlan!=null)session.MapRouteActionCompleted(action);
             }
             if (session.cursor != session.history.Length)
                 throw new InvalidOperationException("History continues after the native terminal state");
         }
         catch (NeedDecision) { }
+        catch(Exception error) when(WorkerMemoryTelemetry.IsOutOfMemory(error)) { throw; }
         catch (Exception error)
         {
             if (session.menu is null)
@@ -154,6 +193,7 @@ internal sealed partial class CampaignReplay : ICardSelector
             else if (!ContainsDecisionException(error))
                 session.boundary = error.ToString();
         }
+        session.FinalizeMapRouteOutcome();
         session.traceWriter.Flush(); session.evidenceWriter.Flush();
         session.traceWriter.Dispose(); session.evidenceWriter.Dispose();
         session.Perf.Count("prefix_replayed_actions", session.replayedActions);
@@ -161,10 +201,11 @@ internal sealed partial class CampaignReplay : ICardSelector
         session.Perf.Count("new_actions", session.generatedActions);
         session.Perf.Count("replay_prefix_solver_calls", 0);
         // A synthetic probe has its own answer: no value, never TERMINAL / BUDGET / DECISION.
-        if (session.probe.HasValue) return session.ProbeResult();
+        if (session.probe.HasValue) return session.WithCampaignMetadata(session.ProbeResult());
+        if (session.cardMenuProbe.HasValue) return session.WithCampaignMetadata(session.CardMenuProbeResult());
         bool? won = session.victory ?? (session.player?.Creature.IsDead == true ? false : null);
         if (session.boundary != null) won = null;
-        return new
+        return session.WithCampaignMetadata(new
         {
             schema = "spire-native-decision/v1", phase = session.phase,
             status = session.boundary?.StartsWith("candidate_") == true ? "BUDGET" : session.boundary != null ? "UNSUPPORTED" : won.HasValue ? "TERMINAL" : "DECISION",
@@ -184,7 +225,59 @@ internal sealed partial class CampaignReplay : ICardSelector
             checkpoints = session.checkpointRefs, restored_prefix = session.restoredPrefix,
             restore_menu_checked = session.restoreMenuChecked, advisor_metrics = session.advisor?.Metrics(),
             performance = session.Perf.Snapshot(), information_mode = "full"
+        });
+    }
+
+    // i068 production adapter: read the generated native campaign, never infer
+    // its act/boss count from an ascension number or a seed. This request flag
+    // leaves older requests and every per-decision observation unchanged.
+    // Reflect only our result DTO once, outside the decision/search hot path.
+    object WithCampaignMetadata(object result)
+    {
+        bool includeCampaign=request.TryGetProperty("include_campaign_metadata",out var include)&&include.GetBoolean();
+        if(!includeCampaign&&!captureF1Winners&&f1WinnerProposal==null&&researchProgress==null
+            &&!captureRouteGraph&&mapRoutePlan==null&&!captureResourceTelemetry&&!CapturePreparationMenus)return result;
+        var enriched = result.GetType().GetProperties().ToDictionary(p => p.Name, p => p.GetValue(result));
+        enriched["campaign"] = run == null ? null : new
+        {
+            act_count = run.Acts.Count,
+            final_act_boss_count = run.Acts.Last().SecondBossEncounter == null ? 1 : 2
         };
+        if(captureF1Winners||f1WinnerProposal!=null)
+        {
+            enriched["f1_winner_candidates"]=f1WinnerCandidates;
+            enriched["f1_winner_reuse"]=new {
+                terminal_encounter=(run?.CurrentRoom as CombatRoom)?.CombatState.Encounter?.Id.Entry,
+                final_second_encounter=run?.Acts.Last().SecondBossEncounter?.Id.Entry,
+                native_identity=Program.NativeIdentity(),guard_attempted=f1ProposalGuardAttempted,
+                failed_entry_guard=f1ProposalFailedGuard,
+                native_boss_wins=observedF1BossWins,
+                native_f1_won=f1WinnerProposal?["encounter"] is JsonValue f1Id
+                    &&observedF1BossWins.Contains(f1Id.GetValue<string>()),
+                native_f2_entered=f1ProposalSecondBossEntered,
+                proposal_entry_checked=f1ProposalEntryChecked,deployment=advisor?.F1ReuseStatus(),
+                scope="already computed forecasts; alternative real actions only; not a combat optimality proof"
+            };
+        }
+        if(request.TryGetProperty("capture_card_menu_state",out var cardSourceCapture)&&cardSourceCapture.GetBoolean())
+            enriched["card_menu_sources"]=cardMenuSources;
+        if(researchProgress!=null)
+            enriched["research_progress"]=new {
+                schema=ResearchProgressLifecycle.Schema,
+                baseline_sha256=researchProgress.BaselineSha,
+                checkpoint_restored=researchProgress.CheckpointRestored,
+                scope="native Progress save DTO restored from initial baseline or genuine map checkpoint; not complete-host isolation"
+            };
+        if(captureRouteGraph)enriched["map_decision_sources"]=mapDecisionSources;
+        if(mapRoutePlan!=null)enriched["map_route_result"]=MapRouteResult();
+        if(CaptureShopMetadata) {
+            enriched["shop_inventory_sources"]=shopInventorySources;
+            enriched["shop_purchase_events"]=shopPurchaseEvents;
+        }
+        if(captureResourceTelemetry)enriched["resource_telemetry"]=ResourceTelemetryResult();
+        if(captureResourceTelemetry||captureRouteGraph)enriched["gate_entry_sources"]=gateEntrySources;
+        if(CapturePreparationMenus)enriched["preparation_menu_sources"]=PreparationMenuSourcesResult();
+        return enriched;
     }
 
     static bool ContainsDecisionException(Exception e) => e is NeedDecision
@@ -199,6 +292,12 @@ internal sealed partial class CampaignReplay : ICardSelector
 
     void Start(JsonElement request)
     {
+        bool needsResearchProgress=captureF1Winners||f1WinnerProposal!=null||cardMenuProbe.HasValue||realCardMenuChoice.HasValue
+            ||captureRouteGraph||mapRoutePlan!=null||preserveCompletedPrefix||CapturePreparationMenus
+            ||request.TryGetProperty("capture_card_menu_state",out var cardCapture)&&cardCapture.GetBoolean();
+        if(needsResearchProgress&&!request.TryGetProperty("research_progress",out _))
+            throw new InvalidDataException("RESEARCH_PROGRESS_BASELINE_REQUIRED");
+        researchProgress = ResearchProgressLifecycle.Begin(request);
         if (request.TryGetProperty("checkpoint", out var checkpoint) && checkpoint.ValueKind == JsonValueKind.String)
         {
             restoredCheckpoint = RoomCheckpoint.Load(checkpoint.GetString()!, request);
@@ -211,6 +310,7 @@ internal sealed partial class CampaignReplay : ICardSelector
             cursor = restoredPrefix = transcript.Count;
             foreach(var action in transcript) traceWriter.WriteLine(action.ToJsonString());
             if(!lowIo)foreach(var e in decisionEvidence) evidenceWriter.WriteLine(JsonSerializer.Serialize(e));
+            string? checkpointProgress = researchProgress?.RestoreCheckpoint(restoredCheckpoint);
             var save = RoomCheckpoint.Deserialize(restoredCheckpoint["run"]!);
             run = RunState.FromSerializable(save);
             player = run.Players.Single();
@@ -231,6 +331,8 @@ internal sealed partial class CampaignReplay : ICardSelector
                 throw new InvalidDataException("CHECKPOINT_MISSING_ACTION_RUNTIME");
             MapActionRuntime.Restore(runtime);
             RoomCheckpoint.RequireEqual(restoredCheckpoint["run"], RoomCheckpoint.CaptureRun(), "native_run_roundtrip");
+            if (checkpointProgress != null)
+                ResearchProgressLifecycle.RequireUnchanged(checkpointProgress, "research_progress_after_run_restore");
             InstallRunCallbacks();
             return;
         }
@@ -249,8 +351,13 @@ internal sealed partial class CampaignReplay : ICardSelector
         InstallRunCallbacks();
     }
 
-    void OnCombatWon(CombatRoom room) => TrackRoomTask(room.Encounter.ShouldGiveRewards
-        ? room.OfferRoomEndRewards() : RunManager.Instance.ProceedFromTerminalRewardsScreen());
+    void OnCombatWon(CombatRoom room)
+    {
+        CardMenuProbeCombatWon(room);
+        if(captureF1Winners||f1WinnerProposal!=null)observedF1BossWins.Add(room.Encounter.Id.Entry);
+        TrackRoomTask(room.Encounter.ShouldGiveRewards
+            ?room.OfferRoomEndRewards():RunManager.Instance.ProceedFromTerminalRewardsScreen());
+    }
 
     void InstallRunCallbacks()
     {
@@ -264,14 +371,15 @@ internal sealed partial class CampaignReplay : ICardSelector
                 if (result.player != null)
                     TrackRoomTask(RelicCmd.Obtain(result.relic.ToMutable(), result.player));
         };
+        InstallResourceTelemetry();
     }
 
     void TrackRoomTask(Task task) { roomTasks.Add(task); background.Add(task); }
 
     void Wait(Task task)
     {
-        var timer = System.Diagnostics.Stopwatch.StartNew();
-        while (!task.IsCompleted && menu == null && timer.Elapsed < TimeSpan.FromSeconds(10))
+        var timer = PauseClock.StartNew();
+        while (!task.IsCompleted && menu == null && PauseClock.Elapsed(timer) < TimeSpan.FromSeconds(10))
         {
             loop.Pump(TimeSpan.FromMilliseconds(5));
             CheckTasks();
@@ -284,6 +392,7 @@ internal sealed partial class CampaignReplay : ICardSelector
 
     void CheckTasks()
     {
+        WorkerMemoryTelemetry.ThrowIfOutOfMemoryObserved();
         if (menu != null) throw new NeedDecision();
         foreach (var task in background)
             if (task.IsFaulted) task.GetAwaiter().GetResult();
@@ -292,7 +401,7 @@ internal sealed partial class CampaignReplay : ICardSelector
 
     void Settle()
     {
-        var deadline = System.Diagnostics.Stopwatch.StartNew();
+        var deadline = PauseClock.StartNew();
         do
         {
             if (eventDrivenSettle)
@@ -311,13 +420,14 @@ internal sealed partial class CampaignReplay : ICardSelector
                 Perf.Count("settle_pending_waits");
                 loop.Pump(TimeSpan.FromMilliseconds(5));
             }
-        } while (deadline.Elapsed < TimeSpan.FromSeconds(5));
+        } while (PauseClock.Elapsed(deadline) < TimeSpan.FromSeconds(5));
         throw new InvalidOperationException("Native turn did not settle; pending work is unsupported");
     }
 
     JsonObject Choose(string name, object[] options)
     {
         phase = name;
+        CaptureGateEntry(name);
         if (name == "map")
         {
             if (restoredCheckpoint != null && !restoreMenuChecked)
@@ -332,6 +442,7 @@ internal sealed partial class CampaignReplay : ICardSelector
                 menu = options; boundary = "candidate_horizon"; throw new NeedDecision();
             }
         }
+        BeforeCompletedPrefixDecision(name);
         if (menu != null) throw new NeedDecision();
         if (cursor < history.Length)
         {
@@ -346,6 +457,9 @@ internal sealed partial class CampaignReplay : ICardSelector
             RecordEvidence(name, options);
             return matching.AsObject();
         }
+        MapRouteCheckDecision(name,options);
+        if((cardMenuProbe.HasValue||realCardMenuChoice.HasValue)&&CardMenuProbeStep(name,options) is {} cardMenuChoice)
+            return cardMenuChoice;
         if (probe.HasValue && ProbeStep(name, options) is { } entering) return entering;
         if(stopAtStrategicDecision && (name is "map" or "shop" or "rest" or "card_reward" or "event" or "treasure"
             || name=="select_cards" && !CombatManager.Instance.IsInProgress))
@@ -364,8 +478,13 @@ internal sealed partial class CampaignReplay : ICardSelector
                 throw new NeedDecision();
             }
             phase = name;
+            CaptureMapDecisionSource(name,options);
+            CaptureShopInventory(name,options);
             JsonObject selected;
-            using (Perf.Enter("candidate_select")) selected = RankCandidate(name, options).AsObject();
+            using (Perf.Enter("candidate_select")) {
+                var chosen=ShopPreparationChoice(name,options)??RankCandidate(name,options);
+                selected=MapRouteChooseMove(name,options,chosen).AsObject();
+            }
             generatedActions++;
             transcript.Add(selected.DeepClone());
             traceWriter.WriteLine(selected.ToJsonString());
@@ -399,6 +518,8 @@ internal sealed partial class CampaignReplay : ICardSelector
                 ["observation"]=JsonSerializer.SerializeToNode(Observe()),
                 ["scope"]="offline TestMode map boundary; no normal-Godot parity certification"
             };
+            if (researchProgress != null)
+                payload["native_progress_snapshot"] = researchProgress.CaptureCheckpoint();
             string path = Path.Combine(output,"checkpoints",$"map-{transcript.Count:D6}.json");
             if(lowIo)path+=".gz";
             // Successful request completion publishes decision.json.gz once.
@@ -422,10 +543,12 @@ internal sealed partial class CampaignReplay : ICardSelector
             ? new { phase = name, observation = Observe(), available_actions = options,
                 option_labels = options.Select(o => Labels(name, JsonSerializer.SerializeToNode(o)!)).ToArray() }
             : new { phase = name, observation = Observe(), available_actions = options };
+        evidence=CardMenuDecorateEvidence(name,evidence);
         if (request.TryGetProperty("expected_evidence",out var expected) && transcript.Count <= expected.GetArrayLength())
             RoomCheckpoint.RequireEqual(JsonNode.Parse(expected[transcript.Count-1].GetRawText()),
                 JsonSerializer.SerializeToNode(evidence), "replay_trajectory_"+(transcript.Count-1));
         decisionEvidence.Add(evidence);
+        CapturePreparationMenuEvidence(name,options,evidence);
         if(!lowIo)evidenceWriter.WriteLine(JsonSerializer.Serialize(evidence));
         // Flush once per decision: diagnostics survive a native crash without reopening files.
         if(!lowIo || transcript.Count%64==0){traceWriter.Flush(); evidenceWriter.Flush();}
@@ -434,11 +557,52 @@ internal sealed partial class CampaignReplay : ICardSelector
     // Candidate ordering only. These scores never provide bounds or prune proofs.
     JsonNode RankCandidate(string name, object[] options)
     {
+        if(f1WinnerProposal!=null&&!f1ProposalEntryChecked&&name!="combat")
+            throw new InvalidDataException("F1_WINNER_EXPECTED_FIRST_COMBAT_DECISION");
         if (name == "combat" && advisor != null)
         {
             JsonNode? suggestion;
-            using (Perf.Enter("combat_advisor")) suggestion = advisor.Suggest(CombatManager.Instance.DebugOnlyGetState()!, player,
+            var state=CombatManager.Instance.DebugOnlyGetState()!;
+            if(f1WinnerProposal!=null&&state.Encounter?.Id==run.Acts.Last().SecondBossEncounter?.Id)
+                f1ProposalSecondBossEntered=true;
+            bool capturingRoot=advisor.WillCaptureF1Root(state);
+            JsonNode? capturedObservation=capturingRoot?JsonSerializer.SerializeToNode(Observe(),Program.Json):null;
+            JsonNode? capturedProgress=capturingRoot?NativeProgressGuard.Capture():null;
+            string? capturedProgressRaw=capturingRoot?NativeProgressGuard.RawCapture():null;
+            if(f1WinnerProposal!=null&&!f1ProposalEntryChecked)
+            {
+                f1ProposalGuardAttempted=true;f1ProposalFailedGuard="f1_winner_schema";
+                if(f1WinnerProposal["schema"]?.GetValue<string>()!="spire-f1-winner/v1")
+                    throw new InvalidDataException("F1_WINNER_SCHEMA");
+                CheckF1ProposalGuard(f1WinnerProposal["context"],RoomCheckpoint.Context(request),"f1_winner_context");
+                CheckF1ProposalGuard(f1WinnerProposal["entry_history"],JsonSerializer.SerializeToNode(transcript,Program.Json),"f1_winner_history");
+                CheckF1ProposalGuard(f1WinnerProposal["native_identity"],JsonSerializer.SerializeToNode(Program.NativeIdentity(),Program.Json),"f1_winner_native_identity");
+                CheckF1ProposalGuard(f1WinnerProposal["advisor_binary_identity"],
+                    JsonNode.Parse(request.GetProperty("advisor").GetProperty("binary_identity").GetRawText()),"f1_winner_advisor_identity");
+                CheckF1ProposalGuard(f1WinnerProposal["entry_observation"],JsonSerializer.SerializeToNode(Observe(),Program.Json),"f1_winner_observation");
+                f1ProposalFailedGuard="f1_winner_native_progress";
+                if(f1WinnerProposal["native_progress"]==null)
+                    throw new InvalidDataException("F1_WINNER_NATIVE_PROGRESS_REQUIRED");
+                CheckF1ProposalGuard(f1WinnerProposal["native_progress"],
+                    NativeProgressGuard.Capture(),"f1_winner_native_progress");
+                f1ProposalEntryChecked=true;
+            }
+            using (Perf.Enter("combat_advisor")) suggestion = advisor.Suggest(state, player,
                 options.Select(o => JsonSerializer.SerializeToNode(o)!).ToArray());
+            if(captureF1Winners)
+                foreach(var winner in advisor.TakeF1Winners())
+                {
+                    winner["entry_history"]=JsonSerializer.SerializeToNode(transcript,Program.Json);
+                    winner["context"]=RoomCheckpoint.Context(request);
+                    winner["native_identity"]=JsonSerializer.SerializeToNode(Program.NativeIdentity(),Program.Json);
+                    winner["advisor_binary_identity"]=JsonNode.Parse(request.GetProperty("advisor").GetProperty("binary_identity").GetRawText());
+                    winner["entry_observation"]=capturedObservation?.DeepClone()
+                        ??throw new InvalidDataException("F1_WINNER_ENTRY_CAPTURE_MISSING");
+                    winner["native_progress"]=capturedProgress?.DeepClone()
+                        ??throw new InvalidDataException("F1_WINNER_PROGRESS_CAPTURE_MISSING");
+                    winner["native_progress_raw"]=capturedProgressRaw;
+                    f1WinnerCandidates.Add(winner);
+                }
             if (suggestion != null) return suggestion;
         }
         if(name=="select_cards" && CombatManager.Instance.IsInProgress && advisor!=null)
@@ -559,6 +723,13 @@ internal sealed partial class CampaignReplay : ICardSelector
         return chosen;
     }
 
+    void CheckF1ProposalGuard(JsonNode? expected,JsonNode? actual,string label)
+    {
+        f1ProposalFailedGuard=label;
+        RoomCheckpoint.RequireEqual(expected,actual,label);
+        f1ProposalFailedGuard=null;
+    }
+
     // Only quiescent non-combat menus carry labels. Combat stays with the advisor.
     bool Labelled(string name) => name is "map" or "shop" or "rest" or "card_reward" or "event" or "treasure" or "rewards"
         || name == "select_cards" && !CombatManager.Instance.IsInProgress;
@@ -574,6 +745,12 @@ internal sealed partial class CampaignReplay : ICardSelector
         int tier = 0, act = run.CurrentActIndex;
         foreach (string label in Labels(name, a))
             if (prior.TryGetValue(label, out var weights)) tier += weights[Math.Min(act, weights.Length - 1)];
+        // Paired F2 add-card evidence values a free card reward, not a purchase
+        // with a gold cost. Its separate namespace cannot change shop, route,
+        // removal, upgrade, or in-combat choices sharing a card ID.
+        if (name == "card_reward")
+            foreach (string label in Labels(name, a))
+                if (prior.TryGetValue("paired:" + label, out var weights)) tier += weights[Math.Min(act, weights.Length - 1)];
         return tier;
     }
 
@@ -749,8 +926,15 @@ internal sealed partial class CampaignReplay : ICardSelector
                 {
                     var entry = entries[i];
                     if (entry.IsStocked && entry.EnoughGold)
-                        Add(new { kind = "buy", index = i, item_type = entry.GetType().Name, cost = entry.Cost },
-                            async () => { await entry.OnTryPurchaseWrapper(inventory); });
+                    {
+                        int entryIndex=i;
+                        if(CaptureShopMetadata)
+                            Add(new { kind = "buy", index = i, item_type = entry.GetType().Name, cost = entry.Cost },
+                                () => PurchaseWithMetadata(entry,entryIndex,inventory));
+                        else
+                            Add(new { kind = "buy", index = i, item_type = entry.GetType().Name, cost = entry.Cost },
+                                async () => { await entry.OnTryPurchaseWrapper(inventory); });
+                    }
                 }
             }
             IReadOnlyCollection<MapPoint> children = run.CurrentMapPoint is { } current
@@ -883,9 +1067,12 @@ internal sealed partial class CampaignReplay : ICardSelector
             hp = Num(player.Creature.CurrentHp), max_hp = Num(player.Creature.MaxHp), gold = player.Gold,
             deck = player.Deck.Cards.Select(Card).ToArray(), relics = player.Relics.Select(r => r.Id.Entry).ToArray(),
             strategic = new StrategicStateEvaluator(player,run).Snapshot(),
+            // cards: the candidates in the order select_cards indices refer to. Record only;
+            // pile and choose-a-card screens are otherwise invisible in the observation.
             selection = phase=="select_cards" && selectionRequest!=null ? new {
                 purpose=selectionRequest.Purpose.ToString(),native_method=selectionRequest.NativeMethod,
-                prompt=selectionRequest.Prompt,source=selectionRequest.Source } : null,
+                prompt=selectionRequest.Prompt,source=selectionRequest.Source,
+                cards=selectionCards.Select(Card).ToArray() } : null,
             hand = combat?.Hand.Cards.Select(Card).ToArray(), turn = combat?.TurnNumber,
             energy = combat?.Energy, block = combat == null ? "0" : Num(player.Creature.Block),
             enemies = combat == null ? null : player.Creature.CombatState?.Enemies.Select(e => new
@@ -900,7 +1087,10 @@ internal sealed partial class CampaignReplay : ICardSelector
     internal static void Detach()
     {
         if (active != null)
+        {
             CombatManager.Instance.CombatWon -= active.OnCombatWon;
+            active.DetachResourceTelemetry();
+        }
         RewardsSet.testSelector = null;
         active = null;
     }

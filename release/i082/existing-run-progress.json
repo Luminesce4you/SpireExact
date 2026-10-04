@@ -1,0 +1,45 @@
+{
+  "schema": "spire-public-existing-run-progress/v1",
+  "exported_at": "2026-10-04T22:41:08+08:00",
+  "original_source_version": "e1b10f6f10f1c1d27f5f176f8b4e73ce8aa07fc2a9ab94b9eaf2d9cd10bd7c74",
+  "run_id": "i082-60-524130501",
+  "seed": "524130501",
+  "started_at": "2026-10-04T22:21:29.676386+08:00",
+  "wall_cap_seconds": 3600,
+  "panel": "USER_INTERACTIVE",
+  "profile": "focus",
+  "solver_seed": 271828,
+  "historical_host_sha256": "763bc2c6744b34442fd4df2fe90484f3d2743a17d50d967aba5b673f5ceb582b",
+  "completion": "in_progress",
+  "status": "UNKNOWN",
+  "certificate_present": false,
+  "coordinator_and_owned_job_identity_live_observed": true,
+  "solver_elapsed_seconds": 1134.3775305000017,
+  "evaluation_count": 896,
+  "live_evaluation_tail_truncated": true,
+  "best_observed_floor": 48,
+  "furthest_events": [
+    {
+      "wall_seconds": 55.3678934999989,
+      "floor": 33,
+      "label": "eval-0000-baseline",
+      "classification": "NATIVE_ROUTE_DEATH"
+    },
+    {
+      "wall_seconds": 119.62274819999584,
+      "floor": 46,
+      "label": "eval-0031-macro_focus",
+      "classification": "NATIVE_ROUTE_DEATH"
+    },
+    {
+      "wall_seconds": 612.457115899997,
+      "floor": 48,
+      "label": "eval-0504-macro_focus",
+      "classification": "NATIVE_ROUTE_DEATH"
+    }
+  ],
+  "scope": "Progress of an existing 60-minute user job. It is not a completed result or a victory/performance conclusion.",
+  "original_live_snapshot_sha256": "4349265852601a7c7fa08fa8899f9d49dcb055409736a5cc9daa5af084fb7e14",
+  "recommended_public_entry_minutes": 30,
+  "export_representation": "sanitized progress snapshot"
+}

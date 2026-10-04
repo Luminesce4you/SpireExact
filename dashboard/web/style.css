@@ -96,6 +96,9 @@ input[type="checkbox"]{accent-color:var(--accent)}
 .run-context{display:flex;align-items:center;flex-wrap:wrap;gap:10px 16px}
 .run-identity{display:flex;align-items:center;gap:10px;min-width:0}
 .run-identity strong{font-size:1.15rem;font-weight:650;overflow-wrap:anywhere}
+.job-controls{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px}
+.job-control-buttons{display:flex;align-items:center;gap:6px}
+.job-controls .hint{max-width:34em}
 .chips{display:flex;flex-wrap:wrap;gap:6px;flex:1}
 .chip{display:inline-flex;align-items:center;gap:6px;padding:2px 9px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--text-3);font-size:.93rem}
 .chip b{color:var(--text);font-weight:550;font-family:var(--mono);font-size:.95em}
@@ -106,6 +109,7 @@ input[type="checkbox"]{accent-color:var(--accent)}
 .status-badge.verified{background:var(--good-soft);color:var(--good)}
 .status-badge.error,.status-badge.invalid{background:var(--bad-soft);color:var(--bad)}
 .status-badge.stopped{background:var(--warn-soft);color:var(--warn)}
+.status-badge.paused{background:var(--warn-soft);color:var(--warn)}
 
 /* Cards */
 .panel,.chart-card,.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}

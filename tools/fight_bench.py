@@ -40,6 +40,19 @@ def algorithm_request(request):
     return result
 
 
+def diagnostic_request(request, *, allow_solver_change=False):
+    """Mask only the opt-in completed-result counter export, retaining all solver inputs."""
+    result = algorithm_request(request) if allow_solver_change else json.loads(json.dumps(request))
+    advisor = result.get('advisor')
+    if advisor is not None:
+        for key in ('measure_search_work','measure_fork_writes'):
+            value = advisor.pop(key, False)
+            if not isinstance(value, bool): raise ValueError(key+' must be boolean')
+        mode=advisor.pop('fork_measurement_mode','writes')
+        if mode not in ('writes','costs'):raise ValueError('Unknown fork measurement mode')
+    return result
+
+
 def _decision(seed_dir, label):
     path = Path(seed_dir) / label / 'data' / 'decision.json.gz'
     with gzip.open(path, 'rt', encoding='utf-8-sig') as stream:
@@ -237,6 +250,10 @@ def run(a):
                        'request_sha256': request_hash, 'algorithm_request_sha256': algorithm_hash}
                 try:
                     decision, _ = future.result()
+                    stored = json.loads((out / 'request.json').read_text(encoding='utf-8'))
+                    stored.pop('command',None);stored.pop('compact',None);stored.pop('out',None)
+                    row['diagnostic_request_sha256'] = hashlib.sha256(_canonical(diagnostic_request(stored))).hexdigest()
+                    row['diagnostic_algorithm_request_sha256'] = hashlib.sha256(_canonical(diagnostic_request(stored,allow_solver_change=True))).hexdigest()
                     row.update(summarize(decision, case['cut'], case['floor'], json.loads((out / 'transport.json').read_text())))
                 except Exception as error:                      # a failed case is reported, never dropped
                     row['error'] = str(error)[:400]
@@ -290,7 +307,8 @@ def compare(a):
     changed = [c for c in shared if first[c][0]['won_fight'] != second[c][0]['won_fight']]
     print(f'  fight results flipped: {len(changed)} (A-only wins {sum(first[c][0]["won_fight"] for c in changed)}, '
           f'B-only wins {sum(second[c][0]["won_fight"] for c in changed)})')
-    report = compare_exact(a.a, a.b, allow_solver_change=getattr(a, 'allow_solver_change', False))
+    report = compare_exact(a.a, a.b, allow_solver_change=getattr(a, 'allow_solver_change', False),
+                           allow_diagnostic_change=getattr(a,'allow_diagnostic_change',False))
     print(f'  strict all-repeat equivalence: {report["equivalent"]}; issues {len(report["issues"])}')
     if getattr(a, 'report', None):
         a.report.write_text(json.dumps(report, indent=2), encoding='utf-8')
@@ -299,7 +317,7 @@ def compare(a):
     return report
 
 
-def compare_exact(a, b, *, allow_solver_change=False):
+def compare_exact(a, b, *, allow_solver_change=False, allow_diagnostic_change=False):
     """No silently dropped errors, missing repeats or node/request differences.
 
     Digests index retained evidence, not native-state identity or a proof of
@@ -330,7 +348,9 @@ def compare_exact(a, b, *, allow_solver_change=False):
         issues.append('case/repeat sets differ')
     paired = sorted(first.keys() & second.keys())
     same = 0
-    fields = ('algorithm_request_sha256' if allow_solver_change else 'request_sha256', 'trace_sha256', 'game_sha256', 'nodes')
+    request_field = ('diagnostic_algorithm_request_sha256' if allow_solver_change else 'diagnostic_request_sha256') if allow_diagnostic_change \
+        else ('algorithm_request_sha256' if allow_solver_change else 'request_sha256')
+    fields = (request_field, 'trace_sha256', 'game_sha256', 'nodes')
     for key in paired:
         if all(first[key].get(f) is not None and first[key].get(f) == second[key].get(f) for f in fields):
             same += 1
@@ -345,6 +365,7 @@ def compare_exact(a, b, *, allow_solver_change=False):
             reference[key[0]] = signature
     return {'schema': 'spire-fight-bench-comparison/v1', 'equivalent': not issues,
             'solver_binary_change_allowed': allow_solver_change,
+            'completed_counter_export_change_allowed': allow_diagnostic_change,
             'paired_repeats': len(paired), 'identical_repeats': same, 'issues': issues,
             'performance_promoted': False}
 
@@ -373,6 +394,7 @@ def main():
     s = sub.add_parser('compare'); s.add_argument('a', type=Path); s.add_argument('b', type=Path); s.add_argument('--show', type=int, default=12)
     s.add_argument('--strict', action='store_true'); s.add_argument('--report', type=Path)
     s.add_argument('--allow-solver-change', action='store_true', help='Ignore only solver path and its fingerprint, retaining all other dependency identity')
+    s.add_argument('--allow-diagnostic-change',action='store_true',help='Ignore only advisor.measure_search_work; all game bytes, actions, nodes and other inputs must still match')
     s.set_defaults(fn=compare)
     a = p.parse_args(); a.fn(a)
 

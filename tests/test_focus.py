@@ -1,5 +1,5 @@
 """Elite-guided scheduling: allocation only, exact prefixes, nothing proposed twice."""
-import copy,unittest
+import copy,json,unittest
 from spire_exact.canonical import canonical
 from spire_exact.planning.focus import FocusScheduler
 from spire_exact.planning.gatemodel import GateModels
@@ -292,5 +292,86 @@ class CarriedHpTests(unittest.TestCase):
         self.assertNotEqual(carried,plain);self.assertEqual(carried,proposals(carry=True))
     def test_invalid_switch_is_rejected(self):
         with self.assertRaises(ValueError):FocusScheduler(carry=1)
+
+def passed_then_died(tag=0):
+    """Passes the boss on floor 33 and dies in an ordinary fight on floor 34."""
+    result=later_boss(tag=tag);result['decision_evidence'][-1]['observation']['room']='Monster';result['observation']['room']='Monster'
+    return result
+
+class StallTests(unittest.TestCase):
+    """The first boss of a later act with many entries and no pass: every other focus pick of the trajectories
+    that died in its act goes to the act before. Nothing else moves, and nothing is removed."""
+    def fill(self,s,count=3):
+        # Deaths in the boss on floor 33 (second act, floors 18-33), each entered with a different prefix.
+        for tag in range(count):s.add(trajectory(floors=33,tag=tag,death_hp=90-10*tag),f't{tag}')
+    def stepped(self,s,count):return ['step_back'in s.next()for _ in range(count)]
+    def test_below_the_threshold_the_schedule_is_the_one_without_the_switch(self):
+        a=FocusScheduler(elites=3,stall=4);b=FocusScheduler(elites=3);self.fill(a);self.fill(b)
+        self.assertEqual([canonical(a.next()['prefix'])for _ in range(60)],[canonical(b.next()['prefix'])for _ in range(60)])
+        report=a.snapshot()['focus_stall'];json.dumps(a.snapshot())
+        self.assertEqual((report['furthest_gate'],report['step_back_act'],report['step_back_evaluations']),([1,0],None,0))
+        self.assertEqual(report['gates'],[{'gate':[1,0],'entries':3,'passes':0}]);self.assertNotIn('focus_stall',b.snapshot())
+    def test_a_stalled_first_boss_sends_every_other_focus_pick_one_act_back(self):
+        s=FocusScheduler(elites=3,explore=0,stall=3);self.fill(s)
+        picks=[s.next()for _ in range(20)]
+        self.assertEqual(['step_back'in p for p in picks],[False,True]*10)
+        self.assertTrue(all((p['floor']<=17)==('step_back'in p)for p in picks))
+        self.assertEqual(picks[0]['floor'],33);self.assertEqual(picks[1]['floor'],17)   # each starts at the end of its act
+        report=s.snapshot()['focus_stall']
+        self.assertEqual((report['step_back_act'],report['step_back_evaluations'],report['usual_evaluations_while_stalled']),(0,10,10))
+    def test_a_retry_of_the_same_entry_is_not_a_new_entry(self):
+        s=FocusScheduler(elites=3,explore=0,stall=3)
+        for label in('first','again','third'):s.add(trajectory(floors=33,tag=0,death_hp=90),label)
+        s.add(trajectory(floors=33,tag=1,death_hp=80),'other')
+        self.assertEqual(s.snapshot()['focus_stall']['gates'],[{'gate':[1,0],'entries':2,'passes':0}])
+        self.assertFalse(any(self.stepped(s,12)))
+    def test_a_pass_ends_the_stall(self):
+        s=FocusScheduler(elites=3,explore=0,stall=3);self.fill(s)
+        self.assertEqual(self.stepped(s,4),[False,True,False,True])
+        s.add(passed_then_died(tag=7),'passed')
+        report=s.snapshot()['focus_stall']
+        self.assertEqual(report['gates'],[{'gate':[1,0],'entries':4,'passes':1}]);self.assertIsNone(report['step_back_act'])
+        self.assertFalse(any(self.stepped(s,20)))
+    def test_a_second_boss_of_an_act_and_the_boss_of_the_first_act_never_trigger(self):
+        s=FocusScheduler(elites=3,explore=0,stall=3)
+        for tag in range(4):s.add(later_boss(tag=tag,death_hp=90-10*tag),f'l{tag}')
+        report=s.snapshot()['focus_stall']
+        self.assertEqual(report['gates'],[{'gate':[1,0],'entries':4,'passes':4},{'gate':[1,1],'entries':4,'passes':0}])
+        self.assertIsNone(report['step_back_act']);self.assertFalse(any(self.stepped(s,20)))
+        s=FocusScheduler(elites=3,explore=0,stall=3)
+        for tag in range(4):s.add(trajectory(floors=17,tag=tag,death_hp=90-10*tag),f'a{tag}')
+        self.assertEqual(s.snapshot()['focus_stall']['gates'],[{'gate':[0,0],'entries':4,'passes':0}]);self.assertFalse(any(self.stepped(s,20)))
+    def test_a_trajectory_that_died_before_the_act_of_the_gate_keeps_its_usual_picks(self):
+        s=FocusScheduler(elites=4,explore=0,stall=3);self.fill(s);s.add(trajectory(floors=10,tag=9),'early')
+        picks=[s.next()for _ in range(40)];early=[p for p in picks if p['source']=='early']
+        self.assertTrue(early);self.assertFalse(any('step_back'in p for p in early))
+        report=s.snapshot()['focus_stall'];self.assertEqual(report['step_back_act'],0)
+        self.assertEqual(report['step_back_evaluations']+report['usual_evaluations_while_stalled'],40-len(early))
+        self.assertEqual(report['step_back_evaluations'],(40-len(early))//2)
+    def test_without_a_pending_alternative_in_the_act_before_the_usual_pick_is_made(self):
+        # The scope prefix covers the first act: no decision of that act can be revisited.
+        result=trajectory(floors=33);scope=result['trace'][:34]
+        s=FocusScheduler(scope,explore=0,stall=1);s.add(result,'only');p=FocusScheduler(scope,explore=0);p.add(result,'only')
+        stalled=[];plain=[]
+        while(g:=s.next())is not None:stalled.append(g)
+        while(g:=p.next())is not None:plain.append(g)
+        self.assertTrue(stalled);self.assertEqual(stalled,plain)
+        self.assertEqual(s.snapshot()['focus_stall']['step_back_act'],0);self.assertEqual(s.snapshot()['focus_stall']['step_back_evaluations'],0)
+    def test_every_branch_stays_reachable_and_the_order_is_reproducible(self):
+        def proposals(**options):
+            s=FocusScheduler(elites=2,**options);self.fill(s);out=[]
+            while(p:=s.next())is not None:out.append(canonical(p['prefix']))
+            return out
+        stalled=proposals(stall=3);plain=proposals()
+        self.assertEqual(set(stalled),set(plain));self.assertEqual(len(stalled),len(set(stalled)))
+        self.assertNotEqual(stalled,plain);self.assertEqual(stalled,proposals(stall=3))
+    def test_the_other_switches_keep_working_with_it(self):
+        s=FocusScheduler(elites=3,explore=0,cluster_cap=1,carry=True,stall=3)
+        for tag,deck in enumerate((blocky(),strength(),blocky(['A']),strength(['B']))):s.add(trajectory(floors=33,tag=tag,death_hp=90-10*tag,deck=deck),f'd{tag}')
+        picks=[s.next()for _ in range(24)]
+        self.assertEqual(['step_back'in p for p in picks],[False,True]*12);self.assertEqual(len({p['source']for p in picks}),2)
+    def test_invalid_switch_is_rejected(self):
+        with self.assertRaises(ValueError):FocusScheduler(stall=-1)
+        with self.assertRaises(ValueError):FocusScheduler(stall=True)
 
 if __name__=='__main__':unittest.main()

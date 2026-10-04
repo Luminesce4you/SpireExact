@@ -1,7 +1,8 @@
-"""Public Windows launcher for the recorded holdout-01 configuration.
+"""Run one fresh i082 A10 seed from the public Windows source package.
 
-Uses local setup_source dependencies and the existing Windows Job runner.
-This file prepares commands; it does not change campaign search or card policy.
+The feature table and effective values come from the frozen planner's own
+final_defaults and argument parser. Dry-run only parses: no setup, native
+requests, output creation, or search execution.
 """
 from __future__ import annotations
 
@@ -13,12 +14,18 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+FROZEN_SOURCE_VERSION = "e1b10f6f10f1c1d27f5f176f8b4e73ce8aa07fc2a9ab94b9eaf2d9cd10bd7c74"
+SOURCE_RELEASE = "i082/frozen-i082"
 
 
-def settings(seed: str, minutes: int, workers: int, solver_seed: int) -> list[str]:
+def settings(seed: str, minutes: int, workers: int, solver_seed: int, feature_profile: str = "i082") -> list[str]:
+    from spire_exact.planning.final_defaults import i082_argv
+    if feature_profile != "i082":
+        raise ValueError("This release launcher specifies i082; use the planner CLI for other profiles")
     seconds = minutes * 60
     return [
         "--seed", seed, "--character", "IRONCLAD", "--ascension", "10", "--unlocks", "all",
@@ -30,33 +37,61 @@ def settings(seed: str, minutes: int, workers: int, solver_seed: int) -> list[st
         "--nodes", "60000", "--profile", "Low", "--dispatch", "ordered",
         "--dispatch-window", "56", "--solver-seed", str(solver_seed), "--low-io",
         "--event-driven-settle", "--checkpoint-mib", "1024", "--cache-mib", "128",
-        "--archive-entries", "256", "--scheduler", "focus", "--prior",
-        "--gate-preset", "escalate", "--repair-mode", "gate", "--normal-nodes", "10000",
-        "--runtime-profile", "server-large-gen0", "--worker-memory-mib", "1792",
-        "--root-policies", "pick,elo", "--focus-cluster-cap", "2", "--final-gate-plan", "open",
+        "--archive-entries", "256", "--feature-profile", feature_profile, *i082_argv(),
     ]
+
+
+def effective_parameters(arguments: list[str]) -> dict:
+    """Capture the authoritative parser before native/resource initialization."""
+    from spire_exact.planning import __main__ as planner
+    from spire_exact.planning.final_defaults import resolve_entry_defaults
+    parse = argparse.ArgumentParser.parse_args
+    captured = None
+
+    class Parsed(Exception):
+        pass
+
+    def capture(parser, argv=None, namespace=None):
+        nonlocal captured
+        captured = parse(parser, argv, namespace)
+        raise Parsed()
+
+    with patch.object(argparse.ArgumentParser, "parse_args", capture):
+        try:
+            planner.main(arguments)
+        except Parsed:
+            pass
+    if captured is None:
+        raise RuntimeError("Could not capture the frozen planner parser")
+    return {key: str(value) if isinstance(value, Path) else value
+            for key, value in vars(resolve_entry_defaults(captured)).items()}
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--seed", required=True)
-    parser.add_argument("--out", type=Path, required=True, help="New run folder, relative to the repository or absolute")
-    parser.add_argument("--minutes", type=int, default=30, choices=range(1, 31), metavar="1..30")
+    parser.add_argument("--out", type=Path, required=True, help="New run folder; existing runs are preserved")
+    parser.add_argument("--feature-profile", choices=["i082"], default="i082")
+    parser.add_argument("--minutes", type=int, default=30, choices=range(1, 46), metavar="1..45")
     parser.add_argument("--solver-seed", type=int, default=271828)
     parser.add_argument("--workers", type=int, default=7, choices=range(1, 8), metavar="1..7")
-    parser.add_argument("--dry-run", action="store_true", help="Print settings without setup checks, creating outputs, or running a solver")
-    parser.add_argument("--detach", action="store_true", help="Start outside the caller's process tree using Windows WMI")
+    parser.add_argument("--dry-run", action="store_true", help="Parse and print effective settings without running anything")
+    parser.add_argument("--detach", action="store_true", help="Start outside the calling app's process tree using Windows WMI")
     parser.add_argument("--detached-child", action="store_true", help=argparse.SUPPRESS)
     args = parser.parse_args()
     if not re.fullmatch(r"[A-Za-z0-9]{1,64}", args.seed):
         parser.error("seed must contain 1..64 letters or digits")
     out = (args.out if args.out.is_absolute() else ROOT / args.out).resolve()
     data = ROOT / "runtime/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64"
-    command = [sys.executable, str(ROOT / "tools/limited_cli.py"), "solve-p5", "--out", str(out),
-               "--game-dir", str(data), *settings(args.seed, args.minutes, args.workers, args.solver_seed)]
+    selected = settings(args.seed, args.minutes, args.workers, args.solver_seed, args.feature_profile)
+    planner_arguments = ["--out", str(out), "--game-dir", str(data), *selected]
+    effective = effective_parameters(planner_arguments)
+    command = [sys.executable, str(ROOT / "tools/limited_cli.py"), "solve-p5", *planner_arguments]
     if args.dry_run:
-        print(json.dumps({"baseline": "holdout-01", "wall_cap_seconds": args.minutes * 60,
-                          "command": command, "search_executed": False}, indent=2))
+        print(json.dumps({"source_release": SOURCE_RELEASE, "frozen_source_version": FROZEN_SOURCE_VERSION,
+                          "feature_profile": args.feature_profile, "wall_cap_seconds": args.minutes * 60,
+                          "protocol": "A10-seed-v2", "command": command, "effective_parameters": effective,
+                          "native_requests_executed": False, "search_executed": False}, indent=2))
         return 0
     if os.name != "nt":
         parser.error("this launcher requires Windows Job Objects")
@@ -70,11 +105,10 @@ def main() -> int:
     config = json.loads(config_path.read_text(encoding="utf-8"))
     environment = dict(os.environ)
     dotnet = Path(config["dotnet"])
-    environment["PATH"] = str(dotnet.parent) + os.pathsep + environment.get("PATH", "")
-    environment["DOTNET_ROOT"] = str(dotnet.parent)
-    environment["PYTHONIOENCODING"] = "utf-8"
-    environment["SPIRE_PROTOCOL"] = "A10-seed-v2"
-    environment["SPIRE_WALL_LIMIT_SECONDS"] = str(args.minutes * 60)
+    environment.update(PATH=str(dotnet.parent) + os.pathsep + environment.get("PATH", ""),
+                       DOTNET_ROOT=str(dotnet.parent), PYTHONIOENCODING="utf-8",
+                       SPIRE_PROTOCOL="A10-seed-v2", SPIRE_WALL_LIMIT_SECONDS=str(args.minutes * 60),
+                       SPIRE_REQUIRE_EXACT_WORKERS="1")
     for name in ("SPIRE_JOB_MEMORY_MIB", "SPIRE_RESOURCE_OVERRIDE_NOTE", "SPIRE_CPU_OFFSET"):
         environment.pop(name, None)
     check = subprocess.run([sys.executable, str(ROOT / "tools/setup_source.py"), "--check-only"],
@@ -83,7 +117,6 @@ def main() -> int:
         return check.returncode
     if args.detach:
         child_args = [value for value in sys.argv[1:] if value != "--detach"] + ["--detached-child"]
-        # WMI receives a CreateProcess command line directly, without cmd.exe or shell expansion.
         detach_environment = dict(environment)
         detach_environment["SPIRE_RELEASE_CHILD_COMMAND"] = subprocess.list2cmdline(
             [sys.executable, str(Path(__file__).resolve()), *child_args])
@@ -97,19 +130,21 @@ def main() -> int:
         if result.returncode:
             print(result.stderr, file=sys.stderr)
             return result.returncode
-        print(json.dumps({"detached_pid": int(result.stdout.strip()), "out": str(out)}))
+        print(json.dumps({"detached_pid": int(result.stdout.strip()), "out": str(out),
+                          "feature_profile": args.feature_profile}))
         return 0
     out.parent.mkdir(parents=True, exist_ok=True)
     from tools.experiment import version_hash
-    manifest = {"schema": "spire-public-run/v1", "protocol": "A10-seed-v2", "baseline": "holdout-01",
-                "seed": args.seed, "solver_seed": args.solver_seed, "character": "IRONCLAD",
-                "ascension": 10, "unlocks": "all", "fresh_start": True, "requested_workers": args.workers,
-                "source_version": version_hash(), "wall_cap_seconds": args.minutes * 60,
+    manifest = {"schema": "spire-public-run/v2", "protocol": "A10-seed-v2", "source_release": SOURCE_RELEASE,
+                "feature_profile": args.feature_profile, "frozen_source_version": FROZEN_SOURCE_VERSION,
+                "source_version": version_hash(), "seed": args.seed, "solver_seed": args.solver_seed,
+                "character": "IRONCLAD", "ascension": 10, "unlocks": "all", "fresh_start": True,
+                "requested_workers": args.workers, "wall_cap_seconds": args.minutes * 60,
                 "workload_bytes": 14336 * 1024 * 1024, "os_reserve_bytes": 2 * 1024 * 1024 * 1024,
                 "memory_protocol_override": "Source release A10-seed-v2: 14 GiB Job workload plus 2 GiB OS reserve",
-                "timestamp_utc": datetime.now(timezone.utc).isoformat(), "settings": command[7:],
-                "historical_holdout_result": False,
-                "note": "New user run; does not add to or reproduce a probability claim from the historical 17/20 report"}
+                "timestamp_utc": datetime.now(timezone.utc).isoformat(), "settings": selected,
+                "effective_parameters": effective, "historical_holdout_result": False,
+                "note": "New user run on i082; historical holdout-01 17/20 belongs to its original frozen source"}
     manifest_path = out.parent / (out.name + ".validation-manifest.json")
     if manifest_path.exists():
         parser.error("the adjacent run manifest already exists; use a new output name")

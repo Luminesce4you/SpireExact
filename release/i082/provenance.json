@@ -1,0 +1,184 @@
+{
+  "schema": "spire-public-i082-provenance/v1",
+  "exported_at": "2026-10-04T22:41:08+08:00",
+  "original_source_version": "e1b10f6f10f1c1d27f5f176f8b4e73ce8aa07fc2a9ab94b9eaf2d9cd10bd7c74",
+  "inputs": [
+    {
+      "reference": "P5plus-f1-card-switches/experiments/frozen-i082/freeze.json",
+      "role": "original freeze identity",
+      "sha256": "6716892f8924bcad41c2b96df1c1e07e1742a29d4839c04f3fb6caa58b6ea575",
+      "byte_length": 376
+    },
+    {
+      "reference": "P5plus-f1-card-switches/experiments/iteration-082/plan.md",
+      "role": "original plan; coordination text not copied",
+      "sha256": "6c4437a45633ccacb08a1af0b1a8607b2e11a12ce156b9ec5eecfdb6ff2f3076",
+      "byte_length": 6551
+    },
+    {
+      "reference": "P5plus-f1-card-switches/experiments/iteration-082/results.md",
+      "role": "original results and ongoing-run handoff",
+      "sha256": "b1be1fcc449a2aa5a1bfe04335ec2570f61db21ec1541e0dd80f46011a1bb49d",
+      "byte_length": 2488
+    },
+    {
+      "reference": "P5plus-f1-card-switches/experiments/iteration-082/tests.json",
+      "role": "existing test report",
+      "sha256": "2efe38942f32cacb807b28f6824f01592c54ebe0b44981033d4b30a19a95bdf8",
+      "byte_length": 76414
+    },
+    {
+      "reference": "P5plus-f1-card-switches/docs/I082.md",
+      "role": "original usage document; private study paths and coordination text not copied",
+      "sha256": "e4f695bb47e1697eb8deb8e7ce6661055c7ca0562c3f0180b0fd05f42c9cb688",
+      "byte_length": 4293
+    },
+    {
+      "reference": "P5plus-f1-card-switches/experiments/frozen-i082/spire_exact/planning/final_defaults.py",
+      "role": "effective profile definitions",
+      "sha256": "cb90f9f3e78c1e0765eadb361bdda6d06c37cdc8a66b340a601400f9150cf689",
+      "byte_length": 3832
+    },
+    {
+      "reference": "P5plus-f1-card-switches/experiments/frozen-i082/spire_exact/planning/final_defaults.py",
+      "role": "selected frozen implementation",
+      "sha256": "cb90f9f3e78c1e0765eadb361bdda6d06c37cdc8a66b340a601400f9150cf689",
+      "byte_length": 3832
+    },
+    {
+      "reference": "P5plus-f1-card-switches/experiments/frozen-i082/spire_exact/planning/paired_card_probes.py",
+      "role": "selected frozen implementation",
+      "sha256": "7c1b0f1093eabafd9fc7b54afa11961b6a5bfec14df6cd5d445edfe09f31a3dd",
+      "byte_length": 21600
+    },
+    {
+      "reference": "P5plus-f1-card-switches/experiments/frozen-i082/spire_exact/planning/search.py",
+      "role": "selected frozen implementation",
+      "sha256": "9b59b5dd074e5ed4945cdbcb97bdf23e6a140553f20e0892e95c509f42a39267",
+      "byte_length": 82090
+    },
+    {
+      "reference": "P5plus-f1-card-switches/experiments/frozen-i082/spire_exact/planning/__main__.py",
+      "role": "selected frozen implementation",
+      "sha256": "c78e274ff610d9c4f7000edd9bbf2a198c1c9f32461eef5bb05255a5437df4de",
+      "byte_length": 23180
+    },
+    {
+      "reference": "P5plus-f1-card-switches/experiments/frozen-i082/tools/run_seed.py",
+      "role": "selected frozen implementation",
+      "sha256": "ee94a1c09a790ebac9175b0fa5789cb5805d815b22fe6dd3291dda5e1995aec3",
+      "byte_length": 24205
+    },
+    {
+      "reference": "P5plus-f1-card-switches/experiments/frozen-i082/tests/test_i082.py",
+      "role": "selected frozen implementation",
+      "sha256": "4e6f49d2fa0f3ea54e6b5d977178182a86a8484e85d171a4f9b324a8c43d49ce",
+      "byte_length": 12177
+    },
+    {
+      "reference": "P5plus/dashboard/solver-profile.json",
+      "role": "current local frontend profile; independently audited i082 deployment",
+      "sha256": "33773e10445a0f0102293ca3fb349efc0107c7363370d68f00945c16c47c63cb",
+      "byte_length": 2623
+    },
+    {
+      "reference": "artifacts/iteration-082/i082-60-524130501/validation-manifest.json",
+      "role": "existing user diagnostic manifest",
+      "sha256": "548aa3c135a903bac5974c13c2f55bae7ba862b0019ec9cb781844d23ca52738",
+      "byte_length": 3530
+    },
+    {
+      "reference": "artifacts/iteration-082/i082-60-524130501/seed-524130501/result.json",
+      "role": "live snapshot; not a completed result",
+      "sha256": "4349265852601a7c7fa08fa8899f9d49dcb055409736a5cc9daa5af084fb7e14",
+      "byte_length": 900795
+    },
+    {
+      "reference": "artifacts/iteration-082/i082-60-524130501/events.jsonl",
+      "role": "existing progress events",
+      "sha256": "d4a5939558acfd7d41293bdb2c0abf0a159fbfa230d506094632759718ed41b4",
+      "byte_length": 633
+    },
+    {
+      "reference": "published-holdout-01/release/holdout-01/summary.json",
+      "role": "historical result; independent release attribution",
+      "sha256": "52830b9202d0e63b63360f0a2dd93bfa47319edba1fc72aeceff058eb67e1d2c",
+      "byte_length": 59081
+    },
+    {
+      "reference": "P5plus/experiments/iteration-082/frontend-deployment/report.json",
+      "role": "local i082 deployment audit input",
+      "sha256": "a63cabe81ac8b4ebf1124bc1fb09de16171135bda002d44a31052164f2cd0ab9",
+      "byte_length": 2853
+    },
+    {
+      "reference": "P5plus/experiments/iteration-082/frontend-deployment/build-identity.json",
+      "role": "local i082 deployment audit input",
+      "sha256": "4a8026eacb5c9fb5a2ceb4a8968aad52b4c37dcf133685ed1d92626b995d5808",
+      "byte_length": 4665
+    },
+    {
+      "reference": "P5plus/experiments/frozen-i082-dashboard/freeze.json",
+      "role": "local i082 deployment audit input",
+      "sha256": "01bbd35e642270594d39e1cede059302ff87e1cda3d783857658d248cace1915",
+      "byte_length": 737
+    }
+  ],
+  "exports": [
+    {
+      "path": "release/i082/defaults.json",
+      "sha256": "05baa3104a2913f01d795bb406642bafb9423e361276e64f537de206a98e8578",
+      "byte_length": 2816,
+      "representation": "sanitized/extracted summary"
+    },
+    {
+      "path": "release/i082/deployment.json",
+      "sha256": "eaf3cee12f9aee81eb17371f809642ccbe4c57eac91c98da49ffe49fecccbc1f",
+      "byte_length": 2784,
+      "representation": "sanitized/extracted summary"
+    },
+    {
+      "path": "release/i082/existing-run-progress.json",
+      "sha256": "3ee08723f4db5e311c85e005fb98ad8b1f0384e3ad0f1e3320ec07513aff6c35",
+      "byte_length": 1670,
+      "representation": "sanitized/extracted summary"
+    },
+    {
+      "path": "release/i082/freeze.json",
+      "sha256": "c8b8c827c8ee436e458ca6c70e3fc096442899c06619c0c99c87e5f9d566ef0e",
+      "byte_length": 1606,
+      "representation": "sanitized/extracted summary"
+    },
+    {
+      "path": "release/i082/plan.md",
+      "sha256": "cb8d5cc77d77a2168887b2b48cffbe10c32a55f0f97a32211a9ad64f792e294b",
+      "byte_length": 2077,
+      "representation": "sanitized/extracted summary"
+    },
+    {
+      "path": "release/i082/results.md",
+      "sha256": "9fc1d1f833b09c7e1ab445a7e2d8f3debd01e937058ca802cd68cbfd7938cb63",
+      "byte_length": 2326,
+      "representation": "sanitized/extracted summary"
+    },
+    {
+      "path": "release/i082/tests.json",
+      "sha256": "d556d3356cb86b4385ef4e5daa6e8282a20856a1bc9da5c6ce51ced9d8a40f9b",
+      "byte_length": 775,
+      "representation": "sanitized/extracted summary"
+    }
+  ],
+  "historical_evidence_attribution": {
+    "holdout_01": "17/20, frozen-i054a original identity",
+    "i080_cost": "prior-run observation quoted in i082 plan; not recomputed",
+    "i082_unit_tests": "845/845 recorded report; native runtime suite count 0",
+    "i082_current_run": "existing 60-minute diagnostic remains in progress at export"
+  },
+  "source_artifacts_modified": false,
+  "new_builds_or_experiments_started": false,
+  "new_github_action": false,
+  "private_paths_credentials_or_session_values_exported": false,
+  "local_frontend_audit_updated_at": "2026-10-04T15:29:21.720696+00:00",
+  "local_frontend_verified_i082": true,
+  "record_scope": "Existing research evidence extraction and local frontend audit; package build and portable frontend validation are recorded separately."
+}

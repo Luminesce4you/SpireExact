@@ -1,26 +1,41 @@
 {
-  "schema": "spire-public-clean-export/v1",
-  "date": "2026-10-03",
-  "copied_files": 315,
-  "copied_bytes": 3175604,
-  "selection": "Git-visible source candidates plus independent path, extension and reparse rejection",
-  "excluded_categories": [
-    "game and Workshop runtime dependencies",
-    "vendor source and build products",
-    "SDK/NuGet/local config caches",
-    "native bin/obj and symbols",
-    "outputs, runs and experiment archives",
-    "dashboard runtime/state/environment files",
-    "three author-specific historical tools",
-    "nested Git repositories and reparse points"
-  ],
-  "excluded_legacy_tools": [
+  "schema": "spire-public-clean-export/v2",
+  "date": "2026-10-04",
+  "baseline": "i082/frozen-i082",
+  "selection": "reviewed top-level source whitelist with independent path/extension/reparse rejection",
+  "source_candidate_files_copied": 413,
+  "excluded_paths": [
+    ".tools",
+    "dashboard/__pycache__",
+    "dashboard/runtime",
+    "experiments",
+    "native/SpireNativeHost/bin",
+    "native/SpireNativeHost/obj",
+    "outputs",
+    "runtime",
+    "spire_exact/__pycache__",
+    "spire_exact/planning/__pycache__",
+    "storage-policy.json",
+    "tools/__pycache__",
     "tools/diagnose_solver_pcore.py",
     "tools/profile_solver_panel.py",
-    "tools/publish_run_report.py"
+    "tools/publish_run_report.py",
+    "tools/run_holdout_source.py",
+    "tools/solver_contract/bin",
+    "tools/solver_contract/obj",
+    "vendor"
   ],
-  "additional_rejected_candidates": [],
+  "excluded_legacy_tools": [
+    "tools/build_cloud_package.py",
+    "tools/diagnose_solver_pcore.py",
+    "tools/profile_solver_panel.py",
+    "tools/publish_run_report.py",
+    "tools/run_holdout_source.py"
+  ],
   "original_files_preserved": true,
-  "private_dependency_files_copied": false,
-  "new_native_requests_executed": false
+  "private_dependencies_included": false,
+  "new_native_requests_executed": true,
+  "native_request_scope": "zero-action initialization for frontend readiness and updated budget binding",
+  "native_requests_executed": 2,
+  "new_search_or_probe_experiments_executed": false
 }

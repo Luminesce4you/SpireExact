@@ -57,6 +57,14 @@ PRESETS = {
     },
 }
 
+# The interactive pause clock supports Evaluate, while the historical retry
+# preset also includes Coordinator members with physical cancellation timers.
+# Keep the research preset intact and make the manual-entry restriction explicit.
+PRESETS['escalate-evaluate'] = deepcopy(PRESETS['escalate'])
+for retry in PRESETS['escalate-evaluate']['retries']:
+    for plan in retry['gate_plans'].values():
+        plan['members'] = [m for m in plan['members'] if m['mode'] == 'Evaluate']
+
 
 def preset(name):
     if name not in PRESETS:

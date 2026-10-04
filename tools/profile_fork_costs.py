@@ -22,7 +22,10 @@ def analyze(document):
             if dt and any('CombatBeamSolver.SolveCore(' in n for n in frames):
                 total+=dt
                 in_fork=any('CombatPredictionSimulator.Fork(' in n for n in frames)
-                if any('CloneModelForSimulation(' in n for n in frames):clone['fork' if in_fork else 'outside_fork']+=dt
+                if any('CloneModelForSimulation(' in n for n in frames):
+                    clone['fork' if in_fork else 'outside_fork']+=dt
+                    if not in_fork:
+                        clone['outside_fork_mutable_preview' if any('get_MutablePreview(' in n for n in frames) else 'outside_fork_other_or_inlined']+=dt
                 if in_fork:
                     fork+=dt
                     # Priority gives one leaf time to one caller subtree, never adds inclusive costs.

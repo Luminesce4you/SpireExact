@@ -1,29 +1,27 @@
-# 从公开源码构建 holdout-01
+# 从公开源码构建与运行 i082
 
-所有命令在源码根目录运行。支持的准备与构建平台为 Windows x64；包内路径由工具相对源码目录计算，无需作者的工作区、D 盘、Codex 或私有 NuGet 缓存。
+在源码根目录运行本页命令。支持的构建与启动平台为 Windows x64；工具按源码目录计算包内路径，用户提供自己的游戏与 Workshop 安装。
 
-## 1. 准备环境
+## 1. 环境
 
 | 依赖 | 要求 |
 | --- | --- |
-| Python | 3.11 或更高，`python` 可用；核心无第三方 Python 包依赖 |
-| .NET | 9 SDK，`dotnet --version` 应输出 `9.*`；仅安装 runtime 不够 |
-| Git | 可执行 `git`，首次构建可以访问固定上游仓库 |
-| 游戏 | 自己安装的 Windows STS2 v0.111.0，含 `data_sts2_windows_x86_64` |
-| Workshop | 自己安装的 RitsuLib item 3747602295 |
-| 网络 | 首次获取 CombatSolver 固定提交与 NuGet 包 |
+| Python | 3.11+，`python` 可用，规划核心无第三方 Python 包依赖 |
+| .NET | 9 SDK，仅安装 runtime 不足以编译 |
+| Git | `git` 可用，首次准备能获取固定上游提交 |
+| 游戏 | Windows STS2 v0.111.0，完整 `data_sts2_windows_x86_64` 目录 |
+| Workshop | 完整 RitsuLib item 3747602295，含 `compat/0.111.0`、`shared` 与 references props |
+| 网络 | 首次获取 CombatSolver 与公共 NuGet 构建依赖 |
 
-已登记的游戏 `sts2.dll` SHA-256：
+支持的 `sts2.dll` SHA-256：
 
 ```text
 0861bfa1df347538d932f22d580e75420f08082792eb914e53b4882764acdbe9
 ```
 
-游戏版本或依赖指纹不同应停止并报告。不要把新游戏版本的程序集换到旧路径上后沿用 holdout-01 的证据，也不要为通过检查修改身份白名单。
+游戏、RitsuLib 与固定上游分别按版本和字节指纹校验。版本不同的安装需要单独适配和验证，检查失败时保留报告。
 
-## 2. 准备依赖并构建
-
-PowerShell：
+## 2. 构建
 
 ```powershell
 python tools/setup_source.py `
@@ -31,7 +29,7 @@ python tools/setup_source.py `
   --ritsu-dir "<Workshop/3747602295 目录>"
 ```
 
-如果 .NET 9 SDK 不在 PATH 中：
+SDK 不在 PATH 时：
 
 ```powershell
 python tools/setup_source.py `
@@ -40,102 +38,100 @@ python tools/setup_source.py `
   --dotnet "<dotnet.exe 的绝对路径>"
 ```
 
-脚本把需要的用户依赖准备到源码包的私有 runtime 布局，获取 [upstream.lock.json](../upstream.lock.json) 固定的 CombatSolver，应用 `tools/install_native_probe.py` 维护的本地 harness 补丁，再构建 C# 宿主、solver、harness 与二进制契约检查工具。它仅修改源码包中的文件，不写真实游戏的 `mods` 或玩家存档，不执行宿主、战斗搜索或探针。
+setup 将用户依赖复制到包内 runtime 布局，通过 [upstream.lock.json](../upstream.lock.json) 获取固定 CombatSolver，应用公开 harness 补丁并编译宿主、solver、harness 与静态契约检查工具。`CopyModOnBuild=false`；准备和构建只修改源码包目录，不安装 mod 或写入玩家存档，也不执行游戏求解。
 
-配置写到 `.tools/source-setup.json`；每次准备的报告写到 `outputs/source-setup/<timestamp>/report.json`。运行以下命令检查既有准备和产物，检查模式不重新构建或联网：
+配置保存到 `.tools/source-setup.json`，日志与报告保存到 `outputs/source-setup/<timestamp>/`。随后检查既有准备与产物：
 
 ```powershell
 python tools/setup_source.py --check-only
 ```
 
-`compiled=true` 只表示编译成功。必须同时检查 `runtime_ready` 与身份检查结果；`runtime_ready` 是构建与身份前置检查的结果，不表示宿主或整局已经执行成功。二进制保护拒绝重编译身份时不能宣称可用。日志与报告保留具体失败原因。
+检查模式不重新构建或联网。查看报告中的 `compiled`、`runtime_ready` 和身份检查结果：它们表示编译、依赖及身份前置检查，实际宿主执行和完整胜利路线另有运行记录。
 
-公开包对跨目录重编译增加了可移植身份检查：保留原有六个完整 DLL 的白名单；新 DLL 则必须匹配已审阅 `CorePowerSupport` 整类及嵌套类型的规范化 CIL 契约。宿主重新读取实际 DLL 自行计算，固定契约摘要不能由本地 JSON 授权覆盖。游戏与 RitsuLib 依赖也按固定 SHA 检查。该适配支持从固定源码在不同目录重编译，不能替代新构建的运行与重放验证。
+可移植身份适配保留完整 DLL 白名单，并检查固定 `CorePowerSupport` 整类及嵌套类型的规范化 CIL 契约；宿主直接校验实际加载的 DLL。契约摘要固定在源码中，本地 JSON 不授权覆盖。游戏与 RitsuLib 也按固定 SHA 校验。编译目录改变会产生新的二进制身份，历史证书保留原始身份。
 
-本交付已使用 Python 3.12.14 与 .NET SDK 9.0.318，在独立源码包目录通过四项目构建（0 warning / 0 error）和 `--check-only`。原有已审阅 DLL 与新编译 DLL 的整类规范化契约一致；对改动一条 CIL 指令、改动上游补丁源码和改动依赖文件的负向检查均拒绝。以上均为源码/依赖/编译产物与静态契约检查，没有执行原生游戏请求。新宿主的完整二进制指纹不同于历史 holdout 身份，旧证书不自动认证该构建。详情见 [BUILD_VALIDATION.json](../release/BUILD_VALIDATION.json) 与 [SOLVER_CONTRACT_AUDIT.json](SOLVER_CONTRACT_AUDIT.json)。
+本交付四项目构建均为 0 warning / 0 error，静态身份前置检查通过，未执行游戏请求、探针、搜索或胜利重放。[BUILD_VALIDATION.json](../release/BUILD_VALIDATION.json)记录实际构建与检查范围。
 
-## 3. 源码测试与运行前检查
+作者建议大部分种子选择 45 分钟；这项推荐不作为测得的胜率结论。前端与 CLI 默认 30 分钟，支持 1–45 分钟。
+
+## 3. 前端准备与启动
+
+完成 setup 与 `--check-only` 后，在同一源码根目录运行：
+
+```powershell
+python tools/prepare_dashboard.py
+powershell -NoProfile -File dashboard/start.ps1 -Python python -Port 8765
+```
+
+准备工具先执行 setup 身份检查，然后执行零动作宿主初始化，核对可暂停 Evaluate 计时适配与零动作结果。报告保存到 `outputs/dashboard-prepare/<timestamp>/report.json`，成功后写入 `.tools/dashboard-ready.json`，前端新作业使用这个经过本机检查的 i082 源码入口。它不执行战斗、探针或整局搜索。源码或宿主改变后需要重新构建并准备；运行中保持该作业使用的源码与产物不变。
+
+启动器从 setup 读取普通 .NET SDK 路径，启动 Python 后端并打开 [本机 SpireBoard](http://127.0.0.1:8765/)。`-NoBrowser` 只启动服务；`-Port` 可选择其他端口，浏览器地址使用对应端口。也可在当前终端运行 `python dashboard/server.py --port 8765` 并自行打开页面。
+
+点击 **新建求解** 输入种子，默认 30 分钟，支持 1–45 分钟。新作业完整采用 i082 profile、7 worker、有序派发窗口 56。资源不足以满足请求时拒绝启动，状态与错误保留在作业记录。产物位于 `outputs/spireboard/interactive/<run-id>/`；prepare 生成本机存储配置与用于看板索引的 `experiments/iteration-manual` 目录联接，这些都是本地运行产物。
+
+运行页的 **暂停求解** 冻结受控进程树并保留内存，暂停时间不计主动求解预算；**继续求解** 恢复相同进程；**退出求解** 结束受控作业并保留已有文件。这是进程存活期间的暂停，退出或重启机器后不能继续该暂停状态。[前端使用与证据说明](../dashboard/README.md)
+
+## 4. 命令行干跑预览
+
+```powershell
+python tools/run_release_source.py `
+  --seed 101 --out "outputs/my-i082-plan" `
+  --feature-profile i082 --minutes 30 --solver-seed 271828 --workers 7 --dry-run
+```
+
+预览完整命令和 i082 设置，不执行原生宿主或搜索。配置来自 `final_defaults.py`，包含完整 i082 机制，详见 [I082.md](I082.md)。
+
+## 5. 命令行单种子作业
+
+```powershell
+python tools/run_release_source.py `
+  --seed 101 --out "outputs/my-i082-run" `
+  --feature-profile i082 --minutes 30 --solver-seed 271828 --workers 7 --detach
+```
+
+`--seed`、`--out` 必填；默认 profile 为 `i082`、30 分钟（支持 1–45）、`solver_seed=271828`、7 worker（支持 1–7）。输出目录必须尚未使用。`--detach` 返回 PID，日志在输出目录同级；省略该开关则在当前终端等待结束。
+
+启动器读取 setup 保存的 SDK 和依赖，身份前置检查失败时拒绝启动。标准配置使用 Windows Job 限制 8 个同类型逻辑 CPU、14 GiB 工作负载内存，并预留 2 GiB。默认预算 30 分钟，可选 45 分钟；接入暂停账本时超时按排除暂停的主动时间判断。有序派发窗口为 56，资源准入必须满足请求的 worker 数，否则拒绝启动。可显式指定较小的 `--workers`，设置记录在 manifest 与资源报告中。一次运行一个种子；不同机器、worker 数与核心类型的墙钟结果需结合资源记录比较。
+
+作业固定 IRONCLAD / A10 / all unlocks / fresh start / mode1。配置、身份和结果随输出保存；读取本次 `result.json`、manifest 和重放证书。`UNKNOWN` 是当前预算下未知，胜利以独立新进程的真实原生终局与证书为准。
+
+## 6. 测试与动作重放
 
 ```powershell
 python tools/run_tests.py
-python -m spire_exact --help
+python tools/run_release_source.py --help
 ```
 
-源码测试不会产生新的 holdout 胜率。后续运行需 8 个同类型逻辑 CPU，按 Windows CPU Set Information 识别，14 GiB Job 工作负载加 2 GiB 预留；请求 7 个 worker，但冻结核心可能因可用内存下调实际数量，应读取运行 manifest 和资源报告。不同 worker 数、核心类型或机器上的时刻不严格可比。
+iteration-082 原冻结已有完整源码回归 845/845 通过；本地重新运行产生自己的报告，不生成整局效果结论。
 
-使用公开启动器预览完整参数：
-
-```powershell
-python tools/run_holdout_source.py `
-  --seed 2098492050 --out "outputs/my-a10-plan" `
-  --minutes 30 --solver-seed 271828 --workers 7 --dry-run
-```
-
-`--dry-run` 只列请求与命令，不执行原生宿主或求解。正常启动去掉 `--dry-run`，并使用新的输出目录：
-
-```powershell
-python tools/run_holdout_source.py `
-  --seed 2098492050 --out "outputs/my-a10-run" `
-  --minutes 30 --solver-seed 271828 --workers 7 --detach
-```
-
-此公开启动器从 `.tools/source-setup.json` 读取已构建的 SDK/游戏依赖；构建身份检查失败时拒绝启动。`--seed` 和 `--out` 必填；`--minutes` 默认 30，范围 1–30；`--solver-seed` 默认 271828；`--workers` 默认 7，范围 1–7。`--detach` 通过 Windows WMI 在当前终端之外启动作业并返回 PID，日志位于输出目录同级；去掉该开关可在当前终端等待。输出需要是尚未使用的新目录。手动降低 worker 数会改变机器条件，应记录实际配置。
-
-启动器以 Windows Job 强制限制 CPU、内存与墙钟，固定 IRONCLAD/A10/all unlocks/fresh start 和 focus + A+B+open；显式研究开关为 `--root-policies pick,elo --focus-cluster-cap 2 --final-gate-plan open`，有序派发窗口 56。内部节点与评估预算保持冻结配置，墙钟仅为终止上限。运行产物与资源报告位于所选输出目录或同级目录，最终以本次 `result.json`、证书和 manifest 为准。
-
-## 4. 重放与证据
-
-本包保存的是完整动作路线与历史证书，没有附每一步的状态快照。用公开入口检查一条路线：
+包内历史 holdout 路线可以在当前构建上检查并重放：
 
 ```powershell
 python tools/replay_holdout_source.py `
   --route "release/holdout-01/routes/seed-2059734609/winning-route.json" `
   --out "outputs/replay-holdout-2059734609" --dry-run
-```
 
-`--dry-run` 仅校验 context/trace 结构和摘要，不检查本机 setup，不启动宿主，不写运行输出。构建与身份检查成功后，去掉该开关开始实际重放：
-
-```powershell
 python tools/replay_holdout_source.py `
   --route "release/holdout-01/routes/seed-2059734609/winning-route.json" `
   --out "outputs/replay-holdout-2059734609" `
   --seconds 180 --worker-memory-mib 1000
 ```
 
-重放器从 setup 配置读取本机 SDK 和依赖，对当前宿主从初始状态用两个独立新进程执行完整动作。它不调用 advisor，不加载旧检查点/缓存，不继承历史证书；通过后生成当前二进制身份下的新证书。读取 `report.json` 的 `status` 与 `whole_run_verified`，并确认已生成新的 `certificate.json`。`--seconds` 是每次重放的安全上限，`--out` 必须是新目录。此交付过程中只检查了工具与路线结构，没有执行该原生重放。
+重放干跑检查 context/trace 结构与摘要；实际重放用当前宿主从初始状态执行完整动作，使用两个独立新进程，不使用 advisor、旧检查点或缓存。通过后生成当前身份下的新 `certificate.json`；读取 `report.json` 中的 `status` 和 `whole_run_verified`。每次使用新输出目录。
 
-若有自己保存的完整 `candidate.json`（含逐决策证据）与对应 `request.json`，可使用原始 `tools/replay_p5_route.py`。重建的 DLL 会产生新的身份；旧检查点应被拒绝，不能改 SHA 绕过保护。
-
-若构建时用 `--dotnet` 提供了未加入 PATH 的 SDK，先在当前 PowerShell 里启用已保存的 SDK：
-
-```powershell
-$sourceConfig = Get-Content -LiteralPath ".tools/source-setup.json" -Raw | ConvertFrom-Json
-$sourceSdkDir = Split-Path -Parent $sourceConfig.dotnet
-$env:DOTNET_ROOT = $sourceSdkDir
-$env:PATH = $sourceSdkDir + [IO.Path]::PathSeparator + $env:PATH
-```
-
-```powershell
-python tools/replay_p5_route.py `
-  --game-dir "runtime/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64" `
-  --candidate "<含 trace 与 decision_evidence 的 candidate.json>" `
-  --request "<该 candidate 对应的 request.json>" `
-  --out "outputs/my-independent-replay"
-```
-
-原始工具的候选必须含所需的完整证据；包内 `winning-route.json` 或历史证书不能作为它的 `--candidate`。执行重放命令会真实启动离线原生宿主；重放报告与新证书才说明当前身份下的胜利重放。
-
-## 5. 故障处理
+## 故障处理
 
 | 问题 | 处理 |
 | --- | --- |
-| 找不到 `python`、`git` 或 .NET 9 SDK | 安装相应依赖并重开终端；明确提供 `--dotnet` |
-| 找不到游戏或 RitsuLib DLL | 检查安装目录、Workshop item 与脚本报告；提供真实依赖路径 |
-| 游戏/依赖 SHA 不匹配 | 当前安装与基线不同；停止运行，保留报告 |
-| 上游或 NuGet 下载失败 | 检查网络/代理，再重跑构建；不需要作者的缓存 |
-| 编译失败 | 查看 `outputs/source-setup/` 报告与 native build 日志 |
-| 编译成功但身份保护未通过 | 保留报告；不要关闭保护或伪造旧 SHA；见 [发布范围](RELEASE_SCOPE.md) |
-| CPU 或内存不满足运行协议 | 释放资源或换满足协议的机器；构建成功不代表能够运行标准配置 |
-| 输出目录已经存在 | 使用新的目录名，不复写历史运行 |
+| 找不到 Python、Git 或 .NET SDK | 安装依赖并重开终端，或明确提供 `--dotnet` |
+| 找不到游戏或 RitsuLib | 检查完整安装和 `compat/0.111.0`，提供实际目录 |
+| 游戏或依赖 SHA 不匹配 | 保存报告，使用支持版本；新版本需要独立适配 |
+| 上游或 NuGet 获取失败 | 检查网络/代理，再执行 setup |
+| 编译或身份检查失败 | 查看 `outputs/source-setup/` 报告和编译日志 |
+| 前端提示入口未准备或身份已改变 | 执行 `python tools/prepare_dashboard.py`，按报告解决前置检查失败 |
+| 网页无法打开或端口被其他服务占用 | 查看 `dashboard/runtime/` 服务日志，使用 `-Port` 选择空闲端口 |
+| CPU/内存不满足标准作业 | 释放资源，读取准入报告与实际 worker 数 |
+| 输出目录已存在 | 选择新的目录名，保留历史运行 |
 
-公开发行目录已剔除 `vendor/`、`runtime/`、`.tools/`、`outputs/`、全部 `bin/obj`、缓存与本机配置；它们会在用户自行 setup/构建/运行时重新生成，并由 `.gitignore` 排除。发布内容与本地保留内容的区别见 [CLEANUP_REPORT.json](../release/CLEANUP_REPORT.json)。`SOURCE_MANIFEST.sha256` 记录发行文件的 SHA-256；构建结果与前置身份检查见 [BUILD_VALIDATION.json](../release/BUILD_VALIDATION.json)，两个报告均不表示新增原生胜利。
+公开发行排除游戏/Workshop DLL、SDK、vendor 检出、构建产物与缓存；setup 和作业在用户本机生成这些内容。构建身份、历史执行身份和验证范围见 [RELEASE_SCOPE.md](RELEASE_SCOPE.md)。
+

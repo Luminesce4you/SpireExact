@@ -49,6 +49,12 @@ def prepare(variant, out):
             '    [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]\n'+needle)
         file.write_text(source, encoding='utf-8', newline='\n')
     changes = []
+    if variant == 'copy-diagnostics':
+        from tools.copy_diagnostic_patches import patch
+        changes.extend(patch(out,ROOT/'tools/diagnostic_solver_sources'))
+    if variant == 'scalar-power-cow':
+        from tools.b1_solver_patches import patch
+        changes.extend(patch(out))
     if variant == 'hook-mask-index':
         from tools.solver_patches import indexed_hook_layouts
         relatives = ['src/Engine/Common/MirroredHookListenerFilter.cs',
@@ -129,7 +135,9 @@ def prepare(variant, out):
                 'search_change': {'baseline': None, 'fingerprint-inline': 'AggressiveInlining on StateFingerprintBuilder.Add(ulong)',
                                   'fork-capacity': 'avoid duplicate backing-array allocation on forked-list insertion',
                                   'lazy-hook-contexts': 'create pure argument-copy contexts only at first actual hook listener',
-                                  'hook-mask-index': 'indexed lookup of existing immutable hook masks, preserving callback order'}[variant],
+                                  'hook-mask-index': 'indexed lookup of existing immutable hook masks, preserving callback order',
+                                  'copy-diagnostics': 'default-off copy lifetime, actual field-store and node-fate measurement; no optimization',
+                                  'scalar-power-cow': 'opt-in DLL, frozen scalar Power sharing with first-write native deep clone and branch alias remapping'}[variant],
                 'patch_files': changes,
                 'compiled': False, 'native_verified': False, 'promoted': False}
     (out/'variant.json').write_text(json.dumps(manifest, indent=2), encoding='utf-8')
@@ -138,7 +146,7 @@ def prepare(variant, out):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('--variant', choices=['baseline', 'fingerprint-inline', 'fork-capacity', 'lazy-hook-contexts', 'hook-mask-index'], required=True)
+    p.add_argument('--variant', choices=['baseline', 'fingerprint-inline', 'fork-capacity', 'lazy-hook-contexts', 'hook-mask-index','copy-diagnostics','scalar-power-cow'], required=True)
     p.add_argument('--out', type=Path, required=True)
     p.add_argument('--prepare-only', action='store_true')
     p.add_argument('--build-prepared', action='store_true')

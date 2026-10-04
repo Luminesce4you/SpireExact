@@ -1,0 +1,91 @@
+{
+  "schema": "spire-public-i082-defaults/v1",
+  "original_source_version": "e1b10f6f10f1c1d27f5f176f8b4e73ce8aa07fc2a9ab94b9eaf2d9cd10bd7c74",
+  "feature_profile": "i082",
+  "planner_default_profile": "i082",
+  "preserved_profiles": [
+    "i081",
+    "i075-final",
+    "legacy"
+  ],
+  "final_features": {
+    "f1_winner_reuse": true,
+    "prefer_f1_hp": true,
+    "gold_shop_routes": true,
+    "low_hp_routes": true,
+    "lean_third_act": true,
+    "shop_preparation": true,
+    "resource_telemetry": true,
+    "memory_telemetry": true,
+    "preserve_completed_prefix": true
+  },
+  "i081_features": {
+    "f2_readiness_probes": true,
+    "f2_dead_retry": true,
+    "f2_joint_focus": true,
+    "f2_joint_model": true
+  },
+  "i082_planner_defaults": {
+    "scheduler": "focus",
+    "prior": true,
+    "gate_preset": "escalate-evaluate",
+    "repair_mode": "gate",
+    "normal_nodes": 10000,
+    "runtime_profile": "server-bounded-large-gen0",
+    "worker_memory_mib": 1792,
+    "root_policies": "pick,elo",
+    "focus_cluster_cap": 2,
+    "final_gate_plan": "open",
+    "root_async": true,
+    "requeue_lost": 1,
+    "focus_stall": 32,
+    "focus_stall_extended": true,
+    "focus_stall_f2": true,
+    "low_hp_routes_any_act": true,
+    "paired_card_every": 32,
+    "paired_card_dedup": true,
+    "paired_card_merge": "mean",
+    "paired_card_joint": true
+  },
+  "other_profile_planner_defaults": {
+    "scheduler": "weighted",
+    "prior": false,
+    "gate_preset": "none",
+    "repair_mode": "fifo",
+    "normal_nodes": null,
+    "runtime_profile": "legacy",
+    "worker_memory_mib": 900,
+    "root_policies": "",
+    "focus_cluster_cap": 0,
+    "final_gate_plan": "none",
+    "root_async": false,
+    "requeue_lost": 0,
+    "focus_stall": 0,
+    "focus_stall_extended": false,
+    "focus_stall_f2": false,
+    "low_hp_routes_any_act": false,
+    "paired_card_every": 0,
+    "paired_card_dedup": false,
+    "paired_card_merge": "latest",
+    "paired_card_joint": false
+  },
+  "inherited_defaults": {
+    "root_round": 7,
+    "forge_menu_dedup": "exact",
+    "paired_card_probes": true,
+    "ascension": 10,
+    "nodes": 60000,
+    "f2_readiness_every": 20
+  },
+  "paired_card_joint_resolution": "Automatically follows f2_joint_model AND f2_readiness_probes AND paired_card_probes in i082 when not explicitly overridden.",
+  "command_precedence": [
+    "run_seed profile",
+    "rendered i082 defaults",
+    "user explicit flags",
+    "user extra flags"
+  ],
+  "recommended_public_single_seed_minutes": 30,
+  "source_reference": "spire_exact/planning/final_defaults.py",
+  "source_sha256": "cb90f9f3e78c1e0765eadb361bdda6d06c37cdc8a66b340a601400f9150cf689",
+  "export_representation": "static extraction from frozen source"
+}

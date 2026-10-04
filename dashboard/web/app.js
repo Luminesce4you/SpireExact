@@ -1,5 +1,5 @@
 const $=id=>document.getElementById(id);
-const state={data:null,live:{},history:[],tab:'scalars',axis:'time',log:false,smoothing:0,source:null,selected:null,connected:false};
+const state={data:null,live:{},history:[],tab:'scalars',axis:'time',log:false,smoothing:0,source:null,selected:null,connected:false,controlPending:null};
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number=n=>Number.isFinite(Number(n))?Number(n).toLocaleString('en-US'):'—';
 const short=n=>!Number.isFinite(n)?'—':n>=1e6?(n/1e6).toFixed(2)+' M':n>=1e3?(n/1e3).toFixed(1)+' K':Math.round(n).toString();
@@ -19,6 +19,7 @@ async function copyText(text,message='已复制'){
 function setConnection(ok,label){state.connected=ok;$('connection').className='connection '+(ok?'':'offline');$('connection').innerHTML='<i></i>'+escape(label)}
 function displaySnapshot(data){
  const d=data.selected,live=data.live||{};
+ if(jobControl(d)?.phase==='paused')return data;
  if(!d||d.kind==='component'||d.status!=='pending'||!live.available||live.alive!==false)return data;
  const stopped={...d,status:'stopped',status_reason:'作业进程已停止，尚无最终结束报告。'};
  return {...data,selected:stopped,runs:data.runs.map(r=>r.id===d.id?{...r,status:'stopped'}:r)};
@@ -32,13 +33,46 @@ function connect(run){
   source.addEventListener('watch_error',e=>toast(JSON.parse(e.data).message));
   source.onerror=()=>{if(source===state.source)setConnection(false,'连接中断，正在重连')};
 }
-function currentStatus(d){if(d.status==='stopped'||(d.status==='pending'&&state.live.available&&state.live.alive===false))return ['已停止（缺少结束报告）','stopped'];if(d.status==='queued')return ['排队中',''];if(d.status==='starting')return ['正在准备',''];if(d.status==='paused')return ['已按要求暂停',''];if(d.status==='invalid')return ['测试已作废','error'];if(d.status==='verified')return ['验证通过','verified'];if(d.status==='error')return ['异常结束','error'];if(d.status==='completed')return ['已完成',''];if(state.live.alive)return ['运行中','running'];return ['状态待确认',''];}
+function currentStatus(d){const control=jobControl(d),phase=control?.phase;if(phase==='paused')return ['已暂停（状态已冻结）','paused'];if(d.status==='verified')return ['验证通过','verified'];if(phase==='stopped')return control.user_cancelled===false?['已停止（缺少结束报告）','stopped']:['已退出求解','stopped'];if(phase==='running')return ['运行中','running'];if(d.status==='stopped'||(d.status==='pending'&&state.live.available&&state.live.alive===false))return ['已停止（缺少结束报告）','stopped'];if(d.status==='queued')return ['排队中',''];if(d.status==='starting')return ['正在准备',''];if(d.status==='paused')return ['已按要求暂停','paused'];if(d.status==='invalid')return ['测试已作废','error'];if(d.status==='error')return ['异常结束','error'];if(d.status==='completed')return ['已完成',''];if(state.live.alive)return ['运行中','running'];return ['状态待确认',''];}
 // Status of a row in the run list, where only the summary fields are known.
 function runStatus(r){
+ if(r.status==='paused')return ['已暂停','paused'];
  if(r.alive)return ['运行中','running'];
  return {queued:['排队中',''],starting:['正在准备',''],paused:['已暂停',''],stopped:['已停止（缺少结束报告）','stopped'],invalid:['测试作废','error'],verified:['验证通过','verified'],error:['异常结束','error'],completed:['已完成','']}[r.status]||['待确认',''];
 }
-function elapsed(d){if(d.status==='stopped'||(d.status==='pending'&&state.live.available&&state.live.alive===false))return d.search_elapsed_seconds??d.gate_model_meta?.elapsed_seconds??d.resources?.wall_seconds??0;if(d.status==='queued'||d.status==='starting')return 0;if(d.report?.wall_seconds!=null)return d.report.wall_seconds;if(d.resources?.wall_seconds!=null&&!state.live.alive)return d.resources.wall_seconds;if(d.performance?.complete)return d.performance.mean_seconds||0;return d.started_at?Math.max(0,Date.now()/1000-d.started_at):0}
+function elapsed(d){const control=jobControl(d);if(control&&Number.isFinite(control.elapsed_seconds)){const extra=control.phase==='running'&&Number.isFinite(control.sampled_at)?Math.max(0,Date.now()/1000-control.sampled_at):0;return control.elapsed_seconds+extra}if(d.status==='stopped'||(d.status==='pending'&&state.live.available&&state.live.alive===false))return d.search_elapsed_seconds??d.gate_model_meta?.elapsed_seconds??d.resources?.wall_seconds??0;if(d.status==='queued'||d.status==='starting')return 0;if(d.report?.wall_seconds!=null)return d.report.wall_seconds;if(d.resources?.wall_seconds!=null&&!state.live.alive)return d.resources.wall_seconds;if(d.performance?.complete)return d.performance.mean_seconds||0;return d.started_at?Math.max(0,Date.now()/1000-d.started_at):0}
+function jobControl(d){return d&&d.kind!=='component'&&d.job_control?d.job_control:null}
+function renderJobControls(){
+ const d=state.data?.selected,control=jobControl(d),pending=state.controlPending,here=pending?.run===d?.id;
+ $('job-controls').classList.toggle('hidden',!d||d.kind==='component');
+ const pause=$('pause-solve'),stop=$('stop-solve');pause.disabled=true;stop.disabled=true;
+ pause.textContent='暂停求解';stop.textContent='退出求解';pause.title='';stop.title='';
+ if(!d||d.kind==='component')return;
+ if(!control||control.registered!==true){
+  $('job-control-note').textContent=['verified','completed','error','stopped'].includes(d.status)?'求解已结束，已有记录仍可查看。':control?.control_unavailable_reason||'此任务未接入作业控制，无法暂停或退出。';
+  return;
+ }
+ const resume=control.phase==='paused';pause.textContent=here&&pending.action!=='stop'?(pending.action==='resume'?'正在继续…':'正在暂停…'):resume?'继续求解':'暂停求解';
+ stop.textContent=here&&pending.action==='stop'?'正在退出…':'退出求解';
+ pause.disabled=!!pending||!(resume?control.can_resume:control.can_pause);stop.disabled=!!pending||!control.can_stop;
+ pause.title=resume?'从冻结的当前状态继续求解':control.phase==='queued'||control.phase==='starting'?'求解开始后可暂停':'冻结当前求解状态';
+ if(control.pause_unavailable_reason)pause.title=control.pause_unavailable_reason;
+ stop.title='结束这次求解并保留已有记录';
+ $('job-control-note').textContent=here?({pause:'正在冻结求解状态…',resume:'正在恢复求解…',stop:'正在退出求解…'}[pending.action]):control.control_unavailable_reason||control.pause_unavailable_reason||(control.phase==='paused'?'当前状态已冻结，点击继续求解。':control.phase==='stopped'?'求解已退出，已有记录仍可查看。':control.phase==='queued'?'等待启动，可退出队列。':control.phase==='starting'?'正在准备，可退出求解。':control.phase==='running'?'暂停后保留当前状态，继续后接着求解。':['completed','error'].includes(control.phase)?'求解已结束，已有记录仍可查看。':'当前暂不可操作。');
+}
+async function controlJob(action){
+ const d=state.data?.selected,control=jobControl(d),allowed=control?.registered===true?{pause:control.can_pause,resume:control.can_resume,stop:control.can_stop}:{};
+ if(state.controlPending||!allowed[action])return;
+ state.controlPending={run:d.id,action};renderJobControls();
+ try{
+  const token=state.data?.launch?.token;if(!token)throw new Error('尚未连接后端，请稍后重试。');
+  const response=await fetch('/api/jobs/'+encodeURIComponent(d.id)+'/'+action,{method:'POST',headers:{'Content-Type':'application/json','X-SpireBoard-Token':token},body:'{}'});
+  const result=await response.json();if(!response.ok)throw new Error(result.error||'求解控制失败');
+  if(result.run_id!==d.id||!result.job_control)throw new Error('后端未确认求解状态，请重新连接查看。');
+  if(state.data?.selected?.id===d.id){state.data={...state.data,selected:{...state.data.selected,job_control:result.job_control}};updateElapsed();}
+  toast({pause:'求解已暂停，状态已冻结。',resume:'求解已继续。',stop:'已退出求解。'}[action]);
+ }catch(error){toast(error.message)}finally{state.controlPending=null;renderJobControls();}
+}
 function setting(m,key,fallback='—'){const i=(m.settings||[]).indexOf(key);return i>=0?m.settings[i+1]:fallback}
 function updateElapsed(){const d=state.data?.selected;if(!d)return;const t=elapsed(d),budget=d.manifest.wall_cap_seconds||d.manifest.resource_limits?.wall_seconds||180;$('elapsed').textContent=duration(t);$('budget-progress').style.width=Math.min(100,t/budget*100)+'%';$('budget-note').textContent=d.performance.complete?`平均每种子用时，上限 ${Math.round(budget/60)} 分钟`:`已用 ${Math.min(100,t/budget*100).toFixed(1)}%，上限 ${Math.round(budget/60)} 分钟`;
  // The 150-minute report point only exists inside a longer budget.
@@ -46,10 +80,16 @@ function updateElapsed(){const d=state.data?.selected;if(!d)return;const t=elaps
  if(d.kind==='component'){$('budget-progress').style.width=(d.evaluations/d.planned*100)+'%';$('budget-note').textContent=`${d.evaluations} / ${d.planned} 请求，每配置安全上限 ${Math.round(budget/60)} 分钟`;}
  if(d.status==='stopped')$('budget-note').textContent='最后保存的搜索时长，缺少最终结束报告';
  if(d.status==='queued')$('budget-note').textContent='等待已有任务结束，时间预算尚未开始';
+ if(jobControl(d)?.phase==='paused')$('budget-note').textContent='已暂停，暂停时间不计入求解预算';
+ if(jobControl(d)?.phase==='stopped')$('budget-note').textContent='已退出求解，显示最后保存的运行时长';
+ renderJobControls();
  const [label,kind]=currentStatus(d);$('run-status').textContent=label;$('run-status').className='status-badge '+kind;}
 function renderRunSelect(){const route=state.tab==='route',rows=route?(window.routeView?.runs()||[]):(state.data?.runs||[]);$('run-select-label').textContent=route?'胜利运行':'当前运行';$('run-select').disabled=!rows.length;$('run-select').innerHTML=rows.map(r=>`<option value="${escape(r.id)}" ${r.id===state.selected?'selected':''}>${r.alive?'● ':r.status==='verified'?'✓ ':''}${escape(r.id)}${r.seed!=null&&!String(r.id).includes(String(r.seed))?' · 种子 '+escape(r.seed):''}</option>`).join('')||(route?'<option value="">暂无验证通过的胜利</option>':'');}
 function render(){
- const data=state.data,d=data?.selected;const maxMinutes=data?.launch?.max_minutes||15;for(const option of $('solve-minutes').options)option.disabled=Number(option.value)>maxMinutes;if(Number($('solve-minutes').value)>maxMinutes)$('solve-minutes').value=String(maxMinutes);if(!d){$('run-name').textContent='尚未发现任何运行';return}
+ const launch=state.data?.launch,ready=launch?.ready===true;
+ $('new-solve').disabled=!ready;$('new-solve').title=ready?'启动已准备的 i082 配置':launch?.unavailable_reason||'正在连接本地服务';
+ $('source-ready').textContent=ready?'i082 · 已就绪':'i082 · 尚未准备';$('source-ready').title=$('new-solve').title;
+ const data=state.data,d=data?.selected;const maxMinutes=data?.launch?.max_minutes||15;for(const option of $('solve-minutes').options)option.disabled=Number(option.value)>maxMinutes;if(Number($('solve-minutes').value)>maxMinutes)$('solve-minutes').value=String(maxMinutes);renderJobControls();if(!d){$('run-name').textContent='尚未发现任何运行';return}
  const m=d.manifest,component=d.kind==='component',c=d.component;
  const chip=(label,value,copy)=>`<span class="chip">${label}<b>${escape(value)}</b>${copy?`<button class="chip-copy" data-copy="${escape(value)}" title="复制${label}">复制</button>`:''}</span>`;
  $('run-name').textContent=d.id;
@@ -128,6 +168,7 @@ const themeNow=()=>document.documentElement?.dataset.theme||(typeof matchMedia==
 function showTheme(){$('theme-toggle').textContent=themeNow()==='dark'?'浅色':'深色'}
 $('theme-toggle').onclick=()=>{const next=themeNow()==='dark'?'light':'dark';document.documentElement.dataset.theme=next;store.set('spireboard.theme',next);showTheme()};showTheme();
 $('new-solve').onclick=()=>{$('launch-dialog').showModal();$('solve-seed').focus()};$('launch-close').onclick=()=>$('launch-dialog').close();
+$('pause-solve').onclick=()=>controlJob(jobControl(state.data?.selected)?.phase==='paused'?'resume':'pause');$('stop-solve').onclick=()=>controlJob('stop');
 let resize;window.addEventListener('resize',()=>{clearTimeout(resize);resize=setTimeout(()=>{renderCharts();renderTelemetry()},100)});
 setInterval(updateElapsed,1000);const requestedView=new URLSearchParams(location.search).get('view');if(Object.hasOwn(titles,requestedView))switchTab(requestedView);connect(new URLSearchParams(location.search).get('run'));
 

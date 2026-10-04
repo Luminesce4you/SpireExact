@@ -3,7 +3,7 @@ import io,json,tempfile,unittest
 from contextlib import redirect_stdout
 from pathlib import Path
 from types import SimpleNamespace
-from tools.fight_bench import fights,summarize,compare,compare_exact,algorithm_request
+from tools.fight_bench import fights,summarize,compare,compare_exact,algorithm_request,diagnostic_request
 
 def combat(act,floor,room,turn,hp=50):
     return {'phase':'combat','observation':{'act':act,'floor':floor,'room':room,'turn':turn,'hp':str(hp),'max_hp':'80','deck':[{}]*12,
@@ -11,6 +11,16 @@ def combat(act,floor,room,turn,hp=50):
 def other(floor):return {'phase':'map','observation':{'act':0,'floor':floor}}
 
 class FightBenchTests(unittest.TestCase):
+    def test_counter_export_comparison_masks_only_the_diagnostic_boolean(self):
+        a={'history':[{'play':1}],'advisor':{'nodes':100,'solver':'solver.dll','binary_identity':{'game.dll':'g'}}}
+        b=json.loads(json.dumps(a));b['advisor']['measure_search_work']=True
+        self.assertEqual(diagnostic_request(a),diagnostic_request(b))
+        self.assertIn('measure_search_work',b['advisor'])
+        for key,value in [('nodes',101),('measure_search_phases',True),('solver','other.dll'),('binary_identity',{'game.dll':'other'})]:
+            c=json.loads(json.dumps(b));c['advisor'][key]=value
+            self.assertNotEqual(diagnostic_request(a),diagnostic_request(c))
+        b['advisor']['measure_search_work']='true'
+        with self.assertRaises(ValueError):diagnostic_request(b)
     def test_solver_comparison_preserves_every_other_input_and_dependency(self):
         original={'history':[{'a':1}], 'advisor':{'solver':'solver-a.dll','nodes':100,
                   'binary_identity':{str(Path('solver-a.dll').resolve()):'a','harness.dll':'h','game.dll':'g'}}}

@@ -115,4 +115,3 @@ class WinningRouteTests(unittest.TestCase):
                 with self.assertRaises(HTTPError)as error:urlopen(base.replace('test-run','unknown'))
                 self.assertEqual(error.exception.code,404)
             finally:http.shutdown();http.server_close();worker.join(2)
-

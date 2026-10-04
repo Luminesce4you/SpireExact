@@ -1,0 +1,40 @@
+{
+  "schema": "spire-public-freeze-summary/v1",
+  "exported_at": "2026-10-04T22:41:08+08:00",
+  "baseline": "i082",
+  "historical_workspace": "frozen-i082",
+  "original_source_version": "e1b10f6f10f1c1d27f5f176f8b4e73ce8aa07fc2a9ab94b9eaf2d9cd10bd7c74",
+  "computed_source_version": "e1b10f6f10f1c1d27f5f176f8b4e73ce8aa07fc2a9ab94b9eaf2d9cd10bd7c74",
+  "source_version_verified": true,
+  "source_version_scope": {
+    "folders": [
+      "spire_exact",
+      "native"
+    ],
+    "suffixes": [
+      ".py",
+      ".cs",
+      ".csproj"
+    ],
+    "excluded_segments": [
+      "bin",
+      "obj",
+      "__pycache__"
+    ],
+    "includes_tools_tests_docs": false,
+    "files_hashed": 78
+  },
+  "selected_frozen_file_sha256": {
+    "spire_exact/planning/final_defaults.py": "cb90f9f3e78c1e0765eadb361bdda6d06c37cdc8a66b340a601400f9150cf689",
+    "spire_exact/planning/paired_card_probes.py": "7c1b0f1093eabafd9fc7b54afa11961b6a5bfec14df6cd5d445edfe09f31a3dd",
+    "spire_exact/planning/search.py": "9b59b5dd074e5ed4945cdbcb97bdf23e6a140553f20e0892e95c509f42a39267",
+    "spire_exact/planning/__main__.py": "c78e274ff610d9c4f7000edd9bbf2a198c1c9f32461eef5bb05255a5437df4de",
+    "tools/run_seed.py": "ee94a1c09a790ebac9175b0fa5789cb5805d815b22fe6dd3291dda5e1995aec3",
+    "tests/test_i082.py": "4e6f49d2fa0f3ea54e6b5d977178182a86a8484e85d171a4f9b324a8c43d49ce"
+  },
+  "original_freeze_json_sha256": "6716892f8924bcad41c2b96df1c1e07e1742a29d4839c04f3fb6caa58b6ea575",
+  "export": {
+    "representation": "sanitized extraction",
+    "original_bytes_preserved": false
+  }
+}

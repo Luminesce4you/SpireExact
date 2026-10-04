@@ -1,6 +1,7 @@
 """Persistent isolated native process pool. Only owned processes may be stopped."""
 from __future__ import annotations
-import heapq, json, os, queue, subprocess, threading, time
+import heapq, json, os, queue, subprocess, threading, time, hashlib, math
+from collections import deque
 from concurrent.futures import Future, ThreadPoolExecutor
 from pathlib import Path
 from dataclasses import dataclass
@@ -9,6 +10,8 @@ from .io import read_json,write_json
 from ..native import build_host,input_fingerprint
 from .resources import ResourcePlan,available_memory,process_memory,enclosing_job_memory_limit
 from .identity import require_advisor_identity
+from ..pausable_clock import active_counter, queue_get
+from .memory_prefix import recover_completed_prefix
 
 class WorkerError(ContractError):pass
 RUNTIME_PROFILES=('legacy','workstation-2','server-one-heap','server-bounded-heap','server-large-gen0','server-bounded-large-gen0')
@@ -18,6 +21,30 @@ MEMORY_POLICIES=('hard','recycle-at-boundary')
 # search and raised nodes/s by 7 % under seven concurrent workers, with
 # identical game results, for about 270 MiB more working set per worker.
 LARGE_GEN0_BYTES=1<<30
+MEMORY_HEARTBEAT_LIMIT=256*1024
+MEMORY_RSS_SAMPLES=32
+
+
+def read_memory_heartbeat(path,pid,request_sha256):
+    """A bounded diagnostic read; stale or malformed telemetry is unknown."""
+    try:
+        if not path.is_file():return None,'missing'
+        if path.stat().st_size>MEMORY_HEARTBEAT_LIMIT:return None,'oversized'
+        value=read_json(path)
+        if not isinstance(value,dict)or value.get('schema')!='spire-worker-memory/v1':return None,'schema'
+        if value.get('pid')!=pid or value.get('request_sha256')!=request_sha256:return None,'identity'
+        if value.get('kind')not in('heartbeat','task_end','oom'):return None,'kind'
+        for key in ('sequence','gc_heap_size_bytes','gc_total_committed_bytes','gc_fragmented_bytes','private_bytes','rss_bytes'):
+            if type(value.get(key))is not int or value[key]<0:return None,'field_'+key
+        for key in ('task_elapsed_seconds','gc_pause_time_percentage'):
+            number=value.get(key)
+            if type(number)not in(int,float)or not math.isfinite(number)or number<0:return None,'field_'+key
+        for key in ('gc_collection_counts','gc_collection_deltas'):
+            counts=value.get(key)
+            if not isinstance(counts,list)or len(counts)!=3 or any(type(n)is not int or n<0 for n in counts):return None,'field_'+key
+        if not isinstance(value.get('progress'),dict):return None,'field_progress'
+        return value,None
+    except (OSError,ValueError,TypeError):return None,'unreadable'
 
 
 class PriorityWorkQueue:
@@ -126,47 +153,71 @@ class NativeWorker:
                     log.flush()
             finally:inbox.put(None)
         self.reader=threading.Thread(target=read,daemon=True);self.reader.start()
-        try:line=self.inbox.get(timeout=20)
+        try:line=queue_get(self.inbox,20)
         except queue.Empty:
             self.close();raise WorkerError('WORKER_START_TIMEOUT')
         if not line or not line.startswith('SPIRE_WORKER_READY '):
             self.close();raise WorkerError('WORKER_START_FAILED')
-    def execute(self,request_path: Path,timeout: float=90) -> dict:
+    def execute(self,request_path: Path,timeout: float=90,*,task_request=None) -> dict:
         with self.lock:
             self.failure_metrics=None
             self.start();assert self.process and self.process.stdin
-            proc=self.process;start=time.perf_counter();task_peak_rss=0
+            proc=self.process;start=active_counter();wall_start=time.perf_counter();task_peak_rss=0
+            diagnostics=bool(task_request and(task_request.get('memory_telemetry')or task_request.get('preserve_completed_prefix')))
+            heartbeat_path=Path(task_request['out'])/'memory-latest.json' if diagnostics else None
+            request_sha=hashlib.sha256(request_path.read_bytes()).hexdigest()if diagnostics else None
+            samples=deque(maxlen=MEMORY_RSS_SAMPLES);last_heartbeat=None;heartbeat_issue=None
+            def sample(rss):
+                nonlocal last_heartbeat,heartbeat_issue
+                samples.append({'active_seconds':active_counter()-start,'wall_seconds':time.perf_counter()-wall_start,'rss_bytes':rss})
+                if diagnostics:
+                    value,heartbeat_issue=read_memory_heartbeat(heartbeat_path,proc.pid,request_sha)
+                    if value is not None and(last_heartbeat is None or value['sequence']>=last_heartbeat['sequence']):last_heartbeat=value
+            def failure_metrics():
+                return {'pid':proc.pid,'rss_bytes':task_peak_rss,'worker_limit_bytes':self.plan.worker_memory_bytes,
+                        'worker_job':self.jobs+1,'runtime':self.runtime,
+                        'worker_task_active_seconds':active_counter()-start,'worker_task_wall_seconds':time.perf_counter()-wall_start,
+                        'recent_rss_samples':list(samples),'last_memory_heartbeat':last_heartbeat,
+                        'last_heartbeat_issue':heartbeat_issue if diagnostics else 'disabled'}
             try:
                 proc.stdin.write(str(request_path.resolve())+'\n');proc.stdin.flush()
                 while True:
-                    if time.perf_counter()-start>timeout:raise WorkerError('NATIVE_TASK_TIMEOUT')
+                    if active_counter()-start>timeout:raise WorkerError('NATIVE_TASK_TIMEOUT')
                     rss=process_memory(proc.pid);self.peak_rss=max(self.peak_rss,rss)
                     task_peak_rss=max(task_peak_rss,rss)
+                    sample(rss)
                     if rss>self.plan.worker_memory_bytes:
                         if self.memory['worker_memory_policy']=='recycle-at-boundary':
                             self.recycle_pending=True
                         else:
-                            self.failure_metrics={'pid':proc.pid,'rss_bytes':rss,'worker_limit_bytes':self.plan.worker_memory_bytes,
-                                                  'worker_job':self.jobs+1,'runtime':self.runtime}
+                            self.failure_metrics=failure_metrics()
                             raise WorkerError('NATIVE_TASK_MEMORY_BUDGET')
-                    try:line=self.inbox.get(timeout=min(.2,max(.01,timeout-(time.perf_counter()-start))))
+                    try:line=queue_get(self.inbox,min(.2,max(.01,timeout-(active_counter()-start))))
                     except queue.Empty:continue
                     if line is None:
                         proc.wait(timeout=2)
+                        if last_heartbeat and last_heartbeat['kind']=='oom':raise WorkerError('NATIVE_TASK_OUT_OF_MEMORY')
                         raise WorkerError('NATIVE_WORKER_CRASH:exit='+str(proc.returncode))
                     if not line.startswith('SPIRE_WORKER_RESULT '):continue
                     result=json.loads(line.removeprefix('SPIRE_WORKER_RESULT '))
+                    if not result['healthy']and result.get('error_kind')=='NATIVE_TASK_OUT_OF_MEMORY':
+                        sample(process_memory(proc.pid))
+                        self.failure_metrics=failure_metrics();raise WorkerError('NATIVE_TASK_OUT_OF_MEMORY')
                     self.jobs+=1
                     if not result['healthy']:raise WorkerError('NATIVE_WORKER_FAILED: '+str(result.get('error')))
                     # Include the completion boundary: short requests may finish
                     # between periodic RSS samples.
                     rss=process_memory(proc.pid);task_peak_rss=max(task_peak_rss,rss);self.peak_rss=max(self.peak_rss,rss)
+                    sample(rss)
                     if rss>self.plan.worker_memory_bytes and self.memory['worker_memory_policy']=='recycle-at-boundary':
                         self.recycle_pending=True
-                    return {'pid':proc.pid,'worker_job':self.jobs,'wall_seconds':time.perf_counter()-start,
+                    return {'pid':proc.pid,'worker_job':self.jobs,'wall_seconds':time.perf_counter()-wall_start,
+                            **({'active_seconds':active_counter()-start,'budget_clock':'pause_excluded'} if os.environ.get('SPIRE_PAUSE_LEDGER') else {}),
                             'peak_sampled_rss':task_peak_rss,'process_peak_sampled_rss':self.peak_rss,'worker_starts':self.starts,
-                            'recycle_reason':'rss_threshold' if self.recycle_pending else None,**self.memory}
+                            'recycle_reason':'rss_threshold' if self.recycle_pending else None,**self.memory,
+                            **({'memory_heartbeat':last_heartbeat,'memory_heartbeat_issue':heartbeat_issue}if diagnostics else {})}
             except BaseException:
+                if self.failure_metrics is None:self.failure_metrics=failure_metrics()
                 self.close();raise
     def close(self):
         proc=self.process;self.process=None
@@ -208,25 +259,36 @@ class NativePool:
     def validate_inputs(self,request: dict):
         if input_fingerprint(self.data)!=self.binary_inputs:raise WorkerError('INPUTS_CHANGED')
         if request.get('advisor'):
+            if os.environ.get('SPIRE_PAUSE_LEDGER'):
+                advisor=request['advisor']
+                if advisor.get('search_mode','Evaluate')!='Evaluate':
+                    raise WorkerError('INTERACTIVE_PAUSE_REQUIRES_EVALUATE_SEARCH_MODE')
+                if any(member.get('mode','Evaluate')!='Evaluate'
+                    for plan in advisor.get('gate_plans',{}).values() for member in plan.get('members',[])):
+                    raise WorkerError('INTERACTIVE_PAUSE_REQUIRES_EVALUATE_GATE_MEMBERS')
             try:require_advisor_identity(request['advisor'])
             except ContractError as error:raise WorkerError(str(error))
-    def run(self,request: dict,output: Path,timeout=90,*,fresh=False,disposable=False,_submitted_at=None) -> tuple[dict,dict]:
+    def run(self,request: dict,output: Path,timeout=90,*,fresh=False,disposable=False,_submitted_at=None,_command='replay') -> tuple[dict,dict]:
         # disposable: the request runs in a new process that is closed afterwards
         # (synthetic probes must never share a process with real evaluations).
         fresh=fresh or disposable
-        if request.get('probe')and not disposable:raise WorkerError('PROBE_REQUIRES_DISPOSABLE_WORKER')
+        if _command not in ('replay','progress_baseline','progress_contract'):raise WorkerError('UNKNOWN_POOL_COMMAND')
+        if _command!='replay'and not disposable:raise WorkerError('PROGRESS_BASELINE_REQUIRES_DISPOSABLE_WORKER')
+        if (request.get('probe')or request.get('card_menu_probe'))and not disposable:raise WorkerError('PROBE_REQUIRES_DISPOSABLE_WORKER')
+        if request.get('map_route_plan') and (not disposable or request.get('checkpoint') or request.get('capture_checkpoints')):
+            raise WorkerError('MAP_ROUTE_REQUIRES_FRESH_DISPOSABLE_WITHOUT_CHECKPOINT')
         if self.cancelled.is_set():raise WorkerError('SEARCH_CANCELLED')
-        submitted=time.perf_counter() if _submitted_at is None else _submitted_at
+        submitted=active_counter() if _submitted_at is None else _submitted_at
         if output.exists() and any(output.iterdir()):raise WorkerError('output must be new: '+str(output))
         output.mkdir(parents=True,exist_ok=True)
-        request={**request,'command':'replay','compact':True,'out':str((output/'data').resolve())}
+        request={**request,'command':_command,'compact':True,'out':str((output/'data').resolve())}
         write_json(output/'request.json',request,compact=bool(request.get('low_io')))
         with self.stats_lock:self.stats['submitted']+=1
-        try:worker=self.available.get(timeout=max(.001,timeout-(time.perf_counter()-submitted)))
+        try:worker=queue_get(self.available,max(.001,timeout-(active_counter()-submitted)))
         except queue.Empty:raise WorkerError('QUEUE_TIMEOUT')
         try:
             worker.failure_metrics=None
-            wait=time.perf_counter()-submitted
+            wait=active_counter()-submitted
             if wait>=timeout:raise WorkerError('QUEUE_TIMEOUT')
             # Validate source/game inputs before dispatch; no stale cache across changes.
             try:self.validate_inputs(request)
@@ -234,8 +296,9 @@ class NativePool:
                 worker.close();raise
             if available_memory()<self.resources.reserve_bytes:raise WorkerError('MEMORY_ADMISSION_DENIED')
             if fresh or worker.jobs>=self.max_jobs:worker.close();worker.jobs=0
-            transport=worker.execute(output/'request.json',timeout-wait)
-            decision=read_json(output/'data/decision.json')
+            transport=worker.execute(output/'request.json',timeout-wait,task_request=request)
+            filename={'replay':'decision.json','progress_baseline':'progress-baseline.json','progress_contract':'progress-contract.json'}[_command]
+            decision=read_json(output/'data'/filename)
             identity=read_json(output/'data/identity.json')
             if identity['host_sha256']!=self.stamp['host_sha256']:raise WorkerError('HOST_IDENTITY_CHANGED')
             for key,name in [('game_sha256','sts2.dll'),('godot_sha256','GodotSharp.dll'),('harmony_sha256','0Harmony.dll')]:
@@ -249,6 +312,11 @@ class NativePool:
             with self.stats_lock:self.stats['failed']+=1
             write_json(output/'failure.json',{'status':'UNKNOWN','error':str(e),'game_equivalence_verified':False,
                                              'memory_failure':worker.failure_metrics})
+            recovered=recover_completed_prefix(output,request,self.stamp,str(e))
+            if recovered:
+                recovered[0]['memory_failure']=worker.failure_metrics
+                write_json(output/'recovered-prefix.json',recovered[0])
+                return recovered
             raise e
         finally:
             # Persist result/identity/transport before recycling and releasing
@@ -260,16 +328,27 @@ class NativePool:
                 worker.close()
                 with self.stats_lock:self.stats['disposable_runs']=self.stats.get('disposable_runs',0)+1
             self.available.put(worker)
+    def research_progress_baseline(self,context: dict,output: Path,timeout=90) -> dict:
+        """Export one fresh native initial Progress, within this pool's limits.
+
+        This request executes no game actions and produces no search evidence.
+        Its request/identity/performance/transport remain separate from rollout
+        costs. Only explicitly enabled research evaluators request this export.
+        """
+        from .research_progress import require_research_progress
+        request={key:context[key]for key in ('seed','character','ascension','unlocks')}
+        progress,identity=self.run(request,output,timeout,fresh=True,disposable=True,_command='progress_baseline')
+        return require_research_progress(progress,context,identity,self.inputs['dependencies']['sts2.dll'])
     def run_probes(self,requests: list,output: Path,timeout=90,*,_submitted_at=None) -> list:
         """Synthetic probes, one after another, in ONE process that is started
         for them and closed afterwards. Returns [(decision, None) | (None, error)]
         in request order; a probe that fails leaves the others to run."""
-        if not requests or any(not r.get('probe')for r in requests):raise WorkerError('PROBE_BATCH_NEEDS_PROBE_REQUESTS')
+        if not requests or any(not(r.get('probe')or r.get('card_menu_probe'))for r in requests):raise WorkerError('PROBE_BATCH_NEEDS_PROBE_REQUESTS')
         if self.cancelled.is_set():raise WorkerError('SEARCH_CANCELLED')
-        submitted=time.perf_counter() if _submitted_at is None else _submitted_at
+        submitted=active_counter() if _submitted_at is None else _submitted_at
         if output.exists() and any(output.iterdir()):raise WorkerError('output must be new: '+str(output))
         output.mkdir(parents=True,exist_ok=True)
-        try:worker=self.available.get(timeout=max(.001,timeout-(time.perf_counter()-submitted)))
+        try:worker=queue_get(self.available,max(.001,timeout-(active_counter()-submitted)))
         except queue.Empty:raise WorkerError('QUEUE_TIMEOUT')
         rows=[]
         try:
@@ -281,11 +360,15 @@ class NativePool:
                 with self.stats_lock:self.stats['submitted']+=1
                 try:
                     if self.cancelled.is_set():raise WorkerError('SEARCH_CANCELLED')
-                    remaining=timeout-(time.perf_counter()-submitted)
+                    if request.get('card_menu_probe'):
+                        # The source's Progress/discovered guard must never
+                        # inherit an earlier arm's process-wide discoveries.
+                        worker.close();worker.jobs=0
+                    remaining=timeout-(active_counter()-submitted)
                     if remaining<=0:raise WorkerError('NATIVE_TASK_TIMEOUT')
                     self.validate_inputs(request)
                     if available_memory()<self.resources.reserve_bytes:raise WorkerError('MEMORY_ADMISSION_DENIED')
-                    transport=worker.execute(folder/'request.json',remaining)
+                    transport=worker.execute(folder/'request.json',remaining,task_request=request)
                     decision=read_json(folder/'data/decision.json')
                     if read_json(folder/'data/identity.json')['host_sha256']!=self.stamp['host_sha256']:raise WorkerError('HOST_IDENTITY_CHANGED')
                     write_json(folder/'transport.json',transport)
@@ -293,7 +376,8 @@ class NativePool:
                     rows.append((decision,None))
                 except (WorkerError,OSError,ValueError,KeyError) as error:
                     with self.stats_lock:self.stats['failed']+=1
-                    write_json(folder/'failure.json',{'status':'UNKNOWN','error':str(error),'synthetic':True,'game_equivalence_verified':False})
+                    write_json(folder/'failure.json',{'status':'UNKNOWN','error':str(error),'synthetic':True,'game_equivalence_verified':False,
+                                                     'memory_failure':worker.failure_metrics})
                     rows.append((None,str(error)))
             return rows
         finally:
@@ -302,10 +386,10 @@ class NativePool:
             self.available.put(worker)
     def submit_probes(self,requests,output,timeout):
         if self.queue_policy=='short-prefix-first':
-            return self.executor.submit(len(requests[0].get('history',[])),self.run_probes,requests,output,timeout,_submitted_at=time.perf_counter())
-        return self.executor.submit(self.run_probes,requests,output,timeout,_submitted_at=time.perf_counter())
+            return self.executor.submit(len(requests[0].get('history',[])),self.run_probes,requests,output,timeout,_submitted_at=active_counter())
+        return self.executor.submit(self.run_probes,requests,output,timeout,_submitted_at=active_counter())
     def submit(self,*args,**kwargs):
-        kwargs['_submitted_at']=time.perf_counter()
+        kwargs['_submitted_at']=active_counter()
         if self.queue_policy=='short-prefix-first':
             request=args[0]if args else kwargs['request']
             return self.executor.submit(len(request.get('history',[])),self.run,*args,**kwargs)

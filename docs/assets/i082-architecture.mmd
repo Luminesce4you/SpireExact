@@ -1,0 +1,42 @@
+flowchart TB
+  subgraph ENTRY["入口 · i082 Beta"]
+    direction LR
+    UI["SpireBoard<br/>新建 · 暂停 · 继续 · 退出"]:::entry
+    CLI["命令行<br/>单种子 · 默认 30 分钟"]:::entry
+  end
+  JOB["Windows Job · 资源边界<br/>8 同型逻辑 CPU · 7 worker · 14 + 2 GiB"]:::boundary
+  subgraph PLAN["Python · 整局规划"]
+    direction LR
+    ARCH["前缀与结果档案<br/>完整字节身份 · 检查点 · 缓存"]:::store
+    SEARCH["宏观搜索主循环<br/>聚焦 · 探索 · 关口重试"]:::planner
+    SIGNAL["模型与合成探针<br/>F1 / F2 就绪度 · 成对选牌"]:::signal
+  end
+  subgraph EXECUTE[".NET · 原生执行"]
+    direction LR
+    BEAM["CombatSolver<br/>束搜索战斗候选"]:::runtime
+    WORKER["7 个常驻 worker<br/>合法菜单 · 整局 rollout"]:::runtime
+    GAME["游戏 DLL<br/>离线 TestMode"]:::runtime
+  end
+  REPLAY["独立新进程重放<br/>从开局逐动作执行 · 无 advisor"]:::proof
+  OUT["结果与证书<br/>路线 · 身份 · 工作量记录"]:::store
+  UI --> JOB
+  CLI --> JOB
+  JOB --> SEARCH
+  ARCH <--> SEARCH
+  SIGNAL -. 排序信号 .-> SEARCH
+  SEARCH <-->|真实评估| WORKER
+  WORKER <-->|候选行动| BEAM
+  WORKER <-->|原生规则| GAME
+  SEARCH -->|获胜候选| REPLAY
+  REPLAY --> GAME
+  REPLAY -->|验证通过| OUT
+  SEARCH -->|快照与账本| OUT
+  OUT -. 展示 .-> UI
+  classDef entry fill:#DBEAFE,stroke:#2563EB,color:#172554,stroke-width:1.5px
+  classDef boundary fill:#F1F5F9,stroke:#64748B,color:#0F172A,stroke-width:1.5px
+  classDef planner fill:#CCFBF1,stroke:#0F766E,color:#134E4A,stroke-width:2px
+  classDef signal fill:#F3E8FF,stroke:#9333EA,color:#581C87,stroke-width:1.5px
+  classDef runtime fill:#FEF3C7,stroke:#D97706,color:#78350F,stroke-width:1.5px
+  classDef proof fill:#DCFCE7,stroke:#15803D,color:#14532D,stroke-width:2px
+  classDef store fill:#F8FAFC,stroke:#94A3B8,color:#0F172A,stroke-width:1.5px
+

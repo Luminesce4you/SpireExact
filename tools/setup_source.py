@@ -21,6 +21,7 @@ from spire_exact.native import input_fingerprint
 from spire_exact.upstream import PIN, REPOSITORY, fetch_upstream, file_hash, verify_upstream
 
 VERSION = "0.111.0"
+SOURCE_RELEASE = "i082/frozen-i082"
 GAME_SHA256 = "0861bfa1df347538d932f22d580e75420f08082792eb914e53b4882764acdbe9"
 CONFIG = ROOT / ".tools/source-setup.json"
 DATA = ROOT / "runtime/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64"
@@ -69,7 +70,7 @@ def find_game(path: Path | None) -> Path:
         if not (data / name).is_file():
             raise ContractError("Missing game dependency: " + str(data / name))
     if file_hash(data / "sts2.dll") != GAME_SHA256:
-        raise ContractError("Unsupported sts2.dll: holdout-01 requires v0.111.0 SHA256 " + GAME_SHA256)
+        raise ContractError("Unsupported sts2.dll: " + SOURCE_RELEASE + " requires v0.111.0 SHA256 " + GAME_SHA256)
     release = data.parent / "release_info.json"
     if not release.is_file():
         raise ContractError("Missing release_info.json next to the game data directory")
@@ -164,7 +165,7 @@ def dependency_check(data: Path, workshop: Path) -> dict:
         actual[relative] = observed
         if observed != expected:
             failures.append(relative)
-    return {"lock_sha256": file_hash(DEPENDENCY_LOCK), "matches_holdout_dependencies": not failures,
+    return {"lock_sha256": file_hash(DEPENDENCY_LOCK), "matches_locked_dependencies": not failures,
             "required_runtime_sha256": actual, "mismatches": failures, "additional_assemblies_allowed": True}
 
 
@@ -292,7 +293,7 @@ def main() -> int:
     report_dir = ROOT / "outputs/source-setup" / datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     report_dir.mkdir(parents=True)
     report = {"schema": "spire-source-setup/v1", "timestamp_utc": datetime.now(timezone.utc).isoformat(),
-              "source_release": "holdout-01/frozen-i054a", "upstream_repository": REPOSITORY,
+              "source_release": SOURCE_RELEASE, "upstream_repository": REPOSITORY,
               "upstream_commit": PIN, "steps": [], "compiled": False, "runtime_ready": False,
               "native_requests_executed": False, "search_or_probe_experiment_executed": False,
               "game_equivalence_verified": False, "game_installed_or_modified": False}
@@ -313,8 +314,8 @@ def main() -> int:
             data = find_game(args.game_dir)
             workshop = find_workshop(args.ritsu_dir, data)
         report["dependency_check"] = dependency_check(data, workshop)
-        if not report["dependency_check"]["matches_holdout_dependencies"]:
-            raise ContractError("Dependencies differ from holdout-01; required SHA256 mismatches: "
+        if not report["dependency_check"]["matches_locked_dependencies"]:
+            raise ContractError("Dependencies differ from " + SOURCE_RELEASE + "; required SHA256 mismatches: "
                                 + str(report["dependency_check"]["mismatches"]))
         if not args.check_only:
             report["runtime"] = prepare_runtime(data, workshop)

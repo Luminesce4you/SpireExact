@@ -6,13 +6,13 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from tools.fight_bench import GAME_FIELDS, algorithm_request
+from tools.fight_bench import GAME_FIELDS, algorithm_request, diagnostic_request
 from spire_exact.canonical import canonical
 from spire_exact.planning.io import read_json,write_json
 from spire_exact.planning.budget_audit import clock_gate_audit
 
 
-def audit_pair(a,b,allow_solver_change=False):
+def audit_pair(a,b,allow_solver_change=False,allow_diagnostic_change=False):
     first=sorted(a.glob('case-*/request.json'))
     second=sorted(b.glob('case-*/request.json'))
     if [p.parent.name for p in first]!=[p.parent.name for p in second] or not first:
@@ -21,7 +21,8 @@ def audit_pair(a,b,allow_solver_change=False):
     for left,right in zip(first,second):
         requests=[read_json(p)for p in(left,right)]
         for request in requests:request.pop('out',None)
-        if allow_solver_change:requests=[algorithm_request(r)for r in requests]
+        if allow_diagnostic_change:requests=[diagnostic_request(r,allow_solver_change=allow_solver_change)for r in requests]
+        elif allow_solver_change:requests=[algorithm_request(r)for r in requests]
         results=[read_json(p.parent/'data/decision.json')for p in(left,right)]
         metrics=[(r.get('advisor_metrics')or{}).get('searches',[])for r in results]
         row={'case':left.parent.name,'request_bytes':canonical(requests[0])==canonical(requests[1]),

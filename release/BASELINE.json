@@ -1,7 +1,8 @@
 {
-  "baseline": "holdout-01",
-  "frozen_workspace": "frozen-i054a",
-  "original_source_version": "bc57922b87b8b132cf9bd5f3cceffdd58efbec8e615128c67a38caf258a79c2d",
+  "baseline": "i082",
+  "frozen_workspace": "frozen-i082",
+  "original_source_version": "e1b10f6f10f1c1d27f5f176f8b4e73ce8aa07fc2a9ab94b9eaf2d9cd10bd7c74",
+  "source_version_verified": true,
   "source_folders": [
     "spire_exact",
     "native",
@@ -9,20 +10,43 @@
     "tests",
     "examples"
   ],
-  "supplemental_sources": [
-    "dashboard from current working tree",
-    "selected docs from current working tree"
-  ],
+  "feature_profile": "i082",
+  "effective_defaults_reference": "release/i082/defaults.json",
+  "recommended_public_single_seed_minutes": 45,
+  "default_public_single_seed_minutes": 30,
+  "public_single_seed_max_minutes": 45,
+  "budget_recommendation_source": "project author recommendation; not an estimated success probability",
+  "existing_diagnostic_minutes": 60,
+  "test_evidence_reference": "release/i082/tests.json",
+  "freeze_reference": "release/i082/freeze.json",
+  "i082_frontend_deployment_verified": true,
+  "new_solver_experiments_run_by_packager": 0,
+  "historical_holdout": {
+    "baseline": "holdout-01",
+    "frozen_workspace": "frozen-i054a",
+    "original_source_version": "bc57922b87b8b132cf9bd5f3cceffdd58efbec8e615128c67a38caf258a79c2d",
+    "verified_native_wins": 17,
+    "seeds": 20,
+    "one_run_per_seed": true,
+    "wall_cap_seconds": 1800,
+    "attribution": "historical A+B+open result; not i082 performance or reliability evidence"
+  },
+  "source_release_scope": "public source packaging and existing evidence extraction; rebuilt artifacts require their own build/runtime identity",
+  "package_version": "0.3.1b1",
+  "candidate_tag": "v0.3.1-beta.1-i082",
+  "release_channel": "beta",
+  "local_deployment_evidence_reference": "release/i082/deployment.json",
+  "portable_frontend_evidence_reference": "release/FRONTEND_VALIDATION.json",
+  "packaged_source_version": "53edf2fcdbb959954de193e82604333caaa321c8b65e9930322bb073760039c3",
+  "game_binaries_included": false,
+  "publication_state_at_package_creation": "not yet published",
   "packaging_changes": [
     "public setup/launch/replay scripts",
     "public NuGet source",
-    "user-owned dependency SHA lock",
-    "portable metadata/CIL identity gate retaining original compensation",
-    "supplemental dashboard/docs sources",
-    "sanitized historical result exports"
-  ],
-  "game_binaries_included": false,
-  "new_solver_experiments_run": 0,
-  "packaged_source_version": "bc843552980d62bf0285afea017cb015f0d424bc838e01e3f8f4532ed4795c16",
-  "historical_result_source_version": "bc57922b87b8b132cf9bd5f3cceffdd58efbec8e615128c67a38caf258a79c2d"
+    "locked user-owned dependencies",
+    "portable CIL contract fallback retaining original guard",
+    "latest SpireBoard with validated i082 launch entry",
+    "architecture overview and code review",
+    "sanitized existing research evidence"
+  ]
 }

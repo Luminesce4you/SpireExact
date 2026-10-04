@@ -1,72 +1,286 @@
 {
-  "schema": "spire-public-build-validation/v1",
-  "date": "2026-10-03",
-  "baseline": "holdout-01/frozen-i054a",
-  "compiled": true,
-  "setup_checks_passed": true,
-  "source_build_identity_current": true,
-  "native_host_identity_current": true,
-  "identity_gate_qualified": true,
-  "sdk_versions": [
-    "9.0.318"
+  "schema": "spire-public-build-validation/v2",
+  "date": "2026-10-04",
+  "source_release": "i082/frozen-i082",
+  "frozen_source_version": "e1b10f6f10f1c1d27f5f176f8b4e73ce8aa07fc2a9ab94b9eaf2d9cd10bd7c74",
+  "adapted_source_version": "53edf2fcdbb959954de193e82604333caaa321c8b65e9930322bb073760039c3",
+  "python": "3.12.14",
+  "dotnet_sdk": "9.0.318",
+  "build_cpu_affinity": [
+    26,
+    27,
+    28,
+    29
   ],
-  "upstream_repository": "https://github.com/Torch1230/CombatSolver.git",
+  "public_git_pin_fetched": true,
   "upstream_commit": "4d2c55069f2cf9f8c621631594857b412cf9660f",
+  "public_nuget_restore": true,
+  "source_build_succeeded": true,
+  "static_check_only_succeeded": true,
+  "compiled": true,
+  "runtime_ready": true,
+  "runtime_ready_scope": "Build identity, dependency lock and static compensation contract eligibility; gameplay was not executed",
+  "native_host_identity_current": true,
+  "source_build_identity_current": true,
+  "projects": [
+    {
+      "project": "static_contract_inspector",
+      "exit_code": 0,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "project": "native_host",
+      "exit_code": 0,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "project": "combat_solver",
+      "exit_code": 0,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "project": "offline_harness",
+      "exit_code": 0,
+      "warnings": 0,
+      "errors": 0
+    }
+  ],
   "artifacts": {
     "native_host": {
       "relative_path": "native/SpireNativeHost/bin/Release/net9.0/SpireNativeHost.dll",
       "exists": true,
-      "sha256": "59e3e1d93f6cfed3798e83c00d919dea8e2bab3b988773e514cd4e911cd7ee74"
+      "sha256": "591279c4c8bf3fb9578e5f38faddc89d5815bbbbc0461dfdeff9227bcbc4ec99"
     },
     "combat_solver": {
       "relative_path": "vendor/CombatSolver/.godot/mono/temp/bin/Release/CombatSolver.dll",
       "exists": true,
-      "sha256": "ddb4c4b6cbcee6c2a99610c19cdb149c7e031264823b78c71decb81cefe1c0c5"
+      "sha256": "a459e6a546601acf836131a160c203d74aff1a62948302e0e0f00ba440c6a575"
     },
     "offline_harness": {
       "relative_path": "vendor/CombatSolver/tools/OfflineSearchHarness/bin/Release/net9.0/OfflineSearchHarness.dll",
       "exists": true,
-      "sha256": "c142f7fd145530cb47d0171f71336b8ad8cf7aac1d37b85ab49883193f977527"
+      "sha256": "84ca53479c3e86ed6d33238513cf6f2de88561af6a32a968ec27697513c1784a"
     },
     "static_contract_inspector": {
       "relative_path": "tools/solver_contract/bin/Release/net9.0/SolverContract.dll",
       "exists": true,
-      "sha256": "3621674a16095bc9bcb1168e69430f5d9cd69eafe1eb3a86022ac7fcb15269f4"
+      "sha256": "c74e3b9dedf9eceeeaf6d93c30bf92afbf99f53ccff2be4a2a745d4bdc3f478c"
     }
   },
-  "build_steps": [
-    {
-      "step": "pinned_harness_patch",
-      "exit_code": 0
+  "dependency_lock_sha256": "ce206b02116742c07258bc81a90d237c870073db333dfe7dcc31542be4c8de8a",
+  "dependencies_match_frozen_i082": true,
+  "locked_dependency_count": 25,
+  "build_configuration_inputs": {
+    "Directory.Build.props": "61411f26e8fd7d8fda564e498f21d23768452554a0bce2e2d0ee144de5bc7490",
+    "Directory.Build.targets": "MISSING",
+    "Directory.Packages.props": "MISSING",
+    "global.json": "MISSING",
+    "native/Directory.Build.props": "MISSING",
+    "native/Directory.Build.targets": "MISSING",
+    "native/Directory.Packages.props": "MISSING",
+    "native/global.json": "MISSING",
+    "native/NuGet.Config": "MISSING",
+    "native/SpireNativeHost/Directory.Build.props": "MISSING",
+    "native/SpireNativeHost/Directory.Build.targets": "MISSING",
+    "native/SpireNativeHost/Directory.Packages.props": "MISSING",
+    "native/SpireNativeHost/global.json": "MISSING",
+    "native/SpireNativeHost/NuGet.Config": "MISSING",
+    "NuGet.Config": "add2258e157cc9cd2a21635b6f205ff5873b0541affd0341cc489ba6e89261fb",
+    "tools/Directory.Build.props": "MISSING",
+    "tools/Directory.Build.targets": "MISSING",
+    "tools/Directory.Packages.props": "MISSING",
+    "tools/global.json": "MISSING",
+    "tools/NuGet.Config": "MISSING",
+    "tools/solver_contract/Directory.Build.props": "MISSING",
+    "tools/solver_contract/Directory.Build.targets": "MISSING",
+    "tools/solver_contract/Directory.Packages.props": "MISSING",
+    "tools/solver_contract/global.json": "MISSING",
+    "tools/solver_contract/NuGet.Config": "MISSING",
+    "tools/source_dependencies.lock.json": "ce206b02116742c07258bc81a90d237c870073db333dfe7dcc31542be4c8de8a",
+    "vendor/CombatSolver/Directory.Build.props": "MISSING",
+    "vendor/CombatSolver/Directory.Build.targets": "MISSING",
+    "vendor/CombatSolver/Directory.Packages.props": "MISSING",
+    "vendor/CombatSolver/global.json": "MISSING",
+    "vendor/CombatSolver/NuGet.Config": "MISSING",
+    "vendor/CombatSolver/tools/Directory.Build.props": "MISSING",
+    "vendor/CombatSolver/tools/Directory.Build.targets": "MISSING",
+    "vendor/CombatSolver/tools/Directory.Packages.props": "MISSING",
+    "vendor/CombatSolver/tools/global.json": "MISSING",
+    "vendor/CombatSolver/tools/NuGet.Config": "MISSING",
+    "vendor/CombatSolver/tools/OfflineSearchHarness/Directory.Build.props": "MISSING",
+    "vendor/CombatSolver/tools/OfflineSearchHarness/Directory.Build.targets": "MISSING",
+    "vendor/CombatSolver/tools/OfflineSearchHarness/Directory.Packages.props": "MISSING",
+    "vendor/CombatSolver/tools/OfflineSearchHarness/global.json": "MISSING",
+    "vendor/CombatSolver/tools/OfflineSearchHarness/NuGet.Config": "MISSING",
+    "vendor/Directory.Build.props": "MISSING",
+    "vendor/Directory.Build.targets": "MISSING",
+    "vendor/Directory.Packages.props": "MISSING",
+    "vendor/global.json": "MISSING",
+    "vendor/NuGet.Config": "MISSING"
+  },
+  "guard": {
+    "fixed_canonical_contract": {
+      "schema": "spire-solver-contract-cil/v1",
+      "guarded_type": "CombatSolver.CorePowerSupport",
+      "solver_sha256": "A459E6A546601ACF836131A160C203D74AFF1A62948302E0E0F00BA440C6A575",
+      "contract_sha256": "D654B44B786C7B1ED0103521BD72ACC9D47ADC5A030985593FF2D471792B3E0E",
+      "expected_contract_sha256": "D654B44B786C7B1ED0103521BD72ACC9D47ADC5A030985593FF2D471792B3E0E",
+      "contract_matches": true,
+      "type_count": 3,
+      "method_count": 23,
+      "assembly_loaded_or_executed": false,
+      "canonical_bytes": 330217
     },
-    {
-      "step": "static_contract_inspector",
-      "exit_code": 0
+    "legacy_full_binary_sha256": [
+      "0AF01356BE8B46BCE4D2D17088E83184D7205C8958C089C8D9DCAEC312E38C32",
+      "25162EE4229733D29B3B256112BD073039681A3545F870D4785BE9A545937676",
+      "2CB5D36D7281FD54A4C77BD042C97586F043670D9132997C52475FD4C51CB86D",
+      "32F17FE828E2B4D5FF2629F07BBD13648E98C9D80079B7C6B72E8F01FBD26225",
+      "5EC668D18922B72314451AE67945F05167191E2448FE081381D1754C557F043E",
+      "781BB53D683C2E2CC9B4BBCAAACEF259FD6019781E81A7F98F04B27C3B695153",
+      "82119F12C3402EE35FA95CEFA0EF37B00F5EC54854186ECF344178BD39E691E0",
+      "8C95672F6C591519FD0282D17FF193A28720D3E602E1EFA7E193A90C2EA72810",
+      "C5782A436FBFB814C02FEFE690D9F9ECC35B2D48696BFA70BC86565954DCC1E4",
+      "CE1359CB5C83AE7B8B785F79EE392626B02E7F865565E32BB2BED427C72F40ED",
+      "EE1598B7385D26D55E36F3FD22101FD2549DFE3E062669DEDFD97432E5C523C8"
+    ],
+    "legacy_whitelist_exact_frozen_match": true,
+    "guard_body_exact_frozen_match": true,
+    "unknown_binary_checked_from_actual_PE": true,
+    "guard_disabled_or_bypassed": false
+  },
+  "packaging_adaptation": {
+    "changed_frozen_core_sources": [
+      "native/SpireNativeHost/AdvisorBlockCompensation.cs"
+    ],
+    "additional_core_sources": [
+      "native/SpireNativeHost/SolverContractFingerprint.cs"
+    ],
+    "public_launcher": "tools/run_release_source.py",
+    "profile_source": "spire_exact/planning/final_defaults.py",
+    "effective_parameters_recorded_in_run_manifest": true
+  },
+  "launcher_dry_run": {
+    "successful": true,
+    "created_run_directory": false,
+    "selected_feature_profile": "i082",
+    "effective_parameters": {
+      "seed": "123",
+      "character": "IRONCLAD",
+      "ascension": 10,
+      "unlocks": "all",
+      "feature_profile": "i082",
+      "game_dir": "runtime\\steamapps\\common\\Slay the Spire 2\\data_sts2_windows_x86_64",
+      "out": "outputs\\example-i082-run",
+      "prefix": null,
+      "import_checkpoints": [],
+      "advisor": "combatsolver",
+      "budget_ms": 600000,
+      "boss_budget_ms": 600000,
+      "profile": "Low",
+      "nodes": 60000,
+      "no_continuation_reuse": false,
+      "complete_continuations_only": false,
+      "beam": null,
+      "workers": 7,
+      "dop": 1,
+      "runtime_profile": "server-bounded-large-gen0",
+      "queue_policy": "fifo",
+      "worker_memory_policy": "hard",
+      "memory_telemetry": true,
+      "preserve_completed_prefix": true,
+      "worker_max_jobs": 32,
+      "worker_memory_mib": 1792,
+      "reserve_mib": 1024,
+      "evaluations": 1000000,
+      "seconds": 1770,
+      "task_seconds": 1200,
+      "max_decisions": 12000,
+      "lookahead_actions": 12000,
+      "lookahead_floors": 99,
+      "alternatives": 8,
+      "survivors": 2,
+      "repair_window": 32,
+      "repair_mode": "gate",
+      "boss_repair_ms": 30000,
+      "root_portfolio": 1,
+      "scheduler": "focus",
+      "focus_elites": 8,
+      "focus_pool": 48,
+      "focus_share": 3,
+      "site_cap": 12,
+      "prior": true,
+      "gate_preset": "escalate-evaluate",
+      "final_gate_plan": "open",
+      "normal_nodes": 10000,
+      "gate_retry_percent": 50,
+      "root_policies": "pick,elo",
+      "focus_cluster_cap": 2,
+      "focus_cluster_percent": 75,
+      "focus_family": false,
+      "focus_optimism": 0,
+      "focus_carry": false,
+      "focus_stall": 32,
+      "root_async": true,
+      "root_round": 7,
+      "requeue_lost": 1,
+      "restart_jitter": false,
+      "root_jitter": 0,
+      "jitter_percent": 20,
+      "gate_probe_schedule": "",
+      "gate_probe_cards": 40,
+      "gate_probe_chunk": 8,
+      "gate_probe_plan": "light",
+      "paired_card_probes": true,
+      "paired_card_every": 32,
+      "paired_card_dedup": true,
+      "paired_card_merge": "mean",
+      "paired_card_joint": true,
+      "f2_readiness_probes": true,
+      "f2_dead_retry": true,
+      "f2_joint_focus": true,
+      "f2_joint_model": true,
+      "f2_readiness_every": 20,
+      "f1_winner_reuse": true,
+      "prefer_f1_hp": true,
+      "real_card_menu_probes": false,
+      "gold_shop_routes": true,
+      "low_hp_routes": true,
+      "low_hp_routes_any_act": true,
+      "focus_stall_extended": true,
+      "forge_menu_dedup": "exact",
+      "focus_stall_f2": true,
+      "lean_third_act": true,
+      "shop_preparation": true,
+      "resource_telemetry": true,
+      "gold_shop_threshold": 200,
+      "low_hp_percent": 50,
+      "preparation_limit": 4,
+      "dispatch": "ordered",
+      "dispatch_window": 56,
+      "snapshot_stride": 7,
+      "solver_seed": 271828,
+      "low_io": true,
+      "event_driven_settle": true,
+      "checkpoint_mib": 1024,
+      "cache_mib": 128,
+      "archive_entries": 256
     },
-    {
-      "step": "native_host",
-      "exit_code": 0
-    },
-    {
-      "step": "combat_solver",
-      "exit_code": 0
-    },
-    {
-      "step": "offline_harness",
-      "exit_code": 0
-    }
-  ],
-  "native_requests_executed": false,
-  "new_search_or_probe_experiments_executed": false,
-  "new_winning_route_replay_executed": false,
-  "normal_godot_equivalence_verified": false,
-  "packaged_source_version": "bc843552980d62bf0285afea017cb015f0d424bc838e01e3f8f4532ed4795c16",
-  "scope": "Actual compilation from the public pinned source with user-owned private game/Ritsu dependencies; PE metadata/CIL guard checks. Does not establish execution or new victory evidence.",
-  "automatic_build_configuration_inputs_checked": 46,
-  "private_build_overrides_rejected": [
-    "local.props",
-    ".local/presence.props",
-    ".local/showcase.props"
-  ],
-  "source_identity_hardening_recompiled": false
+    "parameters_from_authoritative_planner_parser": true
+  },
+  "historical_holdout_results_inherited": false,
+  "no_new_experiments": {
+    "native_host_requests_executed": false,
+    "gameplay_or_route_replay_executed": false,
+    "native_guard_Configure_executed": false,
+    "whole_seed_search_executed": false,
+    "native_probe_executed": false
+  },
+  "private_reports_not_in_public_zip": [
+    "outputs/source-setup/20261004T143732838587Z/report.json",
+    "outputs/source-setup/20261004T144113025831Z/report.json"
+  ]
 }

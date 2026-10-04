@@ -9,6 +9,7 @@ import argparse, json, sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from tools.baseline_metrics import summarize_work
 
 
 def load(path):
@@ -43,14 +44,16 @@ def summarize(seed: Path, bucket: int = 300):
         if floor not in first:
             first[floor] = (round(r.get('completed_wall_seconds') or 0, 1), r['label'])
     out['terminal_floor_histogram'] = {f'{f}:{room}': n for (f, room), n in sorted(floors.items(), key=lambda kv: (kv[0][0], str(kv[0][1])))}
-    best = max(first)
+    best = max(first,default=None)
     out['furthest_floor'] = best
-    out['first_time_at_floor'] = {str(f): first[f] for f in sorted(first) if f >= best - 2}
-    task_wall = sum((r.get('performance') or {}).get('wall_us') or 0 for r in rows) / 1e6
-    nodes = sum(r.get('expanded_combat_nodes') or 0 for r in rows)
+    out['first_time_at_floor'] = {str(f): first[f] for f in sorted(first) if best is not None and f >= best - 2}
+    work = summarize_work(rows)
+    task_wall = work['native_service_seconds_sum']
+    nodes = work['combat_nodes']
     runtime = rows[-1].get('runtime') or {}
     out['native_task_wall_seconds'] = round(task_wall, 1)
     out['expanded_combat_nodes'] = nodes
+    out.update(work)
     if runtime.get('job_wall_seconds'):
         out['job_wall_seconds'] = round(runtime['job_wall_seconds'], 1)
         out['tick_sampled_busy_cores'] = round(runtime['job_cpu_seconds'] / runtime['job_wall_seconds'], 2)

@@ -5,7 +5,7 @@ No game commands inside the HTTP service and no mutation of frozen experiments.
 from pathlib import Path
 from http.server import ThreadingHTTPServer,BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-import argparse,ctypes as c,datetime,json,mimetypes,os,queue,struct,threading,time,sys,secrets
+import argparse,ctypes as c,datetime,json,math,mimetypes,os,queue,struct,threading,time,sys,secrets
 from ctypes import wintypes as w
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -64,8 +64,42 @@ class Broker:
 class ProcessSampler:
     """Read CPU and private committed memory of the owned process tree."""
     def __init__(self):self.previous={};self.total={}
-    def sample(self,pid,key):
-        if os.name!='nt' or not pid:return {'available':False}
+    @staticmethod
+    def _started_epoch(value):
+        try:
+            if isinstance(value,str):
+                stamp=datetime.datetime.fromisoformat(value)
+                if stamp.tzinfo is None:return None
+                value=stamp.timestamp()
+            if type(value)not in(int,float)or not math.isfinite(value)or value<=0 or value>time.time()+5:return None
+            return value
+        except (ValueError,TypeError,OverflowError):return None
+    @staticmethod
+    def created_matches(created_ticks,expected_created_ticks=None,started_at=None):
+        if type(created_ticks)is not int or created_ticks<1:return False
+        if expected_created_ticks is not None:
+            return type(expected_created_ticks)is int and expected_created_ticks>0 and created_ticks==expected_created_ticks
+        started=ProcessSampler._started_epoch(started_at)
+        if started is None:return False
+        # Historical metadata has no exact identity. Permit only a narrow
+        # creation window around the recorded start; a later reused PID fails.
+        created_epoch=created_ticks/1e7-11644473600
+        return -5<=created_epoch-started<=120
+    def sample(self,pid,key,expected_created_ticks=None,started_at=None):
+        def rejected(reason,available=False):
+            self.previous.pop(key,None)
+            return {'available':available,'alive':False,'sampled_at':time.time(),'identity_unavailable_reason':reason}
+        if os.name!='nt' or type(pid)is not int or pid<1:return rejected('进程身份不可用。')
+        if expected_created_ticks is not None and(type(expected_created_ticks)is not int or expected_created_ticks<1):
+            return rejected('进程创建时间记录无效。')
+        if expected_created_ticks is None and self._started_epoch(started_at)is None:
+            return rejected('缺少可信的进程创建时间或运行开始时间。')
+        root_identity=jobs.process_identity(pid)
+        if not isinstance(root_identity,dict)or root_identity.get('pid')!=pid:
+            return rejected('记录的作业进程已退出。',True)
+        root_ticks=root_identity.get('created_ticks')
+        if not self.created_matches(root_ticks,expected_created_ticks,started_at):
+            return rejected('PID已被复用或创建时间与这次运行不符。',True)
         class Entry(c.Structure):
             _fields_=[('size',w.DWORD),('usage',w.DWORD),('pid',w.DWORD),('heap',c.c_size_t),('module',w.DWORD),('threads',w.DWORD),('parent',w.DWORD),('priority',c.c_long),('flags',w.DWORD),('exe',w.WCHAR*260)]
         class Memory(c.Structure):
@@ -84,32 +118,40 @@ class ProcessSampler:
             ok=k.Process32FirstW(snap,c.byref(e))
             while ok:parents[e.pid]=e.parent;ok=k.Process32NextW(snap,c.byref(e))
         finally:k.CloseHandle(snap)
-        owned={pid}
-        while True:
-            extra={p for p,par in parents.items()if par in owned}-owned
-            if not extra:break
-            owned|=extra
+        owned=[pid];seen={pid}
+        for parent in owned:
+            extra=sorted(p for p,par in parents.items()if par==parent and p not in seen)
+            seen.update(extra);owned.extend(extra)
         memory=0;delta=0;count=0;root_alive=False;current={};now=time.monotonic()
         old,then=self.previous.get(key,({},now))
         def ft(x):return ((x.dwHighDateTime<<32)|x.dwLowDateTime)
+        births={}
         for p in owned:
             h=k.OpenProcess(0x410,False,p)
             if not h:continue
             try:
-                exitcode=w.DWORD();k.GetExitCodeProcess(h,c.byref(exitcode))
-                if exitcode.value!=259:continue
-                if p==pid:root_alive=True
+                exitcode=w.DWORD()
+                if not k.GetExitCodeProcess(h,c.byref(exitcode))or exitcode.value!=259:continue
                 created=w.FILETIME();ended=w.FILETIME();kernel=w.FILETIME();user=w.FILETIME()
-                if k.GetProcessTimes(h,c.byref(created),c.byref(ended),c.byref(kernel),c.byref(user)):
-                    identity=(p,ft(created));cpu=(ft(kernel)+ft(user))/1e7;current[identity]=cpu
-                    if identity in old:delta+=max(0,cpu-old[identity])
+                if not k.GetProcessTimes(h,c.byref(created),c.byref(ended),c.byref(kernel),c.byref(user)):continue
+                ticks=ft(created)
+                if p==pid:
+                    if ticks!=root_ticks:continue
+                    root_alive=True
+                elif parents.get(p)not in births or ticks<births[parents[p]]:continue
+                births[p]=ticks
+                identity=(p,ticks);cpu=(ft(kernel)+ft(user))/1e7;current[identity]=cpu
+                if identity in old:delta+=max(0,cpu-old[identity])
                 m=Memory();m.cb=c.sizeof(m)
                 if ps.GetProcessMemoryInfo(h,c.byref(m),c.sizeof(m)):memory+=m.private
                 count+=1
             finally:k.CloseHandle(h)
+        if not root_alive:return rejected('无法再次核验作业进程的创建时间。',True)
         self.previous[key]=(current,now)
         return {'available':True,'alive':root_alive,'cpu_cores':delta/max(now-then,.1)if old else None,
-                'private_bytes':memory,'processes':count,'sampled_at':time.time(),'scope':'sampled owned-process tree; not Job Object peak accounting'}
+                'private_bytes':memory,'processes':count,'sampled_at':time.time(),
+                'identity_verified':expected_created_ticks is not None,'historical_age_guard':expected_created_ticks is None,
+                'scope':'creation-guarded owned-process tree; historical start-window guard is not exact identity; not Job Object peak accounting'}
 
 class Repository:
     def __init__(self):self.paths={};self.cache={};self.live={};self.history={};self.lock=threading.RLock();self.index()
@@ -134,10 +176,10 @@ class Repository:
             if m.get('counts_as_planner_win') is False and m.get('arms'):
                 return self.component_detail(run,folder,m)
             seed=m.get('seed');target=folder/('seed-'+str(seed))if seed is not None else None
-            sources=[path,folder/'performance.json',folder/'baseline-report.json',folder/'events.jsonl',folder/'validation-invalidated.json',folder/'launch-state.json']
+            sources=[path,folder/'performance.json',folder/'baseline-report.json',folder/'events.jsonl',folder/'validation-invalidated.json',folder/'launch-state.json',folder/'control.json',folder/'process.json']
             if target:sources += [target/'result.json',target/'evaluations.jsonl',folder/(target.name+'-resources.json'),folder/(target.name+'-events.jsonl')]
             signature=tuple((str(p),p.stat().st_mtime_ns if p.exists()else 0)for p in sources)
-            if run in self.cache and self.cache[run][0]==signature:return self.cache[run][1]
+            if run in self.cache and self.cache[run][0]==signature:return self._with_control(self.cache[run][1],folder)
             perf=read(folder/'performance.json',{});report=read(folder/'baseline-report.json',{})
             result=read(target/'result.json',{})if target else{}
             resources=read(folder/(target.name+'-resources.json'),{})if target else{}
@@ -163,7 +205,7 @@ class Repository:
             status='verified'if wins and seed is not None else'completed'if complete else'pending'
             if report and report.get('exit_code',0)not in(0,124):status='error'
             launch=read(folder/'launch-state.json',{})or{}
-            if m.get('manual')and not report and launch.get('phase')in('queued','starting','error'):status=launch['phase']
+            if not report and launch.get('phase')in('queued','starting','error'):status=launch['phase']
             if read(folder/'validation-invalidated.json') or perf.get('valid_for_generalization_rate')is False:status='invalid'
             data={'id':run,'manifest':m,'protocol':m.get('protocol','legacy-A0'),'seed':seed,'seeds':m.get('seeds',[]),'status':status,
                   'started_at':start,'wins':wins,'tested':perf.get('tested',int(complete)),'planned':perf.get('planned',1),
@@ -172,13 +214,25 @@ class Repository:
                   'pool':result.get('pool_stats',{}),'events':events[-150:],'path':str(folder),'checkpoint':result.get('checkpoints',{}),
                   'result_status':result.get('status'),'normal_godot_verified':False,'updated_at':time.time()}
             data['gate_models']=result.get('gate_models')
+            data['search_elapsed_seconds']=result.get('elapsed_seconds')
             data['gate_model_meta']={
                 'source':str(target/'result.json') if target else None,
                 'snapshot_at':(target/'result.json').stat().st_mtime if target and(target/'result.json').exists() else None,
                 'elapsed_seconds':result.get('elapsed_seconds'),
                 'available':isinstance(result.get('gate_models'),dict),
                 'scope':'本次运行、当前种子的在线关口模型；排序与算力分配信号。'}
-            self.cache[run]=(signature,data);return data
+            self.cache[run]=(signature,data);return self._with_control(data,folder)
+    @staticmethod
+    def _with_control(data,folder):
+        # File contents can be cached; live Job/creation identity cannot.
+        elapsed=data.get('report',{}).get('wall_seconds')
+        if elapsed is None:elapsed=data.get('search_elapsed_seconds')
+        if elapsed is None:elapsed=data.get('resources',{}).get('wall_seconds')
+        control=jobs.control_status(folder,elapsed)
+        projected={**data,'job_control':control}
+        if data['status']not in('verified','completed','invalid','error')and control['phase']in('paused','stopped','queued','starting','error'):
+            projected['status']=control['phase']
+        return projected
     def component_detail(self,run,folder,m):
         events=json_lines(folder/'events.jsonl')
         starts=[e for e in events if e.get('event')=='component_started']
@@ -335,10 +389,12 @@ class Repository:
     def snapshot(self,run=None):
         rows=self.runs()
         if run not in self.paths:run=next((r['id']for r in rows if r['alive']),next((r['id']for r in rows if r['protocol']=='A10-seed-v2'),rows[0]['id']if rows else None))
+        from tools.prepare_dashboard import launch_status
+        prepared=launch_status()
         return {'runs':rows,'selected':self.detail(run)if run else None,'live':self.live.get(run,{}),
                 'telemetry_history':self.history.get(run,[]),'server_time':time.time(),'watcher':'windows-notification','read_only':False,
                 'launch':{'token':jobs.TOKEN,'character':'IRONCLAD','ascension':10,'unlocks':'all',
-                          'max_minutes':180 if read(ROOT/'dashboard/solver-profile.json',{}).get('long_run_ready')else 15}}
+                          **prepared}}
 
 repo=Repository();broker=Broker();winning_routes=WinningRouteStore()
 
@@ -357,7 +413,7 @@ def watch(root):
             nxt,action,size=struct.unpack_from('<III',buffer.raw,offset)
             name=buffer.raw[offset+12:offset+12+size].decode('utf-16-le',errors='replace')
             base=name.replace('\\','/').split('/')[-1]
-            if base in {'result.json','evaluations.jsonl','performance.json','baseline-report.json','events.jsonl','validation-manifest.json','process.json','component.json','partial-results.json','report.json','launch-state.json','solver-profile.json'}or base.endswith(('-resources.json','-events.jsonl')):relevant=True
+            if base in {'result.json','evaluations.jsonl','performance.json','baseline-report.json','events.jsonl','validation-manifest.json','process.json','component.json','partial-results.json','report.json','launch-state.json','solver-profile.json','control.json'}or base.endswith(('-resources.json','-events.jsonl')):relevant=True
             if base=='validation-manifest.json':reindex=True
             if not nxt:break
             offset+=nxt
@@ -382,7 +438,12 @@ def sample_loop():
                     repo.live[run]={'available':True,'alive':False,'sampled_at':time.time()}
                     broker.publish('telemetry',{'run':run,'sample':repo.live[run],'server_time':time.time()})
                 continue
-            sample=sampler.sample(meta.get('owned_job_pid'),run)
+            identity=meta.get('owned_job_identity')
+            expected=None
+            if identity is not None:
+                expected=identity.get('created_ticks')if isinstance(identity,dict)and identity.get('pid')==meta.get('owned_job_pid')else 0
+                if expected is None:expected=0
+            sample=sampler.sample(meta.get('owned_job_pid'),run,expected_created_ticks=expected,started_at=manifest.get('timestamp'))
             repo.live[run]=sample
             if sample.get('alive'):
                 rows=repo.history.setdefault(run,[]);rows.append(sample)
@@ -401,7 +462,8 @@ class Handler(BaseHTTPRequestHandler):
         if self.headers.get('Host','').split(':')[0]not in('127.0.0.1','localhost'):self.send_body(b'Forbidden',code=403);return
         url=urlparse(self.path);query=parse_qs(url.query);run=query.get('run',[None])[0]
         if url.path=='/api/health':
-            self.send_body(json.dumps({'service':'spireboard','api_version':1,'pid':os.getpid()}).encode());return
+            self.send_body(json.dumps({'service':'spireboard','api_version':1,'pid':os.getpid(),
+                'workspace':str(ROOT),'feature_profile':'i082'}).encode());return
         if url.path=='/api/winning-route':
             path=repo.paths.get(run)
             if path is None:self.send_body(b'{"error":"Unknown run"}',code=404);return
@@ -455,17 +517,21 @@ class Handler(BaseHTTPRequestHandler):
             self.send_body(b'{"error":"Forbidden origin"}',code=403);return
         if not secrets.compare_digest(self.headers.get('X-SpireBoard-Token','').encode(),jobs.TOKEN.encode()):
             self.send_body(b'{"error":"Invalid local session token"}',code=403);return
-        if urlparse(self.path).path!='/api/jobs':self.send_body(b'Not found',code=404);return
+        route=urlparse(self.path).path
+        parts=route.strip('/').split('/')
+        control_route=len(parts)==4 and parts[:2]==['api','jobs'] and parts[3]in('pause','resume','stop')
+        if route!='/api/jobs'and not control_route:self.send_body(b'Not found',code=404);return
         try:
             if self.headers.get('Content-Type','').split(';')[0]!='application/json':raise ValueError('请求格式无效。')
             payload=json.loads(body)
-            result=jobs.launch(payload,repo)
-            broker.publish('files',{});self.send_body(json.dumps(result,ensure_ascii=False).encode(),code=202)
+            result=jobs.control(parts[2],parts[3],payload,repo)if control_route else jobs.launch(payload,repo)
+            broker.publish('files',{});self.send_body(json.dumps(result,ensure_ascii=False).encode(),code=200 if control_route else 202)
         except (ValueError,KeyError)as error:self.send_body(json.dumps({'error':str(error)},ensure_ascii=False).encode(),code=400)
         except Exception as error:self.send_body(json.dumps({'error':'无法启动任务：'+str(error)},ensure_ascii=False).encode(),code=500)
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--port',type=int,default=8765);a=p.parse_args()
+    if sys.version_info<(3,11):raise SystemExit('Python 3.11+ is required for the public source frontend')
     if os.name=='nt':
         # Keep dashboard sampling away from the A10 performance-core partition.
         k=c.WinDLL('kernel32');k.GetCurrentProcess.restype=w.HANDLE;k.SetProcessAffinityMask.argtypes=[w.HANDLE,c.c_size_t]

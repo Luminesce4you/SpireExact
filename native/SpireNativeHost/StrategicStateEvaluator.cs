@@ -91,7 +91,7 @@ internal sealed class StrategicStateEvaluator
     static double Variable(CardModel c,params string[] names)=>c.DynamicVars.Where(p=>names.Contains(p.Key,StringComparer.OrdinalIgnoreCase))
         .Sum(p=>Math.Max(0,(double)p.Value.BaseValue));
     static double Number(object? o,string property,double fallback=0)
-    {if(o==null)return fallback;try{return Convert.ToDouble(o.GetType().GetProperty(property,BindingFlags.Instance|BindingFlags.NonPublic|BindingFlags.Public)?.GetValue(o)??fallback);}catch{return fallback;}}
+    {if(o==null)return fallback;try{return Convert.ToDouble(o.GetType().GetProperty(property,BindingFlags.Instance|BindingFlags.NonPublic|BindingFlags.Public)?.GetValue(o)??fallback);}catch(Exception error) when(!WorkerMemoryTelemetry.IsOutOfMemory(error)){return fallback;}}
     public static CardCapability Describe(CardModel c)
     {
         var effects=NativeEffectMetadata.For(c.GetType());bool Has(string s)=>effects.Any(v=>v.Contains(s,StringComparison.OrdinalIgnoreCase));

@@ -178,6 +178,8 @@ class FocusSearchTests(unittest.TestCase):
         with self.assertRaises(ValueError):SearchConfig(focus_optimism=-1)
         with self.assertRaises(ValueError):SearchConfig(focus_optimism=401)
         with self.assertRaises(ValueError):SearchConfig(focus_carry=1)
+        with self.assertRaises(ValueError):SearchConfig(focus_stall=-1)
+        with self.assertRaises(ValueError):SearchConfig(focus_stall=True)
     def test_family_record_and_optimism_are_off_by_default_and_never_change_a_request_format(self):
         config=SearchConfig();self.assertEqual((config.focus_family,config.focus_optimism),(False,0))
         plain,requests=run();self.assertNotIn('focus_family',plain['search_metrics'])
@@ -193,6 +195,15 @@ class FocusSearchTests(unittest.TestCase):
         result,carried=run(focus_carry=True)
         self.assertEqual(carried,requests)
         self.assertTrue(all(row['carried_hp']==0 for row in result['search_metrics']['focus_carry']))
+    def test_stalled_gate_switch_is_off_by_default_and_changes_nothing_without_an_act_to_step_back_to(self):
+        self.assertEqual(SearchConfig().focus_stall,0)
+        plain,requests=run();self.assertNotIn('focus_stall',plain['search_metrics'])
+        # The toy campaign has one boss, in the first act: however many entries it has, there is no act before it.
+        result,stalled=run(focus_stall=2)
+        self.assertEqual(stalled,requests)
+        report=result['search_metrics']['focus_stall']
+        self.assertEqual((report['threshold_entries'],report['furthest_gate'],report['step_back_act'],report['step_back_evaluations']),(2,[0,0],None,0))
+        self.assertGreaterEqual(report['gates'][0]['entries'],2)
 
 TOY={'card:GOOD':[1]}
 

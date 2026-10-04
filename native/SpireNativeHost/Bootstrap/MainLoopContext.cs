@@ -44,10 +44,10 @@ internal sealed class MainLoopContext : SynchronizationContext
     /// <summary>把队列里的续体一条条在主线程上跑掉，直到任务完成或超时。</summary>
     public void RunUntilCompleted(Task task, TimeSpan timeout, string label)
     {
-        DateTime deadline = DateTime.UtcNow + timeout;
+        DateTime deadline = SpireNativeHost.PauseClock.UtcNow() + timeout;
         while (!task.IsCompleted)
         {
-            if (DateTime.UtcNow > deadline)
+            if (SpireNativeHost.PauseClock.UtcNow() > deadline)
                 throw new TimeoutException($"{label} 在 {timeout.TotalSeconds:0.#}s 内没有完成（已泵 {PumpedCallbacks} 个续体）。");
             PumpOnce(TimeSpan.FromMilliseconds(20));
         }
@@ -58,11 +58,11 @@ internal sealed class MainLoopContext : SynchronizationContext
     /// <summary>把任务跑到「完成」或者「挂起且队列空了」——回合循环停在等玩家结束回合时就是后者。</summary>
     public bool RunUntilQuiescent(Task task, TimeSpan timeout, string label, int quietPumps = 40)
     {
-        DateTime deadline = DateTime.UtcNow + timeout;
+        DateTime deadline = SpireNativeHost.PauseClock.UtcNow() + timeout;
         int quiet = 0;
         while (!task.IsCompleted)
         {
-            if (DateTime.UtcNow > deadline)
+            if (SpireNativeHost.PauseClock.UtcNow() > deadline)
                 throw new TimeoutException($"{label} 在 {timeout.TotalSeconds:0.#}s 内既没完成也没静默（已泵 {PumpedCallbacks} 个续体）。");
             if (PumpOnce(TimeSpan.FromMilliseconds(10)))
                 quiet = 0;
@@ -76,8 +76,8 @@ internal sealed class MainLoopContext : SynchronizationContext
     /// <summary>纯粹把当前积压的续体跑完，用于「再推几步」的场合。</summary>
     public void Pump(TimeSpan window)
     {
-        DateTime deadline = DateTime.UtcNow + window;
-        while (DateTime.UtcNow < deadline)
+        DateTime deadline = SpireNativeHost.PauseClock.UtcNow() + window;
+        while (SpireNativeHost.PauseClock.UtcNow() < deadline)
             PumpOnce(TimeSpan.FromMilliseconds(5));
     }
 

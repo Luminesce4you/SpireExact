@@ -1,0 +1,20 @@
+{
+  "schema": "spire-public-tests-summary/v1",
+  "baseline": "i082",
+  "original_source_version": "e1b10f6f10f1c1d27f5f176f8b4e73ce8aa07fc2a9ab94b9eaf2d9cd10bd7c74",
+  "exported_at": "2026-10-04T22:41:08+08:00",
+  "python": "3.10.6",
+  "platform": "Windows",
+  "tests_run": 845,
+  "passed": 845,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "native_runtime_tests_run": 0,
+  "native_probe_compiled": false,
+  "scope": "existing source regression report; no new execution and no i082 whole-run outcome",
+  "original_sha256": "2efe38942f32cacb807b28f6824f01592c54ebe0b44981033d4b30a19a95bdf8",
+  "original_reference": "P5plus-f1-card-switches/experiments/iteration-082/tests.json",
+  "export_representation": "sanitized summary"
+}

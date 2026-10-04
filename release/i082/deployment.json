@@ -1,0 +1,53 @@
+{
+  "schema": "spire-public-local-deployment-snapshot/v1",
+  "observed_at": "2026-10-04T23:14:56+08:00",
+  "source_version": "e1b10f6f10f1c1d27f5f176f8b4e73ce8aa07fc2a9ab94b9eaf2d9cd10bd7c74",
+  "configured_frontend_workspace": "experiments/frozen-i082-dashboard",
+  "configured_feature_profile": "i082",
+  "runtime_profile": "server-bounded-large-gen0",
+  "worker_memory_mib": 1792,
+  "i082_frontend_deployment_verified": true,
+  "deployment_report_passed": true,
+  "dashboard_host_sha256": "f4b2307d06fb3eeaff2ac69c62c209f9ad4a50f49662f6c341558f1764b95d2c",
+  "zero_action_pause_initialization": {
+    "actions": 0,
+    "patched_methods": 27,
+    "full_search_started": false
+  },
+  "validation": {
+    "deployment_report_passed": true,
+    "zero_action_pause_initialization": true,
+    "pause_enabled_27_methods": true,
+    "freeze_and_report_source_version_match": true,
+    "actual_dashboard_host_hash_matches": true,
+    "native_source_inputs_match": true,
+    "dependency_bytes_match": true,
+    "profile_workspace_is_i082": true,
+    "profile_effective_render_matches_frozen_i082": true,
+    "profile_runtime_matches_i082": true,
+    "profile_report_reference_matches": true
+  },
+  "live_service_available": true,
+  "live_static_assets_match_current_source": true,
+  "api_snapshot_selected_feature_profile": "i082",
+  "api_snapshot_selected_source_version": "e1b10f6f10f1c1d27f5f176f8b4e73ce8aa07fc2a9ab94b9eaf2d9cd10bd7c74",
+  "api_exposes_future_launch_profile": false,
+  "future_entry_validation": "The active service reads the current validated i082 solver profile for each new manual launch. API exposes only generic launch limits; no test job was submitted.",
+  "source_references": [
+    "P5plus/experiments/iteration-082/frontend-deployment/report.json",
+    "P5plus/experiments/iteration-082/frontend-deployment/build-identity.json",
+    "P5plus/experiments/frozen-i082-dashboard/freeze.json",
+    "P5plus/dashboard/solver-profile.json"
+  ],
+  "original_sha256": {
+    "report_sha256": "a63cabe81ac8b4ebf1124bc1fb09de16171135bda002d44a31052164f2cd0ab9",
+    "build_identity_sha256": "4a8026eacb5c9fb5a2ceb4a8968aad52b4c37dcf133685ed1d92626b995d5808",
+    "freeze_sha256": "01bbd35e642270594d39e1cede059302ff87e1cda3d783857658d248cace1915",
+    "profile_sha256": "33773e10445a0f0102293ca3fb349efc0107c7363370d68f00945c16c47c63cb"
+  },
+  "profile_mutated_by_this_audit": false,
+  "new_jobs_started": 0,
+  "existing_jobs_stopped_or_restarted": 0,
+  "scope": "Local deployment and entry binding, static assets and read-only API; not a new campaign, browser visual review or normal Godot equivalence.",
+  "export_representation": "sanitized extraction; no session values, private absolute paths or raw API responses"
+}

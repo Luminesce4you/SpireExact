@@ -1,6 +1,6 @@
 {
   "schema": "spire-source-dependencies/v1",
-  "source_release": "holdout-01/frozen-i054a",
+  "source_release": "i082/frozen-i082",
   "required_runtime_sha256": {
     "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/0Harmony.dll": "ef1898322c9f5c86dc1b0758b272a9c440823b4a41ca9a0b82a3aa6b3d206387",
     "steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/GodotSharp.dll": "0e4897ecdfb31456a97c7d8028dfb8d7dbdc632e2f73fc9b438d7b266a139289",
@@ -29,5 +29,6 @@
     "steamapps/workshop/content/2868840/3747602295/shared/STS2-RitsuLib.Ui.dll": "4bfcac6383cd1beb9fa61ea63e63c6fa434e7ce06a43f8a9247c3afbf94dda04"
   },
   "additional_assemblies_allowed": true,
-  "binaries_redistributed": false
+  "binaries_redistributed": false,
+  "historical_dependency_reference": "holdout-01/frozen-i054a"
 }

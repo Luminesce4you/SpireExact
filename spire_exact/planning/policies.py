@@ -11,12 +11,15 @@ Allocation only: a tier never changes legality, never excludes an option from
 the macro search and never bounds anything.
 """
 from __future__ import annotations
+import hashlib
 from .policy_data import TIERS
 
 NATIVE = 'native'
 POLICIES = {NATIVE: {}, **TIERS}
 # The native host rejects tiers outside this range.
 LIMIT = 8
+# Every card label of the tables: the labels a restart's jittered table may move.
+CARDS = tuple(sorted({label for table in TIERS.values() for label in table if label.startswith('card:')}))
 
 
 def resolve(names) -> tuple:
@@ -48,3 +51,21 @@ def merge(base: dict, learned: dict) -> dict:
         if any(row):
             merged[label] = row
     return merged
+
+
+def jitter(base: dict, labels, salt: str, percent: int) -> dict:
+    """`base` with about `percent`% of `labels` moved by -2, -1, +1 or +2 in
+    every act, chosen by sha256(salt:label): a different table for every salt,
+    the same one for the same salt. Restarts use it because policy_seed alone
+    almost never changes a rollout (iteration-058 results, section 6)."""
+    table = {label: list(row) for label, row in base.items()}
+    for label in labels:
+        digest = hashlib.sha256(f'{salt}:{label}'.encode()).digest()
+        if digest[0] * 100 >= percent * 256:
+            continue
+        row = [max(-LIMIT, min(LIMIT, tier + (-2, -1, 1, 2)[digest[1] % 4])) for tier in table.get(label, [0])]
+        if any(row):
+            table[label] = row
+        else:
+            table.pop(label, None)
+    return table

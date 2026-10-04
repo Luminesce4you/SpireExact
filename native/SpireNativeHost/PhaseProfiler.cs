@@ -10,7 +10,7 @@ internal sealed class PhaseProfiler
     readonly Dictionary<string, Row> stages = [];
     readonly Dictionary<string, long> counters = [];
     readonly Stack<string> stack = new();
-    readonly Stopwatch clock = Stopwatch.StartNew();
+    readonly Stopwatch clock = PauseClock.StartNew();
     readonly TimeSpan cpu = Process.GetCurrentProcess().TotalProcessorTime;
     readonly ulong? cycles = ReadCycles();
     readonly long allocated = GC.GetTotalAllocatedBytes(false);
@@ -24,7 +24,7 @@ internal sealed class PhaseProfiler
         ? value : null;
     void Charge()
     {
-        double now = clock.Elapsed.TotalMilliseconds;
+        double now = PauseClock.Elapsed(clock).TotalMilliseconds;
         if (stack.TryPeek(out string? name)) stages[name].Milliseconds += now - last;
         last = now;
     }
@@ -55,6 +55,8 @@ internal sealed class PhaseProfiler
         ulong? endCycles = ReadCycles();
         return new {
             schema = "spire-perf/v1", wall_us = (long)(clock.Elapsed.TotalMilliseconds*1000),
+            active_us = PauseClock.Enabled ? (long?)(PauseClock.Elapsed(clock).TotalMilliseconds*1000) : null,
+            budget_clock = PauseClock.Enabled ? "pause_excluded" : "wall",
             cpu_us = (long)((process.TotalProcessorTime - cpu).TotalMilliseconds*1000),
             cycles = cycles.HasValue && endCycles.HasValue && endCycles.Value >= cycles.Value
                 ? endCycles.Value - cycles.Value : (ulong?)null,

@@ -9,6 +9,7 @@ import json
 from pathlib import Path
 from ..canonical import canonical
 from .io import read_json,write_json
+from .research_progress import require_research_progress,checkpoint_progress_matches
 
 @dataclass(frozen=True)
 class CheckpointRef:
@@ -19,8 +20,10 @@ class CheckpointRef:
     act: int
 
 class CheckpointArchive:
-    def __init__(self,context: dict,identity: dict,byte_limit=512*1024**2):
+    def __init__(self,context: dict,identity: dict,byte_limit=512*1024**2,*,research_progress=None):
         self.context=context;self.identity=identity;self.byte_limit=byte_limit
+        self.research_progress=(require_research_progress(research_progress,context,identity)
+                                if research_progress is not None else None)
         self.root={};self.entries=OrderedDict();self.bytes=0;self.hits=0;self.lineages={}
     def _remove(self,path):
         entry=self.entries.pop(path,None)
@@ -35,9 +38,15 @@ class CheckpointArchive:
     def _context_matches(self,context):
         return all(context.get(k)==self.context.get(k) for k in ('seed','character','ascension','unlocks')) and context.get('information')=='full'
     def add(self,path: Path):
+        if self.research_progress is not None:
+            # A replacement rejected below must not leave an indexed reference
+            # to that path. Other eligible checkpoints at the prefix survive.
+            self._remove(str(path.resolve()))
         payload=read_json(path,resolve_checkpoint=False)
         if payload.get('schema')!='spire-map-checkpoint/v1':return False
         p=payload.get('payload',{})
+        if self.research_progress is not None and not checkpoint_progress_matches(p,self.research_progress,self.context,self.identity):
+            return False
         if not self._context_matches(p.get('context',{})):return False
         if canonical(p.get('identity'))!=canonical(self.identity):return False
         trace=p.get('history',[])

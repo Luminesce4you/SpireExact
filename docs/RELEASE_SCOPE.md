@@ -1,48 +1,67 @@
-# holdout-01 发布范围与验证记录
+# i082 发布范围与验证方法
 
-本次源码发布以 `frozen-i054a` 为版本锚点，对应 iteration-055 的 `holdout-01` 第一阶段。Python 路线规划核心与 C# 宿主来自该冻结源码，构建、启动、完整动作重放、依赖定位及导航入口为本次交付新增。17/20 的研究结果归属于该冻结基线；后续策略与主树 infra 改动按各自版本记录。
+本源码 **Beta 版 0.3.1b1** 以 **`frozen-i082`** 为规划实现锚点，提供公开依赖准备、源码编译、完整 SpireBoard 前端、i082 命令行启动及完整动作重放入口。发布 tag 为 `v0.3.1-beta.1-i082`。历史 holdout-01 作为单独的旧版本研究证据保留。
 
-## 研究设置与历史结果
+公开前端与 CLI 支持 1–45 分钟，默认仍为 30 分钟。作者推荐大部分种子选择 45 分钟，此为使用建议，不迁移历史结果或产生新的胜率结论。
 
-- IRONCLAD / Ascension 10 / all unlocks / mode1 全信息 / fresh start，目标为整局胜利 0/1。
-- 配置为 focus + `--root-policies pick,elo --focus-cluster-cap 2 --final-gate-plan open`，有序派发，`solver_seed=271828`。
-- 20 个新种子各运行一次，30 分钟安全上限；17 个获胜候选经过独立新进程重放确认，实际 worker 为 5–7 个。
-- 研究设计为固定预算、单配置的种子面板。结果汇总记录这 20 次运行；同种子成功概率和配置比较属于独立的研究设计。其余 3 个种子保留为该预算下的 `UNKNOWN`。
-- [results.md](../release/holdout-01/results.md) 与 [summary.json](../release/holdout-01/summary.json) 保存结果、版本与依赖指纹、17 条完整获胜动作及历史证书。完整作业、逐步状态、worker 日志和冻结二进制继续保存在本地研究档案中。
+## 版本身份
 
-## 公开源码的构建适配
-
-发布宿主保留原有完整 DLL 白名单和 block 补偿修正，并加入跨目录构建的固定契约检查。`CorePowerSupport` 整类及嵌套类型的规范化 CIL 需与已审阅基线一致，宿主直接校验实际加载的 DLL；契约摘要固定在源码中。游戏与 RitsuLib 依赖使用固定 SHA 校验。
-
-这项适配服务于不同目录中的固定源码重编译。历史搜索结果对应原始冻结二进制，本次源码构建对应新的二进制指纹，两组身份分别记录；规划策略沿用 holdout-01 基线。
-
-## 本次交付验证
-
-已在 Windows / Python 3.12.14 / .NET SDK 9.0.318 下完成宿主、CombatSolver、harness 和静态契约检查器的四项目源码构建，均为 0 warning / 0 error，静态身份检查通过。
-
-`CorePowerSupport` 整类规范化 CIL 与已审阅基线一致；CIL 指令、上游补丁源码及依赖字节的变更检查均按保护规则拒绝。详情见 [BUILD_VALIDATION.json](../release/BUILD_VALIDATION.json) 与 [SOLVER_CONTRACT_AUDIT.json](SOLVER_CONTRACT_AUDIT.json)。
-
-本次交付验证覆盖依赖定位、编译与静态身份校验。宿主 `Configure`、原生游戏请求和当前构建的胜利路线重放仍待运行验证；本次新增整局搜索、战斗探针与种子面板实验数为 0。历史原生执行与胜利证据由 holdout-01 记录提供。
-
-| 层次 | 当前范围与状态 |
+| 对象 | 身份及用途 |
 | --- | --- |
-| 发行内容 | 源码、测试、构建工具、许可证及精选 holdout 证据 |
-| 构建环境 | Windows x64，普通 Python/.NET/Git，用户安装的游戏与 Workshop 依赖 |
-| 身份保护 | game/solver/harness 字节校验与固定 CIL 契约；源码构建及静态校验已完成 |
-| 历史执行 | 原始身份下的离线 TestMode 执行与独立新进程重放，见 holdout-01 证书 |
-| 当前构建重放 | 提供双新进程动作重放入口，通过后生成本机构建身份下的新证书；运行验证待完成 |
-| 正常游戏等价 | 正常 Godot 游戏等价待验证 |
-| 其他平台与版本 | Linux/macOS、后续游戏与 Workshop 版本待验证 |
-| SpireBoard | 附看板源码；主要运行入口为 CLI，看板启动任务的端到端验收待完成 |
+| i082 原冻结 | `frozen-i082`，对应 iteration-082 实现与现有测试 |
+| 原冻结 source_version | `e1b10f6f10f1c1d27f5f176f8b4e73ce8aa07fc2a9ab94b9eaf2d9cd10bd7c74` |
+| 公开源码包 | i082 规划实现加公开构建、启动、身份适配与精选文档 |
+| 用户重新编译 | 依赖、宿主、solver/harness 的实际二进制指纹随 setup 和运行记录保存 |
+| 历史 holdout-01 | `frozen-i054a`，独立的 20 次旧配置结果与 17 条获胜路线 |
 
-`UNKNOWN [0,1]` 表示该预算下结果未知。`VERIFIED_WIN_IN_NATIVE_HOST [1,1]` 表示离线规则模型中的整局胜利由独立重放确认。该布尔目标与最优分数、最少战损、无未来信息游玩和正常游戏等价分别定义、分别验证。
+[BASELINE.json](../release/BASELINE.json)与[i082 来源记录](../release/i082/provenance.json)记录规划来源，[BUILD_VALIDATION.json](../release/BUILD_VALIDATION.json)记录本次公开适配和构建。跨目录编译后的完整 DLL 指纹可以改变；静态契约检查确认允许的构建输入，当前二进制下的胜利由新的真实重放证书确认。
 
-## 公开目录与本地档案
+## i082 的已有证据
 
-公开目录保留项目源码、回归测试、构建补丁、固定上游信息、MIT 许可证和第三方署名。setup、单种子启动和完整动作重放是本次交付的运行入口；其他研究工具随源码提供，按工具所需数据与环境使用。
+iteration-082 实现记录包括 **845/845** 完整源码回归通过，原测试环境为 Windows / Python 3.10.6。公开构建要求 Python 3.11+，本次公开编译与启动工具检查另有记录。源码回归覆盖旧 profile 的解析保持、i082 一次带齐设置、用户参数覆盖、等距触发、重复表处理、平均合并及合成加牌支接线。[测试记录](../release/i082/tests.json) · [实现结果](../release/i082/results.md)
 
-依赖、编译产物、缓存和运行输出由本机 setup 与作业生成。用户提供自己的游戏与 Workshop 安装；游戏程序集与素材、反编译游戏源码、SDK、作者缓存、私人聊天及完整运行目录保留在各自本地环境。`vendor/`、`runtime/`、`.tools/` 和 `outputs/` 纳入 Git 忽略规则。
+i082 全部机制默认开启是当前版本的配置选择。联合模型的合成加牌行借用基础真实入场的 F1 结果；同表行相关，部分样本同时影响成对档位与联合模型。真实效果和费用由 i082 自己的运行结果评估。原 iteration-082 记录中的 524130501、60 分钟用户作业结果待填，发布保存该既有作业的进度记录，不据此登记胜利或声称速度收益。[既有进度](../release/i082/existing-run-progress.json)
 
-三个依赖作者私有资料的历史工具 `tools/diagnose_solver_pcore.py`、`tools/profile_solver_panel.py` 和 `tools/publish_run_report.py` 继续本地保留。公开导出范围见 [CLEANUP_REPORT.json](../release/CLEANUP_REPORT.json)。
+## 公开构建与证据层次
 
-完整冻结源码与原始运行档案继续保存。公开身份清单引用各次实际构建与执行记录，版本更新随新的构建和重放证据生成。
+可移植构建适配保留完整 DLL 白名单及 block 补偿，并检查固定 `CorePowerSupport` 整类和嵌套类型的规范化 CIL；宿主自行读取实际 DLL 计算契约。游戏与 RitsuLib 字节身份也固定校验。公共 NuGet 源、固定 CombatSolver pin 与包内路径使构建可在用户目录完成。
+
+本交付四项目编译均为 0 warning / 0 error，`--check-only` 静态身份前置检查通过；公开 i082 命令行启动器的干跑由真实规划器解析器核对设置。前端准备另执行零动作原生宿主初始化，验证当前身份与暂停计时前置条件；该检查允许启动与初始菜单初始化，动作数为零，没有战斗、整局搜索或胜利重放。
+
+| 验证层次 | 证据含义 |
+| --- | --- |
+| 源码回归 | 检查逻辑、配置、夹具和接线，不产生原生整局效果结果 |
+| 源码编译 | 宿主、solver、harness 与契约工具的编译报告 |
+| 静态身份检查 | 依赖字节、构建来源与固定 CIL 契约前置检查 |
+| 公开启动器干跑 | 权威解析器读取完整 i082 设置，未启动求解 |
+| 前端准备 | `.tools/dashboard-ready.json` 绑定当前源码/宿主，零动作初始化通过后启用本机入口 |
+| 原生运行 | 当前宿主实际执行游戏请求的记录，需单独产生 |
+| 独立胜利重放 | 新进程从初始状态，无 advisor/检查点/缓存，观察真实 `OnEnded(true)` |
+| 正常游戏等价 | 正常 Godot 运行等价仍待验证 |
+
+编译和静态校验不代替实际游戏执行或重放。本机 setup 生成构建记录，单种子作业和双新进程动作重放生成各自执行证据。
+
+`UNKNOWN [0,1]` 表示预算结束后结果仍未知；`VERIFIED_WIN_IN_NATIVE_HOST [1,1]` 表示在离线 TestMode 原生 DLL 规则范围内，整局布尔胜利已独立确认。分数/生命最优、公开信息决策与正常 Godot 游戏等价分别定义、分别验证。失败、超时、资源限制或探针 DEAD 排序信号不能证明种子不可获胜。
+
+## 历史 holdout-01
+
+- 原版本 `frozen-i054a`，IRONCLAD / A10 / all unlocks / fresh start / mode1。
+- focus + `pick,elo` 根部策略、牌组族上限 2、最终首领 `open`，`solver_seed=271828`。
+- 20 个新种子各运行一次，每次 30 分钟，实际 worker 为 5–7 个。
+- 17 个独立重放确认胜利、3 个预算下 UNKNOWN；观察解出比例 85%，Wilson 95% 区间 64–95%。
+- 保留全部 20 次汇总、17 条完整获胜动作和历史证书，该结果归属旧版本。
+
+[完整历史结果](../release/holdout-01/results.md) · [机器记录](../release/holdout-01/summary.json)
+
+历史记录保留旧冻结实现与参数的原始身份。复核旧获胜动作可使用 `tools/replay_holdout_source.py`，取得当前二进制下的新重放证书；它验证动作路线，并不重新测量旧版本的搜索效果。
+
+## 发行目录与本地档案
+
+发行保留规划/宿主源码、完整前端、回归测试、公开构建与身份适配、固定上游信息、MIT 许可证、第三方署名和精选证据。SpireBoard 和 CLI 都采用完整 i082 设置；前端在用户完成本机准备后提交新作业，运行页支持受控作业暂停、继续与退出。[前端说明](../dashboard/README.md)
+
+前端暂停保存存活进程的内存，排除主动预算中的暂停时间；退出结束作业并保留证据，没有进程退出后的持久恢复。零动作计时初始化与进程控制验证分别记录，不能把初始化通过读成新的游戏胜利或性能结论。本机研究前端的部署身份独立保存，[部署来源记录](../release/i082/deployment.json)不自动授权用户新编译的二进制，公开 prepare 工具检查用户自己的身份。
+
+游戏与 Workshop 安装由用户提供。SDK、vendor 检出、包内 private runtime 布局、构建产物与输出由本机生成，并纳入 Git 忽略规则。完整 frozen workspace、全部原始作业、失败记录、worker 日志、反编译参考、作者缓存和私人聊天继续保留在本地研究档案。
+
+[构建与运行](BUILD.md) · [项目背景](PROJECT_BACKGROUND.md)
+

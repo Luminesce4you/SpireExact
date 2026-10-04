@@ -70,6 +70,15 @@ internal sealed partial class CampaignReplay
     JsonObject EnterProbe(string name, object[] options)
     {
         var spec = probe!.Value;
+        // Production paired probes must first reproduce the source map entry
+        // (deck, resources and RNG included). A mismatch stays unsupported;
+        // never apply synthetic edits to a different replayed entry.
+        if (spec.TryGetProperty("expected_entry_observation", out var expected))
+        {
+            if (expected.ValueKind != JsonValueKind.Object) throw new ArgumentException("PROBE_ENTRY_OBSERVATION_REQUIRED");
+            RoomCheckpoint.RequireEqual(JsonNode.Parse(expected.GetRawText()),
+                JsonSerializer.SerializeToNode(Observe(), Program.Json), "probe_source_entry");
+        }
         if (spec.TryGetProperty("edits", out var edits))
             foreach (var edit in edits.EnumerateArray()) probeEdits.Add(ApplyEdit(edit));
         if (spec.TryGetProperty("hp", out var hp))
