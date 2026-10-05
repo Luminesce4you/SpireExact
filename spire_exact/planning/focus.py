@@ -7,10 +7,10 @@ share of evaluations on the trajectories that got furthest: it revisits their
 decisions starting next to the fatal fight and moves backwards floor by floor,
 trying the options a per-seed gate model ranks highest first.
 
-Heuristic allocation only. A trajectory's rank, a label's value and the order
-of alternatives never exclude anything: every alternative stays reachable
-through the explorer share, and prefix identity is still the exact trie of
-full canonical actions shared with the explorer.
+Heuristic allocation only: rankings are never infeasibility proofs. Legacy
+wide-menu sampling can leave some alternatives unqueued; i085 may retain and
+progressively activate them. Prefix identity remains the exact trie of full
+canonical actions shared with the explorer. Finite-budget coverage is not promised.
 """
 from __future__ import annotations
 from bisect import insort
@@ -29,7 +29,7 @@ EXCLUDED_KINDS = ('discard_potion', 'reward', 'rewards_skip')
 
 
 class _Source:
-    __slots__ = ('label', 'quality', 'order', 'death_floor', 'diagnosis', 'sites', 'exhausted', 'picks', 'deck', 'gate', 'memo', 'carried', 'act', 'f1_entry')
+    __slots__ = ('label', 'quality', 'order', 'death_floor', 'diagnosis', 'sites', 'exhausted', 'picks', 'deck', 'gate', 'memo', 'carried', 'act', 'f1_entry', 'retention_key')
 
     def __init__(self, label, quality, order, death_floor, diagnosis, sites, deck=None, gate=None):
         self.label, self.quality, self.order = label, quality, order
@@ -42,6 +42,7 @@ class _Source:
         self.carried = 0.0          # HP share carried into the fatal fight when it is a later boss of its act (carry)
         self.act = 0                # act of the fatal floor (stall)
         self.f1_entry = None        # exact full entering prefix, only for a fatal final F1 (joint focus)
+        self.retention_key = None
 
 
 class FocusScheduler:
@@ -121,7 +122,8 @@ class FocusScheduler:
                  focus: int = 3, explore: int = 1, site_cap: int | None = 12,
                  cluster_cap: int = 0, cluster_percent: int = 75, family: bool = False, optimism: int = 0,
                  carry: bool = False, stall: int = 0, stall_extended: bool = False, stall_f2: bool = False,
-                 f2_joint_focus: bool = False):
+                 f2_joint_focus: bool = False, plateau_diversity: bool = False,
+                 recover_deferred: bool = False):
         if min(elites, pool, focus) < 1 or explore < 0 or pool < elites:
             raise ValueError('invalid focus scheduler configuration')
         if type(cluster_cap) is not int or cluster_cap < 0 or type(cluster_percent) is not int or not 1 <= cluster_percent <= 100:
@@ -138,7 +140,13 @@ class FocusScheduler:
             raise ValueError('F2 backoff requires extended stall and a positive threshold')
         if type(f2_joint_focus) is not bool or (f2_joint_focus and carry):
             raise ValueError('joint F2 focus cannot be combined with carried HP focus')
-        self.explorer = IndexedStrategicScheduler(scope_prefix, site_cap)
+        if type(plateau_diversity) is not bool:raise ValueError('plateau_diversity must be boolean')
+        self.plateau_diversity = plateau_diversity
+        self.retained_neighborhoods = set()
+        self.plateau_admissions = 0
+        self.neighborhood_improvements = 0
+        self.neighborhood_duplicates = 0
+        self.explorer = IndexedStrategicScheduler(scope_prefix, site_cap, recover_deferred=recover_deferred)
         self.scope_length = len(scope_prefix or [])
         self.models = models
         self.elites, self.pool_size = elites, pool
@@ -187,9 +195,10 @@ class FocusScheduler:
         if classify_failure(result) != 'NATIVE_ROUTE_DEATH' or not result.get('trace'):
             return
         quality = utility(result)
-        # An equal outcome adds a parallel copy of the same neighbourhood, not
-        # a better starting point: only the first trajectory of a quality is kept.
-        if quality in self.qualities:
+        # Legacy approximation: retain only one trajectory per outcome tuple.
+        # i085 checks actual decision neighborhoods instead; equal utility alone
+        # does not establish that two macro neighborhoods are interchangeable.
+        if not self.plateau_diversity and quality in self.qualities:
             return
         key = tuple(-x for x in quality)
         deck = victim = None
@@ -228,6 +237,25 @@ class FocusScheduler:
                                      6 if action.get('kind') == 'use_potion' else 0))
             if alternatives:
                 sites.append((i, floor, act, row['phase'], alternatives))
+        # Only identical retained decision neighborhoods are redundant for
+        # i085 focus allocation. These are exact alternative-prefix trie IDs,
+        # not a deck/HP feature signature or an exact game-state assertion.
+        retention = (tuple((i, tuple(sorted(key for key, _, _ in alternatives)))
+                           for i, _, _, _, alternatives in sites) if self.plateau_diversity else None)
+        if self.plateau_diversity and retention in self.retained_neighborhoods:
+            previous = next(s for s in self.sources.values() if s.retention_key == retention)
+            if quality <= previous.quality:
+                self.neighborhood_duplicates += 1
+                return
+            # A stronger combat result can have precisely the same preceding
+            # macro alternatives. Keep the improved source, not the first one.
+            self.sources.pop(previous.label)
+            self.pool.remove((tuple(-x for x in previous.quality), previous.order, previous.label))
+            self.retained_neighborhoods.discard(retention)
+            self.qualities = {s.quality for s in self.sources.values()}
+            self.neighborhood_improvements += 1
+            victim = None  # replacing the old source already freed one place
+        self.plateau_admissions += int(self.plateau_diversity and quality in self.qualities)
         self.order += 1
         gate = None
         if self.family:
@@ -235,6 +263,8 @@ class FocusScheduler:
             act = int((result.get('observation') or {}).get('act') or 0)
             gate = (act, sum(row['gate'][0] == act and row['lost'] is None for row in boss_fight_rows(result)))
         source = _Source(label, quality, self.order, death_floor, FailureAnalyzer.analyze(result), sites, deck, gate)
+        source.retention_key = retention
+        if self.plateau_diversity:self.retained_neighborhoods.add(retention)
         source.act = int((result.get('observation') or {}).get('act') or 0)
         source.f1_entry = fatal_f1
         if self.carry:
@@ -249,10 +279,15 @@ class FocusScheduler:
         if victim is not None:
             dropped = self.sources.pop(victim)
             self.qualities.discard(dropped.quality)
+            self.retained_neighborhoods.discard(dropped.retention_key)
             self.pool.remove((tuple(-x for x in dropped.quality), dropped.order, victim))
         while len(self.pool) > self.pool_size:
             _, _, dropped = self.pool.pop()
-            self.qualities.discard(self.sources.pop(dropped).quality)
+            source = self.sources.pop(dropped)
+            self.qualities.discard(source.quality)
+            self.retained_neighborhoods.discard(source.retention_key)
+        if self.plateau_diversity:
+            self.qualities = {source.quality for source in self.sources.values()}
 
     # ---- stalled gate ---------------------------------------------------
     def _record_gates(self, result):
@@ -592,7 +627,9 @@ class FocusScheduler:
         return None
 
     def _explore(self):
-        group = self._explore_unblocked() if self.lineage.target_act() is not None else self.explorer.next()
+        blocked = self.lineage.target_act() is not None
+        if blocked and self.explorer.recover_deferred:self.explorer.promote_deferred()
+        group = self._explore_unblocked() if blocked else self.explorer.next()
         if group is not None:
             self.explore_picks += 1
         return group
@@ -642,6 +679,12 @@ class FocusScheduler:
 
     def snapshot(self):
         report = self._snapshot()
+        if self.plateau_diversity:
+            report['macro_plateaus'] = {'enabled':True, 'equal_quality_admissions':self.plateau_admissions,
+                'same_neighborhood_improvements':self.neighborhood_improvements,
+                'identical_neighborhoods_skipped':self.neighborhood_duplicates,
+                'retained_neighborhoods':len(self.retained_neighborhoods),
+                'scope':'focus allocation only; explorer keeps its exact-prefix alternatives'}
         if self.family:
             # The elites the next focus evaluation is shared between, with the record behind each share.
             rows = []

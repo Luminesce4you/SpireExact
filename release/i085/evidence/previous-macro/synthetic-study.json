@@ -1,0 +1,293 @@
+{
+  "schema": "spire-i085-synthetic-analysis/v1",
+  "source_hash": "e87db63a6251398509d7a3aa7598fe1e62139fefd8825d4546608fac3ec05f98",
+  "native_executed": false,
+  "menu_coverage_counterexample": [
+    {
+      "available_alternatives": 30,
+      "results": [
+        {
+          "recovery": false,
+          "scheduled_distinct_options": 12,
+          "unreached_fixture_options": 18,
+          "coordinator_seconds": 0.000635956000223814,
+          "snapshot": {
+            "candidates_generated": 12,
+            "candidates_deduplicated": 0,
+            "pending_branches": 0,
+            "scheduled_by_category": {
+              "deck": 5,
+              "failure": 4,
+              "exploration": 3
+            },
+            "unique_strategic_branch_requests": 12,
+            "room_decision_sites": 1,
+            "shared_prefix_nodes": 14,
+            "shared_action_bytes": 424,
+            "prefix_identity": "exact parent plus full action bytes; not state equivalence",
+            "site_cap": 12,
+            "options_deferred_by_site_cap": 18
+          }
+        },
+        {
+          "recovery": true,
+          "scheduled_distinct_options": 30,
+          "unreached_fixture_options": 0,
+          "coordinator_seconds": 0.0013576129999819386,
+          "snapshot": {
+            "candidates_generated": 30,
+            "candidates_deduplicated": 0,
+            "pending_branches": 0,
+            "scheduled_by_category": {
+              "deck": 12,
+              "failure": 11,
+              "exploration": 7
+            },
+            "unique_strategic_branch_requests": 30,
+            "room_decision_sites": 1,
+            "shared_prefix_nodes": 32,
+            "shared_action_bytes": 1013,
+            "prefix_identity": "exact parent plus full action bytes; not state equivalence",
+            "recover_deferred": true,
+            "deferred_pending": 0,
+            "deferred_promoted": 18,
+            "site_cap": 12,
+            "options_deferred_by_site_cap": 18
+          }
+        }
+      ]
+    },
+    {
+      "available_alternatives": 127,
+      "results": [
+        {
+          "recovery": false,
+          "scheduled_distinct_options": 12,
+          "unreached_fixture_options": 115,
+          "coordinator_seconds": 0.0007753380000394827,
+          "snapshot": {
+            "candidates_generated": 12,
+            "candidates_deduplicated": 0,
+            "pending_branches": 0,
+            "scheduled_by_category": {
+              "deck": 5,
+              "failure": 4,
+              "exploration": 3
+            },
+            "unique_strategic_branch_requests": 12,
+            "room_decision_sites": 1,
+            "shared_prefix_nodes": 14,
+            "shared_action_bytes": 429,
+            "prefix_identity": "exact parent plus full action bytes; not state equivalence",
+            "site_cap": 12,
+            "options_deferred_by_site_cap": 115
+          }
+        },
+        {
+          "recovery": true,
+          "scheduled_distinct_options": 127,
+          "unreached_fixture_options": 0,
+          "coordinator_seconds": 0.0044566540000232635,
+          "snapshot": {
+            "candidates_generated": 127,
+            "candidates_deduplicated": 0,
+            "pending_branches": 0,
+            "scheduled_by_category": {
+              "deck": 51,
+              "failure": 44,
+              "exploration": 32
+            },
+            "unique_strategic_branch_requests": 127,
+            "room_decision_sites": 1,
+            "shared_prefix_nodes": 129,
+            "shared_action_bytes": 4242,
+            "prefix_identity": "exact parent plus full action bytes; not state equivalence",
+            "recover_deferred": true,
+            "deferred_pending": 0,
+            "deferred_promoted": 115,
+            "site_cap": 12,
+            "options_deferred_by_site_cap": 115
+          }
+        }
+      ]
+    },
+    {
+      "available_alternatives": 511,
+      "results": [
+        {
+          "recovery": false,
+          "scheduled_distinct_options": 12,
+          "unreached_fixture_options": 499,
+          "coordinator_seconds": 0.0025162230003843433,
+          "snapshot": {
+            "candidates_generated": 12,
+            "candidates_deduplicated": 0,
+            "pending_branches": 0,
+            "scheduled_by_category": {
+              "deck": 5,
+              "failure": 4,
+              "exploration": 3
+            },
+            "unique_strategic_branch_requests": 12,
+            "room_decision_sites": 1,
+            "shared_prefix_nodes": 14,
+            "shared_action_bytes": 436,
+            "prefix_identity": "exact parent plus full action bytes; not state equivalence",
+            "site_cap": 12,
+            "options_deferred_by_site_cap": 499
+          }
+        },
+        {
+          "recovery": true,
+          "scheduled_distinct_options": 511,
+          "unreached_fixture_options": 0,
+          "coordinator_seconds": 0.01622851799993441,
+          "snapshot": {
+            "candidates_generated": 511,
+            "candidates_deduplicated": 0,
+            "pending_branches": 0,
+            "scheduled_by_category": {
+              "deck": 204,
+              "failure": 179,
+              "exploration": 128
+            },
+            "unique_strategic_branch_requests": 511,
+            "room_decision_sites": 1,
+            "shared_prefix_nodes": 513,
+            "shared_action_bytes": 17298,
+            "prefix_identity": "exact parent plus full action bytes; not state equivalence",
+            "recover_deferred": true,
+            "deferred_pending": 0,
+            "deferred_promoted": 499,
+            "site_cap": 12,
+            "options_deferred_by_site_cap": 499
+          }
+        }
+      ]
+    }
+  ],
+  "deterministic_toy_campaign": [
+    {
+      "budget": 20,
+      "macro_i085": false,
+      "best_floor": 6,
+      "scheduled_by_kind": {
+        "baseline": 1,
+        "macro_focus": 8,
+        "macro_deck": 3,
+        "gate_retry": 4,
+        "macro_failure": 2,
+        "macro_exploration": 2
+      },
+      "status": "UNKNOWN",
+      "verified_native_wins": 0
+    },
+    {
+      "budget": 20,
+      "macro_i085": true,
+      "best_floor": 6,
+      "scheduled_by_kind": {
+        "baseline": 1,
+        "macro_focus": 11,
+        "macro_deck": 2,
+        "gate_retry": 4,
+        "macro_failure": 1,
+        "macro_exploration": 1
+      },
+      "status": "UNKNOWN",
+      "verified_native_wins": 0
+    },
+    {
+      "budget": 40,
+      "macro_i085": false,
+      "best_floor": 6,
+      "scheduled_by_kind": {
+        "baseline": 1,
+        "macro_focus": 8,
+        "macro_deck": 7,
+        "gate_retry": 8,
+        "macro_failure": 6,
+        "macro_exploration": 5,
+        "restart": 5
+      },
+      "status": "UNKNOWN",
+      "verified_native_wins": 0
+    },
+    {
+      "budget": 40,
+      "macro_i085": true,
+      "best_floor": 6,
+      "scheduled_by_kind": {
+        "baseline": 1,
+        "macro_focus": 19,
+        "macro_deck": 3,
+        "gate_retry": 8,
+        "macro_failure": 2,
+        "macro_exploration": 2,
+        "restart": 5
+      },
+      "status": "UNKNOWN",
+      "verified_native_wins": 0
+    },
+    {
+      "budget": 80,
+      "macro_i085": false,
+      "best_floor": 6,
+      "scheduled_by_kind": {
+        "baseline": 1,
+        "macro_focus": 8,
+        "macro_deck": 7,
+        "gate_retry": 16,
+        "macro_failure": 6,
+        "macro_exploration": 5,
+        "restart": 37
+      },
+      "status": "UNKNOWN",
+      "verified_native_wins": 0
+    },
+    {
+      "budget": 80,
+      "macro_i085": true,
+      "best_floor": 6,
+      "scheduled_by_kind": {
+        "baseline": 1,
+        "macro_focus": 19,
+        "macro_deck": 3,
+        "gate_retry": 16,
+        "macro_failure": 2,
+        "macro_exploration": 2,
+        "restart": 37
+      },
+      "status": "UNKNOWN",
+      "verified_native_wins": 0
+    }
+  ],
+  "structural_route_microcost": {
+    "nodes": 71,
+    "edges": 135,
+    "complete_paths_considered": 256,
+    "enumeration": {
+      "expanded_paths": 816,
+      "complete_candidate_paths": 256,
+      "enumeration_truncated": true,
+      "missing_boss": false
+    },
+    "selected": 3,
+    "repetitions": 10,
+    "median_seconds": 0.03010946649988,
+    "maximum_seconds": 0.03967155200007255,
+    "measured_seconds": [
+      0.030461656999705156,
+      0.033103431000199635,
+      0.03967155200007255,
+      0.03083990499999345,
+      0.029327595999802725,
+      0.029757276000054844,
+      0.029420181000205048,
+      0.028913578999890888,
+      0.03313713299985466,
+      0.02813353500005178
+    ]
+  },
+  "interpretation": "Menu coverage tests a scheduler mechanism. The toy campaign never produces a native win. Route timings exclude native snapshots, validation, serialization, startup, replay and combat. These measurements do not predict game win rate or end-to-end speedup."
+}

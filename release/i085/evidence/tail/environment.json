@@ -1,0 +1,14 @@
+{
+  "checked_utc": "2026-10-05T04:25:49.055958+00:00",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "python": "3.13.5",
+  "dotnet": null,
+  "gh": null,
+  "native_game_or_vendor_installed": false,
+  "native_build_attempted": false,
+  "GitHub_connection": "48 exposed read/search/download tools; no write action in this turn",
+  "baseline_remote_parent": "dec944a41743b83e44f137a140770e16961aa08f",
+  "baseline_tree": "d29dd3c88d2dc24acdad10908a3a78c38859696c",
+  "parent_reconstruction": "exact Git object SHA verified; API timestamps normalized UTC, original Git timezone +0800; no invented author identity",
+  "baseline_native_scope": "unchanged source-only locked native contract; no normal-game equivalence claim"
+}

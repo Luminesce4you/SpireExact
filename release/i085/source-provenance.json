@@ -1,0 +1,103 @@
+{
+  "schema": "spire-i085-tail-source-provenance/v1",
+  "created_utc": "2026-10-05T04:50:25.943984+00:00",
+  "executable_source_hash": "238e835b78f82c3bdefad2c3b7e477bdcbe485e6d170f0e23bcc39c389338820",
+  "baseline": "4c5823acd1a68acb797069fb8f7522a6ad857bbf",
+  "parent": "dec944a41743b83e44f137a140770e16961aa08f",
+  "candidate_commit": "see external publication.json; do not embed a self-referential commit",
+  "recovered_base_tree": "d29dd3c88d2dc24acdad10908a3a78c38859696c",
+  "native_build_or_rollouts": false,
+  "native_efficacy_unknown": true,
+  "evidence": [
+    {
+      "path": "evidence/tail/baseline-full.json",
+      "sha256": "eac2be9fcb9f3e103177d1d2446ee2ac13994b6567736476efba9404668aae26",
+      "bytes": 2390
+    },
+    {
+      "path": "evidence/tail/baseline-full.log",
+      "sha256": "476478eb5603c6dd2c3bba254bf15c69e2f6aeb4a6d56cca3d5efcebaef3cf09",
+      "bytes": 120019
+    },
+    {
+      "path": "evidence/tail/compatibility.json",
+      "sha256": "aa2839d581c30558e43fc81296a0e15d5b63b30946b3b0611ba74547411d20c5",
+      "bytes": 4757
+    },
+    {
+      "path": "evidence/tail/constructed-evaluation-cap.json",
+      "sha256": "47f14fd3c649af5dae7ad7e7027eb69321b2c643b8bf23771b201f6371ba1670",
+      "bytes": 2415914
+    },
+    {
+      "path": "evidence/tail/constructed-time-cap.json",
+      "sha256": "20083b0f36e0a33e13f836174060ca4bc0c89b062b9d35c4e03ddcfe9fcb610a",
+      "bytes": 1518347
+    },
+    {
+      "path": "evidence/tail/environment.json",
+      "sha256": "44ecbb3409d87c0de825186bafea92b15bcaab2dd013b59fb2231c0dc4b8ece2",
+      "bytes": 729
+    },
+    {
+      "path": "evidence/tail/excluded-historical-data.json",
+      "sha256": "2b049ad51ca5dad4a6ba178c49a0c391e10f3c915d1f3aaf782ba26d3705e55c",
+      "bytes": 329
+    },
+    {
+      "path": "evidence/tail/launcher-i085-shadow-120.json",
+      "sha256": "61c3e1b135cd02e1e550941c45faad4688ca6f56c5e33567e9b2d8db54566bcc",
+      "bytes": 5968
+    },
+    {
+      "path": "evidence/tail/launcher-i085-tail-120.json",
+      "sha256": "5c8e85c65efbe7d54817fe3f5dc5aef830963ad86f34594eb8b856529b478483",
+      "bytes": 5989
+    },
+    {
+      "path": "evidence/tail/plan-only/comparison.json",
+      "sha256": "7ac3bd0c8e4539724dd15bfaf66bc372d4543815fc869fd96aab88578ad55b1e",
+      "bytes": 17454
+    },
+    {
+      "path": "evidence/tail/plan-only/comparison.md",
+      "sha256": "371b5080f1ee7339cc8965c7a13ca909b4244acb8e458e74fcf04adf4c52692c",
+      "bytes": 2107
+    },
+    {
+      "path": "evidence/tail/plan-only/plan.json",
+      "sha256": "8ab1ab4d71e3fbb5e0944e3ce1e9f8e3fdface754bbf199e8d5b5fe350ce12b4",
+      "bytes": 24783
+    },
+    {
+      "path": "evidence/tail/python-candidate/tests.json",
+      "sha256": "c75a5d6a853d061d3a0eb5e3081781f24e6ce22ecad4393bddefde9fc00e3db0",
+      "bytes": 10889
+    },
+    {
+      "path": "evidence/tail/python-candidate/unittest.log",
+      "sha256": "d22ae17f35c434f540941218353debabd24335afff0854b2f1509b6003c25e06",
+      "bytes": 15522
+    },
+    {
+      "path": "evidence/tail/python-full/tests.json",
+      "sha256": "b44e1d8c45a1ce8890fe0b1f6a89608033785bccc827fd88b20e30d70f8ef84b",
+      "bytes": 88125
+    },
+    {
+      "path": "evidence/tail/python-full/unittest.log",
+      "sha256": "872cf8a495b74bb4ba0e726f4730272a2f5476e293a7c4fcc6a328a0cac5d479",
+      "bytes": 135421
+    },
+    {
+      "path": "evidence/tail/static-validation.json",
+      "sha256": "f86747783234053e2be093042596481f495282f1b3ba9c0041fe4d1fb72f7eee",
+      "bytes": 337
+    },
+    {
+      "path": "evidence/tail/summary.json",
+      "sha256": "cc230f0f2dbc5e703b00ef3e356d6dc759e24b3e578d70f69f8c538302bebaa2",
+      "bytes": 6098
+    }
+  ]
+}

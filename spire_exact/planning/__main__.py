@@ -49,6 +49,24 @@ def main(argv=None):
     p.add_argument('--scheduler',choices=['weighted','dfs','tree','incumbent','focus'],default=None,
                    help="'focus' spends most evaluations next to the failures of the best trajectories")
     p.add_argument('--focus-elites',type=int,default=8);p.add_argument('--focus-pool',type=int,default=48)
+    p.add_argument('--gate-timing',action=argparse.BooleanOptionalAction,default=False)
+    p.add_argument('--tail-mode',choices=['off','shadow','on'],default=None)
+    p.add_argument('--tail-sites',type=int,default=1024)
+    p.add_argument('--tail-mib',type=int,default=16)
+    p.add_argument('--tail-cohort-inflight',type=int,default=2)
+    p.add_argument('--tail-feedback-rounds',type=int,default=2)
+    p.add_argument('--gate-model-minimum',type=int,default=24)
+    p.add_argument('--gate-model-refresh',type=int,default=16)
+    p.add_argument('--macro-plateau',action=argparse.BooleanOptionalAction,default=None)
+    p.add_argument('--macro-widening',action=argparse.BooleanOptionalAction,default=None)
+    p.add_argument('--macro-fair',action=argparse.BooleanOptionalAction,default=None)
+    p.add_argument('--macro-routes',choices=['off','shadow','on'],default=None)
+    p.add_argument('--macro-aux-burst',type=int,default=4)
+    p.add_argument('--macro-route-limit',type=int,default=3)
+    p.add_argument('--macro-route-every',type=int,default=8)
+    p.add_argument('--macro-route-paths',type=int,default=256)
+    p.add_argument('--macro-route-expansions',type=int,default=4096)
+    p.add_argument('--macro-route-queue-mib',type=int,default=16)
     p.add_argument('--focus-share',type=int,default=3,help='Focus evaluations per explorer evaluation')
     p.add_argument('--site-cap',type=int,default=12,help='Explorer-side deferral for very wide menus (focus scheduler)')
     p.add_argument('--prior',action=argparse.BooleanOptionalAction,default=None,help='Send per-seed gate-model tiers with every generated rollout (allocation only)')
@@ -147,6 +165,8 @@ def main(argv=None):
     p.add_argument('--cache-mib',type=int,default=64)
     p.add_argument('--archive-entries',type=int,default=48)
     a=resolve_entry_defaults(p.parse_args(argv))
+    if (a.macro_plateau or a.macro_widening or a.macro_fair) and a.scheduler!='focus':
+        p.error('i085 macro allocation switches require --scheduler focus')
     if any((a.f2_dead_retry,a.f2_joint_focus,a.f2_joint_model))and not a.f2_readiness_probes:
         p.error('--f2-dead-retry, --f2-joint-focus and --f2-joint-model require --f2-readiness-probes')
     if a.f2_joint_focus and a.focus_carry:p.error('--f2-joint-focus cannot be combined with --focus-carry')
@@ -182,7 +202,7 @@ def main(argv=None):
         p.error('--gate-probe-schedule needs the combatsolver advisor, a fresh start and the focus or weighted scheduler')
     if a.gate_probe_cards<1 or a.gate_probe_chunk<1:p.error('--gate-probe-cards and --gate-probe-chunk must be positive')
     if (a.f1_winner_reuse or a.real_card_menu_probes or a.gold_shop_routes or a.low_hp_routes
-            or a.lean_third_act or a.shop_preparation or a.resource_telemetry):
+            or a.lean_third_act or a.shop_preparation or a.resource_telemetry or a.macro_routes!='off'):
         if (a.character!='IRONCLAD' or a.ascension!=10 or a.unlocks!='all' or a.advisor!='combatsolver'
                 or a.prefix or a.root_portfolio!=1):
             p.error('experimental research switches need a fresh IRONCLAD A10 all-unlocks combatsolver start and --root-portfolio 1')
@@ -209,6 +229,13 @@ def main(argv=None):
         gate_probe_plan=gates.get('probe')if a.gate_probe_plan=='light'else None,paired_card_probes=a.paired_card_probes,
         paired_card_every=a.paired_card_every,paired_card_dedup=a.paired_card_dedup,paired_card_merge=a.paired_card_merge,
         paired_card_joint=a.paired_card_joint,
+        gate_timing=a.gate_timing,tail_mode=a.tail_mode,tail_sites=a.tail_sites,tail_mib=a.tail_mib,
+        tail_cohort_inflight=a.tail_cohort_inflight,tail_feedback_rounds=a.tail_feedback_rounds,
+        gate_model_minimum=a.gate_model_minimum,gate_model_refresh=a.gate_model_refresh,
+        macro_plateau=a.macro_plateau,macro_widening=a.macro_widening,macro_fair=a.macro_fair,
+        macro_routes=a.macro_routes,macro_aux_burst=a.macro_aux_burst,macro_route_limit=a.macro_route_limit,
+        macro_route_every=a.macro_route_every,macro_route_paths=a.macro_route_paths,
+        macro_route_expansions=a.macro_route_expansions,macro_route_queue_mib=a.macro_route_queue_mib,
         f1_winner_reuse=a.f1_winner_reuse,real_card_menu_probes=a.real_card_menu_probes,
         gold_shop_routes=a.gold_shop_routes,low_hp_routes=a.low_hp_routes,low_hp_routes_any_act=a.low_hp_routes_any_act,lean_third_act=a.lean_third_act,
         shop_preparation=a.shop_preparation,resource_telemetry=a.resource_telemetry,

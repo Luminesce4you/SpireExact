@@ -1,0 +1,23 @@
+{
+  "scope": "Unmodified baseline core source; local same-interpreter comparison and prior CI source validation, not i085 native evidence",
+  "local": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "tests_run": 842,
+    "errors": 2,
+    "skips": 2,
+    "exit_code": 1,
+    "log": "baseline-python313.log"
+  },
+  "upstream_ci": {
+    "commit": "dec944a41743b83e44f137a140770e16961aa08f",
+    "core_baseline_commit": "4c5823acd1a68acb797069fb8f7522a6ad857bbf",
+    "workflow_run": 37251030066,
+    "python": "3.12.3",
+    "tests_run": 842,
+    "errors": 2,
+    "skips": 2,
+    "exit_code": 1,
+    "log": "baseline-ci-python312.log"
+  },
+  "native_executed": false
+}
