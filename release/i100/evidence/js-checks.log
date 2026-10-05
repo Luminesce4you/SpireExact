@@ -1,0 +1,5 @@
+tests/dashboard_controls.cjs: exit=0 Dashboard controls: confirmed pause/resume/stop, frozen elapsed, state guards and request isolation passed.
+tests/dashboard_gate_model.cjs: exit=0 Gate model snapshots, coefficient search/deduplication, empty states and escaping passed.
+tests/dashboard_guide.cjs: exit=0 Guide outline, grouping, instructions, expected changes and mismatch report passed.
+tests/dashboard_navigation.cjs: exit=0 Navigation, refresh, delayed route URL and verified filters passed.
+tests/dashboard_route_ui.cjs: exit=0 Route UI formatter checks passed; no browser visual validation.

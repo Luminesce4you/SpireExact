@@ -1,7 +1,7 @@
 [project]
 name = "spire-exact"
-version = "0.3.1b1"
-description = "i082 source release of full-information Ironclad A10 route search with native execution and independent replay"
+version = "0.4.0b1"
+description = "i100 source release of full-information Ironclad A10 route search with gate-clinic allocation, native execution and independent replay"
 requires-python = ">=3.11"
 dependencies = []
 

@@ -1,104 +1,105 @@
 {
- "candidate": "i085-final01",
  "differences_from_i082_or_i085": {
   "clinic": {
    "i082": false,
    "i085": false,
-   "i085-final01": true
+   "i100": true
   },
   "clinic_hints": {
    "i082": false,
    "i085": false,
-   "i085-final01": true
+   "i100": true
   },
   "f2_dead_retry": {
    "i082": true,
    "i085": true,
-   "i085-final01": false
+   "i100": false
   },
   "f2_joint_focus": {
    "i082": true,
    "i085": true,
-   "i085-final01": false
+   "i100": false
   },
   "f2_joint_model": {
    "i082": true,
    "i085": true,
-   "i085-final01": false
+   "i100": false
   },
   "f2_readiness_probes": {
    "i082": true,
    "i085": true,
-   "i085-final01": false
+   "i100": false
   },
   "focus_stall": {
    "i082": 32,
    "i085": 32,
-   "i085-final01": 0
+   "i100": 0
   },
   "focus_stall_extended": {
    "i082": true,
    "i085": true,
-   "i085-final01": false
+   "i100": false
   },
   "focus_stall_f2": {
    "i082": true,
    "i085": true,
-   "i085-final01": false
+   "i100": false
   },
   "gate_timing": {
    "i082": false,
    "i085": false,
-   "i085-final01": true
+   "i100": true
   },
   "macro_fair": {
    "i082": false,
    "i085": true,
-   "i085-final01": true
+   "i100": true
   },
   "macro_plateau": {
    "i082": false,
    "i085": true,
-   "i085-final01": true
+   "i100": true
   },
   "macro_routes": {
    "i082": "off",
    "i085": "shadow",
-   "i085-final01": "off"
+   "i100": "off"
   },
   "macro_widening": {
    "i082": false,
    "i085": true,
-   "i085-final01": true
+   "i100": true
   },
   "paired_card_first": {
    "i082": 1,
    "i085": 1,
-   "i085-final01": 8
+   "i100": 8
   },
   "paired_card_joint": {
    "i082": true,
    "i085": true,
-   "i085-final01": false
+   "i100": false
   },
   "paired_card_probes": {
    "i082": true,
    "i085": true,
-   "i085-final01": false
+   "i100": false
   },
   "strategy_prior": {
    "i082": "off",
    "i085": "off",
-   "i085-final01": "builtin"
+   "i100": "builtin"
   },
   "tail_mode": {
    "i082": "off",
    "i085": "shadow",
-   "i085-final01": "off"
+   "i100": "off"
   }
  },
- "executable_source_hash": "da0e506ca2aa428e0e22565bd897e4f491cad027ea3062e43c65517717a26142",
- "final01_rendered_argv": [
+ "executable_source_hash": "7083208da02209a4ce827f0de13058cde036a240966a907be3c56fa5b1de98ff",
+ "frontend_solver_settings": [
+  "--feature-profile",
+  "i100",
   "--f1-winner-reuse",
   "--prefer-f1-hp",
   "--gold-shop-routes",
@@ -160,7 +161,70 @@
   "--macro-routes",
   "off"
  ],
- "final01_switch_table": {
+ "generated_by": "tools.run_release_source.effective_parameters / settings; tools.prepare_dashboard.public_settings; spire_exact.planning.final_defaults",
+ "i100_rendered_argv": [
+  "--f1-winner-reuse",
+  "--prefer-f1-hp",
+  "--gold-shop-routes",
+  "--low-hp-routes",
+  "--lean-third-act",
+  "--shop-preparation",
+  "--resource-telemetry",
+  "--memory-telemetry",
+  "--preserve-completed-prefix",
+  "--no-f2-readiness-probes",
+  "--no-f2-dead-retry",
+  "--no-f2-joint-focus",
+  "--no-f2-joint-model",
+  "--scheduler",
+  "focus",
+  "--prior",
+  "--gate-preset",
+  "escalate-evaluate",
+  "--repair-mode",
+  "gate",
+  "--normal-nodes",
+  "10000",
+  "--runtime-profile",
+  "server-bounded-large-gen0",
+  "--worker-memory-mib",
+  "1792",
+  "--root-policies",
+  "pick,elo",
+  "--focus-cluster-cap",
+  "2",
+  "--final-gate-plan",
+  "open",
+  "--root-async",
+  "--requeue-lost",
+  "1",
+  "--focus-stall",
+  "0",
+  "--no-focus-stall-extended",
+  "--no-focus-stall-f2",
+  "--low-hp-routes-any-act",
+  "--paired-card-every",
+  "32",
+  "--paired-card-dedup",
+  "--paired-card-merge",
+  "mean",
+  "--no-paired-card-probes",
+  "--clinic",
+  "--clinic-hints",
+  "--strategy-prior",
+  "builtin",
+  "--paired-card-first",
+  "8",
+  "--gate-timing",
+  "--tail-mode",
+  "off",
+  "--macro-plateau",
+  "--macro-widening",
+  "--macro-fair",
+  "--macro-routes",
+  "off"
+ ],
+ "i100_switch_table": {
   "clinic": true,
   "clinic_hints": true,
   "f2_dead_retry": false,
@@ -180,8 +244,7 @@
   "strategy_prior": "builtin",
   "tail_mode": "off"
  },
- "generated_by": "tools.run_release_source.effective_parameters / settings; spire_exact.planning.final_defaults",
- "native_executed": false,
+ "iteration": "i100",
  "profiles": {
   "i082": {
    "advisor": "combatsolver",
@@ -445,7 +508,7 @@
    "worker_memory_policy": "hard",
    "workers": null
   },
-  "i085-final01": {
+  "i100": {
    "advisor": "combatsolver",
    "alternatives": 6,
    "archive_entries": 48,
@@ -478,7 +541,7 @@
    "f2_joint_model": false,
    "f2_readiness_every": 20,
    "f2_readiness_probes": false,
-   "feature_profile": "i085-final01",
+   "feature_profile": "i100",
    "final_gate_plan": "open",
    "focus_carry": false,
    "focus_cluster_cap": 2,
@@ -577,7 +640,7 @@
    "workers": null
   }
  },
- "public_default": "i082",
+ "public_default": "i100",
  "release_launcher_argv_seed101_45min": [
   "--seed",
   "101",
@@ -632,7 +695,7 @@
   "--archive-entries",
   "256",
   "--feature-profile",
-  "i085-final01",
+  "i100",
   "--f1-winner-reuse",
   "--prefer-f1-hp",
   "--gold-shop-routes",
@@ -694,5 +757,6 @@
   "--macro-routes",
   "off"
  ],
- "schema": "spire-i085-final01-defaults/v1"
+ "schema": "spire-i100-defaults/v1",
+ "version": "0.4.0b1"
 }

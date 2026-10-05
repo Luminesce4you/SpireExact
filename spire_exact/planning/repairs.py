@@ -23,7 +23,7 @@ class RepairQueue:
         if self.mode=='fifo':return self.items.pop(candidates[0])
         if self.mode=='gate':
             # Best source trajectory first; equal priorities keep arrival order.
-            # i085-final01 `rank` (lower first) orders whole diagnosis classes
+            # i100 `rank` (lower first) orders whole diagnosis classes
             # before the existing priority; None keeps the historical order.
             if rank is not None:
                 index=max(candidates,key=lambda i:(-rank(self.items[i]),self.items[i].get('priority',()),-i))

@@ -43,7 +43,7 @@ def dispatch_blocked(spec,scheduler):
 
 def take_dispatchable(queue,scheduler,allow=None):
     """Defer blocked work without changing the order of any retained item.
-    `allow` (i085-final01 governor) may defer more items; None = legacy."""
+    `allow` (i100 governor) may defer more items; None = legacy."""
     for index,spec in enumerate(queue):
         if not dispatch_blocked(spec,scheduler) and (allow is None or allow(spec)):
             del queue[index]
@@ -282,7 +282,7 @@ class SearchConfig:
     macro_route_paths: int=256
     macro_route_expansions: int=4096
     macro_route_queue_mib: int=16
-    # i085-final01 (all off here; the i085-final01 entry turns them on): gate
+    # i100 (all off here; the i100 entry turns them on): gate
     # clinic root-versus-depth diagnosis steering focus picks, verdict-aware
     # gate-retry share/order, auxiliary-work governor, structural strategy
     # prior and a later first paired table. Allocation only.
@@ -503,7 +503,7 @@ class Evaluator:
         name,_,tag=(spec.get('family')or NATIVE).partition('~')
         table=jitter_tiers(POLICIES[name],CARDS,f'{self.config.solver_seed}:{tag}',self.config.jitter_percent)if tag else POLICIES[name]
         tiers=merge_tiers(table,learned or {})
-        # i085-final01: a clinic re-root carries its repair direction for the
+        # i100: a clinic re-root carries its repair direction for the
         # continuation it starts (tiers only; legality and identity unchanged).
         hint=(spec.get('group')or{}).get('policy_hint')
         return merge_tiers(tiers,hint)if hint else tiers
@@ -1198,7 +1198,7 @@ def solve(ctx: dict,out: Path,pool: NativePool,config: SearchConfig,*,advisor=No
             urgent.extend(again for due,again in held if due<=now);held[:]=[h for h in held if h[0]>now]
         specs=[]
         if can_schedule:
-            # i085-final01: gate retries of a DEPTH-diagnosed stem may use a
+            # i100: gate retries of a DEPTH-diagnosed stem may use a
             # larger share; ROOT-stem retries go last (never dropped).
             retry_share=.2
             if config.clinic and repairs and any(scheduler.retry_rank(item)==0 for item in repairs.items):

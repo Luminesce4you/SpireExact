@@ -230,7 +230,7 @@ def launch(payload,repo):
         waits=blockers(repo)
         if len(waits)>=8:raise ValueError('当前排队任务较多，请等待已有任务完成。')
         profile=read(ROOT/'dashboard/solver-profile.json',{})
-        from tools.prepare_dashboard import validate_ready
+        from tools.prepare_dashboard import PUBLIC_PROFILE, PUBLIC_RELEASE, validate_ready
         prepared=validate_ready(profile)
         if request['minutes']>15 and not profile.get('long_run_ready'):
             raise ValueError('长时间运行配置仍在验证，当前可先使用 1–15 分钟。')
@@ -246,8 +246,8 @@ def launch(payload,repo):
         manifest={'run_id':run_id,'manual':True,'protocol':'A10-seed-v2','seed':request['seed'],'solver_seed':271828,
                   'timestamp':accepted,'accepted_at':accepted,'wall_cap_seconds':request['minutes']*60,
                   'workload_bytes':14*1024**3,'os_reserve_bytes':2*1024**3,'version':prepared['source_version'],
-                  'host_sha256':prepared['host_sha256'],'feature_profile':'i082',
-                  'source_release':'i082/frozen-i082',
+                  'host_sha256':prepared['host_sha256'],'feature_profile':PUBLIC_PROFILE,
+                  'source_release':PUBLIC_RELEASE,
                   'pause_clock_validation':{'report_path':prepared['report_path'],
                       'source_version':prepared['source_version'],'host_sha256':prepared['host_sha256']},
                   'settings':solver_settings(request,profile),

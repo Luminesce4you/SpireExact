@@ -22,6 +22,11 @@
  },
  "note": "frozen before the held-out eval/evalhard panels were run; dev panels 2000+/3000+ were used for all tuning",
  "post_launch_changes": [
-  "tools/final01_sim_study.py: report() only (world-clustered bootstrap intervals, several reference arms); run() unchanged"
- ]
+  "tools/final01_sim_study.py: report() only (world-clustered bootstrap intervals, several reference arms); run() unchanged",
+  "combat-boundary fix (native BeamAdvisor/CampaignReplay; archive.fight_entry_index/first_combat_decision; gate clinic retry attribution; F2 readiness retry alias)",
+  "profile renamed i085-final01 -> i100 and made the public default (launcher, frontend, planner CLI)",
+  "default configuration unchanged by the pre-declared held-out rule (see sim/pooled-heldout.json)"
+ ],
+ "release_executable_source_hash": "7083208da02209a4ce827f0de13058cde036a240966a907be3c56fa5b1de98ff",
+ "final_code_recheck": "sim/recheck-final-code.log: 12 held-out runs repeated with the release code, all identical"
 }

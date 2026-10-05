@@ -14,6 +14,7 @@ import math
 import re
 
 from ..canonical import canonical, ContractError
+from .archive import first_combat_decision
 from .probes import gate_entries, probe_request, scaled
 from .paired_card_probes import E45, MAP_OBSERVATION_KEYS, paired_outcome, valid_outcome
 from .research_progress import require_research_progress
@@ -340,6 +341,15 @@ class F2Readiness:
                 ids = self.source_entries.setdefault(label, [])
                 if entry['id'] not in ids:
                     ids.append(entry['id'])
+                # A gate retry prefix ends at F1's first combat decision
+                # (failure_combat_prefix). When F1 opens with card selections
+                # (a combat-start effect) that prefix is longer than the entry
+                # prefix; register it as a name of the same entry.
+                combat = first_combat_decision(evidence, index)
+                if combat is not None and combat != index:
+                    alias = self.prefix_entries.setdefault(canonical(trace[:combat]), [])
+                    if entry['id'] not in alias:
+                        alias.append(entry['id'])
                 updates.append(self._update(entry))
         except (ValueError, TypeError, KeyError, IndexError) as error:
             self.rejections[str(error)] += 1

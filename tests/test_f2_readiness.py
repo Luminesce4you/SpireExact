@@ -6,6 +6,7 @@ import unittest
 
 from spire_exact.canonical import canonical
 from spire_exact.mode1 import context
+from spire_exact.planning.archive import failure_combat_prefix
 from spire_exact.planning.f2_readiness import F2Readiness, rng_samples, readiness_outcome
 from spire_exact.planning.paired_card_probes import E45, rng_samples as paired_rng_samples
 from spire_exact.planning.probes import probe_request
@@ -37,7 +38,9 @@ def template(explicit_baseline=True):
     return result
 
 
-def trajectory(tag=0, card='STRIKE', removed=60, total=100):
+def trajectory(tag=0, card='STRIKE', removed=60, total=100, opening=0):
+    # `opening`: card selections asked at F1 turn 1 before its first combat
+    # decision (a combat-start effect such as a relic exhausting a card).
     quiet = {'act': 2, 'floor': 48, 'room': None, 'hp': '60', 'max_hp': '80', 'gold': 100,
              'deck': [{'id': card, 'upgrade': 0}], 'relics': ['BURNING_BLOOD'], 'potions': [None],
              'strategic': {}, 'selection': None, 'hand': None, 'turn': None, 'energy': None,
@@ -48,11 +51,14 @@ def trajectory(tag=0, card='STRIKE', removed=60, total=100):
     fight = deepcopy(quiet)
     fight.update(floor=49, room='Boss', turn=1, max_hp='90',
                  enemies=[{'id': 'F1', 'combat_id': 1, 'hp': str(total), 'max_hp': str(total)}])
+    picks = [{'kind': 'select_cards', 'indices': [index]} for index in range(opening)]
     return {'campaign': {'act_count': 3, 'final_act_boss_count': 2},
             'status': 'TERMINAL', 'value': [0], 'reason': None, 'native_terminal_observed': False,
-            'trace': [event, move, combat], 'decision_evidence': [
+            'trace': [event, move, *picks, combat], 'decision_evidence': [
                 {'phase': 'event', 'observation': deepcopy(quiet), 'available_actions': [event]},
                 {'phase': 'map', 'observation': deepcopy(quiet), 'available_actions': [move]},
+                *({'phase': 'select_cards', 'available_actions': [pick],
+                   'observation': dict(deepcopy(fight), selection={'purpose': 'Exhaust'})} for pick in picks),
                 {'phase': 'combat', 'observation': fight, 'available_actions': [combat]}],
             'observation': dict(quiet, floor=49, room='Boss', hp='0'),
             'terminal_combat': {'act': 2, 'floor': 49, 'turn': 2,
@@ -107,6 +113,22 @@ class F2ReadinessTests(unittest.TestCase):
         self.assertIsNone(probes.entry_key_for_prefix(source['trace'][:1]))
         bad = deepcopy(request); bad['seed'] = 'other'
         self.assertIsNone(probes.entry_key_for_prefix(source['trace'][:2], bad))
+
+    def test_retry_prefix_after_an_opening_selection_names_the_same_entry(self):
+        # The gate retry prefix ends at F1's first combat decision
+        # (failure_combat_prefix); the readiness entry starts at the first
+        # in-combat decision, here a selection. Both name the same entry.
+        source, request = trajectory(opening=1), template()
+        probes = ready(); updates = probes.observe(source, 'source', 0, request)
+        key = probes.entry_key_for_prefix(source['trace'][:2], request)
+        self.assertEqual(updates[0]['entry_key'], key)
+        retry = failure_combat_prefix(source)['prefix']
+        self.assertEqual(retry, source['trace'][:3])
+        self.assertEqual(probes.entry_key_for_prefix(retry), key)
+        self.assertEqual(probes.entry_key_for_prefix(source['trace'][:2]), key)
+        self.assertIsNone(probes.entry_key_for_prefix(source['trace'][:4]))
+        again = ready(); again.observe(source, 'source', 0, request); again.observe(source, 'other', 0, request)
+        self.assertEqual(again.entry_key_for_prefix(retry), key)
 
     def test_stage_requests_full_hp_e45_namespace_and_explicit_baseline_are_guarded(self):
         source, request = trajectory(), template()

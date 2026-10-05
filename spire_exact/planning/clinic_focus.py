@@ -1,4 +1,4 @@
-"""i085-final01 focus allocation steered by the gate clinic. Allocation only.
+"""i100 focus allocation steered by the gate clinic. Allocation only.
 
 The i082 focus cost (`floors back + 2 x tried - 2 x value`) keeps every focus
 pick of a trajectory that died at a final boss inside the final act: each new

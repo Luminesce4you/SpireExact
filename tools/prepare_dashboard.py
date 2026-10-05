@@ -1,4 +1,4 @@
-"""Bind the latest SpireBoard frontend to the user's built i082 source.
+"""Bind the latest SpireBoard frontend to the user's built source (public profile i100).
 
 One max_decisions=0 initialization checks the native pause adapter and ABI.
 It performs no selected game actions, combat search, whole-seed search or probe.
@@ -23,6 +23,14 @@ from tools.experiment import version_hash
 
 READY = ROOT / ".tools/dashboard-ready.json"
 PROFILE = ROOT / "dashboard/solver-profile.json"
+from spire_exact.planning.final_defaults import PUBLIC_PROFILE  # noqa: E402
+PUBLIC_RELEASE = PUBLIC_PROFILE
+
+
+def public_settings() -> list[str]:
+    """The frontend's planner recipe: the public profile with every switch explicit."""
+    from spire_exact.planning.final_defaults import i100_argv
+    return ["--feature-profile", PUBLIC_PROFILE, *i100_argv()]
 
 
 def write(path: Path, value: dict) -> None:
@@ -52,19 +60,18 @@ def check_setup() -> dict:
 
 def validate_ready(profile: dict, *, full: bool = True) -> dict:
     if not isinstance(profile, dict) or profile.get("public_source") is not True or profile.get("workspace") != ".":
-        raise ContractError("Public frontend profile must use this verified i082 source root")
-    from spire_exact.planning.final_defaults import i082_argv
-    if (profile.get("solver_settings") != ["--feature-profile", "i082", *i082_argv()]
+        raise ContractError("Public frontend profile must use this verified source root")
+    if (profile.get("solver_settings") != public_settings()
             or profile.get("runtime_profile") != "server-bounded-large-gen0"
             or profile.get("worker_memory_mib") != 1792 or profile.get("max_minutes") != 45):
-        raise ContractError("Frontend settings differ from the public i082 recipe")
+        raise ContractError("Frontend settings differ from the public " + PUBLIC_PROFILE + " recipe")
     ready = json.loads(READY.read_text(encoding="utf-8"))
     report_path = (ROOT / ready["report_path"]).resolve()
     if not report_path.is_relative_to((ROOT / "outputs/dashboard-prepare").resolve()):
         raise ContractError("Frontend readiness report path is outside its private output root")
     report = json.loads(report_path.read_text(encoding="utf-8"))
     clock = report.get("pause_clock", {})
-    if (ready.get("schema") != "spire-public-dashboard-ready/v1" or ready.get("feature_profile") != "i082"
+    if (ready.get("schema") != "spire-public-dashboard-ready/v1" or ready.get("feature_profile") != PUBLIC_PROFILE
             or ready.get("capabilities", {}).get("interactive_pause_clock") != "evaluate-native-and-python/v1"
             or ready.get("capabilities", {}).get("validated_host_sha256") != ready.get("host_sha256")
             or ready.get("profile_sha256") != file_hash(PROFILE)
@@ -90,9 +97,9 @@ def launch_status() -> dict:
     try:
         profile = json.loads(PROFILE.read_text(encoding="utf-8"))
         validate_ready(profile, full=False)
-        return {"ready": True, "feature_profile": "i082", "max_minutes": 45}
+        return {"ready": True, "feature_profile": PUBLIC_PROFILE, "max_minutes": 45}
     except (OSError, ValueError, KeyError, TypeError, ContractError):
-        return {"ready": False, "feature_profile": "i082", "max_minutes": 45,
+        return {"ready": False, "feature_profile": PUBLIC_PROFILE, "max_minutes": 45,
                 "unavailable_reason": "请先按 README 构建，然后运行 python tools/prepare_dashboard.py。"}
 
 
@@ -110,7 +117,7 @@ def main() -> int:
         snapshot = check_setup()
         if args.check_only:
             ready = validate_ready(json.loads(PROFILE.read_text(encoding="utf-8")))
-            print(json.dumps({"frontend_ready": True, "feature_profile": "i082", "host_sha256": ready["host_sha256"],
+            print(json.dumps({"frontend_ready": True, "feature_profile": PUBLIC_PROFILE, "host_sha256": ready["host_sha256"],
                               "native_initializations_executed": 0}))
             return 0
         folder = ROOT / "outputs/dashboard-prepare" / datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
@@ -148,7 +155,7 @@ def main() -> int:
                   and response.get("status") == "BUDGET" and response.get("reason") == "candidate_decision_budget"
                   and clock.get("enabled") is True and clock.get("patched_methods", 0) > 0 and enabled)
         report = {"schema": "spire-public-frontend-prepare/v1", "passed": passed, "returncode": result.returncode,
-                  "source_release": "i082/frozen-i082", "source_version": snapshot["source_version"],
+                  "source_release": PUBLIC_RELEASE, "source_version": snapshot["source_version"],
                   "host_sha256": snapshot["host_sha256"], "native_actions_requested": 0, "actions_observed": actions,
                   "full_search_started": False if no_searches else None, "pause_clock": clock,
                   "block_compensation_enabled": enabled, "status": response.get("status"), "reason": response.get("reason"),
@@ -172,21 +179,20 @@ def main() -> int:
         seed_ledger = ROOT / "experiments/seed-ledger.json"
         if not seed_ledger.exists():
             write(seed_ledger, {"reserved": ["0", "1", "2", "42"], "runs": []})
-        from spire_exact.planning.final_defaults import i082_argv
-        profile = {"workspace": ".", "public_source": True, "source_release": "i082/frozen-i082",
+        profile = {"workspace": ".", "public_source": True, "source_release": PUBLIC_RELEASE,
                    "runtime_profile": "server-bounded-large-gen0", "worker_memory_mib": 1792,
                    "long_run_ready": True, "max_minutes": 45, "queue_policy": "fifo",
-                   "solver_settings": ["--feature-profile", "i082", *i082_argv()],
-                   "notes": "Latest i082 source recipe; live pause requires matching locally prepared source/host binding"}
+                   "solver_settings": public_settings(),
+                   "notes": "Latest " + PUBLIC_PROFILE + " source recipe; live pause requires matching locally prepared source/host binding"}
         write(PROFILE, profile)
-        ready = {**snapshot, "schema": "spire-public-dashboard-ready/v1", "feature_profile": "i082",
+        ready = {**snapshot, "schema": "spire-public-dashboard-ready/v1", "feature_profile": PUBLIC_PROFILE,
                  "capabilities": {"interactive_pause_clock": "evaluate-native-and-python/v1",
                                   "validated_host_sha256": snapshot["host_sha256"]},
                  "report_path": (folder / "report.json").relative_to(ROOT).as_posix(),
                  "report_sha256": file_hash(folder / "report.json"), "profile_sha256": file_hash(PROFILE)}
         write(READY, ready)
         validate_ready(profile)
-        print(json.dumps({"frontend_ready": True, "feature_profile": "i082", "max_minutes": 45,
+        print(json.dumps({"frontend_ready": True, "feature_profile": PUBLIC_PROFILE, "max_minutes": 45,
                           "report": str(folder / "report.json"), "actions_observed": 0,
                           "patched_methods": clock["patched_methods"], "search_executed": False}))
         return 0

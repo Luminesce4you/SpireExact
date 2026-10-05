@@ -1,4 +1,4 @@
-"""i085-final01 auxiliary-work governor. Allocation only, nothing is dropped.
+"""i100 auxiliary-work governor. Allocation only, nothing is dropped.
 
 i082 queues several kinds of auxiliary work in the FIFO `urgent` queue ahead of
 every gate retry and focus/explorer pick: paired card tables (five synthetic

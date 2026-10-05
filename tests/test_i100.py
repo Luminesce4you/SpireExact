@@ -1,15 +1,17 @@
-"""i085-final01: gate clinic, clinic focus, governor, priors and profile.
+"""i100: gate clinic, clinic focus, governor, priors and profile.
 
 Fabricated trajectories and synthetic campaign worlds only; never native evidence.
 """
 import json
+from pathlib import Path
 from types import SimpleNamespace
 import unittest
 
 from spire_exact.canonical import canonical
+from spire_exact.planning.archive import failure_combat_prefix, fight_entry_index, first_combat_decision
 from spire_exact.planning.aux_governor import AUX_KINDS, AuxGovernor
 from spire_exact.planning.clinic_focus import ClinicFocusScheduler
-from spire_exact.planning.final_defaults import FINAL01_PROFILE, i085_final01_argv, resolve_entry_defaults
+from spire_exact.planning.final_defaults import FEATURE_PROFILES, I100_PROFILE, PUBLIC_PROFILE, i100_argv, resolve_entry_defaults
 from spire_exact.planning.gate_clinic import GateClinic
 from spire_exact.planning.paired_card_probes import PairedCardProbes
 from spire_exact.planning.repairs import RepairQueue
@@ -32,8 +34,10 @@ def obs(act, floor, hp=60, room=None, turn=None, enemies=None, strategic=None):
 
 
 def campaign(stem=(0, 0), local=0, f2_removed=200.0, total=400.0, f2_hp=40, passed=False, scaling=0.0,
-             options=3):
-    """Act 1 and act 2 decisions (stem), one act 3 decision (local), F1 passed, F2 fought."""
+             options=3, opening=0):
+    """Act 1 and act 2 decisions (stem), one act 3 decision (local), F1 passed, F2 fought.
+    `opening`: card selections asked at F2 turn 1 before its first combat decision
+    (a combat-start effect such as a relic exhausting a card at every turn start)."""
     trace, evidence = [], []
     strategic = snapshot(scaling=scaling)
 
@@ -57,6 +61,12 @@ def campaign(stem=(0, 0), local=0, f2_removed=200.0, total=400.0, f2_hp=40, pass
     move2 = {'kind': 'map', 'col': 0, 'row': 16}
     trace.append(move2)
     evidence.append({'phase': 'map', 'observation': obs(2, 49, f2_hp, strategic=strategic), 'available_actions': [move2]})
+    for pick in range(opening):
+        action = {'kind': 'select_cards', 'indices': [pick]}
+        trace.append(action)
+        evidence.append({'phase': 'select_cards', 'available_actions': [action],
+                         'observation': dict(obs(2, 49, f2_hp, 'Boss', 1, enemy(total, 'F2'), strategic),
+                                             selection={'purpose': 'Exhaust'})})
     trace.append({'kind': 'end_turn', 'f': 2})
     evidence.append({'phase': 'combat', 'observation': obs(2, 49, f2_hp, 'Boss', 1, enemy(total, 'F2'), strategic),
                      'available_actions': [{'kind': 'end_turn', 'f': 2}]})
@@ -156,12 +166,41 @@ class GateClinicTests(unittest.TestCase):
         self.feed(clinic, rows)
         retry = campaign((0, 0), 0, 395)
         spec = {'kind': 'gate_retry', 'repair': {'level': 1, 'source': 'r0'},
-                'request': {'history': retry['trace'][:7]}}
+                'request': {'history': failure_combat_prefix(rows[0])['prefix']}}
         clinic.observe(retry, 'retry', spec)
         verdict = clinic.verdict(*clinic.source('r0'))
         self.assertEqual(verdict.status, 'DEPTH', verdict)
         self.assertEqual(verdict.kind, 'TACTICAL')
         self.assertIn('depth:near_miss', verdict.evidence)
+
+    def test_retry_after_opening_selections_is_a_retry_of_its_entry(self):
+        # failure_combat_prefix ends a retry prefix at the fight's first combat
+        # decision; the clinic's entry (boss_fight_rows) starts at the first
+        # in-combat decision, which is a selection when the fight opens with one.
+        for opening in (0, 1, 2):
+            with self.subTest(opening=opening):
+                clinic = GateClinic(min_entries=6)
+                rows = [campaign((0, 0), i, 200 + 5 * i, opening=opening) for i in range(7)]
+                self.feed(clinic, rows)
+                prefix = failure_combat_prefix(rows[0])['prefix']
+                self.assertEqual(len(prefix), 6 + opening)
+                spec = {'kind': 'gate_retry', 'repair': {'level': 1, 'source': 'r0'}, 'request': {'history': prefix}}
+                clinic.observe(campaign((0, 0), 0, 360, opening=opening), 'retry', spec)
+                entry = clinic.records[clinic.source('r0')].entries[canonical(rows[0]['trace'][:6])]
+                self.assertEqual(entry.removed, 200.0)
+                self.assertEqual(entry.retry, {1: 360.0})
+                self.assertIn('depth:retry_lift', clinic.verdict(*clinic.source('r0')).evidence)
+
+    def test_fight_entry_index_inverts_first_combat_decision(self):
+        rows = campaign(opening=2)['decision_evidence']
+        self.assertEqual(first_combat_decision(rows, 6), 8)
+        self.assertEqual(fight_entry_index(rows, 8), 6)
+        self.assertEqual(fight_entry_index(rows, 6), 6)
+        self.assertEqual(first_combat_decision(rows, 9), 9)
+        plain = campaign()['decision_evidence']
+        self.assertEqual(first_combat_decision(plain, 6), 6)
+        self.assertEqual(fight_entry_index(plain, 6), 6)
+        self.assertIsNone(first_combat_decision(rows[:8], 6))
 
     def test_readiness_dead_is_root_and_viable_hp_sensitive_is_resource(self):
         clinic = GateClinic(min_entries=6)
@@ -328,12 +367,12 @@ class GovernorAndProfileTests(unittest.TestCase):
             setattr(args, key, value)
         return resolve_entry_defaults(args)
 
-    def test_final01_profile_values_and_old_profiles_unchanged(self):
-        a = self.args(FINAL01_PROFILE)
+    def test_i100_profile_values_and_old_profiles_unchanged(self):
+        a = self.args(I100_PROFILE)
         self.assertTrue(a.clinic)
         self.assertEqual((a.strategy_prior, a.paired_card_first, a.focus_stall, a.tail_mode, a.gate_preset),
                          ('builtin', 8, 0, 'off', 'escalate-evaluate'))
-        self.assertEqual(self.args(FINAL01_PROFILE, gate_preset='escalate').gate_preset, 'escalate')
+        self.assertEqual(self.args(I100_PROFILE, gate_preset='escalate').gate_preset, 'escalate')
         self.assertTrue(a.macro_plateau and a.macro_fair and a.gate_timing and a.clinic_hints and a.f1_winner_reuse)
         self.assertFalse(any((a.f2_readiness_probes, a.f2_dead_retry, a.f2_joint_focus, a.f2_joint_model,
                               a.paired_card_probes, a.paired_card_joint)))
@@ -344,11 +383,23 @@ class GovernorAndProfileTests(unittest.TestCase):
         self.assertEqual(self.args('i082').focus_stall, 32)
         self.assertTrue(self.args('i082').paired_card_probes and self.args('i082').paired_card_joint)
         self.assertTrue(self.args('legacy').paired_card_probes)
-        self.assertEqual(self.args(FINAL01_PROFILE, focus_stall=5).focus_stall, 5)
+        self.assertEqual(self.args(I100_PROFILE, focus_stall=5).focus_stall, 5)
+
+    def test_public_entry_is_i100_everywhere(self):
+        from spire_exact.planning.__main__ import parse_planner
+        from tools.prepare_dashboard import PUBLIC_RELEASE, public_settings
+        from tools.run_release_source import settings
+        self.assertEqual((PUBLIC_PROFILE, FEATURE_PROFILES[0], PUBLIC_RELEASE), ('i100', 'i100', 'i100'))
+        self.assertEqual(parse_planner(['--out', 'unused-dir'])[1].feature_profile, 'i100')
+        self.assertEqual(public_settings(), ['--feature-profile', 'i100', *i100_argv()])
+        shipped = json.loads((Path(__file__).resolve().parents[1] / 'dashboard/solver-profile.json').read_text(encoding='utf-8'))
+        self.assertEqual((shipped['solver_settings'], shipped['source_release']), (public_settings(), 'i100'))
+        launcher = settings('101', 45, 7, 271828)
+        self.assertEqual(launcher[launcher.index('--feature-profile') + 1], 'i100')
 
     def test_argv_parses_and_config_validation(self):
         from spire_exact.planning.__main__ import parse_planner, search_config
-        argv = ['--out', 'unused-dir', '--seed', '7', '--feature-profile', FINAL01_PROFILE, *i085_final01_argv()]
+        argv = ['--out', 'unused-dir', '--seed', '7', '--feature-profile', I100_PROFILE, *i100_argv()]
         _, a, gates, schedule, policies = parse_planner(argv)
         config = search_config(a, gates, schedule, policies)
         self.assertTrue(config.clinic)
@@ -374,7 +425,7 @@ class GovernorAndProfileTests(unittest.TestCase):
 class SimulatedLoopTests(unittest.TestCase):
     """The real planner loop on a synthetic world: wiring and determinism."""
 
-    def test_final01_runs_and_reports_clinic_and_governor(self):
+    def test_i100_runs_and_reports_clinic_and_governor(self):
         from tools.sim_campaign import World, simulate
         summary = simulate(World(1001, 'easy'), 'final01', minutes=8)
         self.assertIn('stop_reason', summary)

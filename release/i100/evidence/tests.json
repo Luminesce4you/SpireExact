@@ -1,0 +1,63 @@
+{
+  "schema": "spire-i100-python-validation/v1",
+  "timestamp_utc": "2026-10-05T15:16:52.613197+00:00",
+  "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
+  "python": "3.11.15 (main, Mar  3 2026, 09:26:23) [GCC 13.3.0]",
+  "source_hash": "7083208da02209a4ce827f0de13058cde036a240966a907be3c56fa5b1de98ff",
+  "source_unchanged": true,
+  "tests_run": 980,
+  "passed": 978,
+  "failures": 0,
+  "errors": 1,
+  "skips": 2,
+  "duration_seconds": 29.521,
+  "successful": false,
+  "errors_detail": [
+    "setUpClass (test_solver_patches.SolverPatchContractTests)"
+  ],
+  "error_reason": {
+    "setUpClass (test_solver_patches.SolverPatchContractTests)": "needs vendor/CombatSolver, which tools/setup_source.py fetches"
+  },
+  "failures_detail": [],
+  "skipped_detail": [
+    [
+      "test_atomic_io_windows.AtomicIoWindowsTests.test_dashboard_readers_and_repeated_writer_do_not_conflict",
+      "Windows file sharing regression"
+    ],
+    [
+      "test_atomic_io_windows.AtomicIoWindowsTests.test_transient_reader_does_not_abort_atomic_publication",
+      "Windows file sharing regression"
+    ]
+  ],
+  "i100_tests": [
+    "test_combat_boundary.CombatBoundaryContractTests.test_every_combat_switch_goes_through_enter_combat",
+    "test_combat_boundary.CombatBoundaryContractTests.test_host_passes_the_live_combat_to_selection_advice",
+    "test_combat_boundary.CombatBoundaryContractTests.test_selection_before_first_decision_enters_the_new_combat_first",
+    "test_combat_boundary.CombatBoundaryContractTests.test_suggest_uses_the_same_switch",
+    "test_i100.ClinicFocusTests.test_proposals_are_exact_unique_legal_prefixes",
+    "test_i100.ClinicFocusTests.test_retry_rank_orders_by_verdict",
+    "test_i100.ClinicFocusTests.test_root_stem_picks_reroot_earlier_act_and_depth_stays_local",
+    "test_i100.GateClinicTests.test_fight_entry_index_inverts_first_combat_decision",
+    "test_i100.GateClinicTests.test_insufficient_entries_then_root_on_saturated_far_progress",
+    "test_i100.GateClinicTests.test_near_miss_and_retry_lift_give_depth",
+    "test_i100.GateClinicTests.test_pass_synthetic_cache_and_contention",
+    "test_i100.GateClinicTests.test_readiness_dead_is_root_and_viable_hp_sensitive_is_resource",
+    "test_i100.GateClinicTests.test_retry_after_opening_selections_is_a_retry_of_its_entry",
+    "test_i100.GateClinicTests.test_root_siblings_move_the_reroot_target_one_act_back",
+    "test_i100.GateClinicTests.test_stems_are_exact_pre_act_decisions",
+    "test_i100.GovernorAndProfileTests.test_argv_parses_and_config_validation",
+    "test_i100.GovernorAndProfileTests.test_governor_caps_auxiliary_share_and_never_holds_core",
+    "test_i100.GovernorAndProfileTests.test_i100_profile_values_and_old_profiles_unchanged",
+    "test_i100.GovernorAndProfileTests.test_paired_first_threshold",
+    "test_i100.GovernorAndProfileTests.test_public_entry_is_i100_everywhere",
+    "test_i100.RepairHintTests.test_evaluator_merges_group_hint_only",
+    "test_i100.RepairHintTests.test_reroot_carries_hint_toward_learned_deficit_repair",
+    "test_i100.SimulatedLoopTests.test_i100_runs_and_reports_clinic_and_governor",
+    "test_i100.SimulatedLoopTests.test_simulation_is_deterministic",
+    "test_i100.StrategyPriorTests.test_count_targets_and_population_terms",
+    "test_i100.StrategyPriorTests.test_features_are_structural_and_degrade_on_unknown_schema",
+    "test_i100.StrategyPriorTests.test_no_names_in_builtin_prior_and_bad_tables_rejected",
+    "test_i100.StrategyPriorTests.test_option_scores_and_label_effects",
+    "test_i100.StrategyPriorTests.test_posterior_starts_at_prior_and_follows_the_seed"
+  ]
+}

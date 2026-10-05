@@ -25,7 +25,7 @@ import hashlib
 import math
 
 from ..canonical import canonical
-from .archive import classify_failure
+from .archive import classify_failure, fight_entry_index
 from .gatemodel import boss_fight_rows
 from .indexed_strategy import PrefixTrie
 from .lineage import _act, _noncombat
@@ -152,6 +152,10 @@ class GateClinic:
         rows = boss_fight_rows(result)
         path = (prefixes.index(trace) if prefixes is not None else None)
         retried = len(((spec.get('request') or {}).get('history')) or []) if spec.get('kind') == 'gate_retry' else None
+        if retried is not None:
+            # The retry prefix ends at the fight's first combat decision; the
+            # entry is earlier when the fight opens with card selections.
+            retried = fight_entry_index(result.get('decision_evidence') or [], retried)
         level = int((spec.get('repair') or {}).get('level') or 0) if retried is not None else 0
         for row in rows:
             gate = tuple(row['gate'])

@@ -23,6 +23,10 @@ test_near_local_slice_is_unproven_even_without_reported_hit (test_budget_audit.C
 test_short_search_excludes_both_global_and_eight_layer_clocks (test_budget_audit.ClockGateAuditTests.test_short_search_excludes_both_global_and_eight_layer_clocks) ... ok
 test_exception_releases_lock (test_build_lock.BuildLockTests.test_exception_releases_lock) ... ok
 test_other_process_cannot_enter_until_owner_releases (test_build_lock.BuildLockTests.test_other_process_cannot_enter_until_owner_releases) ... ok
+test_every_combat_switch_goes_through_enter_combat (test_combat_boundary.CombatBoundaryContractTests.test_every_combat_switch_goes_through_enter_combat) ... ok
+test_host_passes_the_live_combat_to_selection_advice (test_combat_boundary.CombatBoundaryContractTests.test_host_passes_the_live_combat_to_selection_advice) ... ok
+test_selection_before_first_decision_enters_the_new_combat_first (test_combat_boundary.CombatBoundaryContractTests.test_selection_before_first_decision_enters_the_new_combat_first) ... ok
+test_suggest_uses_the_same_switch (test_combat_boundary.CombatBoundaryContractTests.test_suggest_uses_the_same_switch) ... ok
 test_distinct_universes_close_without_treating_root_as_child (test_copy_diagnostics.CopyDiagnosticIntegrity.test_distinct_universes_close_without_treating_root_as_child) ... ok
 test_only_explicit_diagnostics_are_masked (test_copy_diagnostics.CopyDiagnosticIntegrity.test_only_explicit_diagnostics_are_masked) ... ok
 test_size_regression_handles_weights_and_rank_failure (test_copy_diagnostics.CopyDiagnosticIntegrity.test_size_regression_handles_weights_and_rank_failure) ... ok
@@ -187,7 +191,7 @@ test_component_discovery_progress_and_exit_do_not_claim_wins (test_dashboard_com
 test_fidelity_replay_counts_never_become_fresh_wins (test_dashboard_components.DashboardComponentTests.test_fidelity_replay_counts_never_become_fresh_wins) ... ok
 test_preparation_live_counts_are_native_evaluations_not_roots (test_dashboard_components.DashboardComponentTests.test_preparation_live_counts_are_native_evaluations_not_roots) ... ok
 test_tactical_rescue_is_not_a_campaign_win (test_dashboard_components.DashboardComponentTests.test_tactical_rescue_is_not_a_campaign_win) ... ok
-test_180_minutes_remains_valid_and_entry_records_latest_options (test_dashboard_controls.DashboardControlTests.test_180_minutes_remains_valid_and_entry_records_latest_options) ... ERROR
+test_45_minutes_is_the_public_maximum_and_entry_records_latest_options (test_dashboard_controls.DashboardControlTests.test_45_minutes_is_the_public_maximum_and_entry_records_latest_options) ... ok
 test_http_controls_require_token_origin_and_empty_payload (test_dashboard_controls.DashboardControlTests.test_http_controls_require_token_origin_and_empty_payload) ... ok
 test_nonmanual_and_unknown_runs_cannot_be_controlled (test_dashboard_controls.DashboardControlTests.test_nonmanual_and_unknown_runs_cannot_be_controlled) ... ok
 test_old_frozen_host_cannot_pause_even_with_a_new_runner (test_dashboard_controls.DashboardControlTests.test_old_frozen_host_cannot_pause_even_with_a_new_runner) ... ok
@@ -286,6 +290,7 @@ test_observed_interrupted_f1_can_be_sampled_but_precombat_journal_cannot (test_f
 test_off_is_inert_and_full_entry_identity_maps_retry_and_source (test_f2_readiness.F2ReadinessTests.test_off_is_inert_and_full_entry_identity_maps_retry_and_source) ... ok
 test_paired_same_baseline_reservation_reuses_five_base_results_no_extra_stage_one (test_f2_readiness.F2ReadinessTests.test_paired_same_baseline_reservation_reuses_five_base_results_no_extra_stage_one) ... ok
 test_priority_stage_two_then_retry_then_focus_then_fifo (test_f2_readiness.F2ReadinessTests.test_priority_stage_two_then_retry_then_focus_then_fifo) ... ok
+test_retry_prefix_after_an_opening_selection_names_the_same_entry (test_f2_readiness.F2ReadinessTests.test_retry_prefix_after_an_opening_selection_names_the_same_entry) ... ok
 test_same_deck_relic_group_shares_heuristic_results_not_real_entry_identity (test_f2_readiness.F2ReadinessTests.test_same_deck_relic_group_shares_heuristic_results_not_real_entry_identity) ... ok
 test_scaled_all_groups_share_max_life_raw_data_and_unknown_work_stays_unknown (test_f2_readiness.F2ReadinessTests.test_scaled_all_groups_share_max_life_raw_data_and_unknown_work_stays_unknown) ... ok
 test_stage_requests_full_hp_e45_namespace_and_explicit_baseline_are_guarded (test_f2_readiness.F2ReadinessTests.test_stage_requests_full_hp_e45_namespace_and_explicit_baseline_are_guarded) ... ok
@@ -298,28 +303,6 @@ test_fights_start_at_their_first_combat_decision_and_respect_the_prefix (test_fi
 test_solver_comparison_preserves_every_other_input_and_dependency (test_fight_bench.FightBenchTests.test_solver_comparison_preserves_every_other_input_and_dependency) ... ok
 test_strict_comparison_checks_every_repeat_and_node_count (test_fight_bench.FightBenchTests.test_strict_comparison_checks_every_repeat_and_node_count) ... ok
 test_summary_hashes_only_the_new_actions_and_never_reports_hp_for_a_lost_fight (test_fight_bench.FightBenchTests.test_summary_hashes_only_the_new_actions_and_never_reports_hp_for_a_lost_fight) ... ok
-test_proposals_are_exact_unique_legal_prefixes (test_final01.ClinicFocusTests.test_proposals_are_exact_unique_legal_prefixes) ... ok
-test_retry_rank_orders_by_verdict (test_final01.ClinicFocusTests.test_retry_rank_orders_by_verdict) ... ok
-test_root_stem_picks_reroot_earlier_act_and_depth_stays_local (test_final01.ClinicFocusTests.test_root_stem_picks_reroot_earlier_act_and_depth_stays_local) ... ok
-test_insufficient_entries_then_root_on_saturated_far_progress (test_final01.GateClinicTests.test_insufficient_entries_then_root_on_saturated_far_progress) ... ok
-test_near_miss_and_retry_lift_give_depth (test_final01.GateClinicTests.test_near_miss_and_retry_lift_give_depth) ... ok
-test_pass_synthetic_cache_and_contention (test_final01.GateClinicTests.test_pass_synthetic_cache_and_contention) ... ok
-test_readiness_dead_is_root_and_viable_hp_sensitive_is_resource (test_final01.GateClinicTests.test_readiness_dead_is_root_and_viable_hp_sensitive_is_resource) ... ok
-test_root_siblings_move_the_reroot_target_one_act_back (test_final01.GateClinicTests.test_root_siblings_move_the_reroot_target_one_act_back) ... ok
-test_stems_are_exact_pre_act_decisions (test_final01.GateClinicTests.test_stems_are_exact_pre_act_decisions) ... ok
-test_argv_parses_and_config_validation (test_final01.GovernorAndProfileTests.test_argv_parses_and_config_validation) ... ok
-test_final01_profile_values_and_old_profiles_unchanged (test_final01.GovernorAndProfileTests.test_final01_profile_values_and_old_profiles_unchanged) ... ok
-test_governor_caps_auxiliary_share_and_never_holds_core (test_final01.GovernorAndProfileTests.test_governor_caps_auxiliary_share_and_never_holds_core) ... ok
-test_paired_first_threshold (test_final01.GovernorAndProfileTests.test_paired_first_threshold) ... ok
-test_evaluator_merges_group_hint_only (test_final01.RepairHintTests.test_evaluator_merges_group_hint_only) ... ok
-test_reroot_carries_hint_toward_learned_deficit_repair (test_final01.RepairHintTests.test_reroot_carries_hint_toward_learned_deficit_repair) ... ok
-test_final01_runs_and_reports_clinic_and_governor (test_final01.SimulatedLoopTests.test_final01_runs_and_reports_clinic_and_governor) ... ok
-test_simulation_is_deterministic (test_final01.SimulatedLoopTests.test_simulation_is_deterministic) ... ok
-test_count_targets_and_population_terms (test_final01.StrategyPriorTests.test_count_targets_and_population_terms) ... ok
-test_features_are_structural_and_degrade_on_unknown_schema (test_final01.StrategyPriorTests.test_features_are_structural_and_degrade_on_unknown_schema) ... ok
-test_no_names_in_builtin_prior_and_bad_tables_rejected (test_final01.StrategyPriorTests.test_no_names_in_builtin_prior_and_bad_tables_rejected) ... ok
-test_option_scores_and_label_effects (test_final01.StrategyPriorTests.test_option_scores_and_label_effects) ... ok
-test_posterior_starts_at_prior_and_follows_the_seed (test_final01.StrategyPriorTests.test_posterior_starts_at_prior_and_follows_the_seed) ... ok
 test_explicit_controls_are_retained_and_shop_without_target_does_not_force_purchase (test_final_defaults.FinalDefaultsTests.test_explicit_controls_are_retained_and_shop_without_target_does_not_force_purchase) ... ok
 test_explicit_legacy_is_available_without_being_final_default (test_final_defaults.FinalDefaultsTests.test_explicit_legacy_is_available_without_being_final_default) ... ok
 test_final_entry_enables_every_new_trigger_and_a (test_final_defaults.FinalDefaultsTests.test_final_entry_enables_every_new_trigger_and_a) ... ok
@@ -492,7 +475,7 @@ test_defaults_are_the_former_behaviour (test_i082.PairedScheduleTests.test_defau
 test_duplicate_table_is_skipped_and_threshold_stays_due (test_i082.PairedScheduleTests.test_duplicate_table_is_skipped_and_threshold_stays_due) ... ok
 test_every_n_distinct_entries (test_i082.PairedScheduleTests.test_every_n_distinct_entries) ... ok
 test_mean_merge_weighs_each_complete_table_once (test_i082.PairedScheduleTests.test_mean_merge_weighs_each_complete_table_once) ... ok
-test_default_profile_is_i082_and_passes_validation_to_the_output_check (test_i082.PlannerParseTests.test_default_profile_is_i082_and_passes_validation_to_the_output_check) ... ok
+test_default_profile_is_i100_and_passes_validation_to_the_output_check (test_i082.PlannerParseTests.test_default_profile_is_i100_and_passes_validation_to_the_output_check) ... ok
 test_dropping_the_joint_model_drops_the_derived_switch (test_i082.PlannerParseTests.test_dropping_the_joint_model_drops_the_derived_switch) ... ok
 test_i080_job_equals_i082_on_every_shared_setting (test_i082.PlannerParseTests.test_i080_job_equals_i082_on_every_shared_setting) ... ok
 test_i081_parse_keeps_former_defaults (test_i082.PlannerParseTests.test_i081_parse_keeps_former_defaults) ... ok
@@ -605,6 +588,31 @@ test_report_drops_invalid_runs_not_as_losses (test_i085_tail_statistics.Survival
 test_restart_benefit_and_overhead_harm (test_i085_tail_statistics.SurvivalTests.test_restart_benefit_and_overhead_harm) ... ok
 test_tied_events_precede_censoring (test_i085_tail_statistics.SurvivalTests.test_tied_events_precede_censoring) ... ok
 test_zero_time_success (test_i085_tail_statistics.SurvivalTests.test_zero_time_success) ... ok
+test_proposals_are_exact_unique_legal_prefixes (test_i100.ClinicFocusTests.test_proposals_are_exact_unique_legal_prefixes) ... ok
+test_retry_rank_orders_by_verdict (test_i100.ClinicFocusTests.test_retry_rank_orders_by_verdict) ... ok
+test_root_stem_picks_reroot_earlier_act_and_depth_stays_local (test_i100.ClinicFocusTests.test_root_stem_picks_reroot_earlier_act_and_depth_stays_local) ... ok
+test_fight_entry_index_inverts_first_combat_decision (test_i100.GateClinicTests.test_fight_entry_index_inverts_first_combat_decision) ... ok
+test_insufficient_entries_then_root_on_saturated_far_progress (test_i100.GateClinicTests.test_insufficient_entries_then_root_on_saturated_far_progress) ... ok
+test_near_miss_and_retry_lift_give_depth (test_i100.GateClinicTests.test_near_miss_and_retry_lift_give_depth) ... ok
+test_pass_synthetic_cache_and_contention (test_i100.GateClinicTests.test_pass_synthetic_cache_and_contention) ... ok
+test_readiness_dead_is_root_and_viable_hp_sensitive_is_resource (test_i100.GateClinicTests.test_readiness_dead_is_root_and_viable_hp_sensitive_is_resource) ... ok
+test_retry_after_opening_selections_is_a_retry_of_its_entry (test_i100.GateClinicTests.test_retry_after_opening_selections_is_a_retry_of_its_entry) ... ok
+test_root_siblings_move_the_reroot_target_one_act_back (test_i100.GateClinicTests.test_root_siblings_move_the_reroot_target_one_act_back) ... ok
+test_stems_are_exact_pre_act_decisions (test_i100.GateClinicTests.test_stems_are_exact_pre_act_decisions) ... ok
+test_argv_parses_and_config_validation (test_i100.GovernorAndProfileTests.test_argv_parses_and_config_validation) ... ok
+test_governor_caps_auxiliary_share_and_never_holds_core (test_i100.GovernorAndProfileTests.test_governor_caps_auxiliary_share_and_never_holds_core) ... ok
+test_i100_profile_values_and_old_profiles_unchanged (test_i100.GovernorAndProfileTests.test_i100_profile_values_and_old_profiles_unchanged) ... ok
+test_paired_first_threshold (test_i100.GovernorAndProfileTests.test_paired_first_threshold) ... ok
+test_public_entry_is_i100_everywhere (test_i100.GovernorAndProfileTests.test_public_entry_is_i100_everywhere) ... ok
+test_evaluator_merges_group_hint_only (test_i100.RepairHintTests.test_evaluator_merges_group_hint_only) ... ok
+test_reroot_carries_hint_toward_learned_deficit_repair (test_i100.RepairHintTests.test_reroot_carries_hint_toward_learned_deficit_repair) ... ok
+test_i100_runs_and_reports_clinic_and_governor (test_i100.SimulatedLoopTests.test_i100_runs_and_reports_clinic_and_governor) ... ok
+test_simulation_is_deterministic (test_i100.SimulatedLoopTests.test_simulation_is_deterministic) ... ok
+test_count_targets_and_population_terms (test_i100.StrategyPriorTests.test_count_targets_and_population_terms) ... ok
+test_features_are_structural_and_degrade_on_unknown_schema (test_i100.StrategyPriorTests.test_features_are_structural_and_degrade_on_unknown_schema) ... ok
+test_no_names_in_builtin_prior_and_bad_tables_rejected (test_i100.StrategyPriorTests.test_no_names_in_builtin_prior_and_bad_tables_rejected) ... ok
+test_option_scores_and_label_effects (test_i100.StrategyPriorTests.test_option_scores_and_label_effects) ... ok
+test_posterior_starts_at_prior_and_follows_the_seed (test_i100.StrategyPriorTests.test_posterior_starts_at_prior_and_follows_the_seed) ... ok
 test_better_continuation_updates_exact_ancestor_siblings (test_incumbent.IncumbentTests.test_better_continuation_updates_exact_ancestor_siblings) ... ok
 test_enemy_progress_uses_observations_only_and_rejects_replacement (test_incumbent.IncumbentTests.test_enemy_progress_uses_observations_only_and_rejects_replacement) ... ok
 test_nonelite_alternatives_remain_pending (test_incumbent.IncumbentTests.test_nonelite_alternatives_remain_pending) ... ok
@@ -823,7 +831,7 @@ test_scoring_keeps_f1_f2_and_whole_win_distinct_and_common_denominator (test_rea
 test_skip_first_real_actions_and_sample_request_isolation (test_real_card_menu_probes.RealMenuTables.test_skip_first_real_actions_and_sample_request_isolation) ... ok
 test_source_bytes_observation_context_and_native_state_bind_identity (test_real_card_menu_probes.RealMenuTables.test_source_bytes_observation_context_and_native_state_bind_identity) ... ok
 test_thresholds_and_exact_duplicate_menu (test_real_card_menu_probes.RealMenuTables.test_thresholds_and_exact_duplicate_menu) ... ok
-test_detach_only_spawns_controller_and_does_not_draw_or_run_solver (test_release20.Release20Tests.test_detach_only_spawns_controller_and_does_not_draw_or_run_solver) ... {"detached_pid": 123, "release_dir": "/tmp/tmpd6yy_aph/P5plus-f1-card-switches/experiments/iteration-075/release20", "condition_run": "final30b-524130501"}
+test_detach_only_spawns_controller_and_does_not_draw_or_run_solver (test_release20.Release20Tests.test_detach_only_spawns_controller_and_does_not_draw_or_run_solver) ... {"detached_pid": 123, "release_dir": "/tmp/tmp5zul46vm/P5plus-f1-card-switches/experiments/iteration-075/release20", "condition_run": "final30b-524130501"}
 ok
 test_existing_seed_artifact_cannot_be_redrawn_or_overwritten (test_release20.Release20Tests.test_existing_seed_artifact_cannot_be_redrawn_or_overwritten) ... ok
 test_failure_timeout_or_missing_certificate_never_draws_seeds_or_starts_queue (test_release20.Release20Tests.test_failure_timeout_or_missing_certificate_never_draws_seeds_or_starts_queue) ... ok
@@ -976,18 +984,6 @@ test_the_path_does_not_depend_on_the_number_of_workers (test_worker_time.RootAsy
 test_off_by_default_and_validated (test_worker_time.SwitchTests.test_off_by_default_and_validated) ... ok
 
 ======================================================================
-ERROR: test_180_minutes_remains_valid_and_entry_records_latest_options (test_dashboard_controls.DashboardControlTests.test_180_minutes_remains_valid_and_entry_records_latest_options)
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/user/SpireExact/tests/test_dashboard_controls.py", line 16, in test_180_minutes_remains_valid_and_entry_records_latest_options
-    request=jobs.validate({'seed':'42','minutes':180})
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/user/SpireExact/dashboard/jobs.py", line 30, in validate
-    if type(minutes)is not int or not 1<=minutes<=45:raise ValueError('时间预算需为 1–45 分钟。')
-                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ValueError: 时间预算需为 1–45 分钟。
-
-======================================================================
 ERROR: setUpClass (test_solver_patches.SolverPatchContractTests)
 ----------------------------------------------------------------------
 Traceback (most recent call last):
@@ -1003,8 +999,7 @@ Traceback (most recent call last):
 FileNotFoundError: [Errno 2] No such file or directory: '/home/user/SpireExact/vendor/CombatSolver/src/Engine/InCombat/Mirrors/HookMirrors.cs'
 
 ----------------------------------------------------------------------
-Ran 972 tests in 32.525s
+Ran 980 tests in 29.521s
 
-FAILED (errors=2, skipped=2)
-{"tests_run": 972, "passed": 969, "failures": 0, "errors": 2, "skips": 2, "duration_seconds": 32.525, "source_unchanged": true}
-['test_dashboard_controls.DashboardControlTests.test_180_minutes_remains_valid_and_entry_records_latest_options', 'setUpClass (test_solver_patches.SolverPatchContractTests)'] [['test_atomic_io_windows.AtomicIoWindowsTests.test_dashboard_readers_and_repeated_writer_do_not_conflict', 'Windows file sharing regression'], ['test_atomic_io_windows.AtomicIoWindowsTests.test_transient_reader_does_not_abort_atomic_publication', 'Windows file sharing regression']]
+FAILED (errors=1, skipped=2)
+{"tests_run": 980, "passed": 978, "failures": 0, "errors": 1, "skips": 2, "duration_seconds": 29.521, "source_unchanged": true}

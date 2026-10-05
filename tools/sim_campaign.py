@@ -858,22 +858,22 @@ ARMS = {
     'i082': ['--feature-profile', 'i082'],
     'i085': ['--feature-profile', 'i085'],
     'i085-tail': ['--feature-profile', 'i085', '--tail-mode', 'on'],
-    'final01': ['--feature-profile', 'i085-final01'],
+    'final01': ['--feature-profile', 'i100'],
     # final01 ablations. final01 itself is the lean profile (i081/i082
     # synthetic F2 machinery and paired tables off); each arm changes one thing.
-    'final01-noprior': ['--feature-profile', 'i085-final01', '--strategy-prior', 'off', '--no-clinic-hints'],
-    'final01-nohint': ['--feature-profile', 'i085-final01', '--no-clinic-hints'],
-    'final01-noclinic': ['--feature-profile', 'i085-final01', '--no-clinic', '--no-clinic-hints', '--strategy-prior', 'off'],
-    'final01-readiness': ['--feature-profile', 'i085-final01', '--f2-readiness-probes'],
-    'final01-i081': ['--feature-profile', 'i085-final01', '--f2-readiness-probes', '--f2-dead-retry',
+    'final01-noprior': ['--feature-profile', 'i100', '--strategy-prior', 'off', '--no-clinic-hints'],
+    'final01-nohint': ['--feature-profile', 'i100', '--no-clinic-hints'],
+    'final01-noclinic': ['--feature-profile', 'i100', '--no-clinic', '--no-clinic-hints', '--strategy-prior', 'off'],
+    'final01-readiness': ['--feature-profile', 'i100', '--f2-readiness-probes'],
+    'final01-i081': ['--feature-profile', 'i100', '--f2-readiness-probes', '--f2-dead-retry',
                      '--f2-joint-focus', '--f2-joint-model', '--paired-card-probes', '--paired-card-joint'],
-    'final01-no-i075': ['--feature-profile', 'i085-final01', '--no-f1-winner-reuse', '--no-prefer-f1-hp',
+    'final01-no-i075': ['--feature-profile', 'i100', '--no-f1-winner-reuse', '--no-prefer-f1-hp',
                         '--no-gold-shop-routes', '--no-low-hp-routes', '--no-lean-third-act', '--no-shop-preparation'],
     # Native-relevant arms the simulator models poorly (Coordinator members are
     # neutral samples here; isolated auxiliary consumers are inert).
-    'final01-escalate': ['--feature-profile', 'i085-final01', '--gate-preset', 'escalate'],
-    'final01-nogov': ['--feature-profile', 'i085-final01', '--clinic-aux-share', '100', '--clinic-aux-contended', '100'],
-    'final01-window28': ['--feature-profile', 'i085-final01', '--dispatch-window', '28'],
+    'final01-escalate': ['--feature-profile', 'i100', '--gate-preset', 'escalate'],
+    'final01-nogov': ['--feature-profile', 'i100', '--clinic-aux-share', '100', '--clinic-aux-contended', '100'],
+    'final01-window28': ['--feature-profile', 'i100', '--dispatch-window', '28'],
 }
 
 

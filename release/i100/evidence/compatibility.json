@@ -1,7 +1,7 @@
 {
   "schema": "spire-i085-compatibility/v1",
   "reference_root": "i082 reference tree (commit 4c5823acd1a68acb797069fb8f7522a6ad857bbf, extracted)",
-  "current_root": "i085-final01 working tree (base a331a2e + this change)",
+  "current_root": "i100 working tree",
   "legacy_profile_differences": {
     "i075-final": {},
     "i081": {},
@@ -178,11 +178,28 @@
     "tools/solver_patches.py",
     "tools/source_dependencies.lock.json"
   ],
-  "native_or_proof_byte_differences": [],
+  "native_or_proof_byte_differences": [
+    "native/SpireNativeHost/BeamAdvisor.cs",
+    "native/SpireNativeHost/CampaignReplay.cs"
+  ],
+  "expected_native_differences": [
+    {
+      "path": "native/SpireNativeHost/BeamAdvisor.cs",
+      "reference_sha256": "5aeda49e184827febbf080d136cde857cd3d17634bb0a10847bd964d3790526d",
+      "current_sha256": "77b21a3f0358988ba92879c446a4a9e688d6110557036500ca7b7492a1cbf733"
+    },
+    {
+      "path": "native/SpireNativeHost/CampaignReplay.cs",
+      "reference_sha256": "201dbe72ea65ee427d97727573eccdd0ca4bba13cfe797ffa749227ecbfb8709",
+      "current_sha256": "1330f3fad69ce0bda296a346b2c766f14d63da73e84919a124a81d77eae8ac63"
+    }
+  ],
+  "unexpected_native_differences": [],
   "reference_snapshot_sha256": "58ba280fa6f1085a97b758d6bb2f12a934a9724e493d5fe6f28ba813ba9ae6ec",
   "current_snapshot_sha256": "40604cc592d55b95a686846733434f53758ba6a46a92c0f384e52fb62135b313",
   "successful": true,
   "allowed_difference": "post-successful-replay verification-timing.json for both controls; extra disabled settings/telemetry keys",
   "native_executed": false,
-  "scope": "independent parser and deterministic toy-scheduler regression, not native equivalence proof"
+  "scope": "independent parser and deterministic toy-scheduler regression, not native equivalence proof",
+  "expected_native_difference_reason": "combat-boundary fix: BeamAdvisor.EnterCombat and the live combat passed to SuggestSelection (docs/I100.md section 9)"
 }

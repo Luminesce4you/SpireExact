@@ -37,7 +37,7 @@ def snapshot(root):
     return json.loads(result.stdout)
 
 
-def compare(reference):
+def compare(reference,expected_native=()):
     old,new=snapshot(reference),snapshot(ROOT)
     profile_diffs={name:{k:[v,new['profiles'][name].get(k)] for k,v in values.items()
                         if new['profiles'][name].get(k)!=v} for name,values in old['profiles'].items()}
@@ -53,27 +53,37 @@ def compare(reference):
         if not a.exists():continue
         checked.append(relative.as_posix())
         if not b.exists() or a.read_bytes()!=b.read_bytes():native_diffs.append(relative.as_posix())
+    # Intentional native fixes are named on the command line and reported with
+    # both digests; any other byte difference still fails the check.
+    expected=sorted(set(expected_native))
+    unexpected=[path for path in native_diffs if path not in expected]
+    expected_rows=[{'path':path,'reference_sha256':hashlib.sha256((reference/path).read_bytes()).hexdigest(),
+                    'current_sha256':hashlib.sha256((ROOT/path).read_bytes()).hexdigest()}
+                   for path in native_diffs if path in expected]
     return {'schema':'spire-i085-compatibility/v1','reference_root':str(reference),
         'current_root':str(ROOT),'legacy_profile_differences':profile_diffs,'additive_parameters':additions,
         'i082_launcher_argv_equal':old['i082_argv']==new['i082_argv'],
         'fixture_paths_equal':old['toy_paths']==new['toy_paths'],'fixture_paths_compared':len(old['toy_paths']),
         'ordinary_requests_compared':sum(v['count'] for v in old['toy_paths']),
         'native_and_proof_files_checked':checked,'native_or_proof_byte_differences':native_diffs,
+        'expected_native_differences':expected_rows,'unexpected_native_differences':unexpected,
         'reference_snapshot_sha256':hashlib.sha256(json.dumps(old,sort_keys=True).encode()).hexdigest(),
         'current_snapshot_sha256':hashlib.sha256(json.dumps(new,sort_keys=True).encode()).hexdigest(),
-        'successful':not any(profile_diffs.values()) and old['i082_argv']==new['i082_argv'] and old['toy_paths']==new['toy_paths'] and not native_diffs,
+        'successful':not any(profile_diffs.values()) and old['i082_argv']==new['i082_argv'] and old['toy_paths']==new['toy_paths'] and not unexpected,
         'allowed_difference':'post-successful-replay verification-timing.json for both controls; extra disabled settings/telemetry keys',
         'native_executed':False,'scope':'independent parser and deterministic toy-scheduler regression, not native equivalence proof'}
 
 
 def main(argv=None):
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--reference-root',required=True,type=Path);p.add_argument('--out',required=True,type=Path)
+    p.add_argument('--expected-native-diff',action='append',default=[],metavar='PATH',
+                   help='Repository-relative native/proof file intentionally changed (reported, not a failure)')
     a=p.parse_args(argv)
     if a.out.exists():p.error('output exists; preserve old evidence')
-    try:record=compare(a.reference_root.resolve())
+    try:record=compare(a.reference_root.resolve(),a.expected_native_diff)
     except (OSError,ValueError,subprocess.TimeoutExpired) as e:p.error(str(e))
     a.out.parent.mkdir(parents=True,exist_ok=True);a.out.write_text(json.dumps(record,indent=2)+'\n',encoding='utf-8')
-    print(json.dumps({k:record[k] for k in ('successful','fixture_paths_compared','ordinary_requests_compared','native_or_proof_byte_differences')}))
+    print(json.dumps({k:record[k] for k in ('successful','fixture_paths_compared','ordinary_requests_compared','native_or_proof_byte_differences','unexpected_native_differences')}))
     return 0 if record['successful'] else 1
 
 

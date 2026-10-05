@@ -45,13 +45,13 @@ ARMS = {
     'i085-no-fairness': ('i085', ['--no-macro-fair']),
     'i085-no-shadow': ('i085', ['--macro-routes', 'off']),
     'i085-root-jitter': ('i085', ['--root-jitter', '4', '--restart-jitter']),
-    # i085-final01: gate clinic (root versus depth), governor, structural prior.
-    'i085-final01': ('i085-final01', []),
-    'i085-final01-escalate': ('i085-final01', ['--gate-preset', 'escalate']),
-    'i085-final01-noprior': ('i085-final01', ['--strategy-prior', 'off', '--no-clinic-hints']),
-    'i085-final01-nogov': ('i085-final01', ['--clinic-aux-share', '100', '--clinic-aux-contended', '100']),
-    'i085-final01-noclinic': ('i085-final01', ['--no-clinic', '--no-clinic-hints', '--strategy-prior', 'off']),
-    'i085-final01-i081': ('i085-final01', ['--f2-readiness-probes', '--f2-dead-retry', '--f2-joint-focus',
+    # i100: gate clinic (root versus depth), governor, structural prior.
+    'i100': ('i100', []),
+    'i100-escalate': ('i100', ['--gate-preset', 'escalate']),
+    'i100-noprior': ('i100', ['--strategy-prior', 'off', '--no-clinic-hints']),
+    'i100-nogov': ('i100', ['--clinic-aux-share', '100', '--clinic-aux-contended', '100']),
+    'i100-noclinic': ('i100', ['--no-clinic', '--no-clinic-hints', '--strategy-prior', 'off']),
+    'i100-i081': ('i100', ['--f2-readiness-probes', '--f2-dead-retry', '--f2-joint-focus',
                                            '--f2-joint-model', '--paired-card-probes', '--paired-card-joint']),
     # holdout-01's frozen-i054a search behaviour on this code base: the i075,
     # i081 and i082 additions off, no count-based stall, holdout retry preset.

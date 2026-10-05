@@ -136,7 +136,7 @@ class PairedCardProbes:
                  merge: str = 'latest', first: int = None):
         if type(every) is not int or every < 0 or type(dedup) is not bool or merge not in MERGES:
             raise ValueError('invalid paired card probe schedule')
-        # i085-final01 `first`: entry count of the first table (default the
+        # i100 `first`: entry count of the first table (default the
         # historical FIRST_THRESHOLD). Later thresholds keep their schedule.
         if first is not None and (type(first) is not int or first < 1):
             raise ValueError('invalid paired card probe schedule')

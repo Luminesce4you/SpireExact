@@ -9,13 +9,13 @@ from .resources import ResourcePlan
 from .search import SearchConfig,solve
 from .gates import PRESETS,preset
 from .policies import NATIVE,POLICIES,resolve as resolve_policies
-from .final_defaults import resolve_entry_defaults,F2_READINESS_EVERY_DEFAULT,FEATURE_PROFILES
+from .final_defaults import resolve_entry_defaults,F2_READINESS_EVERY_DEFAULT,FEATURE_PROFILES,PUBLIC_PROFILE
 
 def build_parser():
     p=argparse.ArgumentParser(description='P0–P5 full-information native witness planner; no UNSAT claims')
     p.add_argument('--seed',default='42');p.add_argument('--character',default='IRONCLAD')
     p.add_argument('--ascension',type=int);p.add_argument('--unlocks',choices=['all','none'],default='all')
-    p.add_argument('--feature-profile',choices=list(FEATURE_PROFILES),default='i082',
+    p.add_argument('--feature-profile',choices=list(FEATURE_PROFILES),default=PUBLIC_PROFILE,
                    help='i082 (default) is the whole entry: the i075 nine, the i081 four, the i080 run flags and '
                         'denser paired card tables (final_defaults.I082_PLANNER); earlier profiles remain explicit controls')
     p.add_argument('--game-dir',type=Path);p.add_argument('--out',type=Path,required=True)
@@ -51,7 +51,7 @@ def build_parser():
     p.add_argument('--focus-elites',type=int,default=8);p.add_argument('--focus-pool',type=int,default=48)
     p.add_argument('--gate-timing',action=argparse.BooleanOptionalAction,default=None)
     p.add_argument('--clinic',action=argparse.BooleanOptionalAction,default=None,
-                   help='i085-final01: gate clinic root-versus-depth diagnosis steers focus picks and retries (allocation only)')
+                   help='i100: gate clinic root-versus-depth diagnosis steers focus picks and retries (allocation only)')
     p.add_argument('--clinic-min-entries',type=int,default=6,help='Distinct entries of a (stem, gate) before a verdict')
     p.add_argument('--clinic-root-share',type=int,default=85,help='Percent of a ROOT stem\'s focus picks that re-root')
     p.add_argument('--clinic-undecided-share',type=int,default=34,help='Percent of an undecided stem\'s focus picks that re-root')
@@ -60,10 +60,10 @@ def build_parser():
     p.add_argument('--clinic-aux-share',type=int,default=10,help='Auxiliary dispatch share before a gate is contested')
     p.add_argument('--clinic-aux-contended',type=int,default=30,help='Auxiliary dispatch share once a gate is contested')
     p.add_argument('--clinic-hints',action=argparse.BooleanOptionalAction,default=None,
-                   help='i085-final01: re-root picks carry tiers toward options that repair the diagnosed structural deficit')
+                   help='i100: re-root picks carry tiers toward options that repair the diagnosed structural deficit')
     p.add_argument('--strategy-prior',choices=['off','builtin'],default=None,
-                   help='Version-robust structural strategy prior read by the gate clinic (i085-final01: builtin)')
-    p.add_argument('--paired-card-first',type=int,default=None,help='Distinct final-F1 entries before the first paired table (i085-final01: 8)')
+                   help='Version-robust structural strategy prior read by the gate clinic (i100: builtin)')
+    p.add_argument('--paired-card-first',type=int,default=None,help='Distinct final-F1 entries before the first paired table (i100: 8, when paired tables are on)')
     p.add_argument('--tail-mode',choices=['off','shadow','on'],default=None)
     p.add_argument('--tail-sites',type=int,default=1024)
     p.add_argument('--tail-mib',type=int,default=16)

@@ -1,4 +1,4 @@
-# 从公开源码构建与运行 i082
+# 从公开源码构建与运行 i100
 
 在源码根目录运行本页命令。支持的构建与启动平台为 Windows x64；工具按源码目录计算包内路径，用户提供自己的游戏与 Workshop 安装。
 
@@ -63,11 +63,11 @@ python tools/prepare_dashboard.py
 powershell -NoProfile -File dashboard/start.ps1 -Python python -Port 8765
 ```
 
-准备工具先执行 setup 身份检查，然后执行零动作宿主初始化，核对可暂停 Evaluate 计时适配与零动作结果。报告保存到 `outputs/dashboard-prepare/<timestamp>/report.json`，成功后写入 `.tools/dashboard-ready.json`，前端新作业使用这个经过本机检查的 i082 源码入口。它不执行战斗、探针或整局搜索。源码或宿主改变后需要重新构建并准备；运行中保持该作业使用的源码与产物不变。
+准备工具先执行 setup 身份检查，然后执行零动作宿主初始化，核对可暂停 Evaluate 计时适配与零动作结果。报告保存到 `outputs/dashboard-prepare/<timestamp>/report.json`，成功后写入 `.tools/dashboard-ready.json`，前端新作业使用这个经过本机检查的 i100 源码入口。它不执行战斗、探针或整局搜索。源码或宿主改变后需要重新构建并准备；运行中保持该作业使用的源码与产物不变。
 
 启动器从 setup 读取普通 .NET SDK 路径，启动 Python 后端并打开 [本机 SpireBoard](http://127.0.0.1:8765/)。`-NoBrowser` 只启动服务；`-Port` 可选择其他端口，浏览器地址使用对应端口。也可在当前终端运行 `python dashboard/server.py --port 8765` 并自行打开页面。
 
-点击 **新建求解** 输入种子，默认 30 分钟，支持 1–45 分钟。新作业完整采用 i082 profile、7 worker、有序派发窗口 56。资源不足以满足请求时拒绝启动，状态与错误保留在作业记录。产物位于 `outputs/spireboard/interactive/<run-id>/`；prepare 生成本机存储配置与用于看板索引的 `experiments/iteration-manual` 目录联接，这些都是本地运行产物。
+点击 **新建求解** 输入种子，默认 30 分钟，支持 1–45 分钟。新作业完整采用 i100 profile、7 worker、有序派发窗口 56。资源不足以满足请求时拒绝启动，状态与错误保留在作业记录。产物位于 `outputs/spireboard/interactive/<run-id>/`；prepare 生成本机存储配置与用于看板索引的 `experiments/iteration-manual` 目录联接，这些都是本地运行产物。
 
 运行页的 **暂停求解** 冻结受控进程树并保留内存，暂停时间不计主动求解预算；**继续求解** 恢复相同进程；**退出求解** 结束受控作业并保留已有文件。这是进程存活期间的暂停，退出或重启机器后不能继续该暂停状态。[前端使用与证据说明](../dashboard/README.md)
 
@@ -75,21 +75,21 @@ powershell -NoProfile -File dashboard/start.ps1 -Python python -Port 8765
 
 ```powershell
 python tools/run_release_source.py `
-  --seed 101 --out "outputs/my-i082-plan" `
-  --feature-profile i082 --minutes 30 --solver-seed 271828 --workers 7 --dry-run
+  --seed 101 --out "outputs/my-i100-plan" `
+  --minutes 45 --solver-seed 271828 --workers 7 --dry-run
 ```
 
-预览完整命令和 i082 设置，不执行原生宿主或搜索。配置来自 `final_defaults.py`，包含完整 i082 机制，详见 [I082.md](I082.md)。
+预览完整命令和 i100 设置，不执行原生宿主或搜索。配置来自 `final_defaults.py`，详见 [I100.md](I100.md)；`--feature-profile i082` 或 `i085` 切换到旧版本配置（[I082.md](I082.md)）。
 
 ## 5. 命令行单种子作业
 
 ```powershell
 python tools/run_release_source.py `
-  --seed 101 --out "outputs/my-i082-run" `
-  --feature-profile i082 --minutes 30 --solver-seed 271828 --workers 7 --detach
+  --seed 101 --out "outputs/my-i100-run" `
+  --minutes 45 --solver-seed 271828 --workers 7 --detach
 ```
 
-`--seed`、`--out` 必填；默认 profile 为 `i082`、30 分钟（支持 1–45）、`solver_seed=271828`、7 worker（支持 1–7）。输出目录必须尚未使用。`--detach` 返回 PID，日志在输出目录同级；省略该开关则在当前终端等待结束。
+`--seed`、`--out` 必填；默认 profile 为 `i100`、30 分钟（支持 1–45，建议 45）、`solver_seed=271828`、7 worker（支持 1–7）。输出目录必须尚未使用。`--detach` 返回 PID，日志在输出目录同级；省略该开关则在当前终端等待结束。
 
 启动器读取 setup 保存的 SDK 和依赖，身份前置检查失败时拒绝启动。标准配置使用 Windows Job 限制 8 个同类型逻辑 CPU、14 GiB 工作负载内存，并预留 2 GiB。默认预算 30 分钟，可选 45 分钟；接入暂停账本时超时按排除暂停的主动时间判断。有序派发窗口为 56，资源准入必须满足请求的 worker 数，否则拒绝启动。可显式指定较小的 `--workers`，设置记录在 manifest 与资源报告中。一次运行一个种子；不同机器、worker 数与核心类型的墙钟结果需结合资源记录比较。
 
