@@ -1,0 +1,22 @@
+{
+  "source": "unmodified i082 source (publication parent only adds CI/log)",
+  "tests_run": 842,
+  "passed": 839,
+  "failures": 0,
+  "errors": 2,
+  "skips": 2,
+  "successful": false,
+  "issues": [
+    {
+      "test": "test_dashboard_controls.DashboardControlTests.test_180_minutes_remains_valid_and_entry_records_latest_options",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/SpireExact-reference/tests/test_dashboard_controls.py\", line 16, in test_180_minutes_remains_valid_and_entry_records_latest_options\n    request=jobs.validate({'seed':'42','minutes':180})\n  File \"/mnt/data/SpireExact-reference/dashboard/jobs.py\", line 30, in validate\n    if type(minutes)is not int or not 1<=minutes<=45:raise ValueError('\u65f6\u95f4\u9884\u7b97\u9700\u4e3a 1\u201345 \u5206\u949f\u3002')\n                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: \u65f6\u95f4\u9884\u7b97\u9700\u4e3a 1\u201345 \u5206\u949f\u3002\n"
+    },
+    {
+      "test": "setUpClass (test_solver_patches.SolverPatchContractTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/SpireExact-reference/tests/test_solver_patches.py\", line 11, in setUpClass\n    'vendor/CombatSolver/src/Engine/InCombat/Mirrors/HookMirrors.cs').read_text(encoding='utf-8')\n                                                                      ~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.13/pathlib/_local.py\", line 548, in read_text\n    return PathBase.read_text(self, encoding, errors, newline)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.13/pathlib/_abc.py\", line 632, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.13/pathlib/_local.py\", line 539, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/SpireExact-reference/vendor/CombatSolver/src/Engine/InCombat/Mirrors/HookMirrors.cs'\n"
+    }
+  ],
+  "native_executed": false,
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "duration_seconds": 14.390979961000085
+}

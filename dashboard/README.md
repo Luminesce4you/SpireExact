@@ -1,6 +1,6 @@
-# SpireBoard：i082 本机前端
+# SpireBoard：i100 本机前端
 
-SpireBoard 提供完整 i082 新作业提交、实时进展、关口模型、胜利路线与作业控制。前端和命令行使用相同的 i082 profile，普通 Python、.NET SDK 和用户自己的游戏安装即可准备运行。
+SpireBoard 提供 i100 新作业提交、实时进展、关口模型、胜利路线与作业控制。前端和命令行使用相同的 i100 profile，普通 Python、.NET SDK 和用户自己的游戏安装即可准备运行。
 
 ## 构建、准备、启动
 
@@ -18,7 +18,7 @@ powershell -NoProfile -File dashboard/start.ps1 -Python python -Port 8765
 
 用真实路径替换占位符。支持 Windows x64、Python 3.11+、.NET 9 SDK、Git、STS2 v0.111.0 与完整 RitsuLib item 3747602295。SDK 不在 PATH 时，在 setup 命令追加 `--dotnet "<dotnet.exe 的绝对路径>"`。
 
-准备工具校验本机 setup、源码和宿主身份，并执行零动作宿主初始化，检查可暂停的 Evaluate 计时适配。报告保存到 `outputs/dashboard-prepare/<timestamp>/report.json`，成功后写入 `.tools/dashboard-ready.json`；新作业使用当前包内 i082 实现。源码或编译产物改变后重新构建并准备，运行中保持作业使用的源码与产物不变。
+准备工具校验本机 setup、源码和宿主身份，并执行零动作宿主初始化，检查可暂停的 Evaluate 计时适配。报告保存到 `outputs/dashboard-prepare/<timestamp>/report.json`，成功后写入 `.tools/dashboard-ready.json`；新作业使用当前包内 i100 实现。源码或编译产物改变后重新构建并准备，运行中保持作业使用的源码与产物不变。
 
 启动器读取 setup 保存的 SDK 路径，启动 Python 后端并打开 [本机页面](http://127.0.0.1:8765/)。追加 `-NoBrowser` 可只启动服务；用 `-Port` 选择其他端口。也可在当前终端运行：
 
@@ -28,13 +28,13 @@ python dashboard/server.py --port 8765
 
 然后自行打开对应浏览器地址。后端日志位于 `dashboard/runtime/`。如果端口由另一份项目的服务使用，选择空闲端口并打开对应地址。
 
-## 新建 i082 求解
+## 新建 i100 求解
 
-点击右上角 **新建求解**，输入种子、选择时间上限并提交。作者建议大部分种子选择 45 分钟，默认仍为 30 分钟；推荐与实际效果记录分别解释。
+点击右上角 **新建求解**，输入种子、选择时间上限并提交。大部分种子建议选择 45 分钟。
 
 - 默认 30 分钟，支持 1–45 分钟。
 - IRONCLAD / Ascension 10 / all unlocks / fresh start / mode1 全信息。
-- 完整 `--feature-profile i082`，设置来自 `final_defaults.py`。
+- 完整 `--feature-profile i100`，设置来自 `final_defaults.py`。
 - 7 个 worker、有序派发窗口 56；标准资源为 8 个同类型逻辑 CPU、14 GiB Job 工作负载与 2 GiB 预留。
 - 资源准入必须满足请求的 worker 数，不满足时显示失败原因并保留记录。
 - 用户新作业独立登记，预算下的 UNKNOWN 保留为未知结果。
@@ -65,15 +65,13 @@ python dashboard/server.py --port 8765
 
 **胜利轨迹** 提供跟打与证据核查。跟打按幕、层和阶段列出动作、记录中的手牌/目标位置与前后状态；证据核查保留原始动作、合法选项与 JSON。只有完整证书、独立重放和身份检查通过的路线才显示验证徽标。原始历史文件保持原身份。
 
-跟打进度与“与游戏不一致”笔记保存在浏览器 localStorage，可供用户自己核对。正常游戏界面的牌堆/怪物位置顺序与离线记录未证明等价；证据范围为原生 DLL TestMode。旧宿主缺少的选牌观测在页面中说明，不补写为真实记录。
+跟打进度与“与游戏不一致”笔记保存在浏览器 localStorage。手牌与目标位置按离线 TestMode 记录的顺序列出；旧宿主缺少的选牌观测在页面中标明。
 
 名称来自 `route_zh_data.js` 保存的中文 Wiki 快照，未知名称保留 native ID。刷新来源的维护命令为 `python tools/build_route_zh.py --refresh`。原动作、证书和导出的 JSON 不修改。
 
-## 验证范围
+## 版本与历史
 
-构建和静态身份检查见 [BUILD_VALIDATION.json](../release/BUILD_VALIDATION.json)。本机 prepare 的零动作检查验证初始化、当前身份与计时前置条件，不执行战斗、完整求解或胜利重放。暂停/继续/退出的进程控制与 UI/HTTP 检查另有记录；不能用零动作初始化代替真实暂停运行或正常游戏等价验证。
-
-i082 原冻结的 845/845 源码回归和效果边界见 [I082.md](../docs/I082.md)。历史 holdout-01 的 17/20 属于旧 `frozen-i054a`，公开完整动作可以在本机构建上另行重放，生成新证书。
+i100 的设计、判定规则与评估见 [I100.md](../docs/I100.md)；运行结果的 `search_metrics.gate_clinic` 记录每个 (stem, 首领关口) 的判定与依据。i082 的机制说明见 [I082.md](../docs/I082.md)。历史 holdout-01 的 17/20 属于 `frozen-i054a`，其完整动作可以在本机构建上重放并生成新证书。
 
 [源码根入口](../README.md) · [构建与运行](../docs/BUILD.md) · [发布范围与方法](../docs/RELEASE_SCOPE.md)
 

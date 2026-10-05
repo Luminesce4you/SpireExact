@@ -154,7 +154,8 @@ class ConfigTests(unittest.TestCase):
             a = self.namespace(profile)
             for key, (_, other) in I082_PLANNER.items():
                 self.assertEqual(getattr(a, key), other, (profile, key))
-        self.assertEqual(FEATURE_PROFILES[0], 'i082')
+        # i100 is the public entry; i082 stays selectable with its own table.
+        self.assertEqual(FEATURE_PROFILES[:2], ('i100', 'i082'))
 
     def test_argv_renders_everything_but_the_derived_joint_switch(self):
         argv = i082_argv()
@@ -179,7 +180,7 @@ class PlannerParseTests(unittest.TestCase):
                     planner.main(['--out', tmp, *argv])
         return seen['args']
 
-    def test_default_profile_is_i082_and_passes_validation_to_the_output_check(self):
+    def test_default_profile_is_i100_and_passes_validation_to_the_output_check(self):
         with tempfile.TemporaryDirectory() as tmp:
             (Path(tmp) / 'old').write_text('x')
             with patch('sys.stderr') as err, self.assertRaises(SystemExit):
@@ -187,6 +188,8 @@ class PlannerParseTests(unittest.TestCase):
             text = ''.join(call.args[0] for call in err.write.call_args_list)
         self.assertIn('output must be new/empty', text)
         a = self.parse([])
+        self.assertEqual((a.feature_profile, a.scheduler, a.gate_preset, a.paired_card_joint), ('i100', 'focus', 'escalate-evaluate', False))
+        a = self.parse(['--feature-profile', 'i082'])
         self.assertEqual((a.feature_profile, a.scheduler, a.gate_preset, a.paired_card_joint), ('i082', 'focus', 'escalate-evaluate', True))
 
     def test_run_seed_argv_order_lets_explicit_flags_win(self):
@@ -202,7 +205,7 @@ class PlannerParseTests(unittest.TestCase):
         self.assertIs(a.f2_joint_model, True)
 
     def test_dropping_the_joint_model_drops_the_derived_switch(self):
-        a = self.parse(['--no-f2-joint-model'])
+        a = self.parse(['--feature-profile', 'i082', '--no-f2-joint-model'])
         self.assertEqual((a.f2_joint_model, a.paired_card_joint), (False, False))
 
     def test_i080_job_equals_i082_on_every_shared_setting(self):

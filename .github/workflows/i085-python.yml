@@ -1,0 +1,43 @@
+name: i085 source and Python validation
+on:
+  push:
+    branches: [codex/i085-macro-candidate-20261005]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Archive exact committed source
+        run: |
+          mkdir -p /tmp/i085-evidence
+          git rev-parse HEAD > /tmp/i085-evidence/commit.txt
+          git archive --format=zip HEAD -o /tmp/i085-evidence/source.zip
+          python --version > /tmp/i085-evidence/python.txt
+      - name: Publish exact source
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: i085-source
+          path: /tmp/i085-evidence/
+          retention-days: 7
+      - name: Python regression (no native claims)
+        timeout-minutes: 5
+        run: |
+          set +e
+          python -m unittest discover -s tests -v > /tmp/i085-evidence/unittest.log 2>&1
+          rc=$?
+          echo "$rc" > /tmp/i085-evidence/unittest-exit-code.txt
+          exit "$rc"
+      - name: Publish actual test evidence, including failures
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: i085-python-evidence
+          path: /tmp/i085-evidence/
+          retention-days: 7
+          if-no-files-found: error

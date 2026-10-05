@@ -231,6 +231,18 @@ internal sealed class BeamAdvisor
         return new InvalidDataException(reason);
     }
     JsonNode? Miss(string reason) {RequireNoForcedF1Fallback(reason);LastMissReason=reason;Count("advisor_miss");Count("miss_"+reason);return null;}
+    // A combat this advisor has not seen yet. Combat-start effects (for example a
+    // relic that exhausts a card from hand at the start of every turn) can ask for
+    // a selection before the first combat decision, so the switch happens at
+    // whichever call meets the new combat first. Queued choices belong to the
+    // previous combat, and so does a strict F1 deployment: entering final F2
+    // ends it even when F2 opens with such a selection.
+    void EnterCombat(CombatState state,string reason)
+    {
+        if(StrictF1&&state.Encounter?.Id==forcedF1Combat?.Encounter?.Id)
+            throw RejectF1Winner("F1_WINNER_DEPLOYMENT_MISMATCH:combat_instance_changed");
+        Invalidate(reason);lastCombat=state;lastTurn=-1;
+    }
 
     public void ConfigureF1WinnerReuse(bool capture, JsonObject? proposal)
     {
@@ -254,11 +266,7 @@ internal sealed class BeamAdvisor
     {
         if(pendingChoices.Count>0)Invalidate("unconsumed_choice_plan");
         int turn=player.PlayerCombatState!.TurnNumber;
-        if(state!=lastCombat) {
-            if(StrictF1&&state.Encounter?.Id==forcedF1Combat?.Encounter?.Id)
-                throw RejectF1Winner("F1_WINNER_DEPLOYMENT_MISMATCH:combat_instance_changed");
-            Invalidate("new_combat");lastCombat=state;lastTurn=-1;
-        }
+        if(state!=lastCombat)EnterCombat(state,"new_combat");
         if(turn!=lastTurn)
         {
             turnReplans=0;
@@ -355,8 +363,15 @@ internal sealed class BeamAdvisor
         }
         return Miss("mapping_retry_exhausted");
     }
-    public JsonNode? SuggestSelection(CardModel[] options,JsonNode[] legal,CardSelectionPurpose purpose)
+    public JsonNode? SuggestSelection(CombatState? state,CardModel[] options,JsonNode[] legal,CardSelectionPurpose purpose)
     {
+        if(state!=null&&state!=lastCombat) {
+            // Asked before this combat's first decision: no plan exists yet and
+            // any queued choice is stale. The native policy decides this one;
+            // the first Suggest of the combat then plans from the live state.
+            EnterCombat(state,"new_combat_selection");
+            Count("selection_before_first_combat_decision");Count("selection_miss");return null;
+        }
         if(!pendingChoices.TryDequeue(out var choice)) {RequireNoForcedF1Fallback("unplanned_nested_selection");Invalidate("unplanned_nested_selection");Count("selection_miss");return null;}
         string effect=Get(choice,"Effect")!.ToString()!;
         bool purposeMatches=purpose switch {

@@ -12,16 +12,16 @@ from ..canonical import canonical, ContractError
 
 SWITCHES = ('gold_shop_routes', 'low_hp_routes', 'low_hp_routes_any_act', 'lean_third_act',
             'shop_preparation', 'resource_telemetry')
-ROUTE_KINDS = ('macro_shop_route', 'macro_low_hp_route')
+ROUTE_KINDS = ('macro_shop_route', 'macro_low_hp_route', 'macro_route_portfolio')
 
 
 def enabled(config):
     # any-act is a modifier of low_hp_routes, not a separate route generator.
-    return any(getattr(config, key, False) for key in SWITCHES if key != 'low_hp_routes_any_act')
+    return any(getattr(config, key, False) for key in SWITCHES if key != 'low_hp_routes_any_act') or getattr(config,'macro_routes','off')!='off'
 
 
 def captures_graph(config):
-    return bool(config.gold_shop_routes or config.low_hp_routes)
+    return bool(config.gold_shop_routes or config.low_hp_routes or getattr(config,'macro_routes','off')!='off')
 
 
 def number(value):

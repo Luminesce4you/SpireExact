@@ -1,0 +1,272 @@
+{
+  "schema": "spire-i085-tail-evidence-index/v1",
+  "executable_source_hash": "238e835b78f82c3bdefad2c3b7e477bdcbe485e6d170f0e23bcc39c389338820",
+  "primary_baseline": "4c5823acd1a68acb797069fb8f7522a6ad857bbf",
+  "publication_parent": "dec944a41743b83e44f137a140770e16961aa08f",
+  "constructed_time_cap_seconds": 30,
+  "constructed_time_units": "simulated, not native seconds",
+  "window14_summary": [
+    {
+      "world": "early_pair",
+      "window": 14,
+      "arm": "i082-focus-core",
+      "found": 4,
+      "cases": 4,
+      "goal_evaluations": [
+        56,
+        83,
+        72,
+        46
+      ],
+      "restricted_evaluation_mean": 64.25,
+      "python_seconds": 0.21007218099975944,
+      "restricted_simulated_time_mean": 19.125000000000004
+    },
+    {
+      "world": "early_pair",
+      "window": 14,
+      "arm": "i085-macro-core",
+      "found": 1,
+      "cases": 4,
+      "goal_evaluations": [
+        70,
+        null,
+        null,
+        null
+      ],
+      "restricted_evaluation_mean": 317.5,
+      "python_seconds": 0.5436945979995471,
+      "restricted_simulated_time_mean": 27.15
+    },
+    {
+      "world": "early_pair",
+      "window": 14,
+      "arm": "i085-tail",
+      "found": 4,
+      "cases": 4,
+      "goal_evaluations": [
+        40,
+        49,
+        106,
+        49
+      ],
+      "restricted_evaluation_mean": 61.0,
+      "python_seconds": 0.48451798600035545,
+      "restricted_simulated_time_mean": 17.200000000000003
+    },
+    {
+      "world": "late_single",
+      "window": 14,
+      "arm": "i082-focus-core",
+      "found": 4,
+      "cases": 4,
+      "goal_evaluations": [
+        3,
+        1,
+        3,
+        1
+      ],
+      "restricted_evaluation_mean": 2.0,
+      "python_seconds": 0.02082802199993239,
+      "restricted_simulated_time_mean": 3.6
+    },
+    {
+      "world": "late_single",
+      "window": 14,
+      "arm": "i085-macro-core",
+      "found": 4,
+      "cases": 4,
+      "goal_evaluations": [
+        3,
+        1,
+        3,
+        1
+      ],
+      "restricted_evaluation_mean": 2.0,
+      "python_seconds": 0.021862181999949826,
+      "restricted_simulated_time_mean": 3.6
+    },
+    {
+      "world": "late_single",
+      "window": 14,
+      "arm": "i085-tail",
+      "found": 4,
+      "cases": 4,
+      "goal_evaluations": [
+        5,
+        1,
+        5,
+        1
+      ],
+      "restricted_evaluation_mean": 3.0,
+      "python_seconds": 0.03315780699949755,
+      "restricted_simulated_time_mean": 4.2
+    },
+    {
+      "world": "late_pair",
+      "window": 14,
+      "arm": "i082-focus-core",
+      "found": 3,
+      "cases": 4,
+      "goal_evaluations": [
+        45,
+        57,
+        null,
+        26
+      ],
+      "restricted_evaluation_mean": 132.0,
+      "python_seconds": 0.2297725750004247,
+      "restricted_simulated_time_mean": 17.325
+    },
+    {
+      "world": "late_pair",
+      "window": 14,
+      "arm": "i085-macro-core",
+      "found": 4,
+      "cases": 4,
+      "goal_evaluations": [
+        19,
+        25,
+        25,
+        21
+      ],
+      "restricted_evaluation_mean": 22.5,
+      "python_seconds": 0.10771483100006662,
+      "restricted_simulated_time_mean": 7.775
+    },
+    {
+      "world": "late_pair",
+      "window": 14,
+      "arm": "i085-tail",
+      "found": 4,
+      "cases": 4,
+      "goal_evaluations": [
+        21,
+        37,
+        37,
+        25
+      ],
+      "restricted_evaluation_mean": 30.0,
+      "python_seconds": 0.23201412199978222,
+      "restricted_simulated_time_mean": 9.525
+    },
+    {
+      "world": "misleading_late_progress",
+      "window": 14,
+      "arm": "i082-focus-core",
+      "found": 1,
+      "cases": 4,
+      "goal_evaluations": [
+        null,
+        null,
+        null,
+        39
+      ],
+      "restricted_evaluation_mean": 309.75,
+      "python_seconds": 0.13476256099966122,
+      "restricted_simulated_time_mean": 28.7
+    },
+    {
+      "world": "misleading_late_progress",
+      "window": 14,
+      "arm": "i085-macro-core",
+      "found": 0,
+      "cases": 4,
+      "goal_evaluations": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "restricted_evaluation_mean": 400.0,
+      "python_seconds": 0.23930428799940273,
+      "restricted_simulated_time_mean": 30.0
+    },
+    {
+      "world": "misleading_late_progress",
+      "window": 14,
+      "arm": "i085-tail",
+      "found": 1,
+      "cases": 4,
+      "goal_evaluations": [
+        null,
+        null,
+        null,
+        47
+      ],
+      "restricted_evaluation_mean": 311.75,
+      "python_seconds": 0.41756541199947605,
+      "restricted_simulated_time_mean": 29.075
+    },
+    {
+      "world": "unsolved",
+      "window": 14,
+      "arm": "i082-focus-core",
+      "found": 0,
+      "cases": 4,
+      "goal_evaluations": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "restricted_evaluation_mean": 400.0,
+      "python_seconds": 0.4058441749998565,
+      "restricted_simulated_time_mean": 30.0
+    },
+    {
+      "world": "unsolved",
+      "window": 14,
+      "arm": "i085-macro-core",
+      "found": 0,
+      "cases": 4,
+      "goal_evaluations": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "restricted_evaluation_mean": 400.0,
+      "python_seconds": 0.5594396100000267,
+      "restricted_simulated_time_mean": 30.0
+    },
+    {
+      "world": "unsolved",
+      "window": 14,
+      "arm": "i085-tail",
+      "found": 0,
+      "cases": 4,
+      "goal_evaluations": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "restricted_evaluation_mean": 400.0,
+      "python_seconds": 1.033863114000269,
+      "restricted_simulated_time_mean": 30.0
+    }
+  ],
+  "newborn_counterexample": {
+    "rounds": 60,
+    "persistent_old_picks": 60,
+    "zero_debt_old_picks": 0
+  },
+  "restart_math": {
+    "distribution": [
+      [
+        1,
+        0.1
+      ],
+      [
+        100,
+        0.9
+      ]
+    ],
+    "no_restart_mean": 90.1,
+    "cutoff_1_no_overhead": 10.0,
+    "cutoff_1_overhead_20": 190.0,
+    "deterministic_same_run_cutoff_10": null
+  },
+  "native_tests": false
+}

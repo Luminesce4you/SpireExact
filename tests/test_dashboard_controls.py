@@ -12,12 +12,16 @@ from dashboard import jobs,server
 
 
 class DashboardControlTests(unittest.TestCase):
-    def test_180_minutes_remains_valid_and_entry_records_latest_options(self):
-        request=jobs.validate({'seed':'42','minutes':180})
+    def test_45_minutes_is_the_public_maximum_and_entry_records_latest_options(self):
+        # The public frontend budget is 1-45 minutes (README, docs/RELEASE_SCOPE.md);
+        # longer research budgets use tools/run_release_source.py --research-minutes.
+        for minutes in (0,46,180):
+            with self.assertRaises(ValueError):jobs.validate({'seed':'42','minutes':minutes})
+        request=jobs.validate({'seed':'42','minutes':45})
         profile={'runtime_profile':'server-large-gen0','worker_memory_mib':1792,
                  'solver_settings':['--scheduler','focus','--prior','--root-async','--root-round','7','--paired-card-probes']}
         args=jobs.solver_settings(request,profile)
-        self.assertEqual(args[args.index('--seconds')+1],'10770')
+        self.assertEqual(args[args.index('--seconds')+1],'2670')
         self.assertEqual(args[args.index('--runtime-profile')+1],'server-large-gen0')
         self.assertIn('--paired-card-probes',args)
         for field in ('--seed','--out','--prefix','--scope-prefix'):

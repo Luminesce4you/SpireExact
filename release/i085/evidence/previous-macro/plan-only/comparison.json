@@ -1,0 +1,133 @@
+{
+  "schema": "spire-i085-comparison/v1",
+  "plan_source_hash": "e87db63a6251398509d7a3aa7598fe1e62139fefd8825d4546608fac3ec05f98",
+  "runs": [
+    {
+      "id": "101-s271828-i082",
+      "seed": "101",
+      "solver_seed": 271828,
+      "arm": "i082",
+      "wall_cap_seconds": 60,
+      "available": false,
+      "verified_evidence": false,
+      "run_state": "not_run",
+      "runner_status": {}
+    },
+    {
+      "id": "101-s271828-i085",
+      "seed": "101",
+      "solver_seed": 271828,
+      "arm": "i085",
+      "wall_cap_seconds": 60,
+      "available": false,
+      "verified_evidence": false,
+      "run_state": "not_run",
+      "runner_status": {}
+    },
+    {
+      "id": "101-s271828-i085-routes",
+      "seed": "101",
+      "solver_seed": 271828,
+      "arm": "i085-routes",
+      "wall_cap_seconds": 60,
+      "available": false,
+      "verified_evidence": false,
+      "run_state": "not_run",
+      "runner_status": {}
+    },
+    {
+      "id": "42-s271828-i085",
+      "seed": "42",
+      "solver_seed": 271828,
+      "arm": "i085",
+      "wall_cap_seconds": 60,
+      "available": false,
+      "verified_evidence": false,
+      "run_state": "not_run",
+      "runner_status": {}
+    },
+    {
+      "id": "42-s271828-i085-routes",
+      "seed": "42",
+      "solver_seed": 271828,
+      "arm": "i085-routes",
+      "wall_cap_seconds": 60,
+      "available": false,
+      "verified_evidence": false,
+      "run_state": "not_run",
+      "runner_status": {}
+    },
+    {
+      "id": "42-s271828-i082",
+      "seed": "42",
+      "solver_seed": 271828,
+      "arm": "i082",
+      "wall_cap_seconds": 60,
+      "available": false,
+      "verified_evidence": false,
+      "run_state": "not_run",
+      "runner_status": {}
+    }
+  ],
+  "comparisons": [
+    {
+      "candidate": "i085",
+      "auditable_pairs": 0,
+      "omitted_pairs": [
+        {
+          "seed": "101",
+          "solver_seed": 271828,
+          "reason": "missing_or_partial"
+        },
+        {
+          "seed": "42",
+          "solver_seed": 271828,
+          "reason": "missing_or_partial"
+        }
+      ],
+      "i082_only_wins": 0,
+      "candidate_only_wins": 0,
+      "both_wins": 0,
+      "neither_win": 0,
+      "timed_pairs": 0,
+      "paired_mean_restricted_time_delta_seconds": null,
+      "seed_cluster_bootstrap_interval": null,
+      "seed_clusters_for_interval": 0,
+      "pairs": [],
+      "scope": "candidate minus i082; failures capped at shared wall budget; missing win times omitted, not replaced by candidate time"
+    },
+    {
+      "candidate": "i085-routes",
+      "auditable_pairs": 0,
+      "omitted_pairs": [
+        {
+          "seed": "101",
+          "solver_seed": 271828,
+          "reason": "missing_or_partial"
+        },
+        {
+          "seed": "42",
+          "solver_seed": 271828,
+          "reason": "missing_or_partial"
+        }
+      ],
+      "i082_only_wins": 0,
+      "candidate_only_wins": 0,
+      "both_wins": 0,
+      "neither_win": 0,
+      "timed_pairs": 0,
+      "paired_mean_restricted_time_delta_seconds": null,
+      "seed_cluster_bootstrap_interval": null,
+      "seed_clusters_for_interval": 0,
+      "pairs": [],
+      "scope": "candidate minus i082; failures capped at shared wall budget; missing win times omitted, not replaced by candidate time"
+    }
+  ],
+  "new_native_execution_by_report": false,
+  "warnings": [
+    "Do not treat missing native metrics as zero.",
+    "One-step shadow paths have no counterfactual outcome labels.",
+    "No-DLL tests and historical wins are not i085 native evidence.",
+    "Repeated solver seeds on one game seed are not independent game seeds."
+  ]
+}

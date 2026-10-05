@@ -1,0 +1,49 @@
+%% SpireExact i100 architecture overview. Rendered SVG: i100-architecture.svg (render_i100_diagrams.py)
+flowchart TB
+  subgraph ENTRY["01 · 入口与资源"]
+    direction LR
+    UI["SpireBoard<br/>新建 · 暂停 · 继续 · 退出"]:::entry
+    CLI["命令行<br/>单种子 · 1–45 分钟 · 默认 i100"]:::entry
+  end
+  JOB["Windows Job · 资源边界<br/>7 个 worker · 14 GiB 工作集 + 2 GiB 预留"]:::boundary
+  subgraph PLAN["02 · Python 整局规划"]
+    direction LR
+    ARCH["前缀与结果档案<br/>完整字节前缀树 · 检查点 · 请求缓存"]:::store
+    LOOP["宏观搜索主循环<br/>有序吸收 · 精英与谱系 · 聚焦 · 探索 · 根策略"]:::planner
+    CLINIC["关口诊所<br/>stem × 首领关口 · 根不对 / 深度不够 / 待定"]:::clinic
+    GATE["关口模型与重试<br/>每个首领关口的结果模型 · DEPTH 重试优先"]:::planner
+    DISPATCH["派发与调速<br/>核心 → 辅助 → 重试 → 提案 · 辅助 10% / 30%"]:::signal
+    PRIOR["结构先验<br/>社区攻略方向 · 本局后验 · 修复方向档位"]:::signal
+  end
+  subgraph EXEC["03 · .NET 原生执行"]
+    direction LR
+    SOLVER["CombatSolver<br/>束搜索战斗计划"]:::runtime
+    WORKER["7 个常驻 worker<br/>合法菜单 · 整局 rollout · 检查点恢复"]:::runtime
+    GAME["游戏 DLL<br/>离线 TestMode · 原生规则"]:::runtime
+  end
+  subgraph PROOF["04 · 独立验证"]
+    direction LR
+    REPLAY["独立新进程重放<br/>从开局逐动作 · 无 advisor / 检查点 / 缓存"]:::proof
+    CERT["结果与证书<br/>路线 · 身份 · 诊所记录"]:::store
+  end
+  UI --> JOB
+  CLI --> JOB
+  JOB --> LOOP
+  ARCH <--> LOOP
+  LOOP <-->|判定 → 份额| CLINIC
+  PRIOR -.-> CLINIC
+  GATE <--> LOOP
+  LOOP <--> DISPATCH
+  DISPATCH <-->|JSON 请求 / 真实执行结果| WORKER
+  WORKER <--> SOLVER
+  WORKER <--> GAME
+  LOOP -->|获胜候选| REPLAY
+  REPLAY --> CERT
+  classDef entry fill:#DBEAFE,stroke:#2563EB,color:#1E3A8A,stroke-width:1.5px
+  classDef boundary fill:#F1F5F9,stroke:#64748B,color:#0F172A,stroke-width:1.5px
+  classDef store fill:#F8FAFC,stroke:#64748B,color:#0F172A,stroke-width:1.5px
+  classDef planner fill:#CCFBF1,stroke:#0D9488,color:#134E4A,stroke-width:1.5px
+  classDef clinic fill:#FFE4E6,stroke:#E11D48,color:#881337,stroke-width:2px
+  classDef signal fill:#EDE9FE,stroke:#7C3AED,color:#4C1D95,stroke-width:1.5px
+  classDef runtime fill:#FEF3C7,stroke:#D97706,color:#78350F,stroke-width:1.5px
+  classDef proof fill:#DCFCE7,stroke:#16A34A,color:#14532D,stroke-width:2px

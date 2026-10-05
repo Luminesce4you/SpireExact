@@ -133,9 +133,14 @@ class PairedCardProbes:
     """
     def __init__(self, enabled: bool, solver_seed: int, *, context=None, inputs=None,
                  inactive_reason: str | None = None, every: int = 0, dedup: bool = False,
-                 merge: str = 'latest'):
+                 merge: str = 'latest', first: int = None):
         if type(every) is not int or every < 0 or type(dedup) is not bool or merge not in MERGES:
             raise ValueError('invalid paired card probe schedule')
+        # i100 `first`: entry count of the first table (default the
+        # historical FIRST_THRESHOLD). Later thresholds keep their schedule.
+        if first is not None and (type(first) is not int or first < 1):
+            raise ValueError('invalid paired card probe schedule')
+        self.first = FIRST_THRESHOLD if first is None else first
         self.every, self.dedup, self.merge = every, dedup, merge
         self.table_keys = set()
         self.duplicate_tables = 0
@@ -150,7 +155,7 @@ class PairedCardProbes:
         self.metadata_seen = False
         self.seen = set()
         self.tables = []
-        self.next_threshold = FIRST_THRESHOLD
+        self.next_threshold = self.first
         self.completed_batches = 0
         self.attempted_probes = 0
         self.usable_probes = 0
@@ -355,7 +360,7 @@ class PairedCardProbes:
                  else 'WAITING_FOR_FINAL_F1' if self.metadata_seen else 'WAITING_FOR_NATIVE_METADATA')
         return {'enabled':self.enabled, 'state':state, 'inactive_reason':self.inactive_reason,
             'scope':SCOPE, 'samples_per_arm':SAMPLES, 'max_cards':CARDS,
-            'entry_schedule':({'first':FIRST_THRESHOLD, 'every':self.every} if self.every else
+            'entry_schedule':({'first':self.first, 'every':self.every} if self.every else
                               {'first':FIRST_THRESHOLD, 'second':SECOND_THRESHOLD, 'factor':THRESHOLD_FACTOR}),
             'dedup':self.dedup, 'duplicate_tables_skipped':self.duplicate_tables, 'merge':self.merge,
             'signal_tables':{label:count for label,(_,count) in sorted(self.gain_sums.items())},

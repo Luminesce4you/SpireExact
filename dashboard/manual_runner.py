@@ -62,7 +62,7 @@ def main():
         from dashboard.jobs import solver_settings
         settings=solver_settings(request,read_json(ROOT/'dashboard/solver-profile.json'))
         if request.get('settings')!=settings:
-            raise RuntimeError('Queued frontend arguments differ from the validated i082 recipe')
+            raise RuntimeError('Queued frontend arguments differ from the validated public recipe')
         from tools.run_release_source import effective_parameters
         manifest['effective_parameters']=effective_parameters(['--out',str(target),'--game-dir',str(data),*settings])
         manifest['settings']=settings;write_json(folder/'validation-manifest.json',manifest)

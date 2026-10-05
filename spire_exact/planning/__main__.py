@@ -9,13 +9,13 @@ from .resources import ResourcePlan
 from .search import SearchConfig,solve
 from .gates import PRESETS,preset
 from .policies import NATIVE,POLICIES,resolve as resolve_policies
-from .final_defaults import resolve_entry_defaults,F2_READINESS_EVERY_DEFAULT,FEATURE_PROFILES
+from .final_defaults import resolve_entry_defaults,F2_READINESS_EVERY_DEFAULT,FEATURE_PROFILES,PUBLIC_PROFILE
 
-def main(argv=None):
+def build_parser():
     p=argparse.ArgumentParser(description='P0–P5 full-information native witness planner; no UNSAT claims')
     p.add_argument('--seed',default='42');p.add_argument('--character',default='IRONCLAD')
     p.add_argument('--ascension',type=int);p.add_argument('--unlocks',choices=['all','none'],default='all')
-    p.add_argument('--feature-profile',choices=list(FEATURE_PROFILES),default='i082',
+    p.add_argument('--feature-profile',choices=list(FEATURE_PROFILES),default=PUBLIC_PROFILE,
                    help='i082 (default) is the whole entry: the i075 nine, the i081 four, the i080 run flags and '
                         'denser paired card tables (final_defaults.I082_PLANNER); earlier profiles remain explicit controls')
     p.add_argument('--game-dir',type=Path);p.add_argument('--out',type=Path,required=True)
@@ -49,6 +49,38 @@ def main(argv=None):
     p.add_argument('--scheduler',choices=['weighted','dfs','tree','incumbent','focus'],default=None,
                    help="'focus' spends most evaluations next to the failures of the best trajectories")
     p.add_argument('--focus-elites',type=int,default=8);p.add_argument('--focus-pool',type=int,default=48)
+    p.add_argument('--gate-timing',action=argparse.BooleanOptionalAction,default=None)
+    p.add_argument('--clinic',action=argparse.BooleanOptionalAction,default=None,
+                   help='i100: gate clinic root-versus-depth diagnosis steers focus picks and retries (allocation only)')
+    p.add_argument('--clinic-min-entries',type=int,default=6,help='Distinct entries of a (stem, gate) before a verdict')
+    p.add_argument('--clinic-root-share',type=int,default=85,help='Percent of a ROOT stem\'s focus picks that re-root')
+    p.add_argument('--clinic-undecided-share',type=int,default=34,help='Percent of an undecided stem\'s focus picks that re-root')
+    p.add_argument('--clinic-depth-share',type=int,default=10,help='Percent of a DEPTH stem\'s focus picks that re-root')
+    p.add_argument('--clinic-retry-share',type=int,default=35,help='Gate-retry share while a DEPTH stem has pending retries')
+    p.add_argument('--clinic-aux-share',type=int,default=10,help='Auxiliary dispatch share before a gate is contested')
+    p.add_argument('--clinic-aux-contended',type=int,default=30,help='Auxiliary dispatch share once a gate is contested')
+    p.add_argument('--clinic-hints',action=argparse.BooleanOptionalAction,default=None,
+                   help='i100: re-root picks carry tiers toward options that repair the diagnosed structural deficit')
+    p.add_argument('--strategy-prior',choices=['off','builtin'],default=None,
+                   help='Version-robust structural strategy prior read by the gate clinic (i100: builtin)')
+    p.add_argument('--paired-card-first',type=int,default=None,help='Distinct final-F1 entries before the first paired table (i100: 8, when paired tables are on)')
+    p.add_argument('--tail-mode',choices=['off','shadow','on'],default=None)
+    p.add_argument('--tail-sites',type=int,default=1024)
+    p.add_argument('--tail-mib',type=int,default=16)
+    p.add_argument('--tail-cohort-inflight',type=int,default=2)
+    p.add_argument('--tail-feedback-rounds',type=int,default=2)
+    p.add_argument('--gate-model-minimum',type=int,default=24)
+    p.add_argument('--gate-model-refresh',type=int,default=16)
+    p.add_argument('--macro-plateau',action=argparse.BooleanOptionalAction,default=None)
+    p.add_argument('--macro-widening',action=argparse.BooleanOptionalAction,default=None)
+    p.add_argument('--macro-fair',action=argparse.BooleanOptionalAction,default=None)
+    p.add_argument('--macro-routes',choices=['off','shadow','on'],default=None)
+    p.add_argument('--macro-aux-burst',type=int,default=4)
+    p.add_argument('--macro-route-limit',type=int,default=3)
+    p.add_argument('--macro-route-every',type=int,default=8)
+    p.add_argument('--macro-route-paths',type=int,default=256)
+    p.add_argument('--macro-route-expansions',type=int,default=4096)
+    p.add_argument('--macro-route-queue-mib',type=int,default=16)
     p.add_argument('--focus-share',type=int,default=3,help='Focus evaluations per explorer evaluation')
     p.add_argument('--site-cap',type=int,default=12,help='Explorer-side deferral for very wide menus (focus scheduler)')
     p.add_argument('--prior',action=argparse.BooleanOptionalAction,default=None,help='Send per-seed gate-model tiers with every generated rollout (allocation only)')
@@ -91,7 +123,7 @@ def main(argv=None):
     p.add_argument('--gate-probe-chunk',type=int,default=8,help='Probes per disposable worker')
     p.add_argument('--gate-probe-plan',choices=['light','run'],default='light',
                    help="'light': the gate preset's probe plan (first boss member only); 'run': the run's own gate plan")
-    p.add_argument('--paired-card-probes',action=argparse.BooleanOptionalAction,default=True,
+    p.add_argument('--paired-card-probes',action=argparse.BooleanOptionalAction,default=None,
                    help='Five-sample paired synthetic F2 card ordering at real final F1 entries (on; --no-paired-card-probes disables it)')
     p.add_argument('--paired-card-every',type=int,default=None,
                    help='Paired tables at distinct final F1 entries 1, N, 2N, ... (32 in i082; 0 = the former 1, 32, 128, 512)')
@@ -146,7 +178,24 @@ def main(argv=None):
     p.add_argument('--checkpoint-mib',type=int,default=512)
     p.add_argument('--cache-mib',type=int,default=64)
     p.add_argument('--archive-entries',type=int,default=48)
+    return p
+
+
+def parse_planner(argv=None):
+    """Parse, resolve the feature profile and validate; touches no native input.
+    Returns (parser, args, gate preset, probe schedule, root policies)."""
+    p=build_parser()
     a=resolve_entry_defaults(p.parse_args(argv))
+    if (a.macro_plateau or a.macro_widening or a.macro_fair) and a.scheduler!='focus':
+        p.error('i085 macro allocation switches require --scheduler focus')
+    if a.clinic and (a.scheduler!='focus' or a.tail_mode!='off' or a.focus_stall):
+        p.error('--clinic needs --scheduler focus, --tail-mode off and --focus-stall 0')
+    if a.strategy_prior!='off' and not a.clinic:p.error('--strategy-prior is read by --clinic')
+    if a.clinic_hints and (not a.clinic or a.strategy_prior=='off'):p.error('--clinic-hints need --clinic and a strategy prior')
+    if a.paired_card_first<1:p.error('--paired-card-first must be positive')
+    if a.clinic_min_entries<3 or any(not 0<=v<=100 for v in (a.clinic_root_share,a.clinic_undecided_share,a.clinic_depth_share,
+                                                         a.clinic_retry_share,a.clinic_aux_share,a.clinic_aux_contended)):
+        p.error('--clinic-min-entries must be >= 3 and clinic shares within 0..100')
     if any((a.f2_dead_retry,a.f2_joint_focus,a.f2_joint_model))and not a.f2_readiness_probes:
         p.error('--f2-dead-retry, --f2-joint-focus and --f2-joint-model require --f2-readiness-probes')
     if a.f2_joint_focus and a.focus_carry:p.error('--f2-joint-focus cannot be combined with --focus-carry')
@@ -182,19 +231,19 @@ def main(argv=None):
         p.error('--gate-probe-schedule needs the combatsolver advisor, a fresh start and the focus or weighted scheduler')
     if a.gate_probe_cards<1 or a.gate_probe_chunk<1:p.error('--gate-probe-cards and --gate-probe-chunk must be positive')
     if (a.f1_winner_reuse or a.real_card_menu_probes or a.gold_shop_routes or a.low_hp_routes
-            or a.lean_third_act or a.shop_preparation or a.resource_telemetry):
+            or a.lean_third_act or a.shop_preparation or a.resource_telemetry or a.macro_routes!='off'):
         if (a.character!='IRONCLAD' or a.ascension!=10 or a.unlocks!='all' or a.advisor!='combatsolver'
                 or a.prefix or a.root_portfolio!=1):
             p.error('experimental research switches need a fresh IRONCLAD A10 all-unlocks combatsolver start and --root-portfolio 1')
         if a.nodes is None or a.nodes<1:p.error('experimental research switches require a positive deterministic --nodes budget')
     if a.repair_mode=='gate' and not gates['retries']:p.error('--repair-mode gate needs a gate preset with retry plans')
     if (gates['plans'] or a.normal_nodes) and a.advisor!='combatsolver':p.error('gate plans need the combatsolver advisor')
-    if a.out.exists() and any(a.out.iterdir()):p.error('output must be new/empty; never overwrite prior evidence')
-    data=game_data(a.game_dir)
-    resources=ResourcePlan.detect(a.workers,a.dop,a.worker_memory_mib,a.reserve_mib)
-    if os.environ.get('SPIRE_REQUIRE_EXACT_WORKERS')=='1' and resources.workers!=a.workers:
-        p.error('Requested workers cannot fit available resources; refusing to silently clamp the scaling experiment')
-    cfg=SearchConfig(a.evaluations,a.seconds,a.task_seconds,a.max_decisions,a.lookahead_actions,
+    return p,a,gates,probe_schedule,root_policies
+
+
+def search_config(a,gates,probe_schedule,root_policies):
+    """SearchConfig of parsed planner arguments (shared by main and offline simulation)."""
+    return SearchConfig(a.evaluations,a.seconds,a.task_seconds,a.max_decisions,a.lookahead_actions,
         a.lookahead_floors,a.alternatives,a.survivors,a.repair_window,scheduler=a.scheduler,dispatch_mode=a.dispatch,
         repair_mode=a.repair_mode,boss_repair_ms=a.boss_repair_ms,root_portfolio=a.root_portfolio,
         solver_seed=a.solver_seed,low_io=a.low_io,checkpoint_mib=a.checkpoint_mib,cache_mib=a.cache_mib,archive_entries=a.archive_entries,
@@ -209,11 +258,45 @@ def main(argv=None):
         gate_probe_plan=gates.get('probe')if a.gate_probe_plan=='light'else None,paired_card_probes=a.paired_card_probes,
         paired_card_every=a.paired_card_every,paired_card_dedup=a.paired_card_dedup,paired_card_merge=a.paired_card_merge,
         paired_card_joint=a.paired_card_joint,
+        gate_timing=a.gate_timing,clinic=a.clinic,clinic_min_entries=a.clinic_min_entries,
+        clinic_root_share=a.clinic_root_share,clinic_undecided_share=a.clinic_undecided_share,
+        clinic_depth_share=a.clinic_depth_share,clinic_retry_share=a.clinic_retry_share,
+        clinic_aux_share=a.clinic_aux_share,clinic_aux_contended=a.clinic_aux_contended,clinic_hints=a.clinic_hints,
+        strategy_prior=a.strategy_prior,paired_card_first=a.paired_card_first,tail_mode=a.tail_mode,tail_sites=a.tail_sites,tail_mib=a.tail_mib,
+        tail_cohort_inflight=a.tail_cohort_inflight,tail_feedback_rounds=a.tail_feedback_rounds,
+        gate_model_minimum=a.gate_model_minimum,gate_model_refresh=a.gate_model_refresh,
+        macro_plateau=a.macro_plateau,macro_widening=a.macro_widening,macro_fair=a.macro_fair,
+        macro_routes=a.macro_routes,macro_aux_burst=a.macro_aux_burst,macro_route_limit=a.macro_route_limit,
+        macro_route_every=a.macro_route_every,macro_route_paths=a.macro_route_paths,
+        macro_route_expansions=a.macro_route_expansions,macro_route_queue_mib=a.macro_route_queue_mib,
         f1_winner_reuse=a.f1_winner_reuse,real_card_menu_probes=a.real_card_menu_probes,
         gold_shop_routes=a.gold_shop_routes,low_hp_routes=a.low_hp_routes,low_hp_routes_any_act=a.low_hp_routes_any_act,lean_third_act=a.lean_third_act,
         shop_preparation=a.shop_preparation,resource_telemetry=a.resource_telemetry,
         gold_shop_threshold=a.gold_shop_threshold,low_hp_percent=a.low_hp_percent,preparation_limit=a.preparation_limit,forge_menu_dedup=a.forge_menu_dedup,
         memory_telemetry=a.memory_telemetry,preserve_completed_prefix=a.preserve_completed_prefix,prefer_f1_hp=a.prefer_f1_hp)
+
+
+def configure_advisor(advisor,a,gates,dop):
+    """Apply the parsed budgets and gate plans to the combat advisor request data."""
+    advisor.update(budget_ms=a.budget_ms,boss_budget_ms=a.boss_budget_ms,dop=dop,
+                   profile=a.profile,reuse_continuations=not a.no_continuation_reuse,
+                   complete_continuations_only=a.complete_continuations_only)
+    if a.nodes:advisor['nodes']=a.nodes
+    if a.beam is not None:advisor['beam']=a.beam
+    if gates['plans']:advisor['gate_plans']=gates['plans']
+    if a.final_gate_plan!='none':advisor['gate_plans']={**gates['plans'],'FinalBoss':gates['final'][a.final_gate_plan]}
+    if a.normal_nodes is not None:advisor['normal_nodes']=a.normal_nodes
+    return advisor
+
+
+def main(argv=None):
+    p,a,gates,probe_schedule,root_policies=parse_planner(argv)
+    if a.out.exists() and any(a.out.iterdir()):p.error('output must be new/empty; never overwrite prior evidence')
+    data=game_data(a.game_dir)
+    resources=ResourcePlan.detect(a.workers,a.dop,a.worker_memory_mib,a.reserve_mib)
+    if os.environ.get('SPIRE_REQUIRE_EXACT_WORKERS')=='1' and resources.workers!=a.workers:
+        p.error('Requested workers cannot fit available resources; refusing to silently clamp the scaling experiment')
+    cfg=search_config(a,gates,probe_schedule,root_policies)
     ctx=context(a.seed,a.character,a.ascension,a.unlocks);a.out.mkdir(parents=True,exist_ok=True)
     prefix=[]
     if a.prefix:
@@ -222,14 +305,7 @@ def main(argv=None):
     advisor=None
     if a.advisor=='combatsolver':
         adapter=NativeCampaignBackend(ctx,a.out,data,'combatsolver');advisor=adapter.advisor
-        advisor.update(budget_ms=a.budget_ms,boss_budget_ms=a.boss_budget_ms,dop=resources.dop,
-                       profile=a.profile,reuse_continuations=not a.no_continuation_reuse,
-                       complete_continuations_only=a.complete_continuations_only)
-        if a.nodes:advisor['nodes']=a.nodes
-        if a.beam is not None:advisor['beam']=a.beam
-        if gates['plans']:advisor['gate_plans']=gates['plans']
-        if a.final_gate_plan!='none':advisor['gate_plans']={**gates['plans'],'FinalBoss':gates['final'][a.final_gate_plan]}
-        if a.normal_nodes is not None:advisor['normal_nodes']=a.normal_nodes
+        configure_advisor(advisor,a,gates,resources.dop)
     checkpoints=[]
     for path in a.import_checkpoints:
         checkpoints.extend(path.rglob('map-*.json') if path.is_dir() else [path])

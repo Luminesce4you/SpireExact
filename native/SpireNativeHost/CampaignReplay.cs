@@ -607,7 +607,7 @@ internal sealed partial class CampaignReplay : ICardSelector
         }
         if(name=="select_cards" && CombatManager.Instance.IsInProgress && advisor!=null)
         {
-            var suggestion=advisor.SuggestSelection(selectionCards,
+            var suggestion=advisor.SuggestSelection(CombatManager.Instance.DebugOnlyGetState(),selectionCards,
                 options.Select(o=>JsonSerializer.SerializeToNode(o)!).ToArray(),selectionRequest?.Purpose??CardSelectionPurpose.Other);
             if(suggestion!=null)return suggestion;
         }

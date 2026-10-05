@@ -1,0 +1,29 @@
+%% SpireExact i100 search flow. Rendered SVG: i100-search-flow.svg (render_i100_diagrams.py)
+flowchart TB
+  D["① 派发<br/>核心工作 → 辅助工作（调速器限额）<br/>→ 关口重试（DEPTH 先，≤ 35%）→ 聚焦 / 探索提案"]:::planner
+  X["② 原生执行<br/>worker 重放前缀或恢复检查点<br/>地图 · 奖励 · 商店 · 火堆 · 战斗（CombatSolver）"]:::runtime
+  A["③ 吸收结果<br/>档案与检查点 · 关口模型<br/>诊所登记：stem、关口、入场、重试"]:::store
+  O{{"轨迹结局"}}:::boundary
+  V["独立新进程重放<br/>原生终局 → 证书"]:::proof
+  F["常规聚焦 / 探索<br/>关口前的死亡或预算"]:::planner
+  C{{"关口诊所判定<br/>stem × 首领关口 · ≥ 6 个不同入场<br/>进度饱和 · 上端点界 · 重试提升 · 满血外推 · 结构缺口"}}:::clinic
+  R["↺ 根不对<br/>85% 名额回上一幕换选项<br/>新 stem 优先 · 修复方向档位<br/>兄弟 stem 都不行 → 再上一幕"]:::clinic
+  U["… 待定<br/>入场不足：在关口附近加深<br/>≥ 6 个入场：34% 回退"]:::boundary
+  P["↓ 深度不够<br/>90% 名额在关口附近加深<br/>关口重试份额 35% 且优先<br/>资源型偏向火堆 · 地图 · 商店"]:::planner
+  D --> X --> A --> O
+  O -->|获胜候选| V
+  O -->|其他| F
+  O -->|首领关口失败| C
+  C --> R
+  C --> U
+  C --> P
+  R -.->|下一轮| D
+  U -.-> D
+  P -.-> D
+  F -.-> D
+  classDef planner fill:#CCFBF1,stroke:#0D9488,color:#134E4A,stroke-width:1.5px
+  classDef runtime fill:#FEF3C7,stroke:#D97706,color:#78350F,stroke-width:1.5px
+  classDef store fill:#F8FAFC,stroke:#64748B,color:#0F172A,stroke-width:1.5px
+  classDef boundary fill:#F1F5F9,stroke:#64748B,color:#0F172A,stroke-width:1.5px
+  classDef clinic fill:#FFE4E6,stroke:#E11D48,color:#881337,stroke-width:2px
+  classDef proof fill:#DCFCE7,stroke:#16A34A,color:#14532D,stroke-width:2px

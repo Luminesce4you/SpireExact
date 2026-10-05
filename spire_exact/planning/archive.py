@@ -247,3 +247,30 @@ def failure_combat_prefix(result: dict):
         if e.get('phase')=='combat' and (e.get('observation') or {}).get('floor')==floor:
             return {'prefix':result['trace'][:i],'floor':floor,'entry_observation':e['observation']}
     return None
+
+# A retry prefix (failure_combat_prefix) ends at a fight's first `combat`
+# decision; boss_fight_rows and gate_entries start the fight at its first
+# in-combat decision. The two differ when a combat-start effect (for example a
+# relic that exhausts a card from hand at the start of every turn) asks for card
+# selections before that decision. These selections belong to the fight.
+def _opening_selection(row,floor):
+    obs=(row.get('observation') or {}) if isinstance(row,dict) else {}
+    return isinstance(row,dict) and row.get('phase')=='select_cards' and obs.get('turn') is not None and obs.get('floor')==floor
+
+def fight_entry_index(evidence,combat_index):
+    """Entry (first in-combat decision) of the fight whose first combat decision is `combat_index`."""
+    if not 0<=combat_index<len(evidence) or not isinstance(evidence[combat_index],dict):return combat_index
+    floor=(evidence[combat_index].get('observation') or {}).get('floor')
+    index=combat_index
+    while index>0 and _opening_selection(evidence[index-1],floor):index-=1
+    return index
+
+def first_combat_decision(evidence,entry_index):
+    """First `combat` decision of the fight entered at `entry_index`; None if the trajectory stops before it."""
+    if not 0<=entry_index<len(evidence) or not isinstance(evidence[entry_index],dict):return None
+    floor=(evidence[entry_index].get('observation') or {}).get('floor')
+    index=entry_index
+    while index<len(evidence) and _opening_selection(evidence[index],floor):index+=1
+    if index<len(evidence) and isinstance(evidence[index],dict) and evidence[index].get('phase')=='combat' \
+            and (evidence[index].get('observation') or {}).get('floor')==floor:return index
+    return None

@@ -13,6 +13,7 @@ STATIC=Path(__file__).resolve().parent/'web'
 sys.path.insert(0,str(ROOT))
 if __name__=='__main__':sys.modules.setdefault('dashboard.server',sys.modules[__name__])
 from dashboard import jobs
+from spire_exact.planning.final_defaults import PUBLIC_PROFILE
 from dashboard.winning_route import WinningRouteStore
 
 def shared_text(path,encoding='utf-8-sig'):
@@ -463,7 +464,7 @@ class Handler(BaseHTTPRequestHandler):
         url=urlparse(self.path);query=parse_qs(url.query);run=query.get('run',[None])[0]
         if url.path=='/api/health':
             self.send_body(json.dumps({'service':'spireboard','api_version':1,'pid':os.getpid(),
-                'workspace':str(ROOT),'feature_profile':'i082'}).encode());return
+                'workspace':str(ROOT),'feature_profile':PUBLIC_PROFILE}).encode());return
         if url.path=='/api/winning-route':
             path=repo.paths.get(run)
             if path is None:self.send_body(b'{"error":"Unknown run"}',code=404);return

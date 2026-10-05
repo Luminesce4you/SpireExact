@@ -1,0 +1,4997 @@
+{
+ "caps": {
+  "30": {
+   "final01": {
+    "errors": 0,
+    "late_half_area": 0.119,
+    "median_seconds": 631.4,
+    "restricted_mean_seconds": 685.4,
+    "runs": 80,
+    "solved": 78,
+    "solved_share": 0.975,
+    "wilson95": [
+     0.913,
+     0.993
+    ]
+   },
+   "final01-i081": {
+    "errors": 0,
+    "late_half_area": 0.155,
+    "median_seconds": 644.4,
+    "restricted_mean_seconds": 716.6,
+    "runs": 80,
+    "solved": 76,
+    "solved_share": 0.95,
+    "wilson95": [
+     0.878,
+     0.98
+    ]
+   },
+   "final01-noclinic": {
+    "errors": 0,
+    "late_half_area": 0.155,
+    "median_seconds": 725.5,
+    "restricted_mean_seconds": 745.4,
+    "runs": 80,
+    "solved": 79,
+    "solved_share": 0.988,
+    "wilson95": [
+     0.933,
+     0.998
+    ]
+   },
+   "final01-nohint": {
+    "errors": 0,
+    "late_half_area": 0.109,
+    "median_seconds": 643.4,
+    "restricted_mean_seconds": 688.1,
+    "runs": 80,
+    "solved": 79,
+    "solved_share": 0.988,
+    "wilson95": [
+     0.933,
+     0.998
+    ]
+   },
+   "final01-noprior": {
+    "errors": 0,
+    "late_half_area": 0.095,
+    "median_seconds": 647.9,
+    "restricted_mean_seconds": 674.8,
+    "runs": 80,
+    "solved": 79,
+    "solved_share": 0.988,
+    "wilson95": [
+     0.933,
+     0.998
+    ]
+   },
+   "i054a": {
+    "errors": 0,
+    "late_half_area": 0.09,
+    "median_seconds": 685.2,
+    "restricted_mean_seconds": 702.0,
+    "runs": 80,
+    "solved": 80,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.954,
+     1.0
+    ]
+   },
+   "i082": {
+    "errors": 0,
+    "late_half_area": 0.226,
+    "median_seconds": 779.2,
+    "restricted_mean_seconds": 833.3,
+    "runs": 80,
+    "solved": 71,
+    "solved_share": 0.887,
+    "wilson95": [
+     0.8,
+     0.94
+    ]
+   },
+   "i085": {
+    "errors": 0,
+    "late_half_area": 0.227,
+    "median_seconds": 800.0,
+    "restricted_mean_seconds": 843.6,
+    "runs": 80,
+    "solved": 69,
+    "solved_share": 0.863,
+    "wilson95": [
+     0.77,
+     0.921
+    ]
+   },
+   "i085-tail": {
+    "errors": 0,
+    "late_half_area": 0.169,
+    "median_seconds": 542.9,
+    "restricted_mean_seconds": 719.8,
+    "runs": 80,
+    "solved": 77,
+    "solved_share": 0.963,
+    "wilson95": [
+     0.895,
+     0.987
+    ]
+   }
+  },
+  "45": {
+   "final01": {
+    "errors": 0,
+    "late_half_area": 0.029,
+    "median_seconds": 631.4,
+    "restricted_mean_seconds": 696.6,
+    "runs": 80,
+    "solved": 80,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.954,
+     1.0
+    ]
+   },
+   "final01-i081": {
+    "errors": 0,
+    "late_half_area": 0.049,
+    "median_seconds": 644.4,
+    "restricted_mean_seconds": 740.2,
+    "runs": 80,
+    "solved": 78,
+    "solved_share": 0.975,
+    "wilson95": [
+     0.913,
+     0.993
+    ]
+   },
+   "final01-noclinic": {
+    "errors": 0,
+    "late_half_area": 0.028,
+    "median_seconds": 725.5,
+    "restricted_mean_seconds": 746.9,
+    "runs": 80,
+    "solved": 80,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.954,
+     1.0
+    ]
+   },
+   "final01-nohint": {
+    "errors": 0,
+    "late_half_area": 0.019,
+    "median_seconds": 643.4,
+    "restricted_mean_seconds": 699.1,
+    "runs": 80,
+    "solved": 80,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.954,
+     1.0
+    ]
+   },
+   "final01-noprior": {
+    "errors": 0,
+    "late_half_area": 0.019,
+    "median_seconds": 647.9,
+    "restricted_mean_seconds": 686.0,
+    "runs": 80,
+    "solved": 79,
+    "solved_share": 0.988,
+    "wilson95": [
+     0.933,
+     0.998
+    ]
+   },
+   "i054a": {
+    "errors": 0,
+    "late_half_area": 0.005,
+    "median_seconds": 685.2,
+    "restricted_mean_seconds": 702.0,
+    "runs": 80,
+    "solved": 80,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.954,
+     1.0
+    ]
+   },
+   "i082": {
+    "errors": 0,
+    "late_half_area": 0.078,
+    "median_seconds": 779.2,
+    "restricted_mean_seconds": 870.0,
+    "runs": 80,
+    "solved": 80,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.954,
+     1.0
+    ]
+   },
+   "i085": {
+    "errors": 0,
+    "late_half_area": 0.091,
+    "median_seconds": 800.0,
+    "restricted_mean_seconds": 893.2,
+    "runs": 80,
+    "solved": 79,
+    "solved_share": 0.988,
+    "wilson95": [
+     0.933,
+     0.998
+    ]
+   },
+   "i085-tail": {
+    "errors": 0,
+    "late_half_area": 0.038,
+    "median_seconds": 542.9,
+    "restricted_mean_seconds": 727.2,
+    "runs": 80,
+    "solved": 80,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.954,
+     1.0
+    ]
+   }
+  }
+ },
+ "paired": {
+  "30": {
+   "final01": {
+    "final01-i081": {
+     "bootstrap95_worlds": [
+      -35.2,
+      92.2
+     ],
+     "faster_pairs": 22,
+     "mean_restricted_difference_seconds": 31.2,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 38,
+     "worlds": 40
+    },
+    "final01-noclinic": {
+     "bootstrap95_worlds": [
+      -16.9,
+      149.8
+     ],
+     "faster_pairs": 27,
+     "mean_restricted_difference_seconds": 60.0,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 32,
+     "worlds": 40
+    },
+    "final01-nohint": {
+     "bootstrap95_worlds": [
+      -34.2,
+      39.7
+     ],
+     "faster_pairs": 20,
+     "mean_restricted_difference_seconds": 2.7,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 14,
+     "worlds": 40
+    },
+    "final01-noprior": {
+     "bootstrap95_worlds": [
+      -46.9,
+      25.3
+     ],
+     "faster_pairs": 27,
+     "mean_restricted_difference_seconds": -10.6,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 22,
+     "worlds": 40
+    },
+    "i054a": {
+     "bootstrap95_worlds": [
+      -58.4,
+      93.4
+     ],
+     "faster_pairs": 35,
+     "mean_restricted_difference_seconds": 16.6,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 42,
+     "worlds": 40
+    },
+    "i082": {
+     "bootstrap95_worlds": [
+      86.2,
+      220.1
+     ],
+     "faster_pairs": 14,
+     "mean_restricted_difference_seconds": 147.9,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 58,
+     "worlds": 40
+    },
+    "i085": {
+     "bootstrap95_worlds": [
+      90.1,
+      234.9
+     ],
+     "faster_pairs": 13,
+     "mean_restricted_difference_seconds": 158.2,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 57,
+     "worlds": 40
+    },
+    "i085-tail": {
+     "bootstrap95_worlds": [
+      -76.5,
+      142.2
+     ],
+     "faster_pairs": 39,
+     "mean_restricted_difference_seconds": 34.4,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 38,
+     "worlds": 40
+    }
+   },
+   "i054a": {
+    "final01": {
+     "bootstrap95_worlds": [
+      -93.4,
+      58.4
+     ],
+     "faster_pairs": 42,
+     "mean_restricted_difference_seconds": -16.6,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 35,
+     "worlds": 40
+    },
+    "final01-i081": {
+     "bootstrap95_worlds": [
+      -70.5,
+      97.4
+     ],
+     "faster_pairs": 41,
+     "mean_restricted_difference_seconds": 14.6,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 36,
+     "worlds": 40
+    },
+    "final01-noclinic": {
+     "bootstrap95_worlds": [
+      -25.4,
+      119.3
+     ],
+     "faster_pairs": 34,
+     "mean_restricted_difference_seconds": 43.4,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 43,
+     "worlds": 40
+    },
+    "final01-nohint": {
+     "bootstrap95_worlds": [
+      -81.7,
+      55.7
+     ],
+     "faster_pairs": 40,
+     "mean_restricted_difference_seconds": -13.9,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 37,
+     "worlds": 40
+    },
+    "final01-noprior": {
+     "bootstrap95_worlds": [
+      -97.6,
+      44.4
+     ],
+     "faster_pairs": 40,
+     "mean_restricted_difference_seconds": -27.3,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 37,
+     "worlds": 40
+    },
+    "i082": {
+     "bootstrap95_worlds": [
+      62.2,
+      199.2
+     ],
+     "faster_pairs": 28,
+     "mean_restricted_difference_seconds": 131.3,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 50,
+     "worlds": 40
+    },
+    "i085": {
+     "bootstrap95_worlds": [
+      76.3,
+      208.5
+     ],
+     "faster_pairs": 28,
+     "mean_restricted_difference_seconds": 141.6,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 50,
+     "worlds": 40
+    },
+    "i085-tail": {
+     "bootstrap95_worlds": [
+      -98.7,
+      132.0
+     ],
+     "faster_pairs": 45,
+     "mean_restricted_difference_seconds": 17.7,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 33,
+     "worlds": 40
+    }
+   },
+   "i082": {
+    "final01": {
+     "bootstrap95_worlds": [
+      -220.1,
+      -86.2
+     ],
+     "faster_pairs": 58,
+     "mean_restricted_difference_seconds": -147.9,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 14,
+     "worlds": 40
+    },
+    "final01-i081": {
+     "bootstrap95_worlds": [
+      -197.9,
+      -42.8
+     ],
+     "faster_pairs": 55,
+     "mean_restricted_difference_seconds": -116.7,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 17,
+     "worlds": 40
+    },
+    "final01-noclinic": {
+     "bootstrap95_worlds": [
+      -149.6,
+      -32.2
+     ],
+     "faster_pairs": 58,
+     "mean_restricted_difference_seconds": -87.8,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 15,
+     "worlds": 40
+    },
+    "final01-nohint": {
+     "bootstrap95_worlds": [
+      -214.4,
+      -82.0
+     ],
+     "faster_pairs": 59,
+     "mean_restricted_difference_seconds": -145.1,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 13,
+     "worlds": 40
+    },
+    "final01-noprior": {
+     "bootstrap95_worlds": [
+      -236.1,
+      -89.3
+     ],
+     "faster_pairs": 59,
+     "mean_restricted_difference_seconds": -158.5,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 13,
+     "worlds": 40
+    },
+    "i054a": {
+     "bootstrap95_worlds": [
+      -199.2,
+      -62.2
+     ],
+     "faster_pairs": 50,
+     "mean_restricted_difference_seconds": -131.3,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 28,
+     "worlds": 40
+    },
+    "i085": {
+     "bootstrap95_worlds": [
+      -24.6,
+      44.1
+     ],
+     "faster_pairs": 24,
+     "mean_restricted_difference_seconds": 10.3,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 39,
+     "worlds": 40
+    },
+    "i085-tail": {
+     "bootstrap95_worlds": [
+      -224.1,
+      -6.1
+     ],
+     "faster_pairs": 46,
+     "mean_restricted_difference_seconds": -113.5,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 31,
+     "worlds": 40
+    }
+   }
+  },
+  "45": {
+   "final01": {
+    "final01-i081": {
+     "bootstrap95_worlds": [
+      -29.8,
+      110.5
+     ],
+     "faster_pairs": 22,
+     "mean_restricted_difference_seconds": 43.6,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 39,
+     "worlds": 40
+    },
+    "final01-noclinic": {
+     "bootstrap95_worlds": [
+      -37.6,
+      147.2
+     ],
+     "faster_pairs": 27,
+     "mean_restricted_difference_seconds": 50.3,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 32,
+     "worlds": 40
+    },
+    "final01-nohint": {
+     "bootstrap95_worlds": [
+      -34.8,
+      39.7
+     ],
+     "faster_pairs": 20,
+     "mean_restricted_difference_seconds": 2.5,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 14,
+     "worlds": 40
+    },
+    "final01-noprior": {
+     "bootstrap95_worlds": [
+      -47.1,
+      25.4
+     ],
+     "faster_pairs": 27,
+     "mean_restricted_difference_seconds": -10.6,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 23,
+     "worlds": 40
+    },
+    "i054a": {
+     "bootstrap95_worlds": [
+      -78.2,
+      90.7
+     ],
+     "faster_pairs": 35,
+     "mean_restricted_difference_seconds": 5.4,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 42,
+     "worlds": 40
+    },
+    "i082": {
+     "bootstrap95_worlds": [
+      100.2,
+      259.5
+     ],
+     "faster_pairs": 15,
+     "mean_restricted_difference_seconds": 173.4,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 58,
+     "worlds": 40
+    },
+    "i085": {
+     "bootstrap95_worlds": [
+      112.9,
+      283.2
+     ],
+     "faster_pairs": 14,
+     "mean_restricted_difference_seconds": 196.6,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 58,
+     "worlds": 40
+    },
+    "i085-tail": {
+     "bootstrap95_worlds": [
+      -85.0,
+      144.9
+     ],
+     "faster_pairs": 39,
+     "mean_restricted_difference_seconds": 30.6,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 38,
+     "worlds": 40
+    }
+   },
+   "i054a": {
+    "final01": {
+     "bootstrap95_worlds": [
+      -90.7,
+      78.2
+     ],
+     "faster_pairs": 42,
+     "mean_restricted_difference_seconds": -5.4,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 35,
+     "worlds": 40
+    },
+    "final01-i081": {
+     "bootstrap95_worlds": [
+      -60.9,
+      139.6
+     ],
+     "faster_pairs": 41,
+     "mean_restricted_difference_seconds": 38.2,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 36,
+     "worlds": 40
+    },
+    "final01-noclinic": {
+     "bootstrap95_worlds": [
+      -24.5,
+      120.8
+     ],
+     "faster_pairs": 34,
+     "mean_restricted_difference_seconds": 44.9,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 43,
+     "worlds": 40
+    },
+    "final01-nohint": {
+     "bootstrap95_worlds": [
+      -74.7,
+      68.0
+     ],
+     "faster_pairs": 40,
+     "mean_restricted_difference_seconds": -2.9,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 37,
+     "worlds": 40
+    },
+    "final01-noprior": {
+     "bootstrap95_worlds": [
+      -93.9,
+      61.7
+     ],
+     "faster_pairs": 40,
+     "mean_restricted_difference_seconds": -16.0,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 37,
+     "worlds": 40
+    },
+    "i082": {
+     "bootstrap95_worlds": [
+      85.4,
+      256.3
+     ],
+     "faster_pairs": 28,
+     "mean_restricted_difference_seconds": 168.0,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 50,
+     "worlds": 40
+    },
+    "i085": {
+     "bootstrap95_worlds": [
+      99.7,
+      291.5
+     ],
+     "faster_pairs": 28,
+     "mean_restricted_difference_seconds": 191.2,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 50,
+     "worlds": 40
+    },
+    "i085-tail": {
+     "bootstrap95_worlds": [
+      -93.9,
+      145.6
+     ],
+     "faster_pairs": 45,
+     "mean_restricted_difference_seconds": 25.2,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 33,
+     "worlds": 40
+    }
+   },
+   "i082": {
+    "final01": {
+     "bootstrap95_worlds": [
+      -259.5,
+      -100.2
+     ],
+     "faster_pairs": 58,
+     "mean_restricted_difference_seconds": -173.4,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 15,
+     "worlds": 40
+    },
+    "final01-i081": {
+     "bootstrap95_worlds": [
+      -239.4,
+      -35.3
+     ],
+     "faster_pairs": 55,
+     "mean_restricted_difference_seconds": -129.8,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 18,
+     "worlds": 40
+    },
+    "final01-noclinic": {
+     "bootstrap95_worlds": [
+      -196.8,
+      -54.4
+     ],
+     "faster_pairs": 58,
+     "mean_restricted_difference_seconds": -123.1,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 15,
+     "worlds": 40
+    },
+    "final01-nohint": {
+     "bootstrap95_worlds": [
+      -256.5,
+      -93.9
+     ],
+     "faster_pairs": 59,
+     "mean_restricted_difference_seconds": -170.9,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 14,
+     "worlds": 40
+    },
+    "final01-noprior": {
+     "bootstrap95_worlds": [
+      -279.0,
+      -100.1
+     ],
+     "faster_pairs": 59,
+     "mean_restricted_difference_seconds": -184.0,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 14,
+     "worlds": 40
+    },
+    "i054a": {
+     "bootstrap95_worlds": [
+      -256.3,
+      -85.4
+     ],
+     "faster_pairs": 50,
+     "mean_restricted_difference_seconds": -168.0,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 28,
+     "worlds": 40
+    },
+    "i085": {
+     "bootstrap95_worlds": [
+      -26.2,
+      76.6
+     ],
+     "faster_pairs": 28,
+     "mean_restricted_difference_seconds": 23.2,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 42,
+     "worlds": 40
+    },
+    "i085-tail": {
+     "bootstrap95_worlds": [
+      -272.8,
+      -20.1
+     ],
+     "faster_pairs": 46,
+     "mean_restricted_difference_seconds": -142.8,
+     "note": "negative = faster than the reference arm; same world and solver seed",
+     "pairs": 80,
+     "slower_pairs": 31,
+     "worlds": 40
+    }
+   }
+  }
+ },
+ "paired_per_class": {
+  "30": {
+   "final01": {
+    "mixed": {
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -143.7,
+       156.1
+      ],
+      "faster_pairs": 8,
+      "mean_restricted_difference_seconds": 3.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 6,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -112.2,
+       456.9
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 139.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       10.8,
+       181.9
+      ],
+      "faster_pairs": 4,
+      "mean_restricted_difference_seconds": 93.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 6,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -64.0,
+       148.0
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": 40.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       -299.7,
+       214.0
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -58.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       2.8,
+       416.7
+      ],
+      "faster_pairs": 4,
+      "mean_restricted_difference_seconds": 195.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 12,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       6.8,
+       453.1
+      ],
+      "faster_pairs": 3,
+      "mean_restricted_difference_seconds": 223.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 13,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       41.3,
+       602.4
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": 344.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 11,
+      "worlds": 8
+     }
+    },
+    "resource": {
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       8.0,
+       197.1
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": 98.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -281.0,
+       29.3
+      ],
+      "faster_pairs": 8,
+      "mean_restricted_difference_seconds": -112.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -157.7,
+       13.7
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": -60.7,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 1,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -137.2,
+       -32.0
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -79.7,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 1,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       -182.3,
+       67.1
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -52.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       40.7,
+       195.8
+      ],
+      "faster_pairs": 2,
+      "mean_restricted_difference_seconds": 115.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 13,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       -50.8,
+       146.0
+      ],
+      "faster_pairs": 4,
+      "mean_restricted_difference_seconds": 61.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 11,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -355.8,
+       -72.3
+      ],
+      "faster_pairs": 11,
+      "mean_restricted_difference_seconds": -212.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     }
+    },
+    "root_act1": {
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -232.6,
+       251.0
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": 37.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 11,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       33.8,
+       431.3
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": 226.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -145.8,
+       56.4
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": -31.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -169.2,
+       40.9
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -61.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       -173.4,
+       217.2
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 43.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       144.1,
+       438.2
+      ],
+      "faster_pairs": 2,
+      "mean_restricted_difference_seconds": 295.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 14,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       268.4,
+       485.7
+      ],
+      "faster_pairs": 1,
+      "mean_restricted_difference_seconds": 381.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 14,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -258.0,
+       237.0
+      ],
+      "faster_pairs": 8,
+      "mean_restricted_difference_seconds": -10.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 8,
+      "worlds": 8
+     }
+    },
+    "root_act2": {
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -42.5,
+       91.5
+      ],
+      "faster_pairs": 3,
+      "mean_restricted_difference_seconds": 15.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -1.3,
+       111.3
+      ],
+      "faster_pairs": 4,
+      "mean_restricted_difference_seconds": 46.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -0.5,
+       33.4
+      ],
+      "faster_pairs": 3,
+      "mean_restricted_difference_seconds": 12.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       13.0,
+       88.3
+      ],
+      "faster_pairs": 2,
+      "mean_restricted_difference_seconds": 47.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 8,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       -79.1,
+       226.7
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 61.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       -20.8,
+       262.5
+      ],
+      "faster_pairs": 4,
+      "mean_restricted_difference_seconds": 119.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 11,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       -2.2,
+       248.6
+      ],
+      "faster_pairs": 3,
+      "mean_restricted_difference_seconds": 118.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 12,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -143.6,
+       318.1
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": 63.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     }
+    },
+    "tactical": {
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -3.0,
+       8.1
+      ],
+      "faster_pairs": 1,
+      "mean_restricted_difference_seconds": 2.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -0.8,
+       1.2
+      ],
+      "faster_pairs": 2,
+      "mean_restricted_difference_seconds": 0.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 1,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       0.0,
+       0.0
+      ],
+      "faster_pairs": 0,
+      "mean_restricted_difference_seconds": 0.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 0,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       0.0,
+       0.5
+      ],
+      "faster_pairs": 0,
+      "mean_restricted_difference_seconds": 0.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 1,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       44.4,
+       139.9
+      ],
+      "faster_pairs": 3,
+      "mean_restricted_difference_seconds": 89.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       3.7,
+       29.5
+      ],
+      "faster_pairs": 2,
+      "mean_restricted_difference_seconds": 14.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 8,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       1.0,
+       12.8
+      ],
+      "faster_pairs": 2,
+      "mean_restricted_difference_seconds": 6.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -67.0,
+       28.0
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": -13.5,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     }
+    }
+   },
+   "i054a": {
+    "mixed": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -214.0,
+       299.7
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 58.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -192.4,
+       268.7
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 61.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       79.4,
+       309.4
+      ],
+      "faster_pairs": 3,
+      "mean_restricted_difference_seconds": 197.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 13,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -57.7,
+       350.9
+      ],
+      "faster_pairs": 3,
+      "mean_restricted_difference_seconds": 151.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 13,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -105.8,
+       308.1
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": 98.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 11,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       143.4,
+       343.9
+      ],
+      "faster_pairs": 2,
+      "mean_restricted_difference_seconds": 253.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 14,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       155.6,
+       385.5
+      ],
+      "faster_pairs": 2,
+      "mean_restricted_difference_seconds": 281.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 14,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       193.4,
+       611.3
+      ],
+      "faster_pairs": 4,
+      "mean_restricted_difference_seconds": 402.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 12,
+      "worlds": 8
+     }
+    },
+    "resource": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -67.1,
+       182.3
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 52.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -31.6,
+       319.9
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": 150.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -209.2,
+       54.3
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -60.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -100.0,
+       79.5
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -8.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 6,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -158.7,
+       96.6
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -27.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       45.4,
+       294.8
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": 167.5,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 11,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       2.9,
+       250.9
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": 113.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -334.7,
+       23.2
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -160.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 6,
+      "worlds": 8
+     }
+    },
+    "root_act1": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -217.2,
+       173.4
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -43.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -226.8,
+       242.6
+      ],
+      "faster_pairs": 11,
+      "mean_restricted_difference_seconds": -6.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -6.2,
+       409.3
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": 183.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -215.9,
+       70.8
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -74.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 6,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -269.6,
+       79.6
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -104.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 6,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       51.3,
+       433.6
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": 252.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 11,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       187.5,
+       488.5
+      ],
+      "faster_pairs": 4,
+      "mean_restricted_difference_seconds": 338.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 12,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -288.6,
+       195.5
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -53.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     }
+    },
+    "root_act2": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -226.7,
+       79.1
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -61.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -219.8,
+       110.4
+      ],
+      "faster_pairs": 8,
+      "mean_restricted_difference_seconds": -46.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 8,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -164.7,
+       92.4
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": -14.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -220.6,
+       93.2
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": -49.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -175.6,
+       122.4
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": -13.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       -53.4,
+       162.4
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 58.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       -14.1,
+       122.0
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 57.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -271.6,
+       324.4
+      ],
+      "faster_pairs": 11,
+      "mean_restricted_difference_seconds": 2.7,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     }
+    },
+    "tactical": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -139.9,
+       -44.4
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -89.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -140.5,
+       -41.2
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -86.7,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -139.0,
+       -44.4
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -89.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -139.9,
+       -44.4
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -89.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -139.3,
+       -44.4
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -89.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       -112.4,
+       -37.6
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -74.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       -135.0,
+       -38.2
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -82.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -205.6,
+       -24.9
+      ],
+      "faster_pairs": 11,
+      "mean_restricted_difference_seconds": -102.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     }
+    }
+   },
+   "i082": {
+    "mixed": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -416.7,
+       -2.8
+      ],
+      "faster_pairs": 12,
+      "mean_restricted_difference_seconds": -195.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -398.2,
+       -15.8
+      ],
+      "faster_pairs": 13,
+      "mean_restricted_difference_seconds": -192.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -164.8,
+       79.2
+      ],
+      "faster_pairs": 12,
+      "mean_restricted_difference_seconds": -55.5,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -280.1,
+       60.8
+      ],
+      "faster_pairs": 12,
+      "mean_restricted_difference_seconds": -101.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -311.0,
+       6.5
+      ],
+      "faster_pairs": 13,
+      "mean_restricted_difference_seconds": -155.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       -343.9,
+       -143.4
+      ],
+      "faster_pairs": 14,
+      "mean_restricted_difference_seconds": -253.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       -15.6,
+       80.6
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": 28.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 11,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -31.5,
+       343.3
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 148.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     }
+    },
+    "resource": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -195.8,
+       -40.7
+      ],
+      "faster_pairs": 13,
+      "mean_restricted_difference_seconds": -115.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -129.9,
+       70.4
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -17.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -435.5,
+       -60.7
+      ],
+      "faster_pairs": 15,
+      "mean_restricted_difference_seconds": -228.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 1,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -313.3,
+       -48.5
+      ],
+      "faster_pairs": 13,
+      "mean_restricted_difference_seconds": -176.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -317.0,
+       -83.8
+      ],
+      "faster_pairs": 14,
+      "mean_restricted_difference_seconds": -195.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 1,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       -294.8,
+       -45.4
+      ],
+      "faster_pairs": 11,
+      "mean_restricted_difference_seconds": -167.5,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       -140.0,
+       17.6
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": -54.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 8,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -523.2,
+       -139.6
+      ],
+      "faster_pairs": 13,
+      "mean_restricted_difference_seconds": -327.7,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     }
+    },
+    "root_act1": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -438.2,
+       -144.1
+      ],
+      "faster_pairs": 14,
+      "mean_restricted_difference_seconds": -295.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -494.4,
+       -38.6
+      ],
+      "faster_pairs": 12,
+      "mean_restricted_difference_seconds": -258.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -177.1,
+       52.1
+      ],
+      "faster_pairs": 12,
+      "mean_restricted_difference_seconds": -68.5,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -439.7,
+       -194.7
+      ],
+      "faster_pairs": 15,
+      "mean_restricted_difference_seconds": -326.5,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 1,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -550.7,
+       -172.8
+      ],
+      "faster_pairs": 14,
+      "mean_restricted_difference_seconds": -356.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       -433.6,
+       -51.3
+      ],
+      "faster_pairs": 11,
+      "mean_restricted_difference_seconds": -252.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       19.6,
+       165.9
+      ],
+      "faster_pairs": 2,
+      "mean_restricted_difference_seconds": 85.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -580.0,
+       -62.6
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -305.5,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 6,
+      "worlds": 8
+     }
+    },
+    "root_act2": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -262.5,
+       20.8
+      ],
+      "faster_pairs": 11,
+      "mean_restricted_difference_seconds": -119.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -254.3,
+       55.5
+      ],
+      "faster_pairs": 13,
+      "mean_restricted_difference_seconds": -104.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -187.4,
+       45.3
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -72.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -256.1,
+       38.2
+      ],
+      "faster_pairs": 11,
+      "mean_restricted_difference_seconds": -107.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -207.0,
+       64.3
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -71.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       -162.4,
+       53.4
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -58.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       -109.0,
+       76.6
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": -0.7,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 8,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -294.7,
+       218.5
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -55.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     }
+    },
+    "tactical": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -29.5,
+       -3.7
+      ],
+      "faster_pairs": 8,
+      "mean_restricted_difference_seconds": -14.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -31.9,
+       2.9
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": -11.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -28.5,
+       -4.1
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -14.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 1,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -29.5,
+       -3.7
+      ],
+      "faster_pairs": 8,
+      "mean_restricted_difference_seconds": -14.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -29.0,
+       -3.7
+      ],
+      "faster_pairs": 8,
+      "mean_restricted_difference_seconds": -14.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       37.6,
+       112.4
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": 74.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       -24.3,
+       1.1
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": -7.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -94.5,
+       18.1
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": -27.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 6,
+      "worlds": 8
+     }
+    }
+   }
+  },
+  "45": {
+   "final01": {
+    "mixed": {
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -143.7,
+       156.1
+      ],
+      "faster_pairs": 8,
+      "mean_restricted_difference_seconds": 3.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 6,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -112.2,
+       456.9
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 139.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       10.8,
+       181.9
+      ],
+      "faster_pairs": 4,
+      "mean_restricted_difference_seconds": 93.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 6,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -64.0,
+       148.0
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": 40.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       -299.7,
+       214.0
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -58.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       2.8,
+       416.7
+      ],
+      "faster_pairs": 4,
+      "mean_restricted_difference_seconds": 195.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 12,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       35.0,
+       472.3
+      ],
+      "faster_pairs": 3,
+      "mean_restricted_difference_seconds": 244.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 13,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       73.0,
+       652.5
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": 377.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 11,
+      "worlds": 8
+     }
+    },
+    "resource": {
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       21.6,
+       315.3
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": 159.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 8,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -399.9,
+       36.4
+      ],
+      "faster_pairs": 8,
+      "mean_restricted_difference_seconds": -160.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -157.7,
+       13.7
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": -60.7,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 1,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -134.5,
+       -32.0
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -78.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       -336.6,
+       67.1
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -106.7,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       10.9,
+       186.6
+      ],
+      "faster_pairs": 3,
+      "mean_restricted_difference_seconds": 94.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 13,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       -29.2,
+       264.5
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": 113.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 11,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -422.2,
+       -104.5
+      ],
+      "faster_pairs": 11,
+      "mean_restricted_difference_seconds": -266.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     }
+    },
+    "root_act1": {
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -235.9,
+       257.3
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": 38.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 11,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       30.9,
+       431.3
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": 225.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -151.3,
+       56.4
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": -32.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -172.7,
+       40.9
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -63.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       -177.7,
+       217.2
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 41.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       237.0,
+       633.0
+      ],
+      "faster_pairs": 2,
+      "mean_restricted_difference_seconds": 443.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 14,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       370.0,
+       641.5
+      ],
+      "faster_pairs": 1,
+      "mean_restricted_difference_seconds": 500.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 15,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -256.8,
+       242.5
+      ],
+      "faster_pairs": 8,
+      "mean_restricted_difference_seconds": -8.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 8,
+      "worlds": 8
+     }
+    },
+    "root_act2": {
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -42.5,
+       91.5
+      ],
+      "faster_pairs": 3,
+      "mean_restricted_difference_seconds": 15.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -1.3,
+       111.3
+      ],
+      "faster_pairs": 4,
+      "mean_restricted_difference_seconds": 46.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -0.5,
+       33.4
+      ],
+      "faster_pairs": 3,
+      "mean_restricted_difference_seconds": 12.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       13.0,
+       88.3
+      ],
+      "faster_pairs": 2,
+      "mean_restricted_difference_seconds": 47.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 8,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       -79.1,
+       226.7
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 61.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       -20.8,
+       262.5
+      ],
+      "faster_pairs": 4,
+      "mean_restricted_difference_seconds": 119.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 11,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       -2.2,
+       248.6
+      ],
+      "faster_pairs": 3,
+      "mean_restricted_difference_seconds": 118.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 12,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -143.6,
+       318.1
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": 63.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     }
+    },
+    "tactical": {
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -3.0,
+       8.1
+      ],
+      "faster_pairs": 1,
+      "mean_restricted_difference_seconds": 2.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -0.8,
+       1.2
+      ],
+      "faster_pairs": 2,
+      "mean_restricted_difference_seconds": 0.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 1,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       0.0,
+       0.0
+      ],
+      "faster_pairs": 0,
+      "mean_restricted_difference_seconds": 0.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 0,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       0.0,
+       0.5
+      ],
+      "faster_pairs": 0,
+      "mean_restricted_difference_seconds": 0.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 1,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       44.4,
+       139.9
+      ],
+      "faster_pairs": 3,
+      "mean_restricted_difference_seconds": 89.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       3.7,
+       29.5
+      ],
+      "faster_pairs": 2,
+      "mean_restricted_difference_seconds": 14.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 8,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       1.0,
+       12.8
+      ],
+      "faster_pairs": 2,
+      "mean_restricted_difference_seconds": 6.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -67.0,
+       28.0
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": -13.5,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     }
+    }
+   },
+   "i054a": {
+    "mixed": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -214.0,
+       299.7
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 58.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -192.4,
+       268.7
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 61.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       79.4,
+       309.4
+      ],
+      "faster_pairs": 3,
+      "mean_restricted_difference_seconds": 197.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 13,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -57.7,
+       350.9
+      ],
+      "faster_pairs": 3,
+      "mean_restricted_difference_seconds": 151.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 13,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -105.8,
+       308.1
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": 98.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 11,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       143.4,
+       343.9
+      ],
+      "faster_pairs": 2,
+      "mean_restricted_difference_seconds": 253.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 14,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       161.9,
+       426.5
+      ],
+      "faster_pairs": 2,
+      "mean_restricted_difference_seconds": 302.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 14,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       214.2,
+       636.8
+      ],
+      "faster_pairs": 4,
+      "mean_restricted_difference_seconds": 435.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 12,
+      "worlds": 8
+     }
+    },
+    "resource": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -67.1,
+       336.6
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 106.7,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -6.4,
+       558.8
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": 265.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -208.2,
+       74.8
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -53.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -94.9,
+       202.2
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": 46.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 6,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -157.2,
+       257.5
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": 28.7,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       46.3,
+       386.9
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": 201.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 11,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       2.9,
+       572.2
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": 220.5,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -334.7,
+       23.2
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -160.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 6,
+      "worlds": 8
+     }
+    },
+    "root_act1": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -217.2,
+       177.7
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -41.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -226.8,
+       249.8
+      ],
+      "faster_pairs": 11,
+      "mean_restricted_difference_seconds": -3.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -6.2,
+       409.3
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": 183.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -215.9,
+       70.8
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -74.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 6,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -269.6,
+       79.6
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -104.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 6,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       154.5,
+       633.7
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": 402.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 11,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       269.8,
+       681.2
+      ],
+      "faster_pairs": 4,
+      "mean_restricted_difference_seconds": 458.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 12,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -288.6,
+       204.3
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -49.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     }
+    },
+    "root_act2": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -226.7,
+       79.1
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -61.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -219.8,
+       110.4
+      ],
+      "faster_pairs": 8,
+      "mean_restricted_difference_seconds": -46.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 8,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -164.7,
+       92.4
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": -14.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -220.6,
+       93.2
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": -49.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -175.6,
+       122.4
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": -13.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       -53.4,
+       162.4
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 58.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       -14.1,
+       122.0
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 57.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -271.6,
+       324.4
+      ],
+      "faster_pairs": 11,
+      "mean_restricted_difference_seconds": 2.7,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     }
+    },
+    "tactical": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -139.9,
+       -44.4
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -89.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -140.5,
+       -41.2
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -86.7,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -139.0,
+       -44.4
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -89.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -139.9,
+       -44.4
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -89.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -139.3,
+       -44.4
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -89.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "i082": {
+      "bootstrap95_worlds": [
+       -112.4,
+       -37.6
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -74.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       -135.0,
+       -38.2
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -82.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -205.6,
+       -24.9
+      ],
+      "faster_pairs": 11,
+      "mean_restricted_difference_seconds": -102.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     }
+    }
+   },
+   "i082": {
+    "mixed": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -416.7,
+       -2.8
+      ],
+      "faster_pairs": 12,
+      "mean_restricted_difference_seconds": -195.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -398.2,
+       -15.8
+      ],
+      "faster_pairs": 13,
+      "mean_restricted_difference_seconds": -192.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -164.8,
+       79.2
+      ],
+      "faster_pairs": 12,
+      "mean_restricted_difference_seconds": -55.5,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -280.1,
+       60.8
+      ],
+      "faster_pairs": 12,
+      "mean_restricted_difference_seconds": -101.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -311.0,
+       6.5
+      ],
+      "faster_pairs": 13,
+      "mean_restricted_difference_seconds": -155.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       -343.9,
+       -143.4
+      ],
+      "faster_pairs": 14,
+      "mean_restricted_difference_seconds": -253.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       -4.1,
+       112.6
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": 48.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 11,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -2.4,
+       366.6
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": 182.5,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     }
+    },
+    "resource": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -186.6,
+       -10.9
+      ],
+      "faster_pairs": 13,
+      "mean_restricted_difference_seconds": -94.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -97.9,
+       234.2
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": 64.5,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 6,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -507.5,
+       -48.5
+      ],
+      "faster_pairs": 15,
+      "mean_restricted_difference_seconds": -254.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 1,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -280.3,
+       -47.7
+      ],
+      "faster_pairs": 13,
+      "mean_restricted_difference_seconds": -155.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -302.3,
+       -65.2
+      ],
+      "faster_pairs": 14,
+      "mean_restricted_difference_seconds": -172.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       -386.9,
+       -46.3
+      ],
+      "faster_pairs": 11,
+      "mean_restricted_difference_seconds": -201.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       -128.6,
+       197.9
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": 19.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -564.5,
+       -158.8
+      ],
+      "faster_pairs": 13,
+      "mean_restricted_difference_seconds": -361.5,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     }
+    },
+    "root_act1": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -633.0,
+       -237.0
+      ],
+      "faster_pairs": 14,
+      "mean_restricted_difference_seconds": -443.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -715.8,
+       -104.1
+      ],
+      "faster_pairs": 12,
+      "mean_restricted_difference_seconds": -405.7,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -391.4,
+       -52.7
+      ],
+      "faster_pairs": 12,
+      "mean_restricted_difference_seconds": -218.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -658.8,
+       -279.8
+      ],
+      "faster_pairs": 15,
+      "mean_restricted_difference_seconds": -476.4,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 1,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -763.4,
+       -248.8
+      ],
+      "faster_pairs": 14,
+      "mean_restricted_difference_seconds": -506.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       -633.7,
+       -154.5
+      ],
+      "faster_pairs": 11,
+      "mean_restricted_difference_seconds": -402.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       -107.9,
+       193.5
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": 56.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 10,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -785.3,
+       -152.2
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -451.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 6,
+      "worlds": 8
+     }
+    },
+    "root_act2": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -262.5,
+       20.8
+      ],
+      "faster_pairs": 11,
+      "mean_restricted_difference_seconds": -119.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -254.3,
+       55.5
+      ],
+      "faster_pairs": 13,
+      "mean_restricted_difference_seconds": -104.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -187.4,
+       45.3
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -72.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -256.1,
+       38.2
+      ],
+      "faster_pairs": 11,
+      "mean_restricted_difference_seconds": -107.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 4,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -207.0,
+       64.3
+      ],
+      "faster_pairs": 10,
+      "mean_restricted_difference_seconds": -71.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 5,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       -162.4,
+       53.4
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -58.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       -109.0,
+       76.6
+      ],
+      "faster_pairs": 6,
+      "mean_restricted_difference_seconds": -0.7,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 8,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -294.7,
+       218.5
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -55.3,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 7,
+      "worlds": 8
+     }
+    },
+    "tactical": {
+     "final01": {
+      "bootstrap95_worlds": [
+       -29.5,
+       -3.7
+      ],
+      "faster_pairs": 8,
+      "mean_restricted_difference_seconds": -14.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "final01-i081": {
+      "bootstrap95_worlds": [
+       -31.9,
+       2.9
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": -11.8,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "final01-noclinic": {
+      "bootstrap95_worlds": [
+       -28.5,
+       -4.1
+      ],
+      "faster_pairs": 9,
+      "mean_restricted_difference_seconds": -14.1,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 1,
+      "worlds": 8
+     },
+     "final01-nohint": {
+      "bootstrap95_worlds": [
+       -29.5,
+       -3.7
+      ],
+      "faster_pairs": 8,
+      "mean_restricted_difference_seconds": -14.2,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "final01-noprior": {
+      "bootstrap95_worlds": [
+       -29.0,
+       -3.7
+      ],
+      "faster_pairs": 8,
+      "mean_restricted_difference_seconds": -14.0,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 2,
+      "worlds": 8
+     },
+     "i054a": {
+      "bootstrap95_worlds": [
+       37.6,
+       112.4
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": 74.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 9,
+      "worlds": 8
+     },
+     "i085": {
+      "bootstrap95_worlds": [
+       -24.3,
+       1.1
+      ],
+      "faster_pairs": 5,
+      "mean_restricted_difference_seconds": -7.9,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 3,
+      "worlds": 8
+     },
+     "i085-tail": {
+      "bootstrap95_worlds": [
+       -94.5,
+       18.1
+      ],
+      "faster_pairs": 7,
+      "mean_restricted_difference_seconds": -27.6,
+      "note": "negative = faster than the reference arm; same world and solver seed",
+      "pairs": 16,
+      "slower_pairs": 6,
+      "worlds": 8
+     }
+    }
+   }
+  }
+ },
+ "per_class": {
+  "30": {
+   "mixed": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.146,
+     "median_seconds": 736.4,
+     "restricted_mean_seconds": 792.1,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-i081": {
+     "errors": 0,
+     "late_half_area": 0.147,
+     "median_seconds": 734.9,
+     "restricted_mean_seconds": 795.4,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.203,
+     "median_seconds": 938.9,
+     "restricted_mean_seconds": 932.0,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.186,
+     "median_seconds": 1016.9,
+     "restricted_mean_seconds": 885.7,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-noprior": {
+     "errors": 0,
+     "late_half_area": 0.15,
+     "median_seconds": 956.7,
+     "restricted_mean_seconds": 832.1,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.051,
+     "median_seconds": 809.3,
+     "restricted_mean_seconds": 734.1,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.226,
+     "median_seconds": 940.9,
+     "restricted_mean_seconds": 987.5,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i085": {
+     "errors": 0,
+     "late_half_area": 0.257,
+     "median_seconds": 958.1,
+     "restricted_mean_seconds": 1015.9,
+     "runs": 16,
+     "solved": 14,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.64,
+      0.965
+     ]
+    },
+    "i085-tail": {
+     "errors": 0,
+     "late_half_area": 0.386,
+     "median_seconds": 1191.6,
+     "restricted_mean_seconds": 1136.1,
+     "runs": 16,
+     "solved": 14,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.64,
+      0.965
+     ]
+    }
+   },
+   "resource": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.206,
+     "median_seconds": 818.0,
+     "restricted_mean_seconds": 819.1,
+     "runs": 16,
+     "solved": 15,
+     "solved_share": 0.938,
+     "wilson95": [
+      0.717,
+      0.989
+     ]
+    },
+    "final01-i081": {
+     "errors": 0,
+     "late_half_area": 0.318,
+     "median_seconds": 843.2,
+     "restricted_mean_seconds": 917.4,
+     "runs": 16,
+     "solved": 13,
+     "solved_share": 0.812,
+     "wilson95": [
+      0.57,
+      0.934
+     ]
+    },
+    "final01-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.111,
+     "median_seconds": 735.9,
+     "restricted_mean_seconds": 706.2,
+     "runs": 16,
+     "solved": 15,
+     "solved_share": 0.938,
+     "wilson95": [
+      0.717,
+      0.989
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.161,
+     "median_seconds": 657.2,
+     "restricted_mean_seconds": 758.5,
+     "runs": 16,
+     "solved": 15,
+     "solved_share": 0.938,
+     "wilson95": [
+      0.717,
+      0.989
+     ]
+    },
+    "final01-noprior": {
+     "errors": 0,
+     "late_half_area": 0.158,
+     "median_seconds": 609.8,
+     "restricted_mean_seconds": 739.4,
+     "runs": 16,
+     "solved": 15,
+     "solved_share": 0.938,
+     "wilson95": [
+      0.717,
+      0.989
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.116,
+     "median_seconds": 840.8,
+     "restricted_mean_seconds": 767.0,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.299,
+     "median_seconds": 977.3,
+     "restricted_mean_seconds": 934.5,
+     "runs": 16,
+     "solved": 13,
+     "solved_share": 0.812,
+     "wilson95": [
+      0.57,
+      0.934
+     ]
+    },
+    "i085": {
+     "errors": 0,
+     "late_half_area": 0.234,
+     "median_seconds": 943.3,
+     "restricted_mean_seconds": 880.3,
+     "runs": 16,
+     "solved": 14,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.64,
+      0.965
+     ]
+    },
+    "i085-tail": {
+     "errors": 0,
+     "late_half_area": 0.117,
+     "median_seconds": 435.5,
+     "restricted_mean_seconds": 606.8,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    }
+   },
+   "root_act1": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.233,
+     "median_seconds": 991.7,
+     "restricted_mean_seconds": 1038.9,
+     "runs": 16,
+     "solved": 15,
+     "solved_share": 0.938,
+     "wilson95": [
+      0.717,
+      0.989
+     ]
+    },
+    "final01-i081": {
+     "errors": 0,
+     "late_half_area": 0.28,
+     "median_seconds": 1055.5,
+     "restricted_mean_seconds": 1075.9,
+     "runs": 16,
+     "solved": 15,
+     "solved_share": 0.938,
+     "wilson95": [
+      0.717,
+      0.989
+     ]
+    },
+    "final01-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.46,
+     "median_seconds": 1396.6,
+     "restricted_mean_seconds": 1265.7,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.189,
+     "median_seconds": 1076.5,
+     "restricted_mean_seconds": 1007.7,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-noprior": {
+     "errors": 0,
+     "late_half_area": 0.149,
+     "median_seconds": 927.9,
+     "restricted_mean_seconds": 977.3,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.245,
+     "median_seconds": 1055.6,
+     "restricted_mean_seconds": 1081.9,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.53,
+     "median_seconds": 1282.5,
+     "restricted_mean_seconds": 1334.2,
+     "runs": 16,
+     "solved": 10,
+     "solved_share": 0.625,
+     "wilson95": [
+      0.386,
+      0.815
+     ]
+    },
+    "i085": {
+     "errors": 0,
+     "late_half_area": 0.594,
+     "median_seconds": 1730.1,
+     "restricted_mean_seconds": 1420.1,
+     "runs": 16,
+     "solved": 9,
+     "solved_share": 0.562,
+     "wilson95": [
+      0.332,
+      0.769
+     ]
+    },
+    "i085-tail": {
+     "errors": 0,
+     "late_half_area": 0.288,
+     "median_seconds": 1159.0,
+     "restricted_mean_seconds": 1028.7,
+     "runs": 16,
+     "solved": 15,
+     "solved_share": 0.938,
+     "wilson95": [
+      0.717,
+      0.989
+     ]
+    }
+   },
+   "root_act2": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.01,
+     "median_seconds": 561.1,
+     "restricted_mean_seconds": 543.3,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-i081": {
+     "errors": 0,
+     "late_half_area": 0.029,
+     "median_seconds": 584.3,
+     "restricted_mean_seconds": 558.3,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 699.7,
+     "restricted_mean_seconds": 589.5,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.01,
+     "median_seconds": 572.3,
+     "restricted_mean_seconds": 555.2,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-noprior": {
+     "errors": 0,
+     "late_half_area": 0.02,
+     "median_seconds": 589.6,
+     "restricted_mean_seconds": 591.2,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.031,
+     "median_seconds": 664.1,
+     "restricted_mean_seconds": 604.3,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.076,
+     "median_seconds": 604.4,
+     "restricted_mean_seconds": 662.4,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i085": {
+     "errors": 0,
+     "late_half_area": 0.051,
+     "median_seconds": 606.7,
+     "restricted_mean_seconds": 661.7,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i085-tail": {
+     "errors": 0,
+     "late_half_area": 0.053,
+     "median_seconds": 501.7,
+     "restricted_mean_seconds": 607.0,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    }
+   },
+   "tactical": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 190.0,
+     "restricted_mean_seconds": 233.6,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-i081": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 190.0,
+     "restricted_mean_seconds": 236.0,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 190.0,
+     "restricted_mean_seconds": 233.7,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 190.0,
+     "restricted_mean_seconds": 233.6,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-noprior": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 190.0,
+     "restricted_mean_seconds": 233.8,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.009,
+     "median_seconds": 283.3,
+     "restricted_mean_seconds": 322.8,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 208.1,
+     "restricted_mean_seconds": 247.8,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i085": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 211.4,
+     "restricted_mean_seconds": 239.9,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i085-tail": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 232.1,
+     "restricted_mean_seconds": 220.2,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    }
+   }
+  },
+  "45": {
+   "mixed": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.026,
+     "median_seconds": 736.4,
+     "restricted_mean_seconds": 792.1,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-i081": {
+     "errors": 0,
+     "late_half_area": 0.024,
+     "median_seconds": 734.9,
+     "restricted_mean_seconds": 795.4,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.022,
+     "median_seconds": 938.9,
+     "restricted_mean_seconds": 932.0,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.02,
+     "median_seconds": 1016.9,
+     "restricted_mean_seconds": 885.7,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-noprior": {
+     "errors": 0,
+     "late_half_area": 0.018,
+     "median_seconds": 956.7,
+     "restricted_mean_seconds": 832.1,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 809.3,
+     "restricted_mean_seconds": 734.1,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.029,
+     "median_seconds": 940.9,
+     "restricted_mean_seconds": 987.5,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i085": {
+     "errors": 0,
+     "late_half_area": 0.068,
+     "median_seconds": 958.1,
+     "restricted_mean_seconds": 1036.3,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i085-tail": {
+     "errors": 0,
+     "late_half_area": 0.115,
+     "median_seconds": 1191.6,
+     "restricted_mean_seconds": 1170.0,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    }
+   },
+   "resource": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.082,
+     "median_seconds": 818.0,
+     "restricted_mean_seconds": 873.7,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-i081": {
+     "errors": 0,
+     "late_half_area": 0.168,
+     "median_seconds": 843.2,
+     "restricted_mean_seconds": 1032.8,
+     "runs": 16,
+     "solved": 14,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.64,
+      0.965
+     ]
+    },
+    "final01-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.031,
+     "median_seconds": 735.9,
+     "restricted_mean_seconds": 713.7,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.067,
+     "median_seconds": 657.2,
+     "restricted_mean_seconds": 813.1,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-noprior": {
+     "errors": 0,
+     "late_half_area": 0.067,
+     "median_seconds": 609.8,
+     "restricted_mean_seconds": 795.7,
+     "runs": 16,
+     "solved": 15,
+     "solved_share": 0.938,
+     "wilson95": [
+      0.717,
+      0.989
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 840.8,
+     "restricted_mean_seconds": 767.0,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.101,
+     "median_seconds": 977.3,
+     "restricted_mean_seconds": 968.3,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i085": {
+     "errors": 0,
+     "late_half_area": 0.124,
+     "median_seconds": 943.3,
+     "restricted_mean_seconds": 987.6,
+     "runs": 16,
+     "solved": 15,
+     "solved_share": 0.938,
+     "wilson95": [
+      0.717,
+      0.989
+     ]
+    },
+    "i085-tail": {
+     "errors": 0,
+     "late_half_area": 0.018,
+     "median_seconds": 435.5,
+     "restricted_mean_seconds": 606.8,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    }
+   },
+   "root_act1": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.036,
+     "median_seconds": 991.7,
+     "restricted_mean_seconds": 1040.3,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-i081": {
+     "errors": 0,
+     "late_half_area": 0.053,
+     "median_seconds": 1055.5,
+     "restricted_mean_seconds": 1078.3,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.089,
+     "median_seconds": 1396.6,
+     "restricted_mean_seconds": 1265.7,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.01,
+     "median_seconds": 1076.5,
+     "restricted_mean_seconds": 1007.7,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-noprior": {
+     "errors": 0,
+     "late_half_area": 0.01,
+     "median_seconds": 927.9,
+     "restricted_mean_seconds": 977.3,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.025,
+     "median_seconds": 1055.6,
+     "restricted_mean_seconds": 1081.9,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.251,
+     "median_seconds": 1282.5,
+     "restricted_mean_seconds": 1484.1,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i085": {
+     "errors": 0,
+     "late_half_area": 0.262,
+     "median_seconds": 1730.1,
+     "restricted_mean_seconds": 1540.3,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i085-tail": {
+     "errors": 0,
+     "late_half_area": 0.044,
+     "median_seconds": 1159.0,
+     "restricted_mean_seconds": 1032.1,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    }
+   },
+   "root_act2": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 561.1,
+     "restricted_mean_seconds": 543.3,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-i081": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 584.3,
+     "restricted_mean_seconds": 558.3,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 699.7,
+     "restricted_mean_seconds": 589.5,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 572.3,
+     "restricted_mean_seconds": 555.2,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-noprior": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 589.6,
+     "restricted_mean_seconds": 591.2,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 664.1,
+     "restricted_mean_seconds": 604.3,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.008,
+     "median_seconds": 604.4,
+     "restricted_mean_seconds": 662.4,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i085": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 606.7,
+     "restricted_mean_seconds": 661.7,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i085-tail": {
+     "errors": 0,
+     "late_half_area": 0.011,
+     "median_seconds": 501.7,
+     "restricted_mean_seconds": 607.0,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    }
+   },
+   "tactical": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 190.0,
+     "restricted_mean_seconds": 233.6,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-i081": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 190.0,
+     "restricted_mean_seconds": 236.0,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 190.0,
+     "restricted_mean_seconds": 233.7,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 190.0,
+     "restricted_mean_seconds": 233.6,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "final01-noprior": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 190.0,
+     "restricted_mean_seconds": 233.8,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 283.3,
+     "restricted_mean_seconds": 322.8,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 208.1,
+     "restricted_mean_seconds": 247.8,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i085": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 211.4,
+     "restricted_mean_seconds": 239.9,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i085-tail": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 232.1,
+     "restricted_mean_seconds": 220.2,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    }
+   }
+  }
+ },
+ "references": [
+  "i082",
+  "i054a",
+  "final01"
+ ],
+ "schema": "spire-final01-sim-study/v2",
+ "scope": "synthetic campaign worlds driving the real planner; not native evidence"
+}

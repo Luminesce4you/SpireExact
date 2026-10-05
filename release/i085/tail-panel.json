@@ -1,0 +1,36 @@
+{
+  "schema": "spire-i085-tail-development-panel/v1",
+  "role": "PUBLIC_DEVELOPMENT_NOT_HOLDOUT",
+  "seeds": [
+    "745824568",
+    "2078664581",
+    "1461691371",
+    "523008045",
+    "1701810507",
+    "418438069",
+    "1646873877",
+    "1388453017"
+  ],
+  "solver_seeds": [
+    271828,
+    314159,
+    161803,
+    141421
+  ],
+  "selection": "SHA256 of SpireExact-i085-macro-development-20261005:<counter>, first 8 bytes big endian mod 2147483647; skip existing public holdout, 42, 101, duplicates",
+  "selected_before_any_native_i085_result": true,
+  "no_claim_of_user_private_seed_disjointness": true,
+  "minutes": 120,
+  "workers": 7,
+  "primary_arms": [
+    "i082",
+    "i082-low-threshold",
+    "i085-core",
+    "i085",
+    "i085-tail"
+  ],
+  "route_extension_arm": "i085-routes",
+  "native_runs_completed": 0,
+  "selection_note": "Same eight earlier public development seeds; solver repetitions predeclared, no native results used to select them.",
+  "statistics_note": "Report within-game-seed repetitions separately from pooled difficulty mixtures; four repetitions are not enough for a reliable p95 or parametric heavy-tail fit."
+}

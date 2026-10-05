@@ -1,0 +1,16 @@
+{
+  "snapshot": "work-in-progress, not final frozen release",
+  "baseline": "4c5823acd1a68acb797069fb8f7522a6ad857bbf",
+  "remote_research_branch_head_checked": "dec944a41743b83e44f137a140770e16961aa08f",
+  "algorithm_changes_committed_or_pushed": false,
+  "release_i085_results_md_exists": false,
+  "new_python_tests_passed": 51,
+  "full_python_suite": {
+    "tests_run": 893,
+    "errors": 2,
+    "skipped": 2,
+    "successful": false
+  },
+  "native_build_executed": false,
+  "native_benchmark_executed": false
+}

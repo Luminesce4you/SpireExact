@@ -1,0 +1,601 @@
+{
+  "schema": "spire-i085-comparison/v1",
+  "plan_source_hash": "238e835b78f82c3bdefad2c3b7e477bdcbe485e6d170f0e23bcc39c389338820",
+  "runs": [
+    {
+      "id": "101-s271828-i082",
+      "seed": "101",
+      "solver_seed": 271828,
+      "arm": "i082",
+      "wall_cap_seconds": 7200,
+      "available": false,
+      "verified_evidence": false,
+      "run_state": "not_run",
+      "runner_status": {}
+    },
+    {
+      "id": "101-s271828-i082-low-threshold",
+      "seed": "101",
+      "solver_seed": 271828,
+      "arm": "i082-low-threshold",
+      "wall_cap_seconds": 7200,
+      "available": false,
+      "verified_evidence": false,
+      "run_state": "not_run",
+      "runner_status": {}
+    },
+    {
+      "id": "101-s271828-i085-core",
+      "seed": "101",
+      "solver_seed": 271828,
+      "arm": "i085-core",
+      "wall_cap_seconds": 7200,
+      "available": false,
+      "verified_evidence": false,
+      "run_state": "not_run",
+      "runner_status": {}
+    },
+    {
+      "id": "101-s271828-i085",
+      "seed": "101",
+      "solver_seed": 271828,
+      "arm": "i085",
+      "wall_cap_seconds": 7200,
+      "available": false,
+      "verified_evidence": false,
+      "run_state": "not_run",
+      "runner_status": {}
+    },
+    {
+      "id": "101-s271828-i085-tail",
+      "seed": "101",
+      "solver_seed": 271828,
+      "arm": "i085-tail",
+      "wall_cap_seconds": 7200,
+      "available": false,
+      "verified_evidence": false,
+      "run_state": "not_run",
+      "runner_status": {}
+    }
+  ],
+  "comparisons": [
+    {
+      "candidate": "i082-low-threshold",
+      "auditable_pairs": 0,
+      "omitted_pairs": [
+        {
+          "seed": "101",
+          "solver_seed": 271828,
+          "reason": "missing_or_partial"
+        }
+      ],
+      "i082_only_wins": 0,
+      "candidate_only_wins": 0,
+      "both_wins": 0,
+      "neither_win": 0,
+      "timed_pairs": 0,
+      "paired_mean_restricted_time_delta_seconds": null,
+      "seed_cluster_bootstrap_interval": null,
+      "seed_clusters_for_interval": 0,
+      "pairs": [],
+      "scope": "candidate minus i082; failures capped at shared wall budget; missing win times omitted, not replaced by candidate time"
+    },
+    {
+      "candidate": "i085-core",
+      "auditable_pairs": 0,
+      "omitted_pairs": [
+        {
+          "seed": "101",
+          "solver_seed": 271828,
+          "reason": "missing_or_partial"
+        }
+      ],
+      "i082_only_wins": 0,
+      "candidate_only_wins": 0,
+      "both_wins": 0,
+      "neither_win": 0,
+      "timed_pairs": 0,
+      "paired_mean_restricted_time_delta_seconds": null,
+      "seed_cluster_bootstrap_interval": null,
+      "seed_clusters_for_interval": 0,
+      "pairs": [],
+      "scope": "candidate minus i082; failures capped at shared wall budget; missing win times omitted, not replaced by candidate time"
+    },
+    {
+      "candidate": "i085",
+      "auditable_pairs": 0,
+      "omitted_pairs": [
+        {
+          "seed": "101",
+          "solver_seed": 271828,
+          "reason": "missing_or_partial"
+        }
+      ],
+      "i082_only_wins": 0,
+      "candidate_only_wins": 0,
+      "both_wins": 0,
+      "neither_win": 0,
+      "timed_pairs": 0,
+      "paired_mean_restricted_time_delta_seconds": null,
+      "seed_cluster_bootstrap_interval": null,
+      "seed_clusters_for_interval": 0,
+      "pairs": [],
+      "scope": "candidate minus i082; failures capped at shared wall budget; missing win times omitted, not replaced by candidate time"
+    },
+    {
+      "candidate": "i085-tail",
+      "auditable_pairs": 0,
+      "omitted_pairs": [
+        {
+          "seed": "101",
+          "solver_seed": 271828,
+          "reason": "missing_or_partial"
+        }
+      ],
+      "i082_only_wins": 0,
+      "candidate_only_wins": 0,
+      "both_wins": 0,
+      "neither_win": 0,
+      "timed_pairs": 0,
+      "paired_mean_restricted_time_delta_seconds": null,
+      "seed_cluster_bootstrap_interval": null,
+      "seed_clusters_for_interval": 0,
+      "pairs": [],
+      "scope": "candidate minus i082; failures capped at shared wall budget; missing win times omitted, not replaced by candidate time"
+    }
+  ],
+  "time_scaling": {
+    "i082": {
+      "declared_runs": 1,
+      "auditable_runs": 0,
+      "omitted": [
+        {
+          "id": "101-s271828-i082",
+          "reasons": [
+            "available",
+            "context_matches_plan",
+            "settings_match_plan",
+            "resource_valid",
+            "not_completed",
+            "identity",
+            "not_time_censored"
+          ]
+        }
+      ],
+      "by_independent_cap": {
+        "7200": {
+          "n": 0,
+          "horizon": 7200,
+          "events": 0,
+          "censored": 0,
+          "quantiles_seconds": {
+            "0.5": null,
+            "0.9": null,
+            "0.95": null
+          },
+          "rmst_seconds": null,
+          "second_half_survival_area_seconds": null,
+          "survival_at_horizon": null,
+          "support_complete": false,
+          "curve": [],
+          "assumption": "KM descriptive; dependent/adaptive censoring may invalidate population interpretation"
+        }
+      },
+      "long_run_prefixes": [
+        {
+          "seconds": 300,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 900,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 1800,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 3600,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 7200,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 10800,
+          "declared": 0,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": null
+        }
+      ],
+      "per_game_seed": {},
+      "fit_latency_diagnostics": [],
+      "tail_identification": "pooled seed-difficulty mixtures are not evidence of IID within-seed heavy tails; no parametric tail law fitted",
+      "F1_to_F2_observable_gap": {
+        "n": 0,
+        "zero_gap_events": 0
+      },
+      "caveat": "global first F1 pass to global first F2 pass, possibly different lineages; not paired combat durations; prefix curves are not fresh short runs"
+    },
+    "i082-low-threshold": {
+      "declared_runs": 1,
+      "auditable_runs": 0,
+      "omitted": [
+        {
+          "id": "101-s271828-i082-low-threshold",
+          "reasons": [
+            "available",
+            "context_matches_plan",
+            "settings_match_plan",
+            "resource_valid",
+            "not_completed",
+            "identity",
+            "not_time_censored"
+          ]
+        }
+      ],
+      "by_independent_cap": {
+        "7200": {
+          "n": 0,
+          "horizon": 7200,
+          "events": 0,
+          "censored": 0,
+          "quantiles_seconds": {
+            "0.5": null,
+            "0.9": null,
+            "0.95": null
+          },
+          "rmst_seconds": null,
+          "second_half_survival_area_seconds": null,
+          "survival_at_horizon": null,
+          "support_complete": false,
+          "curve": [],
+          "assumption": "KM descriptive; dependent/adaptive censoring may invalidate population interpretation"
+        }
+      },
+      "long_run_prefixes": [
+        {
+          "seconds": 300,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 900,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 1800,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 3600,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 7200,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 10800,
+          "declared": 0,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": null
+        }
+      ],
+      "per_game_seed": {},
+      "fit_latency_diagnostics": [],
+      "tail_identification": "pooled seed-difficulty mixtures are not evidence of IID within-seed heavy tails; no parametric tail law fitted",
+      "F1_to_F2_observable_gap": {
+        "n": 0,
+        "zero_gap_events": 0
+      },
+      "caveat": "global first F1 pass to global first F2 pass, possibly different lineages; not paired combat durations; prefix curves are not fresh short runs"
+    },
+    "i085-core": {
+      "declared_runs": 1,
+      "auditable_runs": 0,
+      "omitted": [
+        {
+          "id": "101-s271828-i085-core",
+          "reasons": [
+            "available",
+            "context_matches_plan",
+            "settings_match_plan",
+            "resource_valid",
+            "not_completed",
+            "identity",
+            "not_time_censored"
+          ]
+        }
+      ],
+      "by_independent_cap": {
+        "7200": {
+          "n": 0,
+          "horizon": 7200,
+          "events": 0,
+          "censored": 0,
+          "quantiles_seconds": {
+            "0.5": null,
+            "0.9": null,
+            "0.95": null
+          },
+          "rmst_seconds": null,
+          "second_half_survival_area_seconds": null,
+          "survival_at_horizon": null,
+          "support_complete": false,
+          "curve": [],
+          "assumption": "KM descriptive; dependent/adaptive censoring may invalidate population interpretation"
+        }
+      },
+      "long_run_prefixes": [
+        {
+          "seconds": 300,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 900,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 1800,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 3600,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 7200,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 10800,
+          "declared": 0,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": null
+        }
+      ],
+      "per_game_seed": {},
+      "fit_latency_diagnostics": [],
+      "tail_identification": "pooled seed-difficulty mixtures are not evidence of IID within-seed heavy tails; no parametric tail law fitted",
+      "F1_to_F2_observable_gap": {
+        "n": 0,
+        "zero_gap_events": 0
+      },
+      "caveat": "global first F1 pass to global first F2 pass, possibly different lineages; not paired combat durations; prefix curves are not fresh short runs"
+    },
+    "i085": {
+      "declared_runs": 1,
+      "auditable_runs": 0,
+      "omitted": [
+        {
+          "id": "101-s271828-i085",
+          "reasons": [
+            "available",
+            "context_matches_plan",
+            "settings_match_plan",
+            "resource_valid",
+            "not_completed",
+            "identity",
+            "not_time_censored"
+          ]
+        }
+      ],
+      "by_independent_cap": {
+        "7200": {
+          "n": 0,
+          "horizon": 7200,
+          "events": 0,
+          "censored": 0,
+          "quantiles_seconds": {
+            "0.5": null,
+            "0.9": null,
+            "0.95": null
+          },
+          "rmst_seconds": null,
+          "second_half_survival_area_seconds": null,
+          "survival_at_horizon": null,
+          "support_complete": false,
+          "curve": [],
+          "assumption": "KM descriptive; dependent/adaptive censoring may invalidate population interpretation"
+        }
+      },
+      "long_run_prefixes": [
+        {
+          "seconds": 300,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 900,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 1800,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 3600,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 7200,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 10800,
+          "declared": 0,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": null
+        }
+      ],
+      "per_game_seed": {},
+      "fit_latency_diagnostics": [],
+      "tail_identification": "pooled seed-difficulty mixtures are not evidence of IID within-seed heavy tails; no parametric tail law fitted",
+      "F1_to_F2_observable_gap": {
+        "n": 0,
+        "zero_gap_events": 0
+      },
+      "caveat": "global first F1 pass to global first F2 pass, possibly different lineages; not paired combat durations; prefix curves are not fresh short runs"
+    },
+    "i085-tail": {
+      "declared_runs": 1,
+      "auditable_runs": 0,
+      "omitted": [
+        {
+          "id": "101-s271828-i085-tail",
+          "reasons": [
+            "available",
+            "context_matches_plan",
+            "settings_match_plan",
+            "resource_valid",
+            "not_completed",
+            "identity",
+            "not_time_censored"
+          ]
+        }
+      ],
+      "by_independent_cap": {
+        "7200": {
+          "n": 0,
+          "horizon": 7200,
+          "events": 0,
+          "censored": 0,
+          "quantiles_seconds": {
+            "0.5": null,
+            "0.9": null,
+            "0.95": null
+          },
+          "rmst_seconds": null,
+          "second_half_survival_area_seconds": null,
+          "survival_at_horizon": null,
+          "support_complete": false,
+          "curve": [],
+          "assumption": "KM descriptive; dependent/adaptive censoring may invalidate population interpretation"
+        }
+      },
+      "long_run_prefixes": [
+        {
+          "seconds": 300,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 900,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 1800,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 3600,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 7200,
+          "declared": 1,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": 0.0
+        },
+        {
+          "seconds": 10800,
+          "declared": 0,
+          "auditable": 0,
+          "observed_wins": 0,
+          "observed_success_fraction_lower_bound": null
+        }
+      ],
+      "per_game_seed": {},
+      "fit_latency_diagnostics": [],
+      "tail_identification": "pooled seed-difficulty mixtures are not evidence of IID within-seed heavy tails; no parametric tail law fitted",
+      "F1_to_F2_observable_gap": {
+        "n": 0,
+        "zero_gap_events": 0
+      },
+      "caveat": "global first F1 pass to global first F2 pass, possibly different lineages; not paired combat durations; prefix curves are not fresh short runs"
+    }
+  },
+  "new_native_execution_by_report": false,
+  "warnings": [
+    "Do not treat missing native metrics as zero.",
+    "One-step shadow paths have no counterfactual outcome labels.",
+    "No-DLL tests and historical wins are not i085 native evidence.",
+    "Repeated solver seeds on one game seed are not independent game seeds."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "source_hash": "238e835b78f82c3bdefad2c3b7e477bdcbe485e6d170f0e23bcc39c389338820",
+  "command": [
+    "python",
+    "-m",
+    "compileall",
+    "-q",
+    "spire_exact",
+    "tools",
+    "tests"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "",
+  "timestamp_utc": "2026-10-05T04:51:50.561768+00:00",
+  "native_executed": false
+}

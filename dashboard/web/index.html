@@ -25,7 +25,7 @@
 <h1 id="page-title">概览</h1>
 <div class="run-picker"><label for="run-select" id="run-select-label">当前运行</label><select id="run-select" aria-label="选择运行"></select></div>
 <span class="spacer"></span>
-<span id="source-ready" class="status-badge" role="status">i082 · 连接中</span>
+<span id="source-ready" class="status-badge" role="status">i100 · 连接中</span>
 <button id="new-solve" class="primary-button">新建求解</button>
 </header>
 <main>
@@ -104,7 +104,7 @@
 <article class="chart-card model-history"><div class="card-heading"><div><h3>入场样本增长</h3><p>只包含打开页面之后看到的模型快照，刷新后重新记录</p></div><span id="model-history-count" class="chart-pill">—</span></div><div id="model-training-chart" class="plot" role="img" aria-label="入场样本增长曲线"></div></article>
 <details class="panel raw"><summary>完整模型快照与来源</summary><pre id="model-raw" class="model-raw"></pre></details>
 </div>
-<details class="panel model-explanation"><summary>这个模型怎么读</summary><p>每个首领关口单独学习牌组、升级、遗物、药水和生命与战斗结果的关系；父子路线的差分模型补充选项变化的信息。样本够了才拟合，之后随新结果更新。最终幕的两个首领分开建模。</p><p>结果分数：未过关时是敌方生命削减比例（同一关口统一分母）；过关时是 1 + 保留生命比例。残差和特征评分只基于本次搜索收集的数据，不能当作独立验证过的预测准确率或过关概率。模型不跨种子累积，胜利仍以完整原生重放为准。</p><p>第 3 幕两个首领另有一张联合表（i082 起）：结果分数是真实第一首领的结果加上满血打第二首领的合成样本平均分。它拟合之后，第 3 幕第一首领的档位改由它给出，真实入场表照常收样本和拟合。就绪度探针和第三幕选牌对照都是合成样本，只影响算力分配和选牌先后，不进入真实轨迹、检查点、结果缓存或胜利证据；满血全输不证明牌组赢不了，未完成不算输。</p></details>
+<details class="panel model-explanation"><summary>这个模型怎么读</summary><p>每个首领关口单独学习牌组、升级、遗物、药水和生命与战斗结果的关系；父子路线的差分模型补充选项变化的信息。样本够了才拟合，之后随新结果更新。最终幕的两个首领分开建模。</p><p>结果分数：未过关时是敌方生命削减比例（同一关口统一分母）；过关时是 1 + 保留生命比例。残差和特征评分只基于本次搜索收集的数据，不能当作独立验证过的预测准确率或过关概率。模型不跨种子累积，胜利仍以完整原生重放为准。</p><p>i100 的关口诊所按"进入该幕前的决策序列 × 首领关口"汇总不同入场的结果，判断卡住的原因是根不对（回上一幕换选项）还是深度不够（在关口附近加深、优先关口重试），判定和依据记录在运行结果的 gate_clinic 中。</p><p>选择 i082 配置时，第 3 幕两个首领另有一张联合表：结果分数是真实第一首领的结果加上满血打第二首领的合成样本平均分。它拟合之后，第 3 幕第一首领的档位改由它给出，真实入场表照常收样本和拟合。就绪度探针和第三幕选牌对照都是合成样本，只影响算力分配和选牌先后，不进入真实轨迹、检查点、结果缓存或胜利证据。</p></details>
 </section>
 
 <section id="events-view" class="view hidden"><div class="table-toolbar"><select id="event-filter" aria-label="事件筛选"><option value="all">全部事件</option><option value="important">不含逐层推进</option></select><span class="hint">时间为事件发生时的已运行时长</span></div><div id="all-events" class="panel event-list expanded"></div></section>

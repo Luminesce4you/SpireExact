@@ -1,6 +1,6 @@
-"""Run one fresh i082 A10 seed from the public Windows source package.
+"""Run a fresh A10 seed from the Windows source package (i100 by default; i082/i085 selectable).
 
-The feature table and effective values come from the frozen planner's own
+The feature table and effective values come from the selected planner's own
 final_defaults and argument parser. Dry-run only parses: no setup, native
 requests, output creation, or search execution.
 """
@@ -20,12 +20,13 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 FROZEN_SOURCE_VERSION = "e1b10f6f10f1c1d27f5f176f8b4e73ce8aa07fc2a9ab94b9eaf2d9cd10bd7c74"
 SOURCE_RELEASE = "i082/frozen-i082"
+I100_RELEASE = "i100"
 
 
-def settings(seed: str, minutes: int, workers: int, solver_seed: int, feature_profile: str = "i082") -> list[str]:
-    from spire_exact.planning.final_defaults import i082_argv
-    if feature_profile != "i082":
-        raise ValueError("This release launcher specifies i082; use the planner CLI for other profiles")
+def settings(seed: str, minutes: int, workers: int, solver_seed: int, feature_profile: str = "i100") -> list[str]:
+    from spire_exact.planning.final_defaults import i082_argv, i085_argv, i100_argv
+    if feature_profile not in ('i100','i082','i085'):
+        raise ValueError("This launcher specifies i100/i082/i085; use the planner CLI for other profiles")
     seconds = minutes * 60
     return [
         "--seed", seed, "--character", "IRONCLAD", "--ascension", "10", "--unlocks", "all",
@@ -37,7 +38,9 @@ def settings(seed: str, minutes: int, workers: int, solver_seed: int, feature_pr
         "--nodes", "60000", "--profile", "Low", "--dispatch", "ordered",
         "--dispatch-window", "56", "--solver-seed", str(solver_seed), "--low-io",
         "--event-driven-settle", "--checkpoint-mib", "1024", "--cache-mib", "128",
-        "--archive-entries", "256", "--feature-profile", feature_profile, *i082_argv(),
+        "--archive-entries", "256", "--feature-profile", feature_profile,
+        *(i085_argv() if feature_profile == 'i085' else i100_argv() if feature_profile == 'i100'
+          else i082_argv()),
     ]
 
 
@@ -62,33 +65,49 @@ def effective_parameters(arguments: list[str]) -> dict:
         except Parsed:
             pass
     if captured is None:
-        raise RuntimeError("Could not capture the frozen planner parser")
+        raise RuntimeError("Could not capture the planner parser")
     return {key: str(value) if isinstance(value, Path) else value
             for key, value in vars(resolve_entry_defaults(captured)).items()}
+
+
+def detached_arguments(arguments: list[str]) -> list[str]:
+    """Keep launcher flags ahead of argparse.REMAINDER's --extra boundary."""
+    boundary = arguments.index("--extra") if "--extra" in arguments else len(arguments)
+    return [v for v in arguments[:boundary] if v != "--detach"] + ["--detached-child"] + arguments[boundary:]
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--seed", required=True)
     parser.add_argument("--out", type=Path, required=True, help="New run folder; existing runs are preserved")
-    parser.add_argument("--feature-profile", choices=["i082"], default="i082")
+    parser.add_argument("--feature-profile", choices=["i100", "i082", "i085"], default="i100")
     parser.add_argument("--minutes", type=int, default=30, choices=range(1, 46), metavar="1..45")
+    parser.add_argument("--research-minutes",type=int,choices=range(1,181),metavar="1..180")
     parser.add_argument("--solver-seed", type=int, default=271828)
     parser.add_argument("--workers", type=int, default=7, choices=range(1, 8), metavar="1..7")
     parser.add_argument("--dry-run", action="store_true", help="Parse and print effective settings without running anything")
     parser.add_argument("--detach", action="store_true", help="Start outside the calling app's process tree using Windows WMI")
     parser.add_argument("--detached-child", action="store_true", help=argparse.SUPPRESS)
+    parser.add_argument('--extra', nargs=argparse.REMAINDER, default=[],
+                        help='Explicit planner overrides, after profile defaults')
     args = parser.parse_args()
+    if args.research_minutes is not None:args.minutes=args.research_minutes
     if not re.fullmatch(r"[A-Za-z0-9]{1,64}", args.seed):
         parser.error("seed must contain 1..64 letters or digits")
     out = (args.out if args.out.is_absolute() else ROOT / args.out).resolve()
     data = ROOT / "runtime/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64"
     selected = settings(args.seed, args.minutes, args.workers, args.solver_seed, args.feature_profile)
+    selected += args.extra
     planner_arguments = ["--out", str(out), "--game-dir", str(data), *selected]
     effective = effective_parameters(planner_arguments)
+    if effective['feature_profile'] != args.feature_profile:
+        parser.error('--extra may not change the feature profile')
+    source_release = (SOURCE_RELEASE if args.feature_profile == 'i082' else I100_RELEASE
+                      if args.feature_profile == 'i100' else 'i085/macro-candidate')
+    frozen_version = FROZEN_SOURCE_VERSION if args.feature_profile == 'i082' else None
     command = [sys.executable, str(ROOT / "tools/limited_cli.py"), "solve-p5", *planner_arguments]
     if args.dry_run:
-        print(json.dumps({"source_release": SOURCE_RELEASE, "frozen_source_version": FROZEN_SOURCE_VERSION,
+        print(json.dumps({"source_release": source_release, "frozen_source_version": frozen_version,
                           "feature_profile": args.feature_profile, "wall_cap_seconds": args.minutes * 60,
                           "protocol": "A10-seed-v2", "command": command, "effective_parameters": effective,
                           "native_requests_executed": False, "search_executed": False}, indent=2))
@@ -116,7 +135,7 @@ def main() -> int:
     if check.returncode:
         return check.returncode
     if args.detach:
-        child_args = [value for value in sys.argv[1:] if value != "--detach"] + ["--detached-child"]
+        child_args = detached_arguments(sys.argv[1:])
         detach_environment = dict(environment)
         detach_environment["SPIRE_RELEASE_CHILD_COMMAND"] = subprocess.list2cmdline(
             [sys.executable, str(Path(__file__).resolve()), *child_args])
@@ -135,8 +154,8 @@ def main() -> int:
         return 0
     out.parent.mkdir(parents=True, exist_ok=True)
     from tools.experiment import version_hash
-    manifest = {"schema": "spire-public-run/v2", "protocol": "A10-seed-v2", "source_release": SOURCE_RELEASE,
-                "feature_profile": args.feature_profile, "frozen_source_version": FROZEN_SOURCE_VERSION,
+    manifest = {"schema": "spire-public-run/v2", "protocol": "A10-seed-v2", "source_release": source_release,
+                "feature_profile": args.feature_profile, "frozen_source_version": frozen_version,
                 "source_version": version_hash(), "seed": args.seed, "solver_seed": args.solver_seed,
                 "character": "IRONCLAD", "ascension": 10, "unlocks": "all", "fresh_start": True,
                 "requested_workers": args.workers, "wall_cap_seconds": args.minutes * 60,
@@ -144,7 +163,7 @@ def main() -> int:
                 "memory_protocol_override": "Source release A10-seed-v2: 14 GiB Job workload plus 2 GiB OS reserve",
                 "timestamp_utc": datetime.now(timezone.utc).isoformat(), "settings": selected,
                 "effective_parameters": effective, "historical_holdout_result": False,
-                "note": "New user run on i082; historical holdout-01 17/20 belongs to its original frozen source"}
+                "note": "New user run on " + args.feature_profile + "; historical holdout-01 17/20 belongs to its original frozen source"}
     manifest_path = out.parent / (out.name + ".validation-manifest.json")
     if manifest_path.exists():
         parser.error("the adjacent run manifest already exists; use a new output name")
