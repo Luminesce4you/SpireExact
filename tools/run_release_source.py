@@ -23,9 +23,9 @@ SOURCE_RELEASE = "i082/frozen-i082"
 
 
 def settings(seed: str, minutes: int, workers: int, solver_seed: int, feature_profile: str = "i082") -> list[str]:
-    from spire_exact.planning.final_defaults import i082_argv, i085_argv
-    if feature_profile not in ('i082','i085'):
-        raise ValueError("This launcher specifies i082/i085; use the planner CLI for other profiles")
+    from spire_exact.planning.final_defaults import i082_argv, i085_argv, i085_final01_argv
+    if feature_profile not in ('i082','i085','i085-final01'):
+        raise ValueError("This launcher specifies i082/i085/i085-final01; use the planner CLI for other profiles")
     seconds = minutes * 60
     return [
         "--seed", seed, "--character", "IRONCLAD", "--ascension", "10", "--unlocks", "all",
@@ -38,7 +38,8 @@ def settings(seed: str, minutes: int, workers: int, solver_seed: int, feature_pr
         "--dispatch-window", "56", "--solver-seed", str(solver_seed), "--low-io",
         "--event-driven-settle", "--checkpoint-mib", "1024", "--cache-mib", "128",
         "--archive-entries", "256", "--feature-profile", feature_profile,
-        *(i085_argv() if feature_profile == 'i085' else i082_argv()),
+        *(i085_argv() if feature_profile == 'i085' else i085_final01_argv() if feature_profile == 'i085-final01'
+          else i082_argv()),
     ]
 
 
@@ -78,7 +79,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--seed", required=True)
     parser.add_argument("--out", type=Path, required=True, help="New run folder; existing runs are preserved")
-    parser.add_argument("--feature-profile", choices=["i082", "i085"], default="i082")
+    parser.add_argument("--feature-profile", choices=["i082", "i085", "i085-final01"], default="i082")
     parser.add_argument("--minutes", type=int, default=30, choices=range(1, 46), metavar="1..45")
     parser.add_argument("--research-minutes",type=int,choices=range(1,181),metavar="1..180")
     parser.add_argument("--solver-seed", type=int, default=271828)
@@ -100,7 +101,8 @@ def main() -> int:
     effective = effective_parameters(planner_arguments)
     if effective['feature_profile'] != args.feature_profile:
         parser.error('--extra may not change the feature profile')
-    source_release = SOURCE_RELEASE if args.feature_profile == 'i082' else 'i085/macro-candidate'
+    source_release = (SOURCE_RELEASE if args.feature_profile == 'i082' else 'i085/final01-candidate'
+                      if args.feature_profile == 'i085-final01' else 'i085/macro-candidate')
     frozen_version = FROZEN_SOURCE_VERSION if args.feature_profile == 'i082' else None
     command = [sys.executable, str(ROOT / "tools/limited_cli.py"), "solve-p5", *planner_arguments]
     if args.dry_run:

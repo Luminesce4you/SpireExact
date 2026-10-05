@@ -1,0 +1,54 @@
+{
+  "schema": "spire-i085-final01-python-validation/v1",
+  "timestamp_utc": "2026-10-05T14:16:42.384821+00:00",
+  "platform": "Linux-6.18.44-fc-v70-x86_64-with-glibc2.39",
+  "python": "3.11.15 (main, Mar  3 2026, 09:26:23) [GCC 13.3.0]",
+  "source_hash": "da0e506ca2aa428e0e22565bd897e4f491cad027ea3062e43c65517717a26142",
+  "source_unchanged": true,
+  "tests_run": 972,
+  "passed": 969,
+  "failures": 0,
+  "errors": 2,
+  "skips": 2,
+  "duration_seconds": 32.525,
+  "successful": false,
+  "errors_detail": [
+    "test_dashboard_controls.DashboardControlTests.test_180_minutes_remains_valid_and_entry_records_latest_options",
+    "setUpClass (test_solver_patches.SolverPatchContractTests)"
+  ],
+  "failures_detail": [],
+  "skipped_detail": [
+    [
+      "test_atomic_io_windows.AtomicIoWindowsTests.test_dashboard_readers_and_repeated_writer_do_not_conflict",
+      "Windows file sharing regression"
+    ],
+    [
+      "test_atomic_io_windows.AtomicIoWindowsTests.test_transient_reader_does_not_abort_atomic_publication",
+      "Windows file sharing regression"
+    ]
+  ],
+  "final01_tests": [
+    "test_final01.ClinicFocusTests.test_proposals_are_exact_unique_legal_prefixes",
+    "test_final01.ClinicFocusTests.test_retry_rank_orders_by_verdict",
+    "test_final01.ClinicFocusTests.test_root_stem_picks_reroot_earlier_act_and_depth_stays_local",
+    "test_final01.GateClinicTests.test_insufficient_entries_then_root_on_saturated_far_progress",
+    "test_final01.GateClinicTests.test_near_miss_and_retry_lift_give_depth",
+    "test_final01.GateClinicTests.test_pass_synthetic_cache_and_contention",
+    "test_final01.GateClinicTests.test_readiness_dead_is_root_and_viable_hp_sensitive_is_resource",
+    "test_final01.GateClinicTests.test_root_siblings_move_the_reroot_target_one_act_back",
+    "test_final01.GateClinicTests.test_stems_are_exact_pre_act_decisions",
+    "test_final01.GovernorAndProfileTests.test_argv_parses_and_config_validation",
+    "test_final01.GovernorAndProfileTests.test_final01_profile_values_and_old_profiles_unchanged",
+    "test_final01.GovernorAndProfileTests.test_governor_caps_auxiliary_share_and_never_holds_core",
+    "test_final01.GovernorAndProfileTests.test_paired_first_threshold",
+    "test_final01.RepairHintTests.test_evaluator_merges_group_hint_only",
+    "test_final01.RepairHintTests.test_reroot_carries_hint_toward_learned_deficit_repair",
+    "test_final01.SimulatedLoopTests.test_final01_runs_and_reports_clinic_and_governor",
+    "test_final01.SimulatedLoopTests.test_simulation_is_deterministic",
+    "test_final01.StrategyPriorTests.test_count_targets_and_population_terms",
+    "test_final01.StrategyPriorTests.test_features_are_structural_and_degrade_on_unknown_schema",
+    "test_final01.StrategyPriorTests.test_no_names_in_builtin_prior_and_bad_tables_rejected",
+    "test_final01.StrategyPriorTests.test_option_scores_and_label_effects",
+    "test_final01.StrategyPriorTests.test_posterior_starts_at_prior_and_follows_the_seed"
+  ]
+}

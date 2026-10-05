@@ -1,0 +1,703 @@
+{
+ "caps": {
+  "30": {
+   "final01": {
+    "errors": 0,
+    "late_half_area": 0.123,
+    "median_seconds": 481.7,
+    "restricted_mean_seconds": 611.3,
+    "runs": 40,
+    "solved": 38,
+    "solved_share": 0.95,
+    "wilson95": [
+     0.835,
+     0.986
+    ]
+   },
+   "i054a": {
+    "errors": 0,
+    "late_half_area": 0.13,
+    "median_seconds": 469.9,
+    "restricted_mean_seconds": 616.4,
+    "runs": 40,
+    "solved": 38,
+    "solved_share": 0.95,
+    "wilson95": [
+     0.835,
+     0.986
+    ]
+   },
+   "i082": {
+    "errors": 0,
+    "late_half_area": 0.143,
+    "median_seconds": 564.1,
+    "restricted_mean_seconds": 647.3,
+    "runs": 40,
+    "solved": 37,
+    "solved_share": 0.925,
+    "wilson95": [
+     0.801,
+     0.974
+    ]
+   }
+  },
+  "45": {
+   "final01": {
+    "errors": 0,
+    "late_half_area": 0.057,
+    "median_seconds": 481.7,
+    "restricted_mean_seconds": 656.3,
+    "runs": 40,
+    "solved": 38,
+    "solved_share": 0.95,
+    "wilson95": [
+     0.835,
+     0.986
+    ]
+   },
+   "i054a": {
+    "errors": 0,
+    "late_half_area": 0.064,
+    "median_seconds": 469.9,
+    "restricted_mean_seconds": 661.4,
+    "runs": 40,
+    "solved": 38,
+    "solved_share": 0.95,
+    "wilson95": [
+     0.835,
+     0.986
+    ]
+   },
+   "i082": {
+    "errors": 0,
+    "late_half_area": 0.074,
+    "median_seconds": 564.1,
+    "restricted_mean_seconds": 694.1,
+    "runs": 40,
+    "solved": 38,
+    "solved_share": 0.95,
+    "wilson95": [
+     0.835,
+     0.986
+    ]
+   }
+  }
+ },
+ "paired": {
+  "30": {
+   "final01": {
+    "faster_pairs": 25,
+    "mean_restricted_difference_seconds": -36.0,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 10
+   },
+   "i054a": {
+    "faster_pairs": 23,
+    "mean_restricted_difference_seconds": -31.0,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 15
+   }
+  },
+  "45": {
+   "final01": {
+    "faster_pairs": 25,
+    "mean_restricted_difference_seconds": -37.8,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 10
+   },
+   "i054a": {
+    "faster_pairs": 23,
+    "mean_restricted_difference_seconds": -32.7,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 15
+   }
+  }
+ },
+ "per_class": {
+  "30": {
+   "easy": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 338.1,
+     "restricted_mean_seconds": 376.1,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 441.9,
+     "restricted_mean_seconds": 411.3,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 370.4,
+     "restricted_mean_seconds": 406.8,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    }
+   },
+   "mixed": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.194,
+     "median_seconds": 1248.7,
+     "restricted_mean_seconds": 889.9,
+     "runs": 2,
+     "solved": 2,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.342,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.181,
+     "median_seconds": 1226.5,
+     "restricted_mean_seconds": 815.9,
+     "runs": 2,
+     "solved": 2,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.342,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.014,
+     "median_seconds": 925.5,
+     "restricted_mean_seconds": 887.1,
+     "runs": 2,
+     "solved": 2,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.342,
+      1.0
+     ]
+    }
+   },
+   "resource": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.149,
+     "median_seconds": 843.5,
+     "restricted_mean_seconds": 728.0,
+     "runs": 6,
+     "solved": 6,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.61,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.197,
+     "median_seconds": 755.7,
+     "restricted_mean_seconds": 789.8,
+     "runs": 6,
+     "solved": 6,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.61,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.249,
+     "median_seconds": 830.0,
+     "restricted_mean_seconds": 829.5,
+     "runs": 6,
+     "solved": 5,
+     "solved_share": 0.833,
+     "wilson95": [
+      0.436,
+      0.97
+     ]
+    }
+   },
+   "root_act1": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.51,
+     "median_seconds": 1311.7,
+     "restricted_mean_seconds": 1359.0,
+     "runs": 3,
+     "solved": 3,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.438,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.446,
+     "median_seconds": 1348.4,
+     "restricted_mean_seconds": 1171.0,
+     "runs": 3,
+     "solved": 3,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.438,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.616,
+     "median_seconds": 1678.9,
+     "restricted_mean_seconds": 1360.2,
+     "runs": 3,
+     "solved": 3,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.438,
+      1.0
+     ]
+    }
+   },
+   "root_act2": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.023,
+     "median_seconds": 859.9,
+     "restricted_mean_seconds": 728.4,
+     "runs": 5,
+     "solved": 5,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.566,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.061,
+     "median_seconds": 751.7,
+     "restricted_mean_seconds": 668.6,
+     "runs": 5,
+     "solved": 5,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.566,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.068,
+     "median_seconds": 725.6,
+     "restricted_mean_seconds": 779.1,
+     "runs": 5,
+     "solved": 5,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.566,
+      1.0
+     ]
+    }
+   },
+   "tactical": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 146.3,
+     "restricted_mean_seconds": 161.4,
+     "runs": 6,
+     "solved": 6,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.61,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 140.1,
+     "restricted_mean_seconds": 207.9,
+     "runs": 6,
+     "solved": 6,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.61,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 156.1,
+     "restricted_mean_seconds": 176.3,
+     "runs": 6,
+     "solved": 6,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.61,
+      1.0
+     ]
+    }
+   },
+   "unsolvable": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 1.0,
+     "median_seconds": null,
+     "restricted_mean_seconds": 1800.0,
+     "runs": 2,
+     "solved": 0,
+     "solved_share": 0.0,
+     "wilson95": [
+      0.0,
+      0.658
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 1.0,
+     "median_seconds": null,
+     "restricted_mean_seconds": 1800.0,
+     "runs": 2,
+     "solved": 0,
+     "solved_share": 0.0,
+     "wilson95": [
+      0.0,
+      0.658
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 1.0,
+     "median_seconds": null,
+     "restricted_mean_seconds": 1800.0,
+     "runs": 2,
+     "solved": 0,
+     "solved_share": 0.0,
+     "wilson95": [
+      0.0,
+      0.658
+     ]
+    }
+   }
+  },
+  "45": {
+   "easy": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 338.1,
+     "restricted_mean_seconds": 376.1,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 441.9,
+     "restricted_mean_seconds": 411.3,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 370.4,
+     "restricted_mean_seconds": 406.8,
+     "runs": 16,
+     "solved": 16,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.806,
+      1.0
+     ]
+    }
+   },
+   "mixed": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 1248.7,
+     "restricted_mean_seconds": 889.9,
+     "runs": 2,
+     "solved": 2,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.342,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 1226.5,
+     "restricted_mean_seconds": 815.9,
+     "runs": 2,
+     "solved": 2,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.342,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 925.5,
+     "restricted_mean_seconds": 887.1,
+     "runs": 2,
+     "solved": 2,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.342,
+      1.0
+     ]
+    }
+   },
+   "resource": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.025,
+     "median_seconds": 843.5,
+     "restricted_mean_seconds": 728.0,
+     "runs": 6,
+     "solved": 6,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.61,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.053,
+     "median_seconds": 755.7,
+     "restricted_mean_seconds": 789.8,
+     "runs": 6,
+     "solved": 6,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.61,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.064,
+     "median_seconds": 830.0,
+     "restricted_mean_seconds": 841.1,
+     "runs": 6,
+     "solved": 6,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.61,
+      1.0
+     ]
+    }
+   },
+   "root_act1": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.039,
+     "median_seconds": 1311.7,
+     "restricted_mean_seconds": 1359.0,
+     "runs": 3,
+     "solved": 3,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.438,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.076,
+     "median_seconds": 1348.4,
+     "restricted_mean_seconds": 1171.0,
+     "runs": 3,
+     "solved": 3,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.438,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.188,
+     "median_seconds": 1678.9,
+     "restricted_mean_seconds": 1360.2,
+     "runs": 3,
+     "solved": 3,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.438,
+      1.0
+     ]
+    }
+   },
+   "root_act2": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 859.9,
+     "restricted_mean_seconds": 728.4,
+     "runs": 5,
+     "solved": 5,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.566,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 751.7,
+     "restricted_mean_seconds": 668.6,
+     "runs": 5,
+     "solved": 5,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.566,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 725.6,
+     "restricted_mean_seconds": 779.1,
+     "runs": 5,
+     "solved": 5,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.566,
+      1.0
+     ]
+    }
+   },
+   "tactical": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 146.3,
+     "restricted_mean_seconds": 161.4,
+     "runs": 6,
+     "solved": 6,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.61,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 140.1,
+     "restricted_mean_seconds": 207.9,
+     "runs": 6,
+     "solved": 6,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.61,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 156.1,
+     "restricted_mean_seconds": 176.3,
+     "runs": 6,
+     "solved": 6,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.61,
+      1.0
+     ]
+    }
+   },
+   "unsolvable": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 1.0,
+     "median_seconds": null,
+     "restricted_mean_seconds": 2700.0,
+     "runs": 2,
+     "solved": 0,
+     "solved_share": 0.0,
+     "wilson95": [
+      0.0,
+      0.658
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 1.0,
+     "median_seconds": null,
+     "restricted_mean_seconds": 2700.0,
+     "runs": 2,
+     "solved": 0,
+     "solved_share": 0.0,
+     "wilson95": [
+      0.0,
+      0.658
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 1.0,
+     "median_seconds": null,
+     "restricted_mean_seconds": 2700.0,
+     "runs": 2,
+     "solved": 0,
+     "solved_share": 0.0,
+     "wilson95": [
+      0.0,
+      0.658
+     ]
+    }
+   }
+  }
+ },
+ "reference": "i082",
+ "schema": "spire-final01-sim-study/v1",
+ "scope": "synthetic campaign worlds driving the real planner; not native evidence"
+}

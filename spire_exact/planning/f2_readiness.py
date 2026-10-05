@@ -190,6 +190,12 @@ class F2Readiness:
         self.unknown_work_probes = 0
         self.total_native_seconds, self.unknown_native_work = 0.0, 0
         self.metadata_seen = False
+        # entry id -> ((group version, F1 total, F2 total), view). Views are
+        # read-only to every caller; versions bump at each mutation below.
+        self._views = {}
+
+    def _touch(self, group):
+        group['version'] = group.get('version', 0) + 1
 
     def _initial(self, template):
         if canonical(_native_context(template)) != canonical(_native_context(self.context)):
@@ -307,6 +313,7 @@ class F2Readiness:
                         continue
                     if self._better_f1(raw, entry['f1_raw']):
                         entry['f1_raw'], entry['observation'] = deepcopy(raw), deepcopy(fight['entry'])
+                        self._touch(self.groups[entry['group']])
                 else:
                     group_key = canonical({'context': self.context, 'inputs': self.inputs, 'initial': initial,
                                            'deck_multiset': sorted(deck), 'relics': before['relics']})
@@ -324,10 +331,12 @@ class F2Readiness:
                     self.prefix_entries.setdefault(canonical(prefix), []).append(entry['id'])
                     self.entries.append(entry)
                     self.groups[group_id]['entries'].append(entry['id'])
+                    self._touch(self.groups[group_id])
                 source = {'label': label, 'family': family, 'entry_id': entry['id'], 'index': index,
                           'entry_prefix': deepcopy(prefix), 'prefix_key': canonical(prefix)}
                 if not any(item['label'] == label for item in entry['sources']):
                     entry['sources'].append(source)
+                    self._touch(self.groups[entry['group']])
                 ids = self.source_entries.setdefault(label, [])
                 if entry['id'] not in ids:
                     ids.append(entry['id'])
@@ -413,6 +422,7 @@ class F2Readiness:
                 continue
             group['sample_owner'] = entry_id
             group['paired'] = {'samples': samples, 'signatures': {row['sample']: _paired_signature(row) for row in rows}, 'rows': {}}
+            self._touch(group)
             reserved += 1
         self.counts['paired_groups_reserved'] += reserved
         return reserved
@@ -466,6 +476,7 @@ class F2Readiness:
     def _set_stage(self, group, stage, rows):
         group['stages'][stage] = 'COMPLETE'
         group['rows'].extend(rows)
+        self._touch(group)
         outcomes = [row['outcome'] for row in group['rows']]
         for outcome in outcomes:
             if valid_outcome(outcome) and not outcome['won']:
@@ -543,6 +554,7 @@ class F2Readiness:
         self.counts['errors_or_missing'] += int(outcome is None)
         if outcome is not None and outcome['won']:
             group['state'] = 'VIABLE'
+            self._touch(group)
         if len(paired['rows']) == SAMPLES:
             rows = [{'sample': value, 'origin': 'paired-card/v1:card_skip', 'outcome': paired['rows'][value]}
                     for value in paired['samples']]
@@ -560,6 +572,15 @@ class F2Readiness:
 
     def _update(self, entry):
         group = self.groups[entry['group']]
+        stamp = (group.get('version', 0), self.f1_life_total, self.f2_life_total)
+        cached = self._views.get(entry['id'])
+        if cached is not None and cached[0] == stamp:
+            return dict(cached[1])
+        view = self._view(entry, group)
+        self._views[entry['id']] = (stamp, view)
+        return dict(view)
+
+    def _view(self, entry, group):
         outcomes = [row['outcome'] for row in group['rows']]
         complete = len(outcomes) in (SAMPLES, 2 * SAMPLES) and all(valid_outcome(row) for row in outcomes)
         mean = sum(scaled(row, self.f2_life_total) for row in outcomes) / len(outcomes) if complete else None

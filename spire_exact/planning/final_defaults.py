@@ -62,7 +62,56 @@ I085_PLANNER = {
     # Compound routes lack native efficacy evidence. Explicit 'on' is an arm.
     'macro_routes': ('shadow', 'off'),
 }
-FEATURE_PROFILES = ('i082', 'i081', 'i075-final', 'legacy', 'i085')
+# i085-final01: i082's whole entry and i085's cheap macro repairs, with the
+# gate clinic (root-versus-depth diagnosis) replacing the count-based focus
+# stall, an auxiliary-work governor, a structural strategy prior and the first
+# paired table at the 8th final-F1 entry. Applied before the i082/i085 tables
+# so that their fill-in defaults never override these values. Explicit flags
+# still win. The gate preset stays i082's 'escalate-evaluate' (pause-compatible);
+# holdout-01's 'escalate' (Coordinator members) is an explicit native ablation.
+I085_FINAL01_PLANNER = {
+    # Synthetic F2 machinery of i081/i082 (readiness samples, joint model,
+    # joint focus, DEAD retry ordering, paired card tables) is off: holdout-01
+    # had none of it, it has no measured native benefit, and the synthetic
+    # campaign study measured it as a net cost next to the clinic (see
+    # release/i085-final01/results.md). Each switch remains an explicit arm.
+    'f2_readiness_probes': False,
+    'f2_dead_retry': False,
+    'f2_joint_focus': False,
+    'f2_joint_model': False,
+    'paired_card_probes': False,
+    'clinic': True,
+    'clinic_hints': True,
+    'strategy_prior': 'builtin',
+    'paired_card_first': 8,
+    'gate_timing': True,
+    'focus_stall': 0,
+    'focus_stall_extended': False,
+    'focus_stall_f2': False,
+    'tail_mode': 'off',
+    'macro_plateau': True,
+    'macro_widening': True,
+    'macro_fair': True,
+    'macro_routes': 'off',
+}
+# Values of the final01-only switches in every other profile (argparse uses
+# None so that profiles can resolve them; old profiles keep these values).
+FINAL01_OTHER = {'clinic': False, 'clinic_hints': False, 'strategy_prior': 'off', 'paired_card_first': 1, 'gate_timing': False}
+FEATURE_PROFILES = ('i082', 'i081', 'i075-final', 'legacy', 'i085', 'i085-final01')
+FINAL01_PROFILE = 'i085-final01'
+
+
+def i085_final01_argv():
+    """The i085-final01 entry as explicit planner arguments (launcher/manifest),
+    every switch rendered once with its final value."""
+    table = dict(FINAL_FEATURES | I081_FEATURES)
+    table.update({key: value for key, (value, _) in I082_PLANNER.items() if key != 'paired_card_joint'})
+    table.update(I085_FINAL01_PLANNER)
+    argv = []
+    for key, value in table.items():
+        flag = '--' + key.replace('_', '-')
+        argv += [flag] if value is True else ['--no-' + flag[2:]] if value is False else [flag, str(value)]
+    return argv
 
 
 def i085_argv():
@@ -86,14 +135,24 @@ def i082_argv():
 
 
 def resolve_entry_defaults(args):
-    final = args.feature_profile in ('i075-final','i081','i082','i085')
+    final01 = args.feature_profile == FINAL01_PROFILE
+    if final01:
+        for key, value in I085_FINAL01_PLANNER.items():
+            if getattr(args, key, None) is None:
+                setattr(args, key, value)
+    for key, value in FINAL01_OTHER.items():
+        if getattr(args, key, None) is None:
+            setattr(args, key, value)
+    if getattr(args, 'paired_card_probes', True) is None:
+        args.paired_card_probes = True          # every earlier profile: the historical argparse default
+    final = args.feature_profile in ('i075-final','i081','i082','i085',FINAL01_PROFILE)
     for key, on in FINAL_FEATURES.items():
         if getattr(args, key) is None:
             setattr(args, key, on if final else False)
     for key,on in I081_FEATURES.items():
         if getattr(args,key,None)is None:
-            setattr(args,key,on if args.feature_profile in ('i081','i082','i085') else False)
-    i082 = args.feature_profile in ('i082','i085')
+            setattr(args,key,on if args.feature_profile in ('i081','i082','i085',FINAL01_PROFILE) else False)
+    i082 = args.feature_profile in ('i082','i085',FINAL01_PROFILE)
     for key, (value, other) in I082_PLANNER.items():
         if getattr(args, key, None) is None:
             if key == 'paired_card_joint' and i082:

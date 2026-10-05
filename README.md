@@ -1,6 +1,8 @@
 # SpireExact — i082 Beta
 
 > **i085 research candidate：** 完整宏观/长尾研究见 [docs/I085.md](docs/I085.md)。公开默认仍为 i082；新增 tail 控制默认 shadow，尚无 native 效果结论。实际测试与构造实验见 [release/i085/results.md](release/i085/results.md)。
+>
+> **i085-final01 research candidate：** 关口诊所先判断卡住的首领关口是"根不对"还是"深度不够"，再决定回上一幕换选项还是在关口附近加深；见 [docs/I085_FINAL01.md](docs/I085_FINAL01.md)。需显式 `--feature-profile i085-final01`，公开默认仍为 i082。离线证据只来自合成世界驱动的真实规划主循环（[release/i085-final01/results.md](release/i085-final01/results.md)），尚无 native 效果结论。
 
 **给定一个 Slay the Spire 2 种子，在预算内持续搜索可完整重放的通关路线。** SpireExact 将地图、选牌、商店、休息和战斗接成整局搜索，从已执行的动作前缀不断尝试新的延续。研究设置为 IRONCLAD / Ascension 10 / all unlocks / fresh start / mode1 全信息，允许利用种子决定的未来。
 

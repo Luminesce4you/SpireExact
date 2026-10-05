@@ -45,6 +45,23 @@ ARMS = {
     'i085-no-fairness': ('i085', ['--no-macro-fair']),
     'i085-no-shadow': ('i085', ['--macro-routes', 'off']),
     'i085-root-jitter': ('i085', ['--root-jitter', '4', '--restart-jitter']),
+    # i085-final01: gate clinic (root versus depth), governor, structural prior.
+    'i085-final01': ('i085-final01', []),
+    'i085-final01-escalate': ('i085-final01', ['--gate-preset', 'escalate']),
+    'i085-final01-noprior': ('i085-final01', ['--strategy-prior', 'off', '--no-clinic-hints']),
+    'i085-final01-nogov': ('i085-final01', ['--clinic-aux-share', '100', '--clinic-aux-contended', '100']),
+    'i085-final01-noclinic': ('i085-final01', ['--no-clinic', '--no-clinic-hints', '--strategy-prior', 'off']),
+    'i085-final01-i081': ('i085-final01', ['--f2-readiness-probes', '--f2-dead-retry', '--f2-joint-focus',
+                                           '--f2-joint-model', '--paired-card-probes', '--paired-card-joint']),
+    # holdout-01's frozen-i054a search behaviour on this code base: the i075,
+    # i081 and i082 additions off, no count-based stall, holdout retry preset.
+    'i054a-like': ('i082', ['--no-f1-winner-reuse', '--no-prefer-f1-hp', '--no-gold-shop-routes', '--no-low-hp-routes',
+                            '--no-low-hp-routes-any-act', '--no-lean-third-act', '--no-shop-preparation',
+                            '--no-resource-telemetry', '--no-memory-telemetry', '--no-preserve-completed-prefix',
+                            '--no-f2-readiness-probes', '--no-f2-dead-retry', '--no-f2-joint-focus', '--no-f2-joint-model',
+                            '--no-paired-card-probes', '--no-paired-card-joint', '--focus-stall', '0',
+                            '--no-focus-stall-extended', '--no-focus-stall-f2', '--no-root-async', '--requeue-lost', '0',
+                            '--gate-preset', 'escalate']),
 }
 BASELINE = '4c5823acd1a68acb797069fb8f7522a6ad857bbf'
 

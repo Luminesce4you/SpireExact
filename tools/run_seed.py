@@ -98,6 +98,9 @@ def feature_argv(feature_profile):
     if feature_profile == 'i085':
         from spire_exact.planning.final_defaults import i085_argv
         return ['--feature-profile','i085',*i085_argv()]
+    if feature_profile == 'i085-final01':
+        from spire_exact.planning.final_defaults import i085_final01_argv
+        return ['--feature-profile','i085-final01',*i085_final01_argv()]
     if feature_profile != 'i082':
         return ['--feature-profile', feature_profile]
     from spire_exact.planning.final_defaults import i082_argv
@@ -110,7 +113,7 @@ def main():
     p.add_argument('--iteration', required=True, help='experiment folder name, e.g. iteration-037')
     p.add_argument('--name', required=True); p.add_argument('--profile', choices=sorted(PROFILES), default='focus')
     p.add_argument('--workspace', type=Path, default=MAIN, help='main tree (default) or an experiments/frozen-* snapshot')
-    p.add_argument('--feature-profile', choices=['i085','i082','i081','i075-final','legacy'], default=None,
+    p.add_argument('--feature-profile', choices=['i085-final01','i085','i082','i081','i075-final','legacy'], default=None,
                    help='Override entry feature preset; omitted uses the selected workspace default. '
                         'i082 also renders its whole planner table as explicit arguments')
     p.add_argument('--solver-seed', type=int, default=271828); p.add_argument('--window', type=int, default=56)

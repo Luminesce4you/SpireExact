@@ -6,7 +6,7 @@ class RepairQueue:
     def __bool__(self):return bool(self.items)
     def __len__(self):return len(self.items)
     def append(self,item):self.items.append(item)
-    def popleft(self,blocked=None,deferred=None):
+    def popleft(self,blocked=None,deferred=None,rank=None):
         # Deferred lineages remain unresolved and in the original queue. Rank
         # only eligible work; the default path keeps the existing priority.
         candidates=[i for i,item in enumerate(self.items) if blocked is None or not blocked(item)]
@@ -23,7 +23,12 @@ class RepairQueue:
         if self.mode=='fifo':return self.items.pop(candidates[0])
         if self.mode=='gate':
             # Best source trajectory first; equal priorities keep arrival order.
-            index=max(candidates,key=lambda i:(self.items[i].get('priority',()),-i))
+            # i085-final01 `rank` (lower first) orders whole diagnosis classes
+            # before the existing priority; None keeps the historical order.
+            if rank is not None:
+                index=max(candidates,key=lambda i:(-rank(self.items[i]),self.items[i].get('priority',()),-i))
+            else:
+                index=max(candidates,key=lambda i:(self.items[i].get('priority',()),-i))
             return self.items.pop(index)
         def priority(pair):
             index,item=pair;meta=item.get('repair')or{}

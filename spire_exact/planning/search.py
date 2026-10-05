@@ -29,6 +29,7 @@ from .final_defaults import FINAL_FEATURES,I081_FEATURES,F2_READINESS_EVERY_DEFA
 from .f2_readiness import F2Readiness,readiness_outcome
 from .f2_joint_model import F2JointModel
 from .macro_i085 import MacroService, MacroRoutePortfolio
+from .aux_governor import AuxGovernor
 
 SYNTHETIC_KINDS=('gate_probe','paired_card_probe','real_card_menu_probe','f2_readiness_probe')
 
@@ -40,10 +41,11 @@ def dispatch_blocked(spec,scheduler):
     return blocked
 
 
-def take_dispatchable(queue,scheduler):
-    """Defer blocked work without changing the order of any retained item."""
+def take_dispatchable(queue,scheduler,allow=None):
+    """Defer blocked work without changing the order of any retained item.
+    `allow` (i085-final01 governor) may defer more items; None = legacy."""
     for index,spec in enumerate(queue):
-        if not dispatch_blocked(spec,scheduler):
+        if not dispatch_blocked(spec,scheduler) and (allow is None or allow(spec)):
             del queue[index]
             return spec
     return None
@@ -280,6 +282,21 @@ class SearchConfig:
     macro_route_paths: int=256
     macro_route_expansions: int=4096
     macro_route_queue_mib: int=16
+    # i085-final01 (all off here; the i085-final01 entry turns them on): gate
+    # clinic root-versus-depth diagnosis steering focus picks, verdict-aware
+    # gate-retry share/order, auxiliary-work governor, structural strategy
+    # prior and a later first paired table. Allocation only.
+    clinic: bool=False
+    clinic_min_entries: int=6
+    clinic_root_share: int=85
+    clinic_undecided_share: int=34
+    clinic_depth_share: int=10
+    clinic_retry_share: int=35
+    clinic_aux_share: int=10
+    clinic_aux_contended: int=30
+    clinic_hints: bool=False
+    strategy_prior: str='off'
+    paired_card_first: int=1
     @classmethod
     def final(cls,**options):
         """Production entry preset; plain constructor remains a legacy adapter."""
@@ -293,6 +310,19 @@ class SearchConfig:
         if self.macro_routes not in ('off','shadow','on'):raise ValueError('invalid macro_routes mode')
         if (self.macro_plateau or self.macro_widening or self.macro_fair) and self.scheduler!='focus':
             raise ValueError('i085 macro allocation switches require the focus scheduler')
+        if type(self.clinic) is not bool:raise ValueError('clinic must be boolean')
+        if type(self.clinic_hints) is not bool:raise ValueError('clinic_hints must be boolean')
+        if self.clinic_hints and not (self.clinic and self.strategy_prior!='off'):
+            raise ValueError('clinic_hints need the clinic and a strategy prior')
+        if self.clinic and (self.scheduler!='focus' or self.tail_mode!='off' or self.focus_stall):
+            raise ValueError('the gate clinic needs the focus scheduler, tail_mode off and no count-based focus stall')
+        if type(self.clinic_min_entries) is not int or self.clinic_min_entries<3:raise ValueError('clinic_min_entries must be >= 3')
+        for name in ('clinic_root_share','clinic_undecided_share','clinic_depth_share','clinic_retry_share',
+                     'clinic_aux_share','clinic_aux_contended'):
+            if type(getattr(self,name)) is not int or not 0<=getattr(self,name)<=100:raise ValueError(name+' must be a percentage')
+        if self.strategy_prior not in ('off','builtin'):raise ValueError("strategy_prior must be 'off' or 'builtin'")
+        if self.strategy_prior!='off' and not self.clinic:raise ValueError('strategy_prior is read by the gate clinic')
+        if type(self.paired_card_first) is not int or self.paired_card_first<1:raise ValueError('paired_card_first must be positive')
         for name in I081_FEATURES:
             if type(getattr(self,name))is not bool:raise ValueError(name+' must be a boolean')
         if any((self.f2_dead_retry,self.f2_joint_focus,self.f2_joint_model))and not self.f2_readiness_probes:
@@ -304,7 +334,8 @@ class SearchConfig:
         if self.paired_card_merge not in ('latest','mean'):raise ValueError("paired_card_merge must be 'latest' or 'mean'")
         if self.paired_card_joint and not(self.f2_joint_model and self.f2_readiness_probes and self.paired_card_probes):
             raise ValueError('paired_card_joint requires f2_joint_model, f2_readiness_probes and paired_card_probes')
-        if any(type(v) is not int or v<1 for k,v in self.__dict__.items() if k not in I081_FEATURES and k not in ('scheduler','dispatch_mode','repair_mode','solver_seed','low_io','event_driven_settle','prior','gate_retry_plans','gate_retry_percent','root_policies','focus_cluster_cap','focus_cluster_percent','focus_family','focus_optimism','focus_carry','focus_stall','focus_stall_extended','focus_stall_f2','root_async','requeue_lost','restart_jitter','root_jitter','jitter_percent','gate_probe_schedule','gate_probe_plan','paired_card_probes','f1_winner_reuse','real_card_menu_probes','gold_shop_routes','low_hp_routes','low_hp_routes_any_act','lean_third_act','shop_preparation','resource_telemetry','low_hp_percent','memory_telemetry','preserve_completed_prefix','prefer_f1_hp','forge_menu_dedup','paired_card_every','paired_card_dedup','paired_card_merge','paired_card_joint','macro_plateau','macro_widening','macro_fair','macro_routes','tail_mode','gate_timing')):
+        if any(type(v) is not int or v<1 for k,v in self.__dict__.items() if k not in I081_FEATURES and k not in ('scheduler','dispatch_mode','repair_mode','solver_seed','low_io','event_driven_settle','prior','gate_retry_plans','gate_retry_percent','root_policies','focus_cluster_cap','focus_cluster_percent','focus_family','focus_optimism','focus_carry','focus_stall','focus_stall_extended','focus_stall_f2','root_async','requeue_lost','restart_jitter','root_jitter','jitter_percent','gate_probe_schedule','gate_probe_plan','paired_card_probes','f1_winner_reuse','real_card_menu_probes','gold_shop_routes','low_hp_routes','low_hp_routes_any_act','lean_third_act','shop_preparation','resource_telemetry','low_hp_percent','memory_telemetry','preserve_completed_prefix','prefer_f1_hp','forge_menu_dedup','paired_card_every','paired_card_dedup','paired_card_merge','paired_card_joint','macro_plateau','macro_widening','macro_fair','macro_routes','tail_mode','gate_timing',
+                'clinic','clinic_root_share','clinic_undecided_share','clinic_depth_share','clinic_retry_share','clinic_aux_share','clinic_aux_contended','clinic_hints','strategy_prior')):
             raise ValueError('all search budgets must be positive integers')
         schedule=self.gate_probe_schedule
         if type(schedule) not in (tuple,list) or any(type(n) is not int or n<1 for n in schedule) or list(schedule)!=sorted(set(schedule)):
@@ -471,7 +502,11 @@ class Evaluator:
         learned=self.prior_provider(self.allocation_serial) if self.prior_provider is not None else {}
         name,_,tag=(spec.get('family')or NATIVE).partition('~')
         table=jitter_tiers(POLICIES[name],CARDS,f'{self.config.solver_seed}:{tag}',self.config.jitter_percent)if tag else POLICIES[name]
-        return merge_tiers(table,learned or {})
+        tiers=merge_tiers(table,learned or {})
+        # i085-final01: a clinic re-root carries its repair direction for the
+        # continuation it starts (tiers only; legality and identity unchanged).
+        hint=(spec.get('group')or{}).get('policy_hint')
+        return merge_tiers(tiers,hint)if hint else tiers
 
     def record(self,record):
         record.setdefault('completed_wall_seconds',time.perf_counter()-getattr(self,'wall_started',self.started))
@@ -709,6 +744,9 @@ def solve(ctx: dict,out: Path,pool: NativePool,config: SearchConfig,*,advisor=No
     from .focus import FocusScheduler
     from .tail_search import TailFocusScheduler
     from .gate_timing import GateTiming
+    from .clinic_focus import ClinicFocusScheduler
+    from .gate_clinic import GateClinic
+    from .strategy_priors import StructuralPrior
     from .gatemodel import GateModels
     if ctx.get('objective')!=OBJECTIVE:raise ContractError('P5 supports mode1 full-information Boolean objective only')
     if (out/'result.json').exists():raise ContractError('use a fresh output directory')
@@ -741,6 +779,7 @@ def solve(ctx: dict,out: Path,pool: NativePool,config: SearchConfig,*,advisor=No
     if config.prior:ev.prior_provider=models.prior
     paired=PairedCardProbes(config.paired_card_probes,config.solver_seed,context=ctx,inputs=getattr(pool,'inputs',None),
         every=config.paired_card_every,dedup=config.paired_card_dedup,merge=config.paired_card_merge,
+        **({'first':config.paired_card_first}if config.paired_card_first!=1 else{}),
         inactive_reason=('no_combat_advisor' if advisor is None else 'scoped_diagnostic' if scope_prefix is not None or stop_floor is not None else None))
     menu_probes=RealCardMenuProbes(config.real_card_menu_probes,config.solver_seed,context=ctx,inputs=getattr(pool,'inputs',None),
         inactive_reason=('no_combat_advisor' if advisor is None else 'scoped_diagnostic' if scope_prefix is not None or stop_floor is not None else None))
@@ -750,12 +789,14 @@ def solve(ctx: dict,out: Path,pool: NativePool,config: SearchConfig,*,advisor=No
     f1_winners=F1WinnerReuse(config.f1_winner_reuse,prefer_hp=config.prefer_f1_hp)
     preparation=PreparationCandidates(config)
     macro_service=MacroService(config.macro_fair,config.macro_aux_burst)
+    # Created after the scheduler: its contention test reads the gate clinic.
+    governor=None
     macro_routes=MacroRoutePortfolio(config,preparation)
     if config.paired_card_probes and not paired.inactive_reason:
         ev.prior_provider=lambda serial:merge_tiers(models.prior(serial)if config.prior else{},paired.tiers())
     scheduler=(IncumbentScheduler() if config.scheduler=='incumbent' else NativeTreeScheduler(ctx) if config.scheduler=='tree' else
                DepthFirstScheduler() if config.scheduler=='dfs' else
-               (TailFocusScheduler if config.tail_mode!="off" else FocusScheduler)(scope_prefix,models=models,elites=config.focus_elites,pool=config.focus_pool,
+               (ClinicFocusScheduler if config.clinic else TailFocusScheduler if config.tail_mode!="off" else FocusScheduler)(scope_prefix,models=models,elites=config.focus_elites,pool=config.focus_pool,
                               focus=config.focus_share,site_cap=config.site_cap,cluster_cap=config.focus_cluster_cap,
                               cluster_percent=config.focus_cluster_percent,family=config.focus_family,
                               optimism=config.focus_optimism,carry=config.focus_carry,stall=config.focus_stall,
@@ -764,9 +805,15 @@ def solve(ctx: dict,out: Path,pool: NativePool,config: SearchConfig,*,advisor=No
                               recover_deferred=config.macro_widening,
                               **({"tail_mode":config.tail_mode,"tail_sites":config.tail_sites,"tail_mib":config.tail_mib,
                                   "tail_cohort_inflight":config.tail_cohort_inflight,"solver_seed":config.solver_seed}
-                                 if config.tail_mode!="off" else {})) if config.scheduler=='focus' else
+                                 if config.tail_mode!="off" else {}),
+                              **({'clinic':GateClinic(min_entries=config.clinic_min_entries,
+                                      prior=StructuralPrior() if config.strategy_prior=='builtin' else None),
+                                  'root_share':config.clinic_root_share,'undecided_share':config.clinic_undecided_share,
+                                  'depth_share':config.clinic_depth_share,'repair_hints':config.clinic_hints} if config.clinic else {})) if config.scheduler=='focus' else
                IndexedStrategicScheduler(scope_prefix))
     gate_clock=GateTiming(config.gate_timing,prefixes=getattr(getattr(scheduler,'explorer',scheduler),'prefixes',None))
+    governor=AuxGovernor(config.clinic,quiet=config.clinic_aux_share,contended=config.clinic_aux_contended,
+                         contended_fn=getattr(scheduler,'contended',None))
     repairs=RepairQueue(config.repair_mode);urgent=deque();seen_probes=set();seen_rollouts=set();groups_report=[];failures=[]
     retry_levels={}
     # evaluation label -> root policy of its lineage (only labels that are not native)
@@ -828,6 +875,10 @@ def solve(ctx: dict,out: Path,pool: NativePool,config: SearchConfig,*,advisor=No
             if config.f2_joint_focus and isinstance(scheduler,FocusScheduler):
                 for source in row['sources']:
                     scheduler.record_f2_readiness(source['label'],row['status'],mean=row['mean'])
+            if config.clinic and isinstance(scheduler,ClinicFocusScheduler):
+                # Synthetic full-HP readiness: allocation evidence for the clinic only.
+                for source in row['sources']:
+                    scheduler.record_clinic_readiness(source['label'],row['status'],row['sample_group_key'])
         if joint is not None and config.paired_card_joint:
             # i082: add-card arms of complete paired tables (synthetic F2, borrowed real F1).
             for row in paired.joint_rows(readiness.entry_for_source):
@@ -1069,6 +1120,7 @@ def solve(ctx: dict,out: Path,pool: NativePool,config: SearchConfig,*,advisor=No
         if config.f1_winner_reuse:metrics['f1_winner_reuse']=f1_winners.snapshot()
         if preparation.enabled:metrics['preparation']=preparation.snapshot()
         if config.gate_timing:metrics['gate_timing']=gate_clock.snapshot()
+        if config.clinic:metrics['aux_governor']=governor.snapshot()
         if config.macro_fair or config.macro_routes!='off':metrics['macro_service']=macro_service.snapshot()
         if config.macro_routes!='off':metrics['macro_routes']=macro_routes.snapshot()
         if config.f1_winner_reuse or config.real_card_menu_probes or preparation.enabled or config.memory_telemetry or config.preserve_completed_prefix:metrics['research_costs']=research_cost_summary(ev.records)
@@ -1146,25 +1198,35 @@ def solve(ctx: dict,out: Path,pool: NativePool,config: SearchConfig,*,advisor=No
             urgent.extend(again for due,again in held if due<=now);held[:]=[h for h in held if h[0]>now]
         specs=[]
         if can_schedule:
+            # i085-final01: gate retries of a DEPTH-diagnosed stem may use a
+            # larger share; ROOT-stem retries go last (never dropped).
+            retry_share=.2
+            if config.clinic and repairs and any(scheduler.retry_rank(item)==0 for item in repairs.items):
+                retry_share=config.clinic_retry_share/100
             for slot in range(min(free,config.evaluations-allocation_serial())):
                 # The legacy ordering is identical when macro_fair is off.
                 # Root async keeps its historical first-round/barrier contract.
                 group=scheduler.next() if not root_open and macro_service.due() else None
                 forced=group is not None
                 if group is None:
-                    selected=take_dispatchable(urgent,scheduler)
+                    selected=take_dispatchable(urgent,scheduler,governor.allow if governor.enabled else None)
                     if selected is not None:
-                        specs.append(selected);macro_service.record(selected['kind']);continue
+                        specs.append(selected);macro_service.record(selected['kind']);governor.record(selected);continue
                     route=macro_routes.next(scheduler,macro_service.total) if not root_open else None
                     if route is not None:
-                        specs.append(route);macro_service.record(route['kind']);continue
+                        specs.append(route);macro_service.record(route['kind']);governor.record(route);continue
                     probes=(scheduled['combat_probe']+scheduled['gate_retry']
                             +sum(s['kind'] in ('combat_probe','gate_retry') for s in specs))
-                    if repairs and (probes==0 or probes<.2*(sum(scheduled.values())-scheduled['f2_readiness_probe']+len(specs)+1)):
-                        repair=repairs.popleft(blocked=lambda spec:dispatch_blocked(spec,scheduler),
-                            deferred=dead_retry if config.f2_dead_retry else None)
+                    if repairs and (probes==0 or probes<retry_share*(sum(scheduled.values())-scheduled['f2_readiness_probe']+len(specs)+1)):
+                        if config.clinic:
+                            repair=repairs.popleft(blocked=lambda spec:dispatch_blocked(spec,scheduler),
+                                deferred=lambda spec:(config.f2_dead_retry and dead_retry(spec)) or scheduler.retry_rank(spec)==2,
+                                rank=scheduler.retry_rank)
+                        else:
+                            repair=repairs.popleft(blocked=lambda spec:dispatch_blocked(spec,scheduler),
+                                deferred=dead_retry if config.f2_dead_retry else None)
                         if repair is not None:
-                            specs.append(repair);macro_service.record(repair['kind']);continue
+                            specs.append(repair);macro_service.record(repair['kind']);governor.record(repair);continue
                     group=scheduler.next()
                 if group:
                     group['prefix_length']=len(group['prefix'])
@@ -1176,6 +1238,7 @@ def solve(ctx: dict,out: Path,pool: NativePool,config: SearchConfig,*,advisor=No
                                   'group':group,'family':families.get(group.get('source')),'request':request})
                     groups_report.append(group)
                     macro_service.record('macro_'+group['category'],core=True,forced=forced)
+                    governor.record(specs[-1])
                 else:
                     # Restarts rotate through the root policies (native only without a portfolio).
                     family=portfolio[restarts%len(portfolio)]if restarts%len(portfolio)else None
@@ -1184,6 +1247,7 @@ def solve(ctx: dict,out: Path,pool: NativePool,config: SearchConfig,*,advisor=No
                                   'request':ev.request(scope_prefix or [],policy=allocation_serial()+slot+1)})
                     restarts+=1
                     macro_service.record('restart')
+                    governor.record(specs[-1])
         if not root_open and perf_counter()<ev.deadline:
             sampling=next_sampling_stage(specs)
             if sampling is not None:specs.append(sampling)

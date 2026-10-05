@@ -1,0 +1,1899 @@
+{
+ "caps": {
+  "30": {
+   "final01": {
+    "errors": 0,
+    "late_half_area": 0.142,
+    "median_seconds": 659.9,
+    "restricted_mean_seconds": 719.1,
+    "runs": 40,
+    "solved": 38,
+    "solved_share": 0.95,
+    "wilson95": [
+     0.835,
+     0.986
+    ]
+   },
+   "final01-lean": {
+    "errors": 0,
+    "late_half_area": 0.101,
+    "median_seconds": 584.7,
+    "restricted_mean_seconds": 660.1,
+    "runs": 40,
+    "solved": 40,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.912,
+     1.0
+    ]
+   },
+   "final01-lean-noclinic": {
+    "errors": 0,
+    "late_half_area": 0.182,
+    "median_seconds": 781.6,
+    "restricted_mean_seconds": 785.5,
+    "runs": 40,
+    "solved": 39,
+    "solved_share": 0.975,
+    "wilson95": [
+     0.871,
+     0.996
+    ]
+   },
+   "final01-lean-nohint": {
+    "errors": 0,
+    "late_half_area": 0.156,
+    "median_seconds": 664.4,
+    "restricted_mean_seconds": 723.8,
+    "runs": 40,
+    "solved": 37,
+    "solved_share": 0.925,
+    "wilson95": [
+     0.801,
+     0.974
+    ]
+   },
+   "final01-lean-readiness": {
+    "errors": 0,
+    "late_half_area": 0.118,
+    "median_seconds": 588.1,
+    "restricted_mean_seconds": 678.4,
+    "runs": 40,
+    "solved": 40,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.912,
+     1.0
+    ]
+   },
+   "final01-no-deadretry": {
+    "errors": 0,
+    "late_half_area": 0.142,
+    "median_seconds": 659.9,
+    "restricted_mean_seconds": 719.1,
+    "runs": 40,
+    "solved": 38,
+    "solved_share": 0.95,
+    "wilson95": [
+     0.835,
+     0.986
+    ]
+   },
+   "final01-no-jointfocus": {
+    "errors": 0,
+    "late_half_area": 0.136,
+    "median_seconds": 659.9,
+    "restricted_mean_seconds": 713.1,
+    "runs": 40,
+    "solved": 39,
+    "solved_share": 0.975,
+    "wilson95": [
+     0.871,
+     0.996
+    ]
+   },
+   "final01-no-jointmodel": {
+    "errors": 0,
+    "late_half_area": 0.136,
+    "median_seconds": 659.9,
+    "restricted_mean_seconds": 713.3,
+    "runs": 40,
+    "solved": 38,
+    "solved_share": 0.95,
+    "wilson95": [
+     0.835,
+     0.986
+    ]
+   },
+   "final01-nohint": {
+    "errors": 0,
+    "late_half_area": 0.159,
+    "median_seconds": 659.9,
+    "restricted_mean_seconds": 733.8,
+    "runs": 40,
+    "solved": 36,
+    "solved_share": 0.9,
+    "wilson95": [
+     0.769,
+     0.96
+    ]
+   },
+   "i054a": {
+    "errors": 0,
+    "late_half_area": 0.176,
+    "median_seconds": 747.0,
+    "restricted_mean_seconds": 802.8,
+    "runs": 40,
+    "solved": 39,
+    "solved_share": 0.975,
+    "wilson95": [
+     0.871,
+     0.996
+    ]
+   },
+   "i082": {
+    "errors": 0,
+    "late_half_area": 0.228,
+    "median_seconds": 894.9,
+    "restricted_mean_seconds": 873.6,
+    "runs": 40,
+    "solved": 38,
+    "solved_share": 0.95,
+    "wilson95": [
+     0.835,
+     0.986
+    ]
+   }
+  },
+  "45": {
+   "final01": {
+    "errors": 0,
+    "late_half_area": 0.036,
+    "median_seconds": 659.9,
+    "restricted_mean_seconds": 723.4,
+    "runs": 40,
+    "solved": 40,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.912,
+     1.0
+    ]
+   },
+   "final01-lean": {
+    "errors": 0,
+    "late_half_area": 0.013,
+    "median_seconds": 584.7,
+    "restricted_mean_seconds": 660.1,
+    "runs": 40,
+    "solved": 40,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.912,
+     1.0
+    ]
+   },
+   "final01-lean-noclinic": {
+    "errors": 0,
+    "late_half_area": 0.033,
+    "median_seconds": 781.6,
+    "restricted_mean_seconds": 786.1,
+    "runs": 40,
+    "solved": 40,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.912,
+     1.0
+    ]
+   },
+   "final01-lean-nohint": {
+    "errors": 0,
+    "late_half_area": 0.041,
+    "median_seconds": 664.4,
+    "restricted_mean_seconds": 734.0,
+    "runs": 40,
+    "solved": 40,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.912,
+     1.0
+    ]
+   },
+   "final01-lean-readiness": {
+    "errors": 0,
+    "late_half_area": 0.018,
+    "median_seconds": 588.1,
+    "restricted_mean_seconds": 678.4,
+    "runs": 40,
+    "solved": 40,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.912,
+     1.0
+    ]
+   },
+   "final01-no-deadretry": {
+    "errors": 0,
+    "late_half_area": 0.036,
+    "median_seconds": 659.9,
+    "restricted_mean_seconds": 723.4,
+    "runs": 40,
+    "solved": 40,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.912,
+     1.0
+    ]
+   },
+   "final01-no-jointfocus": {
+    "errors": 0,
+    "late_half_area": 0.03,
+    "median_seconds": 659.9,
+    "restricted_mean_seconds": 715.5,
+    "runs": 40,
+    "solved": 40,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.912,
+     1.0
+    ]
+   },
+   "final01-no-jointmodel": {
+    "errors": 0,
+    "late_half_area": 0.041,
+    "median_seconds": 659.9,
+    "restricted_mean_seconds": 730.9,
+    "runs": 40,
+    "solved": 40,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.912,
+     1.0
+    ]
+   },
+   "final01-nohint": {
+    "errors": 0,
+    "late_half_area": 0.087,
+    "median_seconds": 659.9,
+    "restricted_mean_seconds": 796.5,
+    "runs": 40,
+    "solved": 38,
+    "solved_share": 0.95,
+    "wilson95": [
+     0.835,
+     0.986
+    ]
+   },
+   "i054a": {
+    "errors": 0,
+    "late_half_area": 0.029,
+    "median_seconds": 747.0,
+    "restricted_mean_seconds": 805.7,
+    "runs": 40,
+    "solved": 40,
+    "solved_share": 1.0,
+    "wilson95": [
+     0.912,
+     1.0
+    ]
+   },
+   "i082": {
+    "errors": 0,
+    "late_half_area": 0.06,
+    "median_seconds": 894.9,
+    "restricted_mean_seconds": 897.5,
+    "runs": 40,
+    "solved": 39,
+    "solved_share": 0.975,
+    "wilson95": [
+     0.871,
+     0.996
+    ]
+   }
+  }
+ },
+ "paired": {
+  "30": {
+   "final01": {
+    "faster_pairs": 27,
+    "mean_restricted_difference_seconds": -154.4,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 9
+   },
+   "final01-lean": {
+    "faster_pairs": 33,
+    "mean_restricted_difference_seconds": -213.5,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 4
+   },
+   "final01-lean-noclinic": {
+    "faster_pairs": 29,
+    "mean_restricted_difference_seconds": -88.0,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 8
+   },
+   "final01-lean-nohint": {
+    "faster_pairs": 31,
+    "mean_restricted_difference_seconds": -149.8,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 5
+   },
+   "final01-lean-readiness": {
+    "faster_pairs": 31,
+    "mean_restricted_difference_seconds": -195.2,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 6
+   },
+   "final01-no-deadretry": {
+    "faster_pairs": 27,
+    "mean_restricted_difference_seconds": -154.4,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 9
+   },
+   "final01-no-jointfocus": {
+    "faster_pairs": 28,
+    "mean_restricted_difference_seconds": -160.5,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 9
+   },
+   "final01-no-jointmodel": {
+    "faster_pairs": 28,
+    "mean_restricted_difference_seconds": -160.3,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 9
+   },
+   "final01-nohint": {
+    "faster_pairs": 27,
+    "mean_restricted_difference_seconds": -139.8,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 8
+   },
+   "i054a": {
+    "faster_pairs": 20,
+    "mean_restricted_difference_seconds": -70.8,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 20
+   }
+  },
+  "45": {
+   "final01": {
+    "faster_pairs": 27,
+    "mean_restricted_difference_seconds": -174.1,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 10
+   },
+   "final01-lean": {
+    "faster_pairs": 33,
+    "mean_restricted_difference_seconds": -237.4,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 4
+   },
+   "final01-lean-noclinic": {
+    "faster_pairs": 29,
+    "mean_restricted_difference_seconds": -111.4,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 8
+   },
+   "final01-lean-nohint": {
+    "faster_pairs": 32,
+    "mean_restricted_difference_seconds": -163.5,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 5
+   },
+   "final01-lean-readiness": {
+    "faster_pairs": 31,
+    "mean_restricted_difference_seconds": -219.1,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 6
+   },
+   "final01-no-deadretry": {
+    "faster_pairs": 27,
+    "mean_restricted_difference_seconds": -174.1,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 10
+   },
+   "final01-no-jointfocus": {
+    "faster_pairs": 28,
+    "mean_restricted_difference_seconds": -182.0,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 9
+   },
+   "final01-no-jointmodel": {
+    "faster_pairs": 28,
+    "mean_restricted_difference_seconds": -166.6,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 9
+   },
+   "final01-nohint": {
+    "faster_pairs": 28,
+    "mean_restricted_difference_seconds": -100.9,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 9
+   },
+   "i054a": {
+    "faster_pairs": 20,
+    "mean_restricted_difference_seconds": -91.8,
+    "note": "negative = faster than the reference arm; same world and solver seed",
+    "pairs": 40,
+    "slower_pairs": 20
+   }
+  }
+ },
+ "per_class": {
+  "30": {
+   "mixed": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.148,
+     "median_seconds": 785.6,
+     "restricted_mean_seconds": 814.0,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean": {
+     "errors": 0,
+     "late_half_area": 0.065,
+     "median_seconds": 584.7,
+     "restricted_mean_seconds": 698.1,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.156,
+     "median_seconds": 949.6,
+     "restricted_mean_seconds": 914.6,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-nohint": {
+     "errors": 0,
+     "late_half_area": 0.132,
+     "median_seconds": 711.3,
+     "restricted_mean_seconds": 764.2,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    },
+    "final01-lean-readiness": {
+     "errors": 0,
+     "late_half_area": 0.07,
+     "median_seconds": 588.1,
+     "restricted_mean_seconds": 705.7,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-deadretry": {
+     "errors": 0,
+     "late_half_area": 0.148,
+     "median_seconds": 785.6,
+     "restricted_mean_seconds": 814.0,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-jointfocus": {
+     "errors": 0,
+     "late_half_area": 0.148,
+     "median_seconds": 785.6,
+     "restricted_mean_seconds": 814.0,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-jointmodel": {
+     "errors": 0,
+     "late_half_area": 0.148,
+     "median_seconds": 785.6,
+     "restricted_mean_seconds": 814.0,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.17,
+     "median_seconds": 757.2,
+     "restricted_mean_seconds": 819.3,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.236,
+     "median_seconds": 936.6,
+     "restricted_mean_seconds": 948.0,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.194,
+     "median_seconds": 995.5,
+     "restricted_mean_seconds": 1053.6,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    }
+   },
+   "resource": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.133,
+     "median_seconds": 833.3,
+     "restricted_mean_seconds": 776.9,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    },
+    "final01-lean": {
+     "errors": 0,
+     "late_half_area": 0.132,
+     "median_seconds": 658.3,
+     "restricted_mean_seconds": 729.7,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.077,
+     "median_seconds": 819.0,
+     "restricted_mean_seconds": 708.5,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-nohint": {
+     "errors": 0,
+     "late_half_area": 0.141,
+     "median_seconds": 664.4,
+     "restricted_mean_seconds": 747.4,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    },
+    "final01-lean-readiness": {
+     "errors": 0,
+     "late_half_area": 0.138,
+     "median_seconds": 666.4,
+     "restricted_mean_seconds": 739.3,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-deadretry": {
+     "errors": 0,
+     "late_half_area": 0.133,
+     "median_seconds": 833.3,
+     "restricted_mean_seconds": 776.9,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    },
+    "final01-no-jointfocus": {
+     "errors": 0,
+     "late_half_area": 0.133,
+     "median_seconds": 833.3,
+     "restricted_mean_seconds": 776.9,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    },
+    "final01-no-jointmodel": {
+     "errors": 0,
+     "late_half_area": 0.133,
+     "median_seconds": 833.3,
+     "restricted_mean_seconds": 776.9,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.084,
+     "median_seconds": 847.2,
+     "restricted_mean_seconds": 742.8,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.113,
+     "median_seconds": 880.0,
+     "restricted_mean_seconds": 837.1,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.201,
+     "median_seconds": 932.1,
+     "restricted_mean_seconds": 833.2,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    }
+   },
+   "root_act1": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.284,
+     "median_seconds": 1006.0,
+     "restricted_mean_seconds": 1050.7,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    },
+    "final01-lean": {
+     "errors": 0,
+     "late_half_area": 0.171,
+     "median_seconds": 934.5,
+     "restricted_mean_seconds": 930.0,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.385,
+     "median_seconds": 1138.8,
+     "restricted_mean_seconds": 1162.6,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    },
+    "final01-lean-nohint": {
+     "errors": 0,
+     "late_half_area": 0.195,
+     "median_seconds": 902.3,
+     "restricted_mean_seconds": 951.8,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-readiness": {
+     "errors": 0,
+     "late_half_area": 0.205,
+     "median_seconds": 1110.9,
+     "restricted_mean_seconds": 963.8,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-deadretry": {
+     "errors": 0,
+     "late_half_area": 0.284,
+     "median_seconds": 1006.0,
+     "restricted_mean_seconds": 1050.7,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    },
+    "final01-no-jointfocus": {
+     "errors": 0,
+     "late_half_area": 0.251,
+     "median_seconds": 1006.0,
+     "restricted_mean_seconds": 1020.6,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-jointmodel": {
+     "errors": 0,
+     "late_half_area": 0.252,
+     "median_seconds": 1006.0,
+     "restricted_mean_seconds": 1021.6,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.262,
+     "median_seconds": 855.1,
+     "restricted_mean_seconds": 1022.2,
+     "runs": 8,
+     "solved": 6,
+     "solved_share": 0.75,
+     "wilson95": [
+      0.409,
+      0.929
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.217,
+     "median_seconds": 928.2,
+     "restricted_mean_seconds": 981.7,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.336,
+     "median_seconds": 1314.6,
+     "restricted_mean_seconds": 1132.2,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    }
+   },
+   "root_act2": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.146,
+     "median_seconds": 808.9,
+     "restricted_mean_seconds": 777.2,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean": {
+     "errors": 0,
+     "late_half_area": 0.136,
+     "median_seconds": 801.6,
+     "restricted_mean_seconds": 772.6,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.292,
+     "median_seconds": 1148.1,
+     "restricted_mean_seconds": 971.4,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-nohint": {
+     "errors": 0,
+     "late_half_area": 0.311,
+     "median_seconds": 1103.3,
+     "restricted_mean_seconds": 985.4,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    },
+    "final01-lean-readiness": {
+     "errors": 0,
+     "late_half_area": 0.175,
+     "median_seconds": 821.7,
+     "restricted_mean_seconds": 812.4,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-deadretry": {
+     "errors": 0,
+     "late_half_area": 0.146,
+     "median_seconds": 808.9,
+     "restricted_mean_seconds": 777.2,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-jointfocus": {
+     "errors": 0,
+     "late_half_area": 0.146,
+     "median_seconds": 808.9,
+     "restricted_mean_seconds": 777.2,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-jointmodel": {
+     "errors": 0,
+     "late_half_area": 0.145,
+     "median_seconds": 808.9,
+     "restricted_mean_seconds": 777.0,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.277,
+     "median_seconds": 818.8,
+     "restricted_mean_seconds": 907.6,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.311,
+     "median_seconds": 1127.2,
+     "restricted_mean_seconds": 976.1,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.412,
+     "median_seconds": 1260.1,
+     "restricted_mean_seconds": 1163.6,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    }
+   },
+   "tactical": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 176.9,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 170.1,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 170.5,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-nohint": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 170.1,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-readiness": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 170.7,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-deadretry": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 176.9,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-jointfocus": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 176.9,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-jointmodel": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 176.9,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 176.9,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 253.5,
+     "restricted_mean_seconds": 271.0,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 153.3,
+     "restricted_mean_seconds": 185.2,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    }
+   }
+  },
+  "45": {
+   "mixed": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 785.6,
+     "restricted_mean_seconds": 814.0,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 584.7,
+     "restricted_mean_seconds": 698.1,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.019,
+     "median_seconds": 949.6,
+     "restricted_mean_seconds": 914.6,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-nohint": {
+     "errors": 0,
+     "late_half_area": 0.044,
+     "median_seconds": 711.3,
+     "restricted_mean_seconds": 766.8,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-readiness": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 588.1,
+     "restricted_mean_seconds": 705.7,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-deadretry": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 785.6,
+     "restricted_mean_seconds": 814.0,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-jointfocus": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 785.6,
+     "restricted_mean_seconds": 814.0,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-jointmodel": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 785.6,
+     "restricted_mean_seconds": 814.0,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.125,
+     "median_seconds": 757.2,
+     "restricted_mean_seconds": 931.8,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.053,
+     "median_seconds": 936.6,
+     "restricted_mean_seconds": 962.7,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.013,
+     "median_seconds": 995.5,
+     "restricted_mean_seconds": 1053.6,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    }
+   },
+   "resource": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.05,
+     "median_seconds": 833.3,
+     "restricted_mean_seconds": 788.6,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean": {
+     "errors": 0,
+     "late_half_area": 0.036,
+     "median_seconds": 658.3,
+     "restricted_mean_seconds": 729.7,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.006,
+     "median_seconds": 819.0,
+     "restricted_mean_seconds": 708.5,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-nohint": {
+     "errors": 0,
+     "late_half_area": 0.047,
+     "median_seconds": 664.4,
+     "restricted_mean_seconds": 754.2,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-readiness": {
+     "errors": 0,
+     "late_half_area": 0.038,
+     "median_seconds": 666.4,
+     "restricted_mean_seconds": 739.3,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-deadretry": {
+     "errors": 0,
+     "late_half_area": 0.05,
+     "median_seconds": 833.3,
+     "restricted_mean_seconds": 788.6,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-jointfocus": {
+     "errors": 0,
+     "late_half_area": 0.05,
+     "median_seconds": 833.3,
+     "restricted_mean_seconds": 788.6,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-jointmodel": {
+     "errors": 0,
+     "late_half_area": 0.049,
+     "median_seconds": 833.3,
+     "restricted_mean_seconds": 787.4,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.006,
+     "median_seconds": 847.2,
+     "restricted_mean_seconds": 742.8,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 880.0,
+     "restricted_mean_seconds": 837.1,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.039,
+     "median_seconds": 932.1,
+     "restricted_mean_seconds": 833.2,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    }
+   },
+   "root_act1": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.09,
+     "median_seconds": 1006.0,
+     "restricted_mean_seconds": 1060.3,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean": {
+     "errors": 0,
+     "late_half_area": 0.01,
+     "median_seconds": 934.5,
+     "restricted_mean_seconds": 930.0,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.092,
+     "median_seconds": 1138.8,
+     "restricted_mean_seconds": 1165.5,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-nohint": {
+     "errors": 0,
+     "late_half_area": 0.02,
+     "median_seconds": 902.3,
+     "restricted_mean_seconds": 951.8,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-readiness": {
+     "errors": 0,
+     "late_half_area": 0.012,
+     "median_seconds": 1110.9,
+     "restricted_mean_seconds": 963.8,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-deadretry": {
+     "errors": 0,
+     "late_half_area": 0.09,
+     "median_seconds": 1006.0,
+     "restricted_mean_seconds": 1060.3,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-jointfocus": {
+     "errors": 0,
+     "late_half_area": 0.06,
+     "median_seconds": 1006.0,
+     "restricted_mean_seconds": 1020.6,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-jointmodel": {
+     "errors": 0,
+     "late_half_area": 0.118,
+     "median_seconds": 1006.0,
+     "restricted_mean_seconds": 1099.0,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.173,
+     "median_seconds": 855.1,
+     "restricted_mean_seconds": 1143.8,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.03,
+     "median_seconds": 928.2,
+     "restricted_mean_seconds": 981.7,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.058,
+     "median_seconds": 1314.6,
+     "restricted_mean_seconds": 1139.3,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    }
+   },
+   "root_act2": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.038,
+     "median_seconds": 808.9,
+     "restricted_mean_seconds": 777.2,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean": {
+     "errors": 0,
+     "late_half_area": 0.016,
+     "median_seconds": 801.6,
+     "restricted_mean_seconds": 772.6,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.047,
+     "median_seconds": 1148.1,
+     "restricted_mean_seconds": 971.4,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-nohint": {
+     "errors": 0,
+     "late_half_area": 0.094,
+     "median_seconds": 1103.3,
+     "restricted_mean_seconds": 1027.1,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-readiness": {
+     "errors": 0,
+     "late_half_area": 0.039,
+     "median_seconds": 821.7,
+     "restricted_mean_seconds": 812.4,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-deadretry": {
+     "errors": 0,
+     "late_half_area": 0.038,
+     "median_seconds": 808.9,
+     "restricted_mean_seconds": 777.2,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-jointfocus": {
+     "errors": 0,
+     "late_half_area": 0.038,
+     "median_seconds": 808.9,
+     "restricted_mean_seconds": 777.2,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-jointmodel": {
+     "errors": 0,
+     "late_half_area": 0.038,
+     "median_seconds": 808.9,
+     "restricted_mean_seconds": 777.0,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.13,
+     "median_seconds": 818.8,
+     "restricted_mean_seconds": 987.4,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.061,
+     "median_seconds": 1127.2,
+     "restricted_mean_seconds": 976.1,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.187,
+     "median_seconds": 1260.1,
+     "restricted_mean_seconds": 1276.1,
+     "runs": 8,
+     "solved": 7,
+     "solved_share": 0.875,
+     "wilson95": [
+      0.529,
+      0.978
+     ]
+    }
+   },
+   "tactical": {
+    "final01": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 176.9,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 170.1,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-noclinic": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 170.5,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-nohint": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 170.1,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-lean-readiness": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 170.7,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-deadretry": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 176.9,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-jointfocus": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 176.9,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-no-jointmodel": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 176.9,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "final01-nohint": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 130.6,
+     "restricted_mean_seconds": 176.9,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "i054a": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 253.5,
+     "restricted_mean_seconds": 271.0,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    },
+    "i082": {
+     "errors": 0,
+     "late_half_area": 0.0,
+     "median_seconds": 153.3,
+     "restricted_mean_seconds": 185.2,
+     "runs": 8,
+     "solved": 8,
+     "solved_share": 1.0,
+     "wilson95": [
+      0.676,
+      1.0
+     ]
+    }
+   }
+  }
+ },
+ "reference": "i082",
+ "schema": "spire-final01-sim-study/v1",
+ "scope": "synthetic campaign worlds driving the real planner; not native evidence"
+}
