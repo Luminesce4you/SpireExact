@@ -1,0 +1,25 @@
+name: i054a refactor regression
+
+on:
+  push:
+    branches:
+      - refactor/i054a-core-boundaries
+  pull_request:
+    branches:
+      - codex/holdout-01-release
+
+permissions:
+  contents: read
+
+jobs:
+  python-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile planning modules
+        run: python -m compileall -q spire_exact/planning
+      - name: Execute stdlib regression suite
+        run: python tools/run_tests.py
