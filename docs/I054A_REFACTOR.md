@@ -32,8 +32,11 @@ because `solve` continues looking up that name in `search.py`.
 
 1. Compare `search.py` on this branch with the source commit above.
    Expected behavioral differences: **none**.
-2. Run `python -m unittest tests.test_i054a_refactor_boundaries`.
-3. Run `python -m unittest discover -s tests -p "test_*.py"`.
+2. Run `python tools/run_source_tests.py` on a fresh source checkout. It runs
+   the Python contracts but excludes the existing `test_solver_patches.py` only
+   when its required `vendor/CombatSolver` checkout is missing.
+3. After `tools/setup_source.py` has prepared the vendor tree, run the **full**
+   suite with `python tools/run_tests.py` (including the upstream patch contract).
 4. On supported Windows with the same pinned game, host and resource protocol,
    build using `tools/setup_source.py` and run a *new*, independently verified
    native seed panel. Do not compare inherited holdout certificates.
