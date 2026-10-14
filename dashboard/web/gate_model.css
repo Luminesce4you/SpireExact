@@ -80,3 +80,29 @@
 .model-raw{max-height:420px}
 @media (max-width:1100px){.model-kpis,.model-detail-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:860px){.model-workspace{grid-template-columns:minmax(0,1fr)}.model-ranking li{grid-template-columns:minmax(0,1fr)}.model-groups li{grid-template-columns:auto auto 3em}.model-groups small{grid-column:1/-1}}
+
+/* i100 gate clinic */
+.model-clinic{display:flex;flex-direction:column;gap:14px;margin-bottom:16px}
+.model-clinic .card-heading{margin-bottom:0}
+.clinic-kpis strong{font-size:1.15rem}
+.clinic-table-wrap{overflow-x:auto}
+.clinic-table{width:100%;border-collapse:collapse;font-size:.93rem}
+.clinic-table th,.clinic-table td{padding:6px 8px;border-bottom:1px solid var(--line,rgba(127,127,127,.2));text-align:left;vertical-align:top}
+.clinic-table th{color:var(--text-3);font-weight:500;white-space:nowrap}
+.clinic-table td small{display:block;color:var(--text-3);font-size:.84rem;margin-top:2px}
+.clinic-evidence{display:flex;flex-wrap:wrap;gap:4px}
+.clinic-evidence span{padding:0 6px;border-radius:6px;background:var(--surface-2);font-size:.84rem}
+.clinic-evidence span.root{background:var(--bad-soft);color:var(--bad)}
+.clinic-evidence span.depth{background:var(--warn-soft);color:var(--warn)}
+.clinic-columns{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.clinic-columns h4{margin:0 0 8px}
+.clinic-events{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.clinic-events li{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.clinic-events small{color:var(--text-3);width:100%}
+.clinic-prior h4 small{color:var(--text-3);font-weight:400}
+.clinic-prior ul{list-style:none;margin:0 0 8px;padding:0;display:flex;flex-direction:column;gap:3px}
+.clinic-prior li{display:grid;grid-template-columns:7.5em 1fr 4em;align-items:center;gap:8px;font-size:.9rem}
+.clinic-prior li i{height:8px;border-radius:4px;justify-self:start}
+.clinic-prior li i.pos{background:var(--good)}
+.clinic-prior li i.neg{background:var(--bad)}
+.clinic-prior li b{font-weight:500;text-align:right;font-variant-numeric:tabular-nums}

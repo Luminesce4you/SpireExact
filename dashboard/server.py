@@ -13,7 +13,6 @@ STATIC=Path(__file__).resolve().parent/'web'
 sys.path.insert(0,str(ROOT))
 if __name__=='__main__':sys.modules.setdefault('dashboard.server',sys.modules[__name__])
 from dashboard import jobs
-from spire_exact.planning.final_defaults import PUBLIC_PROFILE
 from dashboard.winning_route import WinningRouteStore
 
 def shared_text(path,encoding='utf-8-sig'):
@@ -390,12 +389,11 @@ class Repository:
     def snapshot(self,run=None):
         rows=self.runs()
         if run not in self.paths:run=next((r['id']for r in rows if r['alive']),next((r['id']for r in rows if r['protocol']=='A10-seed-v2'),rows[0]['id']if rows else None))
-        from tools.prepare_dashboard import launch_status
-        prepared=launch_status()
         return {'runs':rows,'selected':self.detail(run)if run else None,'live':self.live.get(run,{}),
                 'telemetry_history':self.history.get(run,[]),'server_time':time.time(),'watcher':'windows-notification','read_only':False,
                 'launch':{'token':jobs.TOKEN,'character':'IRONCLAD','ascension':10,'unlocks':'all',
-                          **prepared}}
+                          'entry_enabled':read(ROOT/'dashboard/solver-profile.json',{}).get('entry_enabled') is not False,
+                          'max_minutes':180 if read(ROOT/'dashboard/solver-profile.json',{}).get('long_run_ready')else 15}}
 
 repo=Repository();broker=Broker();winning_routes=WinningRouteStore()
 
@@ -463,8 +461,7 @@ class Handler(BaseHTTPRequestHandler):
         if self.headers.get('Host','').split(':')[0]not in('127.0.0.1','localhost'):self.send_body(b'Forbidden',code=403);return
         url=urlparse(self.path);query=parse_qs(url.query);run=query.get('run',[None])[0]
         if url.path=='/api/health':
-            self.send_body(json.dumps({'service':'spireboard','api_version':1,'pid':os.getpid(),
-                'workspace':str(ROOT),'feature_profile':PUBLIC_PROFILE}).encode());return
+            self.send_body(json.dumps({'service':'spireboard','api_version':1,'pid':os.getpid(),'workspace':str(ROOT.resolve())}).encode());return
         if url.path=='/api/winning-route':
             path=repo.paths.get(run)
             if path is None:self.send_body(b'{"error":"Unknown run"}',code=404);return
@@ -531,8 +528,9 @@ class Handler(BaseHTTPRequestHandler):
         except Exception as error:self.send_body(json.dumps({'error':'无法启动任务：'+str(error)},ensure_ascii=False).encode(),code=500)
 
 def main():
+    if sys.version_info < (3,12):
+        raise SystemExit('Python 3.12+ is required for this source candidate')
     p=argparse.ArgumentParser();p.add_argument('--port',type=int,default=8765);a=p.parse_args()
-    if sys.version_info<(3,11):raise SystemExit('Python 3.11+ is required for the public source frontend')
     if os.name=='nt':
         # Keep dashboard sampling away from the A10 performance-core partition.
         k=c.WinDLL('kernel32');k.GetCurrentProcess.restype=w.HANDLE;k.SetProcessAffinityMask.argtypes=[w.HANDLE,c.c_size_t]

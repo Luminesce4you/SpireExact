@@ -1,0 +1,166 @@
+"""Game version profile: every version-bound input in one file per game build.
+
+The planner never models RNG; it consumes host labels, room types and fight
+results, and checkpoints are the game's own SerializableRun. What does bind to
+one game build is listed here, keyed by the sts2.dll hash
+(configs/game-<sha12>.json):
+
+- the host's reflected API surface (api_sha256, the same manifest as api.json);
+- the RunRngType streams, and the subset GateProbe.cs reseeds;
+- the unsaved-state routing table (configs/unsaved-state.json, from the
+  decompiled source named in it) used by tools/fork_check.py;
+- the CombatSolver builds whose reflective contract passed on this game
+  (SolverBridge.cs), and the workshop dependency directories.
+
+`check` compares the installed game with its profile and lists what to
+regenerate. It is a report, not a release or run gate; tools that need a
+profile item (fork_check routing) refuse on a game without one.
+
+  python -m spire_exact.game_profile check            # installed game vs its profile
+  python -m spire_exact.game_profile create           # write the profile for the installed game (never overwrites)
+"""
+from __future__ import annotations
+import json
+import os
+import re
+import subprocess
+from pathlib import Path
+from .canonical import ContractError
+from .upstream import ROOT, file_hash
+
+SCHEMA = 'spire-game-profile/v1'
+CONFIGS = ROOT / 'configs'
+UNSAVED_STATE = CONFIGS / 'unsaved-state.json'
+GATE_PROBE = ROOT / 'native/SpireNativeHost/GateProbe.cs'
+
+# What to redo when an item changes (for the check report; the tools exist).
+REGENERATE = {
+    'game': 'new game build: decompile it (local only), then run each item below',
+    'api_sha256': 'compare_exports(old, new) on catalog exports; review the removed members the host uses',
+    'run_rng_streams': 'review GateProbe.cs reseed list and tools/rng_check*.py (iteration-064)',
+    'probe_reseed_streams': 'GateProbe.cs list changed: update the profile with create on a new file',
+    'unsaved_state': 'tools/unsaved_state_scan.py on the new decompiled source, then route_check',
+    'solvers': 'python -m spire_exact.solvers (SolverBridge contract), then the T5 upgrade check',
+}
+
+
+def probe_reseed_streams(path: Path = GATE_PROBE) -> list[str]:
+    """RunRngType names GateProbe.ReseedCombat reseeds, read from its source."""
+    text = path.read_text(encoding='utf-8')
+    block = re.search(r'RunRngType\[\]\s+streams\s*=\s*\[(.*?)\];', text, re.S)
+    if not block:
+        raise ContractError('GateProbe.cs reseed list not found')
+    return re.findall(r'RunRngType\.(\w+)', block.group(1))
+
+
+def observe(data: Path) -> dict:
+    """The installed game's version-bound surface, from the built host (no bootstrap, no game run)."""
+    from .native import build_host
+    executable, assembly, _ = build_host(data)
+    completed = subprocess.run([executable, str(assembly), '--game-profile'], cwd=ROOT, capture_output=True, text=True,
+                               encoding='utf-8', timeout=120, env=dict(os.environ, SPIRE_GAME_DATA=str(data.resolve()),
+                                                                     DOTNET_CLI_TELEMETRY_OPTOUT='1', DOTNET_NOLOGO='1'))
+    if completed.returncode:
+        raise ContractError('game profile observation failed: ' + completed.stderr[-4000:])
+    return json.loads(completed.stdout[completed.stdout.index('{'):])
+
+
+def profile_path(game_sha256: str, configs: Path = CONFIGS) -> Path:
+    return configs / f'game-{game_sha256[:12]}.json'
+
+
+def load(game_sha256: str, configs: Path = CONFIGS) -> dict | None:
+    path = profile_path(game_sha256, configs)
+    if not path.is_file():
+        return None
+    doc = json.loads(path.read_text(encoding='utf-8'))
+    if doc.get('schema') != SCHEMA or doc['game']['game_sha256'] != game_sha256:
+        raise ContractError('game profile does not match its file name: ' + str(path))
+    return doc
+
+
+def unsaved_state_record(path: Path = UNSAVED_STATE) -> dict:
+    doc = json.loads(path.read_text(encoding='utf-8'))
+    return {'path': path.relative_to(ROOT).as_posix(), 'sha256': file_hash(path),
+            'game_source': doc.get('game_source'), 'source_sha256': doc.get('source_sha256')}
+
+
+def build(data: Path, observation: dict, solvers: dict) -> dict:
+    version = json.loads((data.parent / 'release_info.json').read_text(encoding='utf-8'))['version']
+    return {
+        'schema': SCHEMA,
+        'game': {'release': version, **{k: observation[k] for k in
+                 ('game_sha256', 'godot_sha256', 'harmony_sha256', 'game_assembly')}},
+        'api_sha256': observation['api_sha256'],
+        'run_rng_type': observation['run_rng_type'],
+        'run_rng_streams': observation['run_rng_streams'],
+        'probe_reseed_streams': probe_reseed_streams(),
+        'unsaved_state': unsaved_state_record(),
+        'solvers': solvers,
+        'workshop_dependencies': f'workshop/content/2868840/3747602295/compat/{version.removeprefix("v")} + shared',
+        'note': 'generated by python -m spire_exact.game_profile create; regenerate, do not hand-edit',
+    }
+
+
+def solver_results(data: Path) -> dict:
+    from .solvers import names, solver_contract
+    out = {}
+    for name in names():
+        try:
+            reply = solver_contract(name, data)
+            out[name] = {'contract': reply['status'], 'solver_sha256': reply['solver']['sha256'],
+                         'harness_sha256': reply['harness']['sha256']}
+        except ContractError as error:
+            out[name] = {'contract': 'UNAVAILABLE', 'error': str(error)[:300]}
+    return out
+
+
+def compare(profile: dict | None, current: dict) -> dict:
+    """Item -> OK / CHANGED, plus what to regenerate. No profile: every item is to redo."""
+    if profile is None:
+        return {'status': 'NO_PROFILE', 'game_sha256': current['game']['game_sha256'],
+                'regenerate': REGENERATE}
+    items = {}
+    for key in ('api_sha256', 'run_rng_streams', 'probe_reseed_streams', 'unsaved_state', 'solvers'):
+        items[key] = 'OK' if profile.get(key) == current.get(key) else 'CHANGED'
+    if set(profile['probe_reseed_streams']) - set(current['run_rng_streams']):
+        items['probe_reseed_streams'] = 'MISSING_STREAM'
+    changed = {k: REGENERATE[k] for k, v in items.items() if v != 'OK'}
+    return {'status': 'OK' if not changed else 'CHANGED', 'game_sha256': current['game']['game_sha256'],
+            'items': items, 'regenerate': changed}
+
+
+def check(data: Path, configs: Path = CONFIGS) -> dict:
+    current = build(data, observe(data), solver_results(data))
+    return compare(load(current['game']['game_sha256'], configs), current)
+
+
+def require_routing(game_sha256: str, configs: Path = CONFIGS, path: Path = UNSAVED_STATE) -> dict:
+    """The routing table must belong to this game build (fork_check / route_check)."""
+    profile = load(game_sha256, configs)
+    if profile is None:
+        raise ContractError(f'no configs/game-{game_sha256[:12]}.json: regenerate unsaved-state for this game '
+                            '(tools/unsaved_state_scan.py) and create its profile')
+    if profile['unsaved_state']['sha256'] != file_hash(path):
+        raise ContractError('configs/unsaved-state.json is not the table recorded for this game build')
+    return profile
+
+
+if __name__ == '__main__':
+    import argparse
+    from .native import game_data
+    parser = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
+    parser.add_argument('action', choices=['check', 'create'])
+    parser.add_argument('--game-dir', type=Path)
+    args = parser.parse_args()
+    data = game_data(args.game_dir)
+    if args.action == 'check':
+        report = check(data)
+        print(json.dumps(report, ensure_ascii=False, indent=1))
+        raise SystemExit(0 if report['status'] == 'OK' else 1)
+    current = build(data, observe(data), solver_results(data))
+    target = profile_path(current['game']['game_sha256'])
+    if target.exists():
+        raise SystemExit('profile exists; never overwrite: ' + str(target))
+    target.write_text(json.dumps(current, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
+    print(target)

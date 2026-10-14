@@ -15,7 +15,7 @@ def main():
     if out.exists():raise SystemExit('Frozen workspace already exists')
     out.mkdir()
     ignore=shutil.ignore_patterns('bin','obj','__pycache__','.godot','*.pyc','dotnet-sdk*.tar.gz')
-    for name in ['native','spire_exact','tools','tests','examples','cloud','runtime','vendor']:
+    for name in ['native','spire_exact','tools','tests','examples','cloud','runtime','vendor','configs']:
         if (ROOT/name).is_dir():shutil.copytree(ROOT/name,out/name,ignore=ignore)
     # The advisor is a pinned, separately built dependency. Preserve its tested
     # binaries alongside its source; each run fingerprints those binaries again.

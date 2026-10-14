@@ -1,0 +1,28 @@
+{
+  "schema": "spire-i100r-engineering-provenance/v1",
+  "research_snapshot": "frozen-r3-i054a-shm",
+  "research_source_version": "r3-i054a-shm-a1e9b2a3c55c827a",
+  "research_planner_sha256": "a1e9b2a3c55c827a19e7de8bad6cb07983dcd6972040437109f23983f75005f9",
+  "research_freeze_sha256": "1feb7f1e8c84f68d76f9990239f1822aabefed1307a86c401df1c90cc3b38603",
+  "unchanged_frozen_core_files_checked": 66,
+  "changed_frozen_core_files": [
+    "native/SpireNativeHost/AdvisorBlockCompensation.cs"
+  ],
+  "additional_core_source": "native/SpireNativeHost/SolverContractFingerprint.cs",
+  "planner_sources_match_frozen": true,
+  "research_evidence_representation": "sanitized existing record; retains its original attribution",
+  "engineering_validation_records": [
+    "ENGINEERING_BUILD.json",
+    "ENGINEERING_OFFLINE.json",
+    "ENGINEERING_FRONTEND.json"
+  ],
+  "original_candidate_preserved": true,
+  "frozen_workspace_modified": false,
+  "default_solver": "cs-4d2c550",
+  "default_plugins": [],
+  "P1_source_included": true,
+  "P1_status": "experimental, disabled by default",
+  "public_documentation_state": "inherited drafts; final updates belong to Claude Code",
+  "final_publication_owner": "Claude Code",
+  "github_writes_performed": false
+}

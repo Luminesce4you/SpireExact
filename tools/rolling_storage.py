@@ -117,6 +117,8 @@ def prune_seed(seed, root, detailed, apply=False):
     # Every verification attempt is kept, including failed independent replay.
     keep.update(p.name.removeprefix('verify-') for p in seed.glob('verify-*'))
     pinned_seed = (seed / '.retain-detail').exists()
+    # Recorded controls are replayed against their checkpoint archive (refactor R2a, 2026-10-12).
+    keep_checkpoints = (seed / '.retain-checkpoints').exists()
     removed = 0; count = 0; categories = {}
     for ev in seed.glob('eval-*'):
         if not ev.is_dir() or linked(ev): continue
@@ -127,7 +129,7 @@ def prune_seed(seed, root, detailed, apply=False):
                 p = base / name
                 parts = p.relative_to(ev).parts
                 category = None
-                if not proof and 'checkpoints' in parts:
+                if not proof and 'checkpoints' in parts and not keep_checkpoints:
                     category = 'completed_search_checkpoint_cache'
                 elif not proof and not pinned and not detailed and ev.name not in keep:
                     if name in {'decision.json', 'decision-evidence.jsonl'} or 'advisor' in parts:

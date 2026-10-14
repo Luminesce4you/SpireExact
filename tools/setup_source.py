@@ -1,6 +1,6 @@
 """Prepare private dependencies and build the Windows source release; never run it.
 
-Requires Python 3.11+, Git, a .NET 9+ SDK, and the user's own supported game
+Requires Python 3.12+, Git, a .NET 9+ SDK, and the user's own supported game
 and complete RitsuLib Workshop bundle. No mod is installed into the game.
 """
 from __future__ import annotations
@@ -21,7 +21,7 @@ from spire_exact.native import input_fingerprint
 from spire_exact.upstream import PIN, REPOSITORY, fetch_upstream, file_hash, verify_upstream
 
 VERSION = "0.111.0"
-SOURCE_RELEASE = "i082/frozen-i082"
+SOURCE_RELEASE = "i100r/r3-i054a-shm"
 GAME_SHA256 = "0861bfa1df347538d932f22d580e75420f08082792eb914e53b4882764acdbe9"
 CONFIG = ROOT / ".tools/source-setup.json"
 DATA = ROOT / "runtime/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64"
@@ -301,8 +301,8 @@ def main() -> int:
     try:
         if os.name != "nt":
             raise ContractError("This release setup is supported on Windows only")
-        if sys.version_info < (3, 11):
-            raise ContractError("Python 3.11+ is required")
+        if sys.version_info < (3, 12):
+            raise ContractError("Python 3.12+ is required; recorded planner evidence uses 3.12.14")
         config = json.loads(CONFIG.read_text(encoding="utf-8")) if CONFIG.is_file() else {}
         executable, sdks = sdk(args.dotnet or config.get("dotnet"))
         report.update(dotnet=executable, installed_sdks=sdks)
@@ -323,12 +323,12 @@ def main() -> int:
                        "input_game_dir": str(data), "input_ritsu_dir": str(workshop), "source_release": report["source_release"]})
             prepare_upstream(report, report_dir)
             env = dict(os.environ, DOTNET_CLI_TELEMETRY_OPTOUT="1", DOTNET_NOLOGO="1")
-            command([executable, "build", str(CONTRACT_ROOT / "SolverContract.csproj"), "-c", "Release", "-p:NuGetAudit=false"],
+            command([executable, "build", str(CONTRACT_ROOT / "SolverContract.csproj"), "-c", "Release", "-p:NuGetAudit=false", "-m:1", "-nodeReuse:false", "-p:UseSharedCompilation=false"],
                     report_dir / "static-contract-inspector.log", report, "static_contract_inspector", env)
             write_json(CONTRACT_STAMP, {"inputs": contract_inputs(), "assembly_sha256": file_hash(CONTRACT_DLL)})
             props = ["-p:CopyModOnBuild=false", "-p:Sts2DataDir=" + str(DATA), "-p:Sts2Dir=" + str(DATA.parent),
                      "-p:RitsuWorkshopRoot=" + str(WORKSHOP), "-p:RitsuLibDir=" + str(WORKSHOP / "compat" / VERSION),
-                     "-p:RitsuLibReferenceTarget=" + VERSION, "-p:NuGetAudit=false"]
+                     "-p:RitsuLibReferenceTarget=" + VERSION, "-p:NuGetAudit=false", "-m:1", "-nodeReuse:false", "-p:UseSharedCompilation=false"]
             command([executable, "build", str(HOST / "SpireNativeHost.csproj"), "-c", "Release", *props,
                      "-p:OutputPath=" + str(HOST_DLL.parent) + "/"], report_dir / "native-host.log", report, "native_host", env)
             # Matches frozen cloud build: the offline solver does not use the net48 Windows GUI helper.

@@ -1,0 +1,44 @@
+{
+  "python": "3.12.14",
+  "patterns": [
+    "test_refactor_plugins.py",
+    "test_component.py",
+    "test_version_compat.py",
+    "test_dashboard_components.py",
+    "test_dashboard_gate_model.py",
+    "test_dashboard_jobs.py"
+  ],
+  "tests_run": 73,
+  "passed": 72,
+  "failures": 0,
+  "errors": 0,
+  "skipped": [
+    {
+      "test": "test_every_real_library_entry_makes_a_component (test_component.GateLibraryEntryTests.test_every_real_library_entry_makes_a_component)",
+      "reason": "no M1 gate library in this workspace"
+    }
+  ],
+  "successful": true,
+  "python_syntax_files": 216,
+  "default_solver": "cs-4d2c550",
+  "CLI_cases": [
+    {
+      "minutes": 30,
+      "seconds": 1770,
+      "workers": 7,
+      "worker_memory_policy": "shared",
+      "plugins": [],
+      "registered_default_mechanisms_allowed": true
+    },
+    {
+      "minutes": 45,
+      "seconds": 2670,
+      "workers": 7,
+      "worker_memory_policy": "shared",
+      "plugins": [],
+      "registered_default_mechanisms_allowed": true
+    }
+  ],
+  "native_game_requests_executed": 0,
+  "full_seed_or_probe_experiments_executed": 0
+}

@@ -1,0 +1,22 @@
+{
+  "accepted": true,
+  "workspace": "frozen-r3-i054a-shm",
+  "source_version": "r3-i054a-shm-a1e9b2a3c55c827a",
+  "host_sha256": "6a3d33ff2f3e497a242834d46a9e66fbb5b9fd072637dca63fba29901f115130",
+  "freeze_sha256": "1feb7f1e8c84f68d76f9990239f1822aabefed1307a86c401df1c90cc3b38603",
+  "host_equivalence": {
+    "equivalent": true,
+    "host_sha256": "6a3d33ff2f3e497a242834d46a9e66fbb5b9fd072637dca63fba29901f115130",
+    "reference_host_sha256": "4c89920086315b25aad8d97ac56d52e1ab5076b5c5f110fa5de09471791e3e73",
+    "requests": 14
+  },
+  "tests": {
+    "tests_run": 613,
+    "passed": 612,
+    "skipped": 1,
+    "reason": "M1 library remains in refactor workspace; snapshot has no copy"
+  },
+  "sealed": "2026-10-13T18:59:52.824941+08:00",
+  "validation_scope": "research r3 snapshot, not this repackaged source build",
+  "representation": "sanitized research snapshot evidence; not this public build runtime equivalence"
+}

@@ -35,6 +35,7 @@ internal static class Bootstrap
 
 internal static class Program
 {
+    internal static readonly string[] Capabilities = ["gate_plans.final_boss_ordinal", "replay.stop_after_combat", "replay.state_dump"];
     internal static readonly JsonSerializerOptions Json = new()
     {
         WriteIndented = true,
@@ -45,35 +46,39 @@ internal static class Program
     static bool initialized;
     static int Main(string[] args)
     {
+        // Read-only, game-free contract discovery for Python build stamps.
+        // It reports the capabilities of the actual assembly being invoked.
+        if(args.Length==1 && args[0]=="--capabilities") {
+            Console.WriteLine(JsonSerializer.Serialize(new {
+                schema="spire-host-capabilities/v1",
+                host_sha256=Hash(typeof(Program).Assembly.Location), capabilities=Capabilities
+            }));
+            return 0;
+        }
+        // Read-only solver contract check (SolverBridge.cs): every reflective name
+        // the advisor needs, for a solver/harness build, before any request uses it.
+        if(args.Length>=3 && args[0]=="--solver-contract") {
+            Console.WriteLine(JsonSerializer.Serialize(SolverBridge.Check(args[1],args[2],args[3..]),Json));
+            return 0;
+        }
+        // Read-only, bootstrap-free observation of the version-bound game surface
+        // (spire_exact/game_profile.py compares it with configs/game-*.json).
+        if(args.Length==1 && args[0]=="--game-profile") {
+            Console.WriteLine(JsonSerializer.Serialize(GameProfile(),Json));
+            return 0;
+        }
         if (args.Length == 1 && args[0] == "--worker")
         {
             string? line;
-            string oomResponse="SPIRE_WORKER_RESULT "+JsonSerializer.Serialize(new {
-                healthy=false,error="NATIVE_TASK_OUT_OF_MEMORY",error_kind="NATIVE_TASK_OUT_OF_MEMORY",
-                reason="NATIVE_TASK_OUT_OF_MEMORY",pid=Environment.ProcessId
-            });
             Console.WriteLine("SPIRE_WORKER_READY " + Environment.ProcessId);
             while ((line = Console.ReadLine()) != null)
             {
                 if (line == "QUIT") break;
-                bool healthy = true; string? failure = null;bool outOfMemory=false;
+                bool healthy = true; string? failure = null;
                 try { Execute([line]); }
-                catch (Exception e) {
-                    healthy=false;outOfMemory=WorkerMemoryTelemetry.IsOutOfMemory(e);
-                    failure=outOfMemory?"NATIVE_TASK_OUT_OF_MEMORY":e.ToString();
-                }
-                if(outOfMemory) {
-                    // Do not attempt allocating game cleanup after an OOM. The
-                    // owned worker exits; it is never recycled as a healthy host.
-                    WorkerMemoryTelemetry.ReportWorkerOom();Console.WriteLine(oomResponse);Console.Out.Flush();return 1;
-                }
-                try { Cleanup(); } catch (Exception e) {
-                    healthy=false;
-                    if(WorkerMemoryTelemetry.IsOutOfMemory(e)){outOfMemory=true;failure="NATIVE_TASK_OUT_OF_MEMORY";}
-                    else failure??=e.ToString();
-                }
-                if(outOfMemory){WorkerMemoryTelemetry.ReportWorkerOom();Console.WriteLine(oomResponse);}
-                else Console.WriteLine("SPIRE_WORKER_RESULT " + JsonSerializer.Serialize(new {healthy, error=failure, pid=Environment.ProcessId}));
+                catch (Exception e) { healthy = false; failure = e.ToString(); }
+                try { Cleanup(); } catch (Exception e) { healthy = false; failure ??= e.ToString(); }
+                Console.WriteLine("SPIRE_WORKER_RESULT " + JsonSerializer.Serialize(new {healthy, error=failure, pid=Environment.ProcessId}));
                 Console.Out.Flush();
                 if (!healthy) return 1;
             }
@@ -83,16 +88,10 @@ internal static class Program
         try { return Execute(args); }
         catch (Exception error)
         {
-            bool outOfMemory=WorkerMemoryTelemetry.IsOutOfMemory(error);
-            if(outOfMemory) {
-                WorkerMemoryTelemetry.ReportWorkerOom();
-                Console.Error.WriteLine(JsonSerializer.Serialize(new {
-                    status="NATIVE_TASK_OUT_OF_MEMORY",proven_optimal=false,error="NATIVE_TASK_OUT_OF_MEMORY",
-                    error_kind="NATIVE_TASK_OUT_OF_MEMORY",reason="NATIVE_TASK_OUT_OF_MEMORY",value=(object?)null
-                },Json));
-            } else Console.Error.WriteLine(JsonSerializer.Serialize(new
+            Console.Error.WriteLine(JsonSerializer.Serialize(new
             {
-                status="NATIVE_HOST_FAILED",proven_optimal=false,error=error.ToString()
+                status = "NATIVE_HOST_FAILED", proven_optimal = false,
+                error = error.ToString()
             }, Json));
             return 1;
         }
@@ -101,7 +100,6 @@ internal static class Program
     [MethodImpl(MethodImplOptions.NoInlining)]
     static int Execute(string[] args)
     {
-        WorkerMemoryTelemetry.BeginRequest();
         if (args.Length != 1) throw new ArgumentException("Usage: SpireNativeHost request.json");
         using JsonDocument document = JsonDocument.Parse(File.ReadAllText(args[0]));
         JsonElement request = document.RootElement;
@@ -110,24 +108,6 @@ internal static class Program
             throw new IOException("Output directory must be empty");
         Directory.CreateDirectory(output);
         string command = request.GetProperty("command").GetString()!;
-        if(command=="i080_contracts")
-        {
-            if(initialized)throw new InvalidDataException("I080_CONTRACTS_REQUIRE_FRESH_PROCESS");
-            // Return before harness/game bootstrap: this command exercises only
-            // production JSON topology projection with pure CLR fixtures.
-            Write(output,"i080-contracts.json",I080Contracts.Run());
-            Write(output,"result.json",new {
-                status="CLR_CONTRACTS_EXPORTED",command,synthetic=true,
-                game_initialized=false,proven_optimal=false,game_equivalence_verified=false
-            });
-            Console.WriteLine("CLR_CONTRACTS_EXPORTED "+Path.GetFullPath(output));
-            return 0;
-        }
-        if ((command == "progress_baseline" || command == "progress_contract") && initialized)
-            throw new InvalidDataException("RESEARCH_PROGRESS_BASELINE_MUST_BE_NEW_PROCESS");
-        using var memoryTelemetry=WorkerMemoryTelemetry.Start(request,args[0],output);
-        try
-        {
         HarnessLog.TraceInit = false;
         HarnessLog.Language = "eng";
         MainLoopContext loop = new();
@@ -147,13 +127,7 @@ internal static class Program
         Write(output, "identity.json", identity);
         if (!request.TryGetProperty("compact", out var compact) || !compact.GetBoolean())
             Write(output, "api.json", ApiManifest());
-        if (command == "progress_baseline")
-            Write(output, "progress-baseline.json", ResearchProgressLifecycle.ExportBaseline(request));
-        else if (command == "progress_contract")
-            Write(output, "progress-contract.json", ResearchProgressContracts.Run(request));
-        else if(command=="f1_quality_contracts")
-            Write(output,"f1-quality-contracts.json",F1QualityContracts.Run());
-        else if (command == "catalog") Write(output, "catalog.json", Catalog());
+        if (command == "catalog") Write(output, "catalog.json", Catalog());
         else if(command=="effect_metadata") Write(output,"effect-metadata.json",
             request.GetProperty("cards").EnumerateArray().Select(id=> {
                 var card=ModelDb.AllCards.Single(c=>c.Id.Entry==id.GetString()).ToMutable();
@@ -164,7 +138,6 @@ internal static class Program
         else if (command == "seed") ExportSeed(request, output, loop);
         else if (command == "replay") {
             var decision=CampaignReplay.Run(request, loop);
-            WorkerMemoryTelemetry.ThrowIfOutOfMemoryObserved();
             if(request.TryGetProperty("low_io",out var lowIo)&&lowIo.GetBoolean()) {
                 using var file=File.Create(Path.Combine(output,"decision.json.gz"));
                 using var gzip=new GZipStream(file,CompressionLevel.Fastest);
@@ -195,16 +168,8 @@ internal static class Program
             bypasses = GameBootstrap.Bypasses
         });
         Write(output, "performance.json", PhaseProfiler.Current.Snapshot());
-        WorkerMemoryTelemetry.ThrowIfOutOfMemoryObserved();
         Console.WriteLine("NATIVE_DATA_EXPORTED " + Path.GetFullPath(output));
         return 0;
-        }
-        catch(Exception error) when(WorkerMemoryTelemetry.IsOutOfMemory(error))
-        {
-            memoryTelemetry?.MarkOom();
-            WorkerMemoryTelemetry.WriteOomFailure(output,memoryTelemetry?.RequestSha);
-            throw;
-        }
     }
 
     static void Cleanup()
@@ -333,6 +298,7 @@ internal static class Program
     internal static object NativeIdentity() => identityCache ??= new
     {
         schema = "spire-native-identity/v1", host_version = "1",
+        capabilities = Capabilities,
         host_sha256 = Hash(typeof(Program).Assembly.Location),
         game_sha256 = Hash(typeof(ModelDb).Assembly.Location),
         godot_sha256 = Hash(typeof(Godot.GodotObject).Assembly.Location),
@@ -340,6 +306,22 @@ internal static class Program
         game_assembly = typeof(ModelDb).Assembly.FullName,
         bootstrap = "CombatSolver 4d2c550; independent host, no CombatSolver engine or RitsuLib dependency"
     };
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    static object GameProfile()
+    {
+        var game = typeof(ModelDb).Assembly;
+        var rng = game.GetTypes().Single(t => t.IsEnum && t.Name == "RunRngType");
+        byte[] api = JsonSerializer.SerializeToUtf8Bytes(ApiManifest(), Json);
+        return new
+        {
+            schema = "spire-game-observation/v1",
+            game_sha256 = Hash(game.Location), godot_sha256 = Hash(typeof(Godot.GodotObject).Assembly.Location),
+            harmony_sha256 = Hash(typeof(HarmonyLib.Harmony).Assembly.Location), game_assembly = game.FullName,
+            run_rng_type = rng.FullName, run_rng_streams = Enum.GetNames(rng),
+            api_sha256 = Convert.ToHexString(SHA256.HashData(api)).ToLowerInvariant()
+        };
+    }
 
     static object ApiManifest()
     {

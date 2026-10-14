@@ -40,7 +40,8 @@ def _text(path: str) -> str | None:
     try: return Path(path).read_text().strip()
     except OSError: return None
 
-def process_memory(pid: int) -> int:
+def process_memory(pid: int,field: str='WorkingSetSize') -> int:
+    """Working set by default; field='PagefileUsage' is the private commit the Job cap counts (Windows only)."""
     if os.name == 'nt':
         class Counters(ctypes.Structure):
             _fields_ = [('cb',ctypes.c_ulong),('PageFaultCount',ctypes.c_ulong)] + [
@@ -54,7 +55,7 @@ def process_memory(pid: int) -> int:
         try:
             p=Counters();p.cb=ctypes.sizeof(p)
             dll=ctypes.WinDLL('psapi');dll.GetProcessMemoryInfo.argtypes=[ctypes.c_void_p,ctypes.c_void_p,ctypes.c_ulong]
-            return int(p.WorkingSetSize) if dll.GetProcessMemoryInfo(handle,ctypes.byref(p),p.cb) else 0
+            return int(getattr(p,field)) if dll.GetProcessMemoryInfo(handle,ctypes.byref(p),p.cb) else 0
         finally: kernel.CloseHandle(handle)
     text=_text(f'/proc/{pid}/status') or ''
     for line in text.splitlines():
@@ -81,6 +82,17 @@ def available_memory() -> int:
         available=min(available,max(0,int(limit)-int(current)+reclaimable))
     return available
 
+def available_commit() -> int:
+    """What this process may still commit (RAM plus page file, within any Job cap); i101 shared worker memory."""
+    if os.name=='nt':
+        class Memory(ctypes.Structure):
+            _fields_=[('dwLength',ctypes.c_ulong),('dwMemoryLoad',ctypes.c_ulong)] + [
+                (n,ctypes.c_ulonglong) for n in ('total','available','page_total','page_available','virtual_total','virtual_available','extended')]
+        s=Memory();s.dwLength=ctypes.sizeof(s)
+        if ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(s)): return int(s.page_available)
+        return 1024*MIB
+    return available_memory()
+
 def effective_cpus() -> float:
     cpus=float(len(os.sched_getaffinity(0)) if hasattr(os,'sched_getaffinity') else (os.cpu_count() or 1))
     quota=_text('/sys/fs/cgroup/cpu.max')
@@ -99,18 +111,26 @@ class ResourcePlan:
     effective_cpus: float
     available_memory_bytes: int
     @classmethod
-    def detect(cls,workers: int|None=None,dop: int=1,worker_mib: int=900,reserve_mib: int=512):
-        if dop<1 or worker_mib<64 or reserve_mib<0 or (workers is not None and workers<1):
+    def detect(cls,workers: int|None=None,dop: int=1,worker_mib: int|None=900,reserve_mib: int=512,job_limit_bytes: int|None=None,shared: bool=False):
+        if dop<1 or (worker_mib is not None and worker_mib<64) or reserve_mib<0 or (workers is not None and workers<1) \
+                or (worker_mib is None and workers is None) or (shared and (worker_mib is not None or not job_limit_bytes)):
             raise ValueError('invalid resource budget')
-        cpu,mem=effective_cpus(),available_memory()
+        # i101 shared worker memory budgets commit (RAM plus page file), as the Job cap counts it.
+        cpu,mem=effective_cpus(),(available_commit() if shared else available_memory())
         if os.environ.get('SPIRE_MEMORY_BUDGET_MIB'):
             mem=min(mem,int(os.environ['SPIRE_MEMORY_BUDGET_MIB'])*MIB)
+        if worker_mib is None:
+            # i101 --worker-memory-auto: the measured budget (never above an enforced Job cap) split evenly.
+            if job_limit_bytes:mem=min(mem,job_limit_bytes)
+            # i101 shared: one budget that every worker may use, checked on the workers' summed commit.
+            worker_mib=math.floor(max(0,mem-reserve_mib*MIB)/(1 if shared else workers)/MIB)
+            if worker_mib<64:raise MemoryError('insufficient available memory for automatic worker caps')
         # Automatic sizing leaves a coordinator slot. Explicit demand may use
         # every admitted logical CPU, but never exceed CPUs / DOP or memory.
         cpu_budget=max(1,math.floor(cpu-(1 if workers is None else 0)))
         dop=min(dop,cpu_budget)
         cpu_capacity=max(1,cpu_budget//dop)
-        memory_capacity=math.floor(max(0,mem-reserve_mib*MIB)/(worker_mib*MIB))
+        memory_capacity=workers if shared else math.floor(max(0,mem-reserve_mib*MIB)/(worker_mib*MIB))
         if memory_capacity<1: raise MemoryError('insufficient available memory for one worker plus reserve')
         capacity=min(cpu_capacity,memory_capacity,32)
         n=capacity if workers is None else min(workers,capacity)

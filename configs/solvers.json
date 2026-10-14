@@ -1,0 +1,21 @@
+{
+ "schema": "spire-solver-registry/v1",
+ "note": "CombatSolver builds the one native host can load (BeamAdvisor.cs reads solver/harness paths from each request). Paths are relative to the workspace. Only the default is part of i054a; any other entry is experimental until a paired real-game test.",
+ "default": "cs-4d2c550",
+ "solvers": {
+  "cs-4d2c550": {
+   "status": "validated-as-i054a",
+   "source": {"kind": "git", "dir": "vendor/CombatSolver"},
+   "solver": "vendor/CombatSolver/.godot/mono/temp/bin/Release/CombatSolver.dll",
+   "harness": "vendor/CombatSolver/tools/OfflineSearchHarness/bin/Release/net9.0/OfflineSearchHarness.dll",
+   "dependencies": "workshop-ritsulib"
+  },
+  "cs-0.50.1": {
+   "status": "experimental",
+   "source": {"kind": "archive", "dir": "native/cs050/vendor/CombatSolver", "identity": "native/cs050/source-identity.json"},
+   "solver": "native/cs050/vendor/CombatSolver/.godot/mono/temp/bin/Release/CombatSolver.dll",
+   "harness": "native/cs050/vendor/CombatSolver.local/tool-build/OfflineSearchHarness/bin/Release/net9.0/OfflineSearchHarness.dll",
+   "dependencies": "workshop-ritsulib"
+  }
+ }
+}

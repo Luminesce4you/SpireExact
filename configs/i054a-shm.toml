@@ -1,0 +1,48 @@
+# i054a-shm: the planner settings of iteration-105 arm A
+# (P5plus-f1-card-switches/experiments/iteration-105/configs/A.json, planner_settings),
+# in the same order, without --seed. Arm A2 differs only in solver-seed (314159).
+# Launcher: tools/run_seed.py --profile focus --minutes 60 (seconds 3570), 7 workers.
+# Expanded by spire_exact/planning/configs.py; tests/test_refactor_plugins.py checks
+# the expansion against that argv and that every active mechanism is allowed in a
+# default configuration (spire_exact/planning/registry.py).
+name = "i054a-shm"
+description = "frozen-i054a-shm as launched for iteration-105 arm A"
+
+[planner]
+character = "IRONCLAD"
+ascension = 10
+unlocks = "all"
+workers = 7
+dop = 1
+reserve-mib = 1024
+evaluations = 1000000
+seconds = 3570
+task-seconds = 1200
+max-decisions = 12000
+lookahead-actions = 12000
+lookahead-floors = 99
+alternatives = 8
+survivors = 2
+budget-ms = 600000
+boss-budget-ms = 600000
+nodes = 60000
+profile = "Low"
+dispatch = "ordered"
+dispatch-window = 56
+solver-seed = 271828
+low-io = true
+event-driven-settle = true
+checkpoint-mib = 1024
+cache-mib = 128
+archive-entries = 256
+scheduler = "focus"
+prior = true
+gate-preset = "escalate"
+repair-mode = "gate"
+normal-nodes = 10000
+runtime-profile = "server-large-gen0"
+worker-memory-mib = 1792
+root-policies = "pick,elo"
+focus-cluster-cap = 2
+final-gate-plan = "open"
+worker-memory-policy = "shared"

@@ -129,7 +129,58 @@ function readinessHTML(search){
  const parts=[r&&typeof r==='object'?readinessPart(r):'',p&&typeof p==='object'&&p.enabled!==false?pairedHTML(p):''].filter(Boolean);
  return parts.join('<hr class="model-rule">');
 }
-if(typeof module!=='undefined'&&module.exports){module.exports={totals,coefficients,gateHTML,bestOutcome,gateKey,jointGate,jointHTML,pairedRows,readinessHTML};return}
+const CLINIC_VERDICT={ROOT:['根不对','dead'],DEPTH:['深度不够','pending'],UNDECIDED:['未定',''],PASSED:['已过关','viable']};
+const CLINIC_KIND={RESOURCE:'缺资源（血量）',TACTICAL:'缺打法',MIXED:'资源和打法都缺'};
+const CLINIC_EVIDENCE={'root:saturated':'多次入场没有刷新纪录','root:endpoint_below_pass':'进步趋势外推仍到不了过关',
+ 'root:far_from_pass':'最好成绩离过关很远','root:tactically_insensitive':'重试换打法几乎不提升',
+ 'root:full_hp_f2_dead':'满血打第二首领全输','root:structural_deficit':'牌组结构落后于结构先验',
+ 'root:full_hp_projection_short':'外推到满血入场也不够','depth:near_miss':'差一点过关','depth:retry_lift':'重试换打法有明显提升',
+ 'depth:improving':'最近仍在刷新纪录','depth:viable_at_full_hp':'满血打第二首领能赢','depth:hp_sensitive':'外推到满血入场可过关',
+ gate_passed:'已过关',no_entries:'还没有入场'};
+const CLINIC_FEATURE={burden:'负担牌',damage_per_draw:'每抽伤害',deck_size:'牌组大小',draw_per_card:'每张牌抽牌',
+ energy_per_card:'每张牌能量',hp_fraction:'血量比例',scaling_total:'成长合计',steady_block_per_draw:'每抽稳定格挡',upgrade_density:'升级密度'};
+const CLINIC_CLASS={final_gauntlet:'最终幕首领连战',act_boss:'前两幕首领'};
+const clinicGate=g=>Array.isArray(g)?gateTitle({act:g[0],ordinal:g[1]}):'未知关口';
+const clinicVerdict=v=>{const [text,cls]=CLINIC_VERDICT[v]||[v||'—',''];return `<span class="model-state ${cls}">${esc(text)}</span>`};
+const percent=v=>v==null||!Number.isFinite(Number(v))?'—':`${Math.round(Number(v)*100)}%`;
+function clinicRows(clinic){
+ const picks=new Map((clinic?.allocation||[]).map(a=>[`${a.stem}|${a.gate}`,a]));
+ const order={ROOT:0,DEPTH:1,UNDECIDED:2,PASSED:3};
+ return (clinic?.gates||[]).map(g=>{const a=picks.get(`${g.stem}|${g.gate}`)||{};return {...g,reroot_picks:count(a.reroot_picks),local_picks:count(a.local_picks)}})
+  .sort((a,b)=>(order[a.verdict]??4)-(order[b.verdict]??4)||(b.reroot_picks+b.local_picks)-(a.reroot_picks+a.local_picks)||count(b.distinct_entries)-count(a.distinct_entries));
+}
+function clinicHTML(clinic,limit=30){
+ if(!clinic||typeof clinic!=='object')return '';
+ const counts=clinic.counts||{},modes=clinic.focus_modes||{},shares=clinic.shares_percent||{},rows=clinicRows(clinic);
+ const verdicts=['ROOT','DEPTH','UNDECIDED','PASSED'].map(v=>[v,rows.filter(r=>r.verdict===v).length]).filter(([,n])=>n);
+ const share=['ROOT','UNDECIDED','DEPTH'].filter(v=>shares[v]!=null).map(v=>`${CLINIC_VERDICT[v][0]} ${number(shares[v])}%`).join(' · ');
+ const table=rows.length?`<div class="clinic-table-wrap"><table class="clinic-table"><thead><tr><th>分支</th><th>关口</th><th>判定</th><th>入场 / 过关</th><th>最好进度</th><th>根 / 深</th><th>依据</th><th>已分配（扎根 / 局部）</th></tr></thead><tbody>${rows.slice(0,limit).map(r=>`<tr>
+<td><code>${esc(String(r.stem||'').slice(0,8))}</code></td><td>${esc(clinicGate(r.gate))}</td>
+<td>${clinicVerdict(r.verdict)}${r.kind?`<small>${esc(CLINIC_KIND[r.kind]||r.kind)}</small>`:''}${r.target_act!=null?`<small>回到第 ${number(Number(r.target_act)+1)} 幕重选</small>`:''}</td>
+<td>${number(r.distinct_entries)} / ${number(r.passes)}</td><td>${percent(r.best_progress)}</td><td>${number(r.root_score)} / ${number(r.depth_score)}</td>
+<td class="clinic-evidence">${(r.evidence||[]).map(e=>`<span class="${String(e).startsWith('root:')?'root':String(e).startsWith('depth:')?'depth':''}">${esc(CLINIC_EVIDENCE[e]||e)}</span>`).join('')}</td>
+<td>${number(r.reroot_picks)} / ${number(r.local_picks)}</td></tr>`).join('')}</tbody></table></div>${rows.length>limit?`<p class="model-caption">只显示前 ${number(limit)} 行（共 ${number(rows.length)} 行），按判定和已分配次数排列。</p>`:''}`
+  :'<div class="model-empty">还没有关口达到判定所需的入场数。</div>';
+ const events=(clinic.events||[]).slice(-8).reverse();
+ const eventList=events.length?`<ol class="clinic-events">${events.map(e=>`<li><span>#${number(e.serial)}</span><span>${esc(clinicGate(e.gate))} · <code>${esc(String(e.stem||'').slice(0,8))}</code></span><span>${clinicVerdict(e.from)} → ${clinicVerdict(e.to)}</span><small>入场 ${number(e.entries)} · 最好 ${percent(e.best)}${e.structural_deficit!=null?` · 结构差距 ${decimal(e.structural_deficit)}`:''}</small></li>`).join('')}</ol>`
+  :'<div class="model-empty">还没有判定变化。</div>';
+ const posterior=clinic.structural_prior?.posterior||{};
+ const priors=Object.entries(posterior).filter(([,p])=>p&&p.weights).map(([cls,p])=>{
+  const w=Object.entries(p.weights).filter(([,v])=>Number.isFinite(v)).sort((a,b)=>Math.abs(b[1])-Math.abs(a[1]));
+  const top=Math.max(1e-9,...w.map(([,v])=>Math.abs(v)));
+  return `<div class="clinic-prior"><h4>${esc(CLINIC_CLASS[cls]||cls)} <small>${number(p.rows)} 行${p.fitted?' · 已拟合':' · 未拟合'}</small></h4><ul>${w.map(([k,v])=>`<li><span>${esc(CLINIC_FEATURE[k]||k)}</span><i class="${v<0?'neg':'pos'}" style="width:${(Math.abs(v)/top*50).toFixed(1)}%"></i><b>${signed(v)}</b></li>`).join('')}</ul></div>`}).join('');
+ const t=clinic.thresholds||{};
+ return `<div class="card-heading"><div><h3>关口诊所 · 诊断模型</h3><p>每个分支在每个首领关口判一次：根不对（该回更早一幕重选）还是深度不够（在附近继续深挖）</p></div><span class="chart-pill">${clinic.contended?'多分支竞争中':'无竞争'}</span></div>
+<div class="model-kpis clinic-kpis"><article><span>入账结果</span><strong>${number(clinic.records)}</strong><small>真实结果，合成或缓存的不算（忽略 ${number(counts.ignored)}）</small></article>
+<article><span>分支</span><strong>${number(clinic.stems)}</strong><small>按首领前的决策序列划分</small></article>
+<article><span>关口判定</span><strong>${verdicts.map(([v,n])=>`${esc(CLINIC_VERDICT[v][0])} ${number(n)}`).join(' · ')||'—'}</strong><small>当前分支 × 关口的判定</small></article>
+<article><span>已分配的搜索</span><strong>扎根 ${number(modes.reroot)} · 局部 ${number(modes.local)}</strong><small>修复提示触发的重新扎根 ${number(clinic.hinted_reroots)}</small></article></div>
+<p class="model-caption">重新扎根比例：${esc(share||'—')}。判定需要至少 ${number(t.min_entries)} 次不同入场；进度 ≥ ${percent(t.near)} 算接近，&lt; ${percent(t.far)} 算很远。</p>
+${table}
+<div class="clinic-columns"><section><h4>最近的判定变化</h4>${eventList}</section><section><h4>结构先验（本次运行的后验权重）</h4>${priors||'<div class="model-empty">结构先验未启用。</div>'}<p class="model-caption">只是结构方向，正值表示这个特征越高越容易过关。</p></section></div>
+<p class="model-caption">只分配不剪枝：诊断只决定下一次搜索从哪里出发，不删除候选，不是上界，也不证明某条路线赢不了。</p>`;
+}
+if(typeof module!=='undefined'&&module.exports){module.exports={totals,coefficients,gateHTML,bestOutcome,gateKey,jointGate,jointHTML,pairedRows,readinessHTML,clinicRows,clinicHTML};return}
 const get=id=>document.getElementById(id);
 const view={run:null,gate:null,data:null,histories:new Map(),stamp:null};
 function observe(d){
@@ -161,6 +212,7 @@ const track=(fitted,entries)=>`<div class="model-training-track"><i style="width
 function sync(d){
  if(state.tab!=='model'||!d)return;
  view.data=d;
+ const clinic=clinicHTML(d.search?.gate_clinic);get('model-clinic').classList.toggle('hidden',!clinic);get('model-clinic').innerHTML=clinic;
  const model=d.gate_models,meta=d.gate_model_meta||{},readiness=get('model-readiness');
  if(!model||!Array.isArray(model.gates)){
   readiness.classList.add('hidden');

@@ -24,10 +24,10 @@ def process_identity(pid):
 
 def validate(payload):
     if not isinstance(payload,dict)or set(payload)-{'seed','minutes'}:raise ValueError('请求只能包含种子和时间预算。')
-    seed=payload.get('seed');minutes=payload.get('minutes',30)
+    seed=payload.get('seed');minutes=payload.get('minutes',180)
     if not isinstance(seed,str)or not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_-]{0,63}',seed.strip()):
         raise ValueError('种子需为 1–64 位字母、数字、下划线或连字符，首位为字母或数字。')
-    if type(minutes)is not int or not 1<=minutes<=45:raise ValueError('时间预算需为 1–45 分钟。')
+    if type(minutes)is not int or not 1<=minutes<=180:raise ValueError('时间预算需为 1–180 分钟。')
     return {'seed':seed.strip(),'minutes':minutes}
 
 def read(path,default=None):
@@ -230,12 +230,12 @@ def launch(payload,repo):
         waits=blockers(repo)
         if len(waits)>=8:raise ValueError('当前排队任务较多，请等待已有任务完成。')
         profile=read(ROOT/'dashboard/solver-profile.json',{})
-        from tools.prepare_dashboard import PUBLIC_PROFILE, PUBLIC_RELEASE, validate_ready
-        prepared=validate_ready(profile)
+        if profile.get('entry_enabled') is False:
+            raise ValueError('此候选尚未完成验收，求解入口暂未启用。')
         if request['minutes']>15 and not profile.get('long_run_ready'):
             raise ValueError('长时间运行配置仍在验证，当前可先使用 1–15 分钟。')
         workspace=(ROOT/profile['workspace']).resolve()
-        if workspace!=ROOT.resolve() or profile.get('public_source') is not True:
+        if not workspace.is_relative_to((ROOT/'experiments').resolve())or not(workspace/'freeze.json').is_file():
             raise RuntimeError('已验证的求解版本不可用。')
         from spire_exact.planning.pool import RUNTIME_PROFILES
         if profile.get('runtime_profile')not in RUNTIME_PROFILES:raise RuntimeError('运行时配置无效。')
@@ -245,11 +245,7 @@ def launch(payload,repo):
         accepted=datetime.datetime.now().astimezone().isoformat()
         manifest={'run_id':run_id,'manual':True,'protocol':'A10-seed-v2','seed':request['seed'],'solver_seed':271828,
                   'timestamp':accepted,'accepted_at':accepted,'wall_cap_seconds':request['minutes']*60,
-                  'workload_bytes':14*1024**3,'os_reserve_bytes':2*1024**3,'version':prepared['source_version'],
-                  'host_sha256':prepared['host_sha256'],'feature_profile':PUBLIC_PROFILE,
-                  'source_release':PUBLIC_RELEASE,
-                  'pause_clock_validation':{'report_path':prepared['report_path'],
-                      'source_version':prepared['source_version'],'host_sha256':prepared['host_sha256']},
+                  'workload_bytes':14*1024**3,'os_reserve_bytes':2*1024**3,'version':read(workspace/'freeze.json',{}).get('source_version'),
                   'settings':solver_settings(request,profile),
                   'workspace':str(workspace),'runtime_profile':profile['runtime_profile'],'old_prefixes_loaded':False,
                   'memory_protocol_override':'User authorized 16 GiB total; 14 GiB workload plus 2 GiB reserve',

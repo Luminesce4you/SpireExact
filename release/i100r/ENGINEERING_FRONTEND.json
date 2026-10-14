@@ -1,0 +1,12 @@
+{
+  "portable_start_passed": true,
+  "workspace_binding_correct": true,
+  "repeat_start_reuses_same_owned_service": true,
+  "public_entry_disabled": true,
+  "no_user_runs_indexed": true,
+  "browser_validation_passed": true,
+  "native_game_requests_executed": 0,
+  "new_job_submitted": false,
+  "original_services_touched": false,
+  "temporary_port": 8878
+}

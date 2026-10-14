@@ -103,31 +103,17 @@ def room_summaries(ctx: dict, result: dict) -> list[dict]:
 
 
 class NativeCampaignBackend:
-    def __init__(self, ctx: dict, directory: Path, game_dir: Path | None, advisor: str = 'none'):
+    def __init__(self, ctx: dict, directory: Path, game_dir: Path | None, advisor: str = 'none',
+                 solver: str | None = None):
         self.ctx = ctx
         self.directory = directory
         self.data = game_data(game_dir)
         self.inputs = input_fingerprint(self.data)
         self.advisor = None
         if advisor == 'combatsolver':
-            upstream = ROOT / 'vendor/CombatSolver'
-            provenance = verify_upstream(upstream, allow_dirty=True)
-            solver = upstream / '.godot/mono/temp/bin/Release/CombatSolver.dll'
-            harness = upstream / 'tools/OfflineSearchHarness/bin/Release/net9.0/OfflineSearchHarness.dll'
-            import json
-            version = json.loads((self.data.parent / 'release_info.json').read_text(encoding='utf-8'))['version'].removeprefix('v')
-            workshop = self.data.parents[2] / 'workshop/content/2868840/3747602295'
-            dirs = [workshop / 'compat' / version, workshop / 'shared']
-            for file in (solver, harness, dirs[0] / 'STS2-RitsuLib.dll'):
-                if not file.is_file():
-                    raise ContractError('optional CombatSolver advisor missing: ' + str(file))
-            self.advisor = {'solver': str(solver), 'harness': str(harness),
-                            'dependency_dirs': [str(p) for p in dirs], 'budget_ms': 200}
-            from .planning.identity import advisor_identity
-            self.advisor['binary_identity'] = advisor_identity(self.advisor)
-            write_json(directory / 'advisor-provenance.json', {'upstream': provenance,
-                'solver_sha256': file_hash(solver), 'harness_sha256': file_hash(harness),
-                'use': 'candidate proposals only; never an upper bound or infeasibility proof'})
+            from .solvers import resolve
+            self.advisor, record = resolve(solver, self.data)
+            write_json(directory / 'advisor-provenance.json', record)
         elif advisor != 'none':
             raise ContractError('unknown candidate advisor')
 

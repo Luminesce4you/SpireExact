@@ -1,0 +1,2310 @@
+{
+ "schema": "g2-unsaved-state/1",
+ "created": "2026-10-12T22:50:21",
+ "author": "refactor main thread (Claude), tools/unsaved_state_scan.py",
+ "purpose": "G3 safeguard 1 (g2/plan.md section 6): static list of model instance state the save does not carry.",
+ "game_source": "experiments/g1-rng/decompiled (v0.111.0)",
+ "source_sha256": "5a3653746901df120308aecd682165b4d01e99480c92d97d7e2b7803a3eb7c1c",
+ "classes_scanned": 1282,
+ "saved_properties_seen": 59,
+ "rule": "a door whose player owns (relic, deck card, card enchantment, potion, run modifier) any type in route_to_scratch takes the scratch-replay path for result and cost; base-class entries are compared by the fork check on every door, not routing keys; combat_only entries cannot reach a map-boundary checkpoint",
+ "counts": {
+  "A": 72,
+  "B": 43,
+  "R": 7,
+  "visual": 15,
+  "test": 9,
+  "lazy": 1
+ },
+ "route_to_scratch": [
+  "ArchaicTooth",
+  "BingBong",
+  "Claw",
+  "Glam",
+  "Hoarder",
+  "KinglyPunch",
+  "Maul",
+  "Momentum",
+  "PenNib",
+  "Rampage",
+  "Regret",
+  "SovereignBlade",
+  "SpoilsMap",
+  "TheBall",
+  "Thrash",
+  "UpMySleeve",
+  "Wither"
+ ],
+ "route_to_scratch_conservative": [
+  "ArchaicTooth",
+  "ArtOfWar",
+  "BeatingRemnant",
+  "BeltBuckle",
+  "BingBong",
+  "BrilliantScarf",
+  "BurningSticks",
+  "CentennialPuzzle",
+  "Claw",
+  "DemonTongue",
+  "Glam",
+  "Hoarder",
+  "JossPaper",
+  "KinglyPunch",
+  "Kunai",
+  "Kusarigama",
+  "LetterOpener",
+  "Maul",
+  "Metronome",
+  "MiniRegent",
+  "Momentum",
+  "MusicBox",
+  "Orichalcum",
+  "OrnamentalFan",
+  "PaelsEye",
+  "PaelsLegion",
+  "PaelsTears",
+  "PenNib",
+  "Permafrost",
+  "Pocketwatch",
+  "RainbowRing",
+  "Rampage",
+  "RedSkull",
+  "Regalite",
+  "Regret",
+  "RuinedHelmet",
+  "Shuriken",
+  "SovereignBlade",
+  "SpoilsMap",
+  "TheBall",
+  "Thrash",
+  "ThrowingAxe",
+  "UnsettlingLamp",
+  "UpMySleeve",
+  "Vambrace",
+  "VelvetChoker",
+  "Wither"
+ ],
+ "base_class_entries": [
+  {
+   "type": "AbstractModel",
+   "kind": "base",
+   "field": "CategorySortingId",
+   "field_type": "auto-property",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "InitId"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/AbstractModel.cs"
+  },
+  {
+   "type": "AbstractModel",
+   "kind": "base",
+   "field": "EntrySortingId",
+   "field_type": "auto-property",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "InitId"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/AbstractModel.cs"
+  },
+  {
+   "type": "AbstractModel",
+   "kind": "base",
+   "field": "IsMutable",
+   "field_type": "auto-property",
+   "tier": "test",
+   "combat_only": false,
+   "writers": [
+    "NeverEverCallThisOutsideOfTests_SetIsMutable"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/AbstractModel.cs"
+  },
+  {
+   "type": "AfflictionModel",
+   "kind": "base",
+   "field": "_card",
+   "field_type": "CardModel?",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "ClearInternal"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/AfflictionModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "Affliction",
+   "field_type": "auto-property",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "AfflictInternal",
+    "ClearAfflictionInternal"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "Enchantment",
+   "field_type": "auto-property",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "ClearEnchantmentInternal",
+    "EnchantInternal",
+    "ToSerializable"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "HasBeenRemovedFromState",
+   "field_type": "auto-property",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "RemoveFromState"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "StarCostChanged",
+   "field_type": "event Action?",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "UpgradeStarCostBy"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_baseStarCost",
+   "field_type": "int",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "DowngradeInternal",
+    "UpgradeStarCostBy"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_canonicalInstance",
+   "field_type": "CardModel?",
+   "tier": "lazy",
+   "combat_only": false,
+   "writers": [],
+   "lazy_writers": [
+    "AfterCloned"
+   ],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_cloneOf",
+   "field_type": "CardModel?",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "CreateClone"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_currentPlayIndex",
+   "field_type": "int",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "OnPlayWrapper"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_currentTarget",
+   "field_type": "Creature?",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "OnPlayWrapper"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_currentUpgradeLevel",
+   "field_type": "int",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "DowngradeInternal",
+    "ToSerializable",
+    "UpgradeInternal"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_deckVersion",
+   "field_type": "CardModel?",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "DeprecatedCard.OnPlay"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_dynamicVars",
+   "field_type": "DynamicVarSet?",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "DowngradeInternal"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_energyCost",
+   "field_type": "CardEnergyCost?",
+   "tier": "test",
+   "combat_only": false,
+   "writers": [
+    "MockSetEnergyCost"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_exhaustOnNextPlay",
+   "field_type": "bool",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "EndOfTurnCleanup",
+    "GetResultLocationForCardPlay"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_floorAddedToDeck",
+   "field_type": "int?",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "ToSerializable"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_hasSingleTurnRetain",
+   "field_type": "bool",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "EndOfTurnCleanup",
+    "GiveSingleTurnRetain"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_hasSingleTurnSly",
+   "field_type": "bool",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "EndOfTurnCleanup",
+    "GiveSingleTurnSly"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_keywords",
+   "field_type": "HashSet<CardKeyword>?",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "AddKeyword",
+    "DowngradeInternal",
+    "RemoveKeyword"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_lastStarsSpent",
+   "field_type": "int",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "SpendStars"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_owner",
+   "field_type": "Player?",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "CreateCloneForPlayer",
+    "GiveToAnotherPlayer",
+    "NeverEverCallThisOutsideOfTests_ClearOwner"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_starCostSet",
+   "field_type": "bool",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "UpgradeStarCostBy"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_temporaryStarCosts",
+   "field_type": "List<TemporaryCardCost>",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "AddTemporaryStarCost",
+    "EndOfTurnCleanup",
+    "OnPlayWrapper",
+    "UpgradeStarCostBy"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "CardModel",
+   "kind": "base",
+   "field": "_wasStarCostJustUpgraded",
+   "field_type": "bool",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "FinalizeUpgradeInternal",
+    "UpgradeStarCostBy"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/CardModel.cs"
+  },
+  {
+   "type": "EnchantmentModel",
+   "kind": "base",
+   "field": "Props",
+   "field_type": "auto-property",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "ToSerializable"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/EnchantmentModel.cs"
+  },
+  {
+   "type": "EnchantmentModel",
+   "kind": "base",
+   "field": "StatusChanged",
+   "field_type": "event Action?",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "Glam.AfterCardPlayed",
+    "Sown.OnPlay",
+    "Swift.OnPlay",
+    "Vigorous.AfterCardPlayed"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/EnchantmentModel.cs"
+  },
+  {
+   "type": "EnchantmentModel",
+   "kind": "base",
+   "field": "_amount",
+   "field_type": "int",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "ApplyInternal",
+    "Goopy.AfterCardPlayed",
+    "ToSerializable"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/EnchantmentModel.cs"
+  },
+  {
+   "type": "EnchantmentModel",
+   "kind": "base",
+   "field": "_card",
+   "field_type": "CardModel?",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "ApplyInternal",
+    "ClearInternal"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/EnchantmentModel.cs"
+  },
+  {
+   "type": "EnchantmentModel",
+   "kind": "base",
+   "field": "_status",
+   "field_type": "EnchantmentStatus",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "Glam.AfterCardPlayed",
+    "Sown.OnPlay",
+    "Swift.OnPlay",
+    "Vigorous.AfterCardPlayed"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/EnchantmentModel.cs"
+  },
+  {
+   "type": "ModifierModel",
+   "kind": "base",
+   "field": "_runState",
+   "field_type": "RunState?",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "OnRunCreated",
+    "OnRunLoaded"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/ModifierModel.cs"
+  },
+  {
+   "type": "PotionModel",
+   "kind": "base",
+   "field": "HasBeenRemovedFromState",
+   "field_type": "auto-property",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "Discard",
+    "RemoveBeforeUse"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/PotionModel.cs"
+  },
+  {
+   "type": "PotionModel",
+   "kind": "base",
+   "field": "IsQueued",
+   "field_type": "auto-property",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "AfterUsageCanceled",
+    "EnqueueManualUse"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/PotionModel.cs"
+  },
+  {
+   "type": "PowerModel",
+   "kind": "base",
+   "field": "_amount",
+   "field_type": "int",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "SetAmount"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/PowerModel.cs"
+  },
+  {
+   "type": "PowerModel",
+   "kind": "base",
+   "field": "_owner",
+   "field_type": "Creature?",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "ApplyInternal"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/PowerModel.cs"
+  },
+  {
+   "type": "PowerModel",
+   "kind": "base",
+   "field": "_target",
+   "field_type": "Creature?",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "SwipePower.Steal"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/PowerModel.cs"
+  },
+  {
+   "type": "RelicModel",
+   "kind": "base",
+   "field": "HasBeenRemovedFromState",
+   "field_type": "auto-property",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "RemoveInternal"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/RelicModel.cs"
+  },
+  {
+   "type": "RelicModel",
+   "kind": "base",
+   "field": "StackCount",
+   "field_type": "auto-property",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "IncrementStackCount"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/RelicModel.cs"
+  },
+  {
+   "type": "RelicModel",
+   "kind": "base",
+   "field": "StatusChanged",
+   "field_type": "event Action?",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "ArtOfWar.AfterCardPlayed",
+    "ArtOfWar.AfterCombatEnd",
+    "ArtOfWar.AfterEnergyReset",
+    "BeltBuckle.RefreshStatus",
+    "BoneTea.CombatsLeft(property)",
+    "BrilliantScarf.UpdateDisplay",
+    "BurningSticks.AfterCardExhausted",
+    "BurningSticks.AfterCombatEnd",
+    "BurningSticks.AfterRoomEntered",
+    "EmberTea.CombatsLeft(property)",
+    "EmotionChip.AfterCombatEnd",
+    "EmotionChip.AfterDamageReceived",
+    "EmotionChip.AfterPlayerTurnStart",
+    "FakeHappyFlower.AfterCombatEnd",
+    "FakeHappyFlower.AfterSideTurnStart",
+    "FakeVenerableTeaSet.GainEnergyInNextCombat(property)",
+    "GalacticDust.UpdateDisplay",
+    "HappyFlower.AfterCombatEnd",
+    "HappyFlower.AfterSideTurnStart",
+    "IronClub.UpdateDisplay",
+    "JossPaper.CardsExhausted(property)",
+    "Kunai.AfterCombatEnd",
+    "Kunai.BeforeSideTurnStart",
+    "Kunai.UpdateDisplay",
+    "Kusarigama.AfterCombatEnd",
+    "Kusarigama.AfterSideTurnEnd",
+    "Kusarigama.BeforeCombatStart",
+    "Kusarigama.UpdateDisplay",
+    "LavaRock.TryModifyRewards",
+    "LetterOpener.AfterCombatEnd",
+    "LetterOpener.AfterSideTurnStart",
+    "LetterOpener.BeforeCombatStart",
+    "LetterOpener.UpdateDisplay",
+    "LizardTail.WasUsed(property)",
+    "MawBank.HasItemBeenBought(property)",
+    "MeatOnTheBone.AfterCombatVictoryEarly",
+    "MeatOnTheBone.AfterCurrentHpChanged",
+    "MeatOnTheBone.BeforeCombatStart",
+    "Metronome.AfterCombatEnd",
+    "Metronome.UpdateDisplay",
+    "Nunchaku.UpdateDisplay",
+    "OrnamentalFan.BeforeSideTurnStart",
+    "OrnamentalFan.UpdateDisplay",
+    "PaelsEye.AfterCombatEnd",
+    "PaelsEye.AfterSideTurnStart",
+    "PaelsEye.AfterTakingExtraTurn",
+    "PaelsEye.BeforeCardPlayed",
+    "PaelsFlesh.AfterCombatEnd",
+    "PaelsFlesh.AfterSideTurnStart",
+    "PaelsLegion.AfterCardPlayed",
+    "PaelsLegion.AfterCombatEnd",
+    "PaelsLegion.AfterSideTurnStart",
+    "PaelsTooth.AfterCombatEnd",
+    "PaelsTooth.UpdateCardList",
+    "Pantograph.AfterRoomEntered",
+    "PenNib.UpdateDisplay",
+    "Pendulum.AfterCombatEnd",
+    "Pendulum.BeforeHandDraw",
+    "Pocketwatch.AfterCombatEnd",
+    "Pocketwatch.RefreshCounter",
+    "PollinousCore.AfterCombatEnd",
+    "PollinousCore.UpdateDisplay",
+    "PumpkinCandle.KindleCount(property)",
+    "RainbowRing.ActivationCountThisTurn(property)",
+    "RedSkull.AfterCombatEnd",
+    "RedSkull.ModifyStrengthIfNecessary",
+    "RegalPillow.AfterRestSiteHeal",
+    "RegalPillow.AfterRoomEntered",
+    "RippleBasin.AfterCardPlayed",
+    "RippleBasin.AfterCombatEnd",
+    "RippleBasin.BeforeSideTurnEnd",
+    "RippleBasin.BeforeSideTurnStart",
+    "Shuriken.AfterCombatEnd",
+    "Shuriken.BeforeSideTurnStart",
+    "Shuriken.UpdateDisplay",
+    "SilkenTress.IsUsed(property)",
+    "SilverCrucible.CheckIfUsedUp",
+    "StoneCalendar.AfterCombatEnd",
+    "StoneCalendar.AfterRoomEntered",
+    "StoneCalendar.AfterSideTurnStart",
+    "StoneCalendar.BeforeSideTurnEnd",
+    "TeaOfDiscourtesy.CombatsLeft(property)",
+    "ThrowingAxe.AfterCombatEnd",
+    "ThrowingAxe.AfterModifyingCardPlayCount",
+    "ThrowingAxe.AfterRoomEntered",
+    "ToyBox.CombatsSeen(property)",
+    "TuningFork.UpdateDisplay",
+    "UnsettlingLamp.AfterCardPlayed",
+    "UnsettlingLamp.AfterCombatEnd",
+    "UnsettlingLamp.BeforeCombatStart",
+    "Vambrace.AfterCombatEnd",
+    "Vambrace.AfterModifyingBlockAmount",
+    "Vambrace.BeforeCombatStart",
+    "VenerableTeaSet.GainEnergyInNextCombat(property)",
+    "WingedBoots.CheckIfUsedUp",
+    "WongosMysteryTicket.GaveRelic(property)"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/RelicModel.cs"
+  },
+  {
+   "type": "RelicModel",
+   "kind": "base",
+   "field": "_floorAddedToDeck",
+   "field_type": "int",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "ToSerializable"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/RelicModel.cs"
+  },
+  {
+   "type": "RelicModel",
+   "kind": "base",
+   "field": "_resolvedBigIconPath",
+   "field_type": "string?",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "RelicIconChanged"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/RelicModel.cs"
+  },
+  {
+   "type": "RelicModel",
+   "kind": "base",
+   "field": "_status",
+   "field_type": "RelicStatus",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "ArtOfWar.AfterCardPlayed",
+    "ArtOfWar.AfterCombatEnd",
+    "ArtOfWar.AfterEnergyReset",
+    "BeltBuckle.RefreshStatus",
+    "BoneTea.CombatsLeft(property)",
+    "BrilliantScarf.UpdateDisplay",
+    "BurningSticks.AfterCardExhausted",
+    "BurningSticks.AfterCombatEnd",
+    "BurningSticks.AfterRoomEntered",
+    "EmberTea.CombatsLeft(property)",
+    "EmotionChip.AfterCombatEnd",
+    "EmotionChip.AfterDamageReceived",
+    "EmotionChip.AfterPlayerTurnStart",
+    "FakeHappyFlower.AfterCombatEnd",
+    "FakeHappyFlower.AfterSideTurnStart",
+    "FakeVenerableTeaSet.GainEnergyInNextCombat(property)",
+    "GalacticDust.UpdateDisplay",
+    "HappyFlower.AfterCombatEnd",
+    "HappyFlower.AfterSideTurnStart",
+    "IronClub.UpdateDisplay",
+    "JossPaper.CardsExhausted(property)",
+    "Kunai.AfterCombatEnd",
+    "Kunai.BeforeSideTurnStart",
+    "Kunai.UpdateDisplay",
+    "Kusarigama.AfterCombatEnd",
+    "Kusarigama.AfterSideTurnEnd",
+    "Kusarigama.BeforeCombatStart",
+    "Kusarigama.UpdateDisplay",
+    "LavaRock.TryModifyRewards",
+    "LetterOpener.AfterCombatEnd",
+    "LetterOpener.AfterSideTurnStart",
+    "LetterOpener.BeforeCombatStart",
+    "LetterOpener.UpdateDisplay",
+    "LizardTail.WasUsed(property)",
+    "MawBank.HasItemBeenBought(property)",
+    "MeatOnTheBone.AfterCombatVictoryEarly",
+    "MeatOnTheBone.AfterCurrentHpChanged",
+    "MeatOnTheBone.BeforeCombatStart",
+    "Metronome.AfterCombatEnd",
+    "Metronome.UpdateDisplay",
+    "Nunchaku.UpdateDisplay",
+    "OrnamentalFan.BeforeSideTurnStart",
+    "OrnamentalFan.UpdateDisplay",
+    "PaelsEye.AfterCombatEnd",
+    "PaelsEye.AfterSideTurnStart",
+    "PaelsEye.AfterTakingExtraTurn",
+    "PaelsEye.BeforeCardPlayed",
+    "PaelsFlesh.AfterCombatEnd",
+    "PaelsFlesh.AfterSideTurnStart",
+    "PaelsLegion.AfterCardPlayed",
+    "PaelsLegion.AfterCombatEnd",
+    "PaelsLegion.AfterSideTurnStart",
+    "PaelsTooth.AfterCombatEnd",
+    "PaelsTooth.UpdateCardList",
+    "Pantograph.AfterRoomEntered",
+    "PenNib.UpdateDisplay",
+    "Pendulum.AfterCombatEnd",
+    "Pendulum.BeforeHandDraw",
+    "Pocketwatch.AfterCombatEnd",
+    "Pocketwatch.RefreshCounter",
+    "PollinousCore.AfterCombatEnd",
+    "PollinousCore.UpdateDisplay",
+    "PumpkinCandle.KindleCount(property)",
+    "RainbowRing.ActivationCountThisTurn(property)",
+    "RedSkull.AfterCombatEnd",
+    "RedSkull.ModifyStrengthIfNecessary",
+    "RegalPillow.AfterRestSiteHeal",
+    "RegalPillow.AfterRoomEntered",
+    "RippleBasin.AfterCardPlayed",
+    "RippleBasin.AfterCombatEnd",
+    "RippleBasin.BeforeSideTurnEnd",
+    "RippleBasin.BeforeSideTurnStart",
+    "Shuriken.AfterCombatEnd",
+    "Shuriken.BeforeSideTurnStart",
+    "Shuriken.UpdateDisplay",
+    "SilkenTress.IsUsed(property)",
+    "SilverCrucible.CheckIfUsedUp",
+    "StoneCalendar.AfterCombatEnd",
+    "StoneCalendar.AfterRoomEntered",
+    "StoneCalendar.AfterSideTurnStart",
+    "StoneCalendar.BeforeSideTurnEnd",
+    "TeaOfDiscourtesy.CombatsLeft(property)",
+    "ThrowingAxe.AfterCombatEnd",
+    "ThrowingAxe.AfterModifyingCardPlayCount",
+    "ThrowingAxe.AfterRoomEntered",
+    "ToyBox.CombatsSeen(property)",
+    "TuningFork.UpdateDisplay",
+    "UnsettlingLamp.AfterCardPlayed",
+    "UnsettlingLamp.AfterCombatEnd",
+    "UnsettlingLamp.BeforeCombatStart",
+    "Vambrace.AfterCombatEnd",
+    "Vambrace.AfterModifyingBlockAmount",
+    "Vambrace.BeforeCombatStart",
+    "VenerableTeaSet.GainEnergyInNextCombat(property)",
+    "WingedBoots.CheckIfUsedUp",
+    "WongosMysteryTicket.GaveRelic(property)"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models/RelicModel.cs"
+  }
+ ],
+ "entries": [
+  {
+   "type": "Claw",
+   "kind": "card",
+   "field": "_extraDamageFromClawPlays",
+   "field_type": "decimal",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "BuffFromClawPlay"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Cards/Claw.cs"
+  },
+  {
+   "type": "Discovery",
+   "kind": "card",
+   "field": "_mockSelectedCard",
+   "field_type": "CardModel?",
+   "tier": "test",
+   "combat_only": false,
+   "writers": [
+    "MockSelectedCard"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Cards/Discovery.cs"
+  },
+  {
+   "type": "KinglyPunch",
+   "kind": "card",
+   "field": "_extraDamage",
+   "field_type": "decimal",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "AfterCardDrawn"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Cards/KinglyPunch.cs"
+  },
+  {
+   "type": "MadScience",
+   "kind": "card",
+   "field": "_mockedChaosCard",
+   "field_type": "CardModel?",
+   "tier": "test",
+   "combat_only": false,
+   "writers": [
+    "MockChaosCard"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Cards/MadScience.cs"
+  },
+  {
+   "type": "Maul",
+   "kind": "card",
+   "field": "_extraDamageFromMaulPlays",
+   "field_type": "decimal",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "BuffFromMaulPlay"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Cards/Maul.cs"
+  },
+  {
+   "type": "Rampage",
+   "kind": "card",
+   "field": "_extraDamageFromPlays",
+   "field_type": "decimal",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "OnPlay"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Cards/Rampage.cs"
+  },
+  {
+   "type": "Regret",
+   "kind": "card",
+   "field": "_cardsInHand",
+   "field_type": "int",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "BeforeSideTurnEnd",
+    "OnTurnEndInHand"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Cards/Regret.cs"
+  },
+  {
+   "type": "SovereignBlade",
+   "kind": "card",
+   "field": "_currentDamage",
+   "field_type": "decimal",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "AddDamage"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Cards/SovereignBlade.cs"
+  },
+  {
+   "type": "SovereignBlade",
+   "kind": "card",
+   "field": "_currentRepeats",
+   "field_type": "decimal",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "SetRepeats"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Cards/SovereignBlade.cs"
+  },
+  {
+   "type": "Splash",
+   "kind": "card",
+   "field": "_mockGeneratedCard",
+   "field_type": "CardModel?",
+   "tier": "test",
+   "combat_only": false,
+   "writers": [
+    "MockGeneratedCard"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Cards/Splash.cs"
+  },
+  {
+   "type": "SpoilsMap",
+   "kind": "card",
+   "field": "SpoilsCoord",
+   "field_type": "auto-property",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "ModifyGeneratedMapLate"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Cards/SpoilsMap.cs"
+  },
+  {
+   "type": "TheBall",
+   "kind": "card",
+   "field": "_extraDamageFromPlays",
+   "field_type": "decimal",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "OnPlay"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Cards/TheBall.cs"
+  },
+  {
+   "type": "Thrash",
+   "kind": "card",
+   "field": "_extraDamage",
+   "field_type": "decimal",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "OnPlay"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Cards/Thrash.cs"
+  },
+  {
+   "type": "UpMySleeve",
+   "kind": "card",
+   "field": "_timesPlayedThisCombat",
+   "field_type": "int",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "OnPlay"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Cards/UpMySleeve.cs"
+  },
+  {
+   "type": "Wither",
+   "kind": "card",
+   "field": "_fakeUpgradeLevel",
+   "field_type": "int",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "FakeUpgrade"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Cards/Wither.cs"
+  },
+  {
+   "type": "Glam",
+   "kind": "enchantment",
+   "field": "_usedThisCombat",
+   "field_type": "bool",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Enchantments/Glam.cs"
+  },
+  {
+   "type": "Momentum",
+   "kind": "enchantment",
+   "field": "_extraDamage",
+   "field_type": "int",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "OnPlay"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Enchantments/Momentum.cs"
+  },
+  {
+   "type": "Hoarder",
+   "kind": "modifier",
+   "field": "_cardsToSkip",
+   "field_type": "HashSet<CardModel>",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "AfterCardChangedPiles"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Modifiers/Hoarder.cs"
+  },
+  {
+   "type": "BeaconOfHopePower",
+   "kind": "power",
+   "field": "_hasAlreadyBeenGivenBlock",
+   "field_type": "bool",
+   "tier": "A",
+   "combat_only": true,
+   "writers": [
+    "AfterBlockGained"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Powers/BeaconOfHopePower.cs"
+  },
+  {
+   "type": "DemonFormPower",
+   "kind": "power",
+   "field": "_vfx",
+   "field_type": "NDemonFormVfx?",
+   "tier": "A",
+   "combat_only": true,
+   "writers": [
+    "AfterApplied"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Powers/DemonFormPower.cs"
+  },
+  {
+   "type": "EchoFormPower",
+   "kind": "power",
+   "field": "_vfx",
+   "field_type": "NEchoFormVfx?",
+   "tier": "A",
+   "combat_only": true,
+   "writers": [
+    "AfterApplied"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Powers/EchoFormPower.cs"
+  },
+  {
+   "type": "IllusionPower",
+   "kind": "power",
+   "field": "_followUpStateId",
+   "field_type": "string?",
+   "tier": "A",
+   "combat_only": true,
+   "writers": [
+    "AfterDeath"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Powers/IllusionPower.cs"
+  },
+  {
+   "type": "NemesisPower",
+   "kind": "power",
+   "field": "_shouldApplyIntangible",
+   "field_type": "bool",
+   "tier": "A",
+   "combat_only": true,
+   "writers": [
+    "AfterSideTurnEnd"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Powers/NemesisPower.cs"
+  },
+  {
+   "type": "ReaperFormPower",
+   "kind": "power",
+   "field": "_vfx",
+   "field_type": "NReaperFormVfx?",
+   "tier": "A",
+   "combat_only": true,
+   "writers": [
+    "AfterApplied"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Powers/ReaperFormPower.cs"
+  },
+  {
+   "type": "RitualPower",
+   "kind": "power",
+   "field": "_wasJustAppliedByEnemy",
+   "field_type": "bool",
+   "tier": "A",
+   "combat_only": true,
+   "writers": [
+    "AfterApplied",
+    "AfterSideTurnEnd"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Powers/RitualPower.cs"
+  },
+  {
+   "type": "SandpitPower",
+   "kind": "power",
+   "field": "_initialAmount",
+   "field_type": "int",
+   "tier": "A",
+   "combat_only": true,
+   "writers": [
+    "AfterApplied"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Powers/SandpitPower.cs"
+  },
+  {
+   "type": "SandpitPower",
+   "kind": "power",
+   "field": "_initialTargetPosition",
+   "field_type": "float",
+   "tier": "A",
+   "combat_only": true,
+   "writers": [
+    "AfterApplied"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Powers/SandpitPower.cs"
+  },
+  {
+   "type": "SerpentFormPower",
+   "kind": "power",
+   "field": "_vfx",
+   "field_type": "NSerpentFormVfx?",
+   "tier": "A",
+   "combat_only": true,
+   "writers": [
+    "AfterApplied"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Powers/SerpentFormPower.cs"
+  },
+  {
+   "type": "SlothPower",
+   "kind": "power",
+   "field": "_cardsPlayedThisTurn",
+   "field_type": "int",
+   "tier": "R",
+   "combat_only": true,
+   "writers": [
+    "BeforeCardPlayed",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Powers/SlothPower.cs"
+  },
+  {
+   "type": "SoulboundPower",
+   "kind": "power",
+   "field": "_isAddingSoul",
+   "field_type": "bool",
+   "tier": "A",
+   "combat_only": true,
+   "writers": [
+    "AfterCardGeneratedForCombat"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Powers/SoulboundPower.cs"
+  },
+  {
+   "type": "SurroundedPower",
+   "kind": "power",
+   "field": "_facing",
+   "field_type": "Direction",
+   "tier": "A",
+   "combat_only": true,
+   "writers": [
+    "FaceDirection"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Powers/SurroundedPower.cs"
+  },
+  {
+   "type": "SwipePower",
+   "kind": "power",
+   "field": "_stolenCard",
+   "field_type": "CardModel?",
+   "tier": "A",
+   "combat_only": true,
+   "writers": [
+    "Steal"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Powers/SwipePower.cs"
+  },
+  {
+   "type": "TenderPower",
+   "kind": "power",
+   "field": "_cardsPlayedThisTurn",
+   "field_type": "int",
+   "tier": "A",
+   "combat_only": true,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterSideTurnEnd"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Powers/TenderPower.cs"
+  },
+  {
+   "type": "VoidFormPower",
+   "kind": "power",
+   "field": "_vfx",
+   "field_type": "NVoidFormVfx?",
+   "tier": "A",
+   "combat_only": true,
+   "writers": [
+    "AfterApplied"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Powers/VoidFormPower.cs"
+  },
+  {
+   "type": "ArchaicTooth",
+   "kind": "relic",
+   "field": "_extraHoverTips",
+   "field_type": "List<IHoverTip>",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "UpdateHoverTips"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/ArchaicTooth.cs"
+  },
+  {
+   "type": "ArtOfWar",
+   "kind": "relic",
+   "field": "_anyAttacksPlayedLastTurn",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "AfterEnergyReset",
+    "AfterSideTurnEnd"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/ArtOfWar.cs"
+  },
+  {
+   "type": "ArtOfWar",
+   "kind": "relic",
+   "field": "_anyAttacksPlayedThisTurn",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterCombatEnd",
+    "AfterEnergyReset",
+    "AfterSideTurnEnd"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/ArtOfWar.cs"
+  },
+  {
+   "type": "BeatingRemnant",
+   "kind": "relic",
+   "field": "_damageReceivedThisTurn",
+   "field_type": "decimal",
+   "tier": "R",
+   "combat_only": false,
+   "writers": [
+    "AfterDamageReceived",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/BeatingRemnant.cs"
+  },
+  {
+   "type": "BeltBuckle",
+   "kind": "relic",
+   "field": "_dexterityApplied",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatVictory",
+    "ApplyDexterity",
+    "BeforeCombatStart",
+    "RemoveDexterity"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/BeltBuckle.cs"
+  },
+  {
+   "type": "BingBong",
+   "kind": "relic",
+   "field": "_cardsToSkip",
+   "field_type": "HashSet<CardModel>?",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "AfterCardChangedPiles"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/BingBong.cs"
+  },
+  {
+   "type": "BookOfFiveRings",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "visual",
+   "combat_only": false,
+   "writers": [
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/BookOfFiveRings.cs"
+  },
+  {
+   "type": "BrilliantScarf",
+   "kind": "relic",
+   "field": "_cardsPlayedThisTurn",
+   "field_type": "int",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterCombatEnd",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/BrilliantScarf.cs"
+  },
+  {
+   "type": "BurningSticks",
+   "kind": "relic",
+   "field": "_wasUsedThisCombat",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardExhausted",
+    "AfterCombatEnd",
+    "AfterRoomEntered"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/BurningSticks.cs"
+  },
+  {
+   "type": "CentennialPuzzle",
+   "kind": "relic",
+   "field": "_usedThisCombat",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "AfterDamageReceived"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/CentennialPuzzle.cs"
+  },
+  {
+   "type": "DemonTongue",
+   "kind": "relic",
+   "field": "_triggeredThisTurn",
+   "field_type": "bool",
+   "tier": "R",
+   "combat_only": false,
+   "writers": [
+    "AfterDamageReceived",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/DemonTongue.cs"
+  },
+  {
+   "type": "FakeHappyFlower",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "test",
+   "combat_only": false,
+   "writers": [
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/FakeHappyFlower.cs"
+  },
+  {
+   "type": "FakeOrichalcum",
+   "kind": "relic",
+   "field": "_shouldTrigger",
+   "field_type": "bool",
+   "tier": "test",
+   "combat_only": false,
+   "writers": [
+    "BeforeSideTurnEnd",
+    "BeforeSideTurnEndVeryEarly",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/FakeOrichalcum.cs"
+  },
+  {
+   "type": "FakeSneckoEye",
+   "kind": "relic",
+   "field": "_testEnergyCostOverride",
+   "field_type": "int",
+   "tier": "test",
+   "combat_only": false,
+   "writers": [
+    "SetTestEnergyCostOverride"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/FakeSneckoEye.cs"
+  },
+  {
+   "type": "GalacticDust",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "visual",
+   "combat_only": false,
+   "writers": [
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/GalacticDust.cs"
+  },
+  {
+   "type": "HappyFlower",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "visual",
+   "combat_only": false,
+   "writers": [
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/HappyFlower.cs"
+  },
+  {
+   "type": "IronClub",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "visual",
+   "combat_only": false,
+   "writers": [
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/IronClub.cs"
+  },
+  {
+   "type": "JossPaper",
+   "kind": "relic",
+   "field": "_etherealCount",
+   "field_type": "int",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardExhausted",
+    "AfterCombatEnd",
+    "AfterSideTurnEnd"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/JossPaper.cs"
+  },
+  {
+   "type": "JossPaper",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "visual",
+   "combat_only": false,
+   "writers": [
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/JossPaper.cs"
+  },
+  {
+   "type": "Kunai",
+   "kind": "relic",
+   "field": "_attacksPlayedThisTurn",
+   "field_type": "int",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterCombatEnd",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/Kunai.cs"
+  },
+  {
+   "type": "Kunai",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/Kunai.cs"
+  },
+  {
+   "type": "Kusarigama",
+   "kind": "relic",
+   "field": "_attacksPlayedThisTurn",
+   "field_type": "int",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterSideTurnEnd",
+    "BeforeCombatStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/Kusarigama.cs"
+  },
+  {
+   "type": "Kusarigama",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/Kusarigama.cs"
+  },
+  {
+   "type": "LastingCandy",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "visual",
+   "combat_only": false,
+   "writers": [
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/LastingCandy.cs"
+  },
+  {
+   "type": "LetterOpener",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/LetterOpener.cs"
+  },
+  {
+   "type": "LetterOpener",
+   "kind": "relic",
+   "field": "_skillsPlayedThisTurn",
+   "field_type": "int",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterSideTurnStart",
+    "BeforeCombatStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/LetterOpener.cs"
+  },
+  {
+   "type": "Metronome",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "visual",
+   "combat_only": false,
+   "writers": [
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/Metronome.cs"
+  },
+  {
+   "type": "Metronome",
+   "kind": "relic",
+   "field": "_orbsChanneled",
+   "field_type": "int",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "AfterOrbChanneled",
+    "AfterRoomEntered"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/Metronome.cs"
+  },
+  {
+   "type": "MiniRegent",
+   "kind": "relic",
+   "field": "_usedThisTurn",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "AfterStarsSpent",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/MiniRegent.cs"
+  },
+  {
+   "type": "MusicBox",
+   "kind": "relic",
+   "field": "_cardBeingPlayed",
+   "field_type": "CardModel?",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterCombatEnd",
+    "BeforeCardPlayed",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/MusicBox.cs"
+  },
+  {
+   "type": "MusicBox",
+   "kind": "relic",
+   "field": "_wasUsedThisTurn",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterCombatEnd",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/MusicBox.cs"
+  },
+  {
+   "type": "Nunchaku",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "visual",
+   "combat_only": false,
+   "writers": [
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/Nunchaku.cs"
+  },
+  {
+   "type": "Orichalcum",
+   "kind": "relic",
+   "field": "_shouldTrigger",
+   "field_type": "bool",
+   "tier": "R",
+   "combat_only": false,
+   "writers": [
+    "BeforeSideTurnEnd",
+    "BeforeSideTurnEndVeryEarly",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/Orichalcum.cs"
+  },
+  {
+   "type": "OrnamentalFan",
+   "kind": "relic",
+   "field": "_attacksPlayedThisTurn",
+   "field_type": "int",
+   "tier": "R",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/OrnamentalFan.cs"
+  },
+  {
+   "type": "OrnamentalFan",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/OrnamentalFan.cs"
+  },
+  {
+   "type": "PaelsEye",
+   "kind": "relic",
+   "field": "_usedThisCombat",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "AfterTakingExtraTurn"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/PaelsEye.cs"
+  },
+  {
+   "type": "PaelsEye",
+   "kind": "relic",
+   "field": "_wasOwnerPartOfLastPlayerTurn",
+   "field_type": "bool",
+   "tier": "R",
+   "combat_only": false,
+   "writers": [
+    "AfterObtained",
+    "AfterSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/PaelsEye.cs"
+  },
+  {
+   "type": "PaelsLegion",
+   "kind": "relic",
+   "field": "_affectedCardPlay",
+   "field_type": "CardPlay?",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterCombatEnd",
+    "AfterModifyingBlockAmount"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/PaelsLegion.cs"
+  },
+  {
+   "type": "PaelsLegion",
+   "kind": "relic",
+   "field": "_cooldown",
+   "field_type": "int",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterCombatEnd",
+    "AfterSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/PaelsLegion.cs"
+  },
+  {
+   "type": "PaelsLegion",
+   "kind": "relic",
+   "field": "_triggeredBlockLastTurn",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterCombatEnd",
+    "AfterSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/PaelsLegion.cs"
+  },
+  {
+   "type": "PaelsTears",
+   "kind": "relic",
+   "field": "_hadLeftoverEnergy",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "BeforeSideTurnEnd"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/PaelsTears.cs"
+  },
+  {
+   "type": "PaelsWing",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "visual",
+   "combat_only": false,
+   "writers": [
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/PaelsWing.cs"
+  },
+  {
+   "type": "PenNib",
+   "kind": "relic",
+   "field": "_attackToDouble",
+   "field_type": "CardModel?",
+   "tier": "A",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "BeforeCardPlayed"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/PenNib.cs"
+  },
+  {
+   "type": "PenNib",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "visual",
+   "combat_only": false,
+   "writers": [
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/PenNib.cs"
+  },
+  {
+   "type": "Pendulum",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "visual",
+   "combat_only": false,
+   "writers": [
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/Pendulum.cs"
+  },
+  {
+   "type": "Permafrost",
+   "kind": "relic",
+   "field": "_activatedThisCombat",
+   "field_type": "bool",
+   "tier": "R",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterRoomEntered"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/Permafrost.cs"
+  },
+  {
+   "type": "Pocketwatch",
+   "kind": "relic",
+   "field": "_cardsPlayedLastTurn",
+   "field_type": "int",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/Pocketwatch.cs"
+  },
+  {
+   "type": "Pocketwatch",
+   "kind": "relic",
+   "field": "_cardsPlayedThisTurn",
+   "field_type": "int",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterCombatEnd",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/Pocketwatch.cs"
+  },
+  {
+   "type": "PollinousCore",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "visual",
+   "combat_only": false,
+   "writers": [
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/PollinousCore.cs"
+  },
+  {
+   "type": "RainbowRing",
+   "kind": "relic",
+   "field": "_activationCountThisTurn",
+   "field_type": "int",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterCombatEnd",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/RainbowRing.cs"
+  },
+  {
+   "type": "RainbowRing",
+   "kind": "relic",
+   "field": "_attacksPlayedThisTurn",
+   "field_type": "int",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterCombatEnd",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/RainbowRing.cs"
+  },
+  {
+   "type": "RainbowRing",
+   "kind": "relic",
+   "field": "_powersPlayedThisTurn",
+   "field_type": "int",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterCombatEnd",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/RainbowRing.cs"
+  },
+  {
+   "type": "RainbowRing",
+   "kind": "relic",
+   "field": "_skillsPlayedThisTurn",
+   "field_type": "int",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterCombatEnd",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/RainbowRing.cs"
+  },
+  {
+   "type": "RedSkull",
+   "kind": "relic",
+   "field": "_strengthApplied",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "ModifyStrengthIfNecessary"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/RedSkull.cs"
+  },
+  {
+   "type": "Regalite",
+   "kind": "relic",
+   "field": "_usedThisTurn",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardGeneratedForCombat",
+    "AfterCombatEnd",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/Regalite.cs"
+  },
+  {
+   "type": "RuinedHelmet",
+   "kind": "relic",
+   "field": "_usedThisCombat",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "AfterModifyingPowerAmountReceived"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/RuinedHelmet.cs"
+  },
+  {
+   "type": "Shuriken",
+   "kind": "relic",
+   "field": "_attacksPlayedThisTurn",
+   "field_type": "int",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterCombatEnd",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/Shuriken.cs"
+  },
+  {
+   "type": "Shuriken",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/Shuriken.cs"
+  },
+  {
+   "type": "SneckoEye",
+   "kind": "relic",
+   "field": "_testEnergyCostOverride",
+   "field_type": "int",
+   "tier": "test",
+   "combat_only": false,
+   "writers": [
+    "SetTestEnergyCostOverride"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/SneckoEye.cs"
+  },
+  {
+   "type": "StoneCalendar",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "visual",
+   "combat_only": false,
+   "writers": [
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/StoneCalendar.cs"
+  },
+  {
+   "type": "ThrowingAxe",
+   "kind": "relic",
+   "field": "_usedThisCombat",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "AfterModifyingCardPlayCount",
+    "AfterRoomEntered"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/ThrowingAxe.cs"
+  },
+  {
+   "type": "ToyBox",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "visual",
+   "combat_only": false,
+   "writers": [
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/ToyBox.cs"
+  },
+  {
+   "type": "TuningFork",
+   "kind": "relic",
+   "field": "_isActivating",
+   "field_type": "bool",
+   "tier": "visual",
+   "combat_only": false,
+   "writers": [
+    "DoActivateVisuals"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/TuningFork.cs"
+  },
+  {
+   "type": "UnsettlingLamp",
+   "kind": "relic",
+   "field": "_doubledPowers",
+   "field_type": "List<PowerModel>?",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "BeforeCombatStart",
+    "BeforePowerAmountChanged"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/UnsettlingLamp.cs"
+  },
+  {
+   "type": "UnsettlingLamp",
+   "kind": "relic",
+   "field": "_isFinishedTriggering",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterCombatEnd",
+    "BeforeCombatStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/UnsettlingLamp.cs"
+  },
+  {
+   "type": "UnsettlingLamp",
+   "kind": "relic",
+   "field": "_triggeringCard",
+   "field_type": "CardModel?",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "BeforeCombatStart",
+    "BeforePowerAmountChanged"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/UnsettlingLamp.cs"
+  },
+  {
+   "type": "Vambrace",
+   "kind": "relic",
+   "field": "_blockGainedThisCombat",
+   "field_type": "bool",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterCombatEnd",
+    "BeforeCombatStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/Vambrace.cs"
+  },
+  {
+   "type": "Vambrace",
+   "kind": "relic",
+   "field": "_triggeringCard",
+   "field_type": "CardModel?",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCombatEnd",
+    "AfterModifyingBlockAmount",
+    "BeforeCombatStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/Vambrace.cs"
+  },
+  {
+   "type": "VelvetChoker",
+   "kind": "relic",
+   "field": "_cardsPlayedThisTurn",
+   "field_type": "int",
+   "tier": "B",
+   "combat_only": false,
+   "writers": [
+    "AfterCardPlayed",
+    "AfterCombatEnd",
+    "AfterRoomEntered",
+    "BeforeSideTurnStart"
+   ],
+   "lazy_writers": [],
+   "source": "MegaCrit.Sts2.Core.Models.Relics/VelvetChoker.cs"
+  }
+ ]
+}

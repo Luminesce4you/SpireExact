@@ -86,10 +86,9 @@ function updateElapsed(){const d=state.data?.selected;if(!d)return;const t=elaps
  const [label,kind]=currentStatus(d);$('run-status').textContent=label;$('run-status').className='status-badge '+kind;}
 function renderRunSelect(){const route=state.tab==='route',rows=route?(window.routeView?.runs()||[]):(state.data?.runs||[]);$('run-select-label').textContent=route?'胜利运行':'当前运行';$('run-select').disabled=!rows.length;$('run-select').innerHTML=rows.map(r=>`<option value="${escape(r.id)}" ${r.id===state.selected?'selected':''}>${r.alive?'● ':r.status==='verified'?'✓ ':''}${escape(r.id)}${r.seed!=null&&!String(r.id).includes(String(r.seed))?' · 种子 '+escape(r.seed):''}</option>`).join('')||(route?'<option value="">暂无验证通过的胜利</option>':'');}
 function render(){
- const launch=state.data?.launch,ready=launch?.ready===true;
- const profile=launch?.feature_profile||'i100';
- $('new-solve').disabled=!ready;$('new-solve').title=ready?`启动已准备的 ${profile} 配置`:launch?.unavailable_reason||'正在连接本地服务';
- $('source-ready').textContent=ready?`${profile} · 已就绪`:`${profile} · 尚未准备`;$('source-ready').title=$('new-solve').title;
+ if($('source-badge'))$('source-badge').textContent=state.data?.launch?.entry_enabled===false?'i100-r · 入口未启用':'i100-r';
+ $('new-solve').disabled=!state.data||state.data.launch?.entry_enabled===false;
+ $('launch-button').disabled=!state.data||state.data.launch?.entry_enabled===false;
  const data=state.data,d=data?.selected;const maxMinutes=data?.launch?.max_minutes||15;for(const option of $('solve-minutes').options)option.disabled=Number(option.value)>maxMinutes;if(Number($('solve-minutes').value)>maxMinutes)$('solve-minutes').value=String(maxMinutes);renderJobControls();if(!d){$('run-name').textContent='尚未发现任何运行';return}
  const m=d.manifest,component=d.kind==='component',c=d.component;
  const chip=(label,value,copy)=>`<span class="chip">${label}<b>${escape(value)}</b>${copy?`<button class="chip-copy" data-copy="${escape(value)}" title="复制${label}">复制</button>`:''}</span>`;

@@ -77,6 +77,9 @@ def _build_host_locked(data: Path) -> tuple[str, Path, dict]:
     if stamp_file.is_file() and assembly.is_file():
         stamp = read_json(stamp_file)
         if stamp.get('inputs') == identity and stamp.get('host_sha256') == file_hash(assembly):
+            # Probed on every call, not cached: the answer belongs to the assembly
+            # as run by this executable, and an older stamp may predate the probe.
+            stamp['capabilities'] = host_capabilities(executable, assembly, stamp['host_sha256'])
             return executable, assembly, stamp
     report_dir = ROOT / 'outputs/native-builds'
     report_dir.mkdir(parents=True, exist_ok=True)
@@ -95,10 +98,26 @@ def _build_host_locked(data: Path) -> tuple[str, Path, dict]:
             raise ContractError('Native host build timed out; log: ' + str(log)) from error
     if completed.returncode:
         raise ContractError('Native host build failed; log: ' + str(log))
-    stamp = {'inputs': identity, 'host_sha256': file_hash(assembly), 'build_completed': True,
-             'game_equivalence_verified': False, 'log': str(log), 'command': command}
+    host_sha = file_hash(assembly)
+    stamp = {'inputs': identity, 'host_sha256': host_sha, 'build_completed': True,
+             'game_equivalence_verified': False, 'log': str(log), 'command': command,
+             'capabilities': host_capabilities(executable, assembly, host_sha)}
     write_json(stamp_file, stamp)
     return executable, assembly, stamp
+
+
+def host_capabilities(executable: str, assembly: Path, host_sha: str) -> list[str]:
+    # Ask the built assembly itself (`--capabilities`, game-free). Hosts older
+    # than the probe, or a reply naming another assembly, declare nothing.
+    try:
+        completed = subprocess.run([executable, str(assembly), '--capabilities'], cwd=ROOT, capture_output=True,
+                                   text=True, timeout=60, env=dict(os.environ, DOTNET_CLI_TELEMETRY_OPTOUT='1', DOTNET_NOLOGO='1'))
+        reply = json.loads(completed.stdout.strip().splitlines()[-1]) if completed.returncode == 0 else {}
+    except (OSError, subprocess.TimeoutExpired, ValueError, IndexError):
+        return []
+    if reply.get('schema') != 'spire-host-capabilities/v1' or reply.get('host_sha256') != host_sha:
+        return []
+    return sorted(str(x) for x in reply.get('capabilities') or ())
 
 
 def export_native(command: str, output: Path, game_dir: Path | None = None, *, timeout_seconds: int = 90, **params) -> dict:

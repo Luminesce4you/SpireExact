@@ -26,7 +26,7 @@ internal sealed class BeamAdvisor
     sealed record GatePlan(Member[] Members,string Select,double? EscalateBelow);
     // Forecast ordering among members of one plan. Lexicographic only: victory,
     // survival, projected HP, potions, then observed progress of a lost fight.
-    internal readonly record struct Forecast(bool Won,bool Survives,int Hp,int Potions,int? DeathTurn,int? EndTurn,int EnemyHp,int EnemyDeaths)
+    readonly record struct Forecast(bool Won,bool Survives,int Hp,int Potions,int? DeathTurn,int? EndTurn,int EnemyHp,int EnemyDeaths)
     {
         (int,int,int,int,int,int,int) Key()=>(Won?1:0,Survives?1:0,Won?Hp:0,Won?-Potions:0,
             Won?0:EnemyDeaths,Won?0:DeathTurn??int.MaxValue,-EnemyHp);
@@ -56,13 +56,8 @@ internal sealed class BeamAdvisor
     readonly int ordinaryBudget, bossBudget, dop;
     readonly bool reuse;
     readonly bool completeContinuationsOnly;
-    readonly bool preferF1Hp;
     readonly bool measureSearchPhases;
     readonly bool measureSearchWork;
-    readonly bool verifyIncrementalSearch;
-    readonly MethodInfo? validateScalarPowerCow;
-    bool scalarPowerCowValidated;
-    readonly Type? copyWorkProbe;
     readonly Member defaultMember;
     readonly int? normalNodes;
     readonly Dictionary<string,GatePlan> gatePlans = new(StringComparer.Ordinal);
@@ -73,14 +68,6 @@ internal sealed class BeamAdvisor
     readonly List<object> searchRecords = [];
     readonly List<object> mappingFailures = [];
     readonly List<object> continuationDifferences = [];
-    bool captureF1Winners;
-    JsonObject? forcedF1Winner;
-    bool forcedF1Loaded;
-    string? forcedF1RejectionReason;
-    CombatState? forcedF1Combat, capturedF1Combat;
-    readonly List<JsonObject> availableF1Winners = [];
-    readonly Type? planActionType;
-    sealed record RestoredContinuation(string StateText, int StartTurnNumber, int ForecastOffset);
     const BindingFlags All = BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Static|BindingFlags.Instance;
     static object? Get(object obj,string key) => obj.GetType().GetProperty(key,All)?.GetValue(obj);
     static int Int(object obj,string key) => Convert.ToInt32(Get(obj,key));
@@ -110,15 +97,12 @@ internal sealed class BeamAdvisor
 
     public BeamAdvisor(JsonElement config,string output)
     {
-        PauseClock.ValidateSearchModes(config);
         ordinaryBudget = config.TryGetProperty("budget_ms",out var b) ? b.GetInt32():300;
         bossBudget = config.TryGetProperty("boss_budget_ms",out var bb) ? bb.GetInt32():ordinaryBudget*4;
         reuse = !config.TryGetProperty("reuse_continuations",out var rc) || rc.GetBoolean();
         completeContinuationsOnly=config.TryGetProperty("complete_continuations_only",out var complete)&&complete.GetBoolean();
-        preferF1Hp=config.TryGetProperty("prefer_f1_hp",out var preferHp)&&preferHp.GetBoolean();
         measureSearchPhases=config.TryGetProperty("measure_search_phases",out var phases)&&phases.GetBoolean();
         measureSearchWork=config.TryGetProperty("measure_search_work",out var work)&&work.GetBoolean();
-        verifyIncrementalSearch=config.TryGetProperty("verify_incremental_search",out var verify)&&verify.GetBoolean();
         if(ordinaryBudget<1||bossBudget<1) throw new ArgumentException("Positive advisor budget required");
         var directories=config.GetProperty("dependency_dirs").EnumerateArray().Select(v=>v.GetString()!).ToArray();
         AssemblyLoadContext.Default.Resolving += (context,name)=> {
@@ -129,17 +113,6 @@ internal sealed class BeamAdvisor
             return null;
         };
         var solver=Load(config.GetProperty("solver").GetString()!);
-        planActionType=solver.GetType("CombatSolver.PlanAction",true)!;
-        PauseClock.Install(solver);
-        if(config.TryGetProperty("validate_scalar_power_cow",out var validate)&&validate.GetBoolean())
-            validateScalarPowerCow=solver.GetType("CombatSolver.ScalarPowerCowContract",true)!.GetMethod("Run",All)!;
-        if(config.TryGetProperty("measure_fork_writes",out var copy)&&copy.GetBoolean())
-        {
-            copyWorkProbe=solver.GetType("CombatSolver.CopyWorkProbe",true)!;
-            if(config.TryGetProperty("fork_measurement_mode",out var mode))
-                copyWorkProbe.GetMethod("SetMode",All)!.Invoke(null,[mode.GetString()!]);
-            copyWorkProbe.GetMethod("Configure",All)!.Invoke(null,[true]);
-        }
         AdvisorDiagnosticLog.Configure(solver, config.TryGetProperty("quiet_diagnostics", out var quiet) && quiet.GetBoolean());
         AdvisorBlockCompensation.Configure(solver, config.TryGetProperty("fix_consumed_block_compensation", out var blockFix) && blockFix.GetBoolean());
         var controller=solver.GetType("CombatSolver.SolverController",true)!;
@@ -158,7 +131,6 @@ internal sealed class BeamAdvisor
         beginOfflineSession=runner.GetMethod("BeginOfflineSession",All,binder:null,types:[sessionOptionsType],modifiers:null)
             ?? throw new InvalidOperationException("ADVISOR_OFFLINE_SESSION_CONTRACT_CHANGED");
         var harness=Load(config.GetProperty("harness").GetString()!);
-        PauseClock.Install(harness);
         Directory.CreateDirectory(output);
         baseProfile=config.TryGetProperty("profile",out var pr)?pr.GetString()!:"Low";
         dop=config.TryGetProperty("dop",out var dopValue)?dopValue.GetInt32():1;
@@ -208,71 +180,41 @@ internal sealed class BeamAdvisor
         Count("offline_statistics_disabled");
         loop=Activator.CreateInstance(harness.GetType("OfflineSearchHarness.MainLoopContext",true)!,true)!;
         search=runtime.GetMethod("RunSearchDetailed",All)!;
+        // Opt-in: the solver's effective defaults differ between releases even
+        // when our request is the same; record them for version comparisons.
+        if(config.TryGetProperty("dump_effective_options",out var dump)&&dump.GetBoolean())
+            File.WriteAllText(Path.Combine(output,"advisor-effective-options.json"),JsonSerializer.Serialize(new {
+                schema="spire-advisor-options/v1",harness_options=Readable(options),solver_settings=Readable(settings)},Program.Json));
     }
+    static SortedDictionary<string,string?> Readable(object obj)=>new(obj.GetType().GetProperties(BindingFlags.Public|BindingFlags.Instance)
+        .Where(p=>p.GetIndexParameters().Length==0).ToDictionary(p=>p.Name,p=> {
+            try { var v=p.GetValue(obj); return v is System.Collections.IEnumerable e and not string
+                ? string.Join(",",e.Cast<object?>()) : Convert.ToString(v,System.Globalization.CultureInfo.InvariantCulture); }
+            catch(Exception e) { return "<"+e.GetType().Name+">"; }
+        }),StringComparer.Ordinal);
     public object Metrics()=>new {counters=stats, searches=searchRecords,mapping_failures=mappingFailures,
         continuation_differences=continuationDifferences, diagnostic_log=AdvisorDiagnosticLog.Metrics(),
-        block_compensation=AdvisorBlockCompensation.Metrics(), pause_clock=PauseClock.Metrics()};
+        block_compensation=AdvisorBlockCompensation.Metrics()};
     public void Invalidate(string reason) {
         pending.Clear();pendingChoices.Clear();route=[];continuations=[];needsReplan=true;predictsCompleteCombatVictory=false;
         Count("invalidations");Count("invalidated_"+reason);LastMissReason=reason;
     }
     public void RecordFallback(string actionKind) {
-        RequireNoForcedF1Fallback("native_fallback:"+actionKind);
         Count("fallback_count");Count("fallback_reason_"+LastMissReason);
         Count("fallback_action_"+actionKind);Count("fallback_source_native_greedy");
     }
-    bool StrictF1 => forcedF1Loaded && ReferenceEquals(lastCombat, forcedF1Combat);
-    void RequireNoForcedF1Fallback(string reason) {
-        if(StrictF1)throw RejectF1Winner("F1_WINNER_DEPLOYMENT_MISMATCH:"+reason);
-    }
-    InvalidDataException RejectF1Winner(string reason)
-    {
-        forcedF1RejectionReason=reason;Count("f1_winner_rejections");
-        return new InvalidDataException(reason);
-    }
-    JsonNode? Miss(string reason) {RequireNoForcedF1Fallback(reason);LastMissReason=reason;Count("advisor_miss");Count("miss_"+reason);return null;}
-    // A combat this advisor has not seen yet. Combat-start effects (for example a
-    // relic that exhausts a card from hand at the start of every turn) can ask for
-    // a selection before the first combat decision, so the switch happens at
-    // whichever call meets the new combat first. Queued choices belong to the
-    // previous combat, and so does a strict F1 deployment: entering final F2
-    // ends it even when F2 opens with such a selection.
-    void EnterCombat(CombatState state,string reason)
-    {
-        if(StrictF1&&state.Encounter?.Id==forcedF1Combat?.Encounter?.Id)
-            throw RejectF1Winner("F1_WINNER_DEPLOYMENT_MISMATCH:combat_instance_changed");
-        Invalidate(reason);lastCombat=state;lastTurn=-1;
-    }
-
-    public void ConfigureF1WinnerReuse(bool capture, JsonObject? proposal)
-    {
-        captureF1Winners=capture;
-        forcedF1Winner=proposal?.DeepClone().AsObject();
-    }
-    public JsonObject[] TakeF1Winners()
-    {
-        var result=availableF1Winners.ToArray();availableF1Winners.Clear();return result;
-    }
-    public bool WillCaptureF1Root(CombatState state)=>captureF1Winners
-        &&HpCarriesIntoNextBoss(state)&&!ReferenceEquals(capturedF1Combat,state);
-    public object F1ReuseStatus()=>new {requested=forcedF1Winner!=null,loaded=forcedF1Loaded,
-        member_index=forcedF1Winner?["member_index"]?.GetValue<int>(),
-        rejection_reason=forcedF1RejectionReason,
-        captured_f1_root_count=stats.GetValueOrDefault("f1_winner_roots_captured"),
-        mapped_f1_actions=stats.GetValueOrDefault("f1_winner_actions_mapped"),
-        mapped_f1_selections=stats.GetValueOrDefault("f1_winner_selections_mapped"),
-        strict_deployment=true,additional_f1_searches=0};
+    JsonNode? Miss(string reason) {LastMissReason=reason;Count("advisor_miss");Count("miss_"+reason);return null;}
     public JsonNode? Suggest(CombatState state,Player player,JsonNode[] legal)
     {
         if(pendingChoices.Count>0)Invalidate("unconsumed_choice_plan");
         int turn=player.PlayerCombatState!.TurnNumber;
-        if(state!=lastCombat)EnterCombat(state,"new_combat");
+        if(state!=lastCombat) { Invalidate("new_combat");lastCombat=state;lastTurn=-1; }
         if(turn!=lastTurn)
         {
             turnReplans=0;
             pending.Clear();
             bool matched=false;
-            bool canReuse=StrictF1 || reuse && (!completeContinuationsOnly || predictsCompleteCombatVictory);
+            bool canReuse=reuse && (!completeContinuationsOnly || predictsCompleteCombatVictory);
             if(reuse && completeContinuationsOnly && !predictsCompleteCombatVictory && route.Length>0)
                 Count("turn_reuse_deferred_incomplete_forecast");
             if(canReuse && route.Length>0)
@@ -298,10 +240,7 @@ internal sealed class BeamAdvisor
                 }
                 Count(matched?"turn_reuse_matched":"turn_reuse_mismatch");
             }
-            if(!matched) {
-                RequireNoForcedF1Fallback("turn_continuation_state");
-                Search(state,turn);
-            }
+            if(!matched) Search(state,turn);
             else EnqueueTurn(turn);
             lastTurn=turn;
         }
@@ -311,7 +250,6 @@ internal sealed class BeamAdvisor
         {
         if(needsReplan || pending.Count==0)
         {
-            RequireNoForcedF1Fallback("plan_exhausted_or_replan");
             if(pending.Count==0) Count("plan_exhausted");
             if(turnReplans>=MaxReplansPerTurn) return Miss("replan_limit");
             turnReplans++;Count("replans");Search(state,turn);
@@ -346,7 +284,6 @@ internal sealed class BeamAdvisor
             } catch(TargetInvocationException) { Count("card_mapping_failed"); }
         }
         if(mapped==null) {
-            RequireNoForcedF1Fallback("legal_action:"+kind);
             Count("mapping_failed_"+kind);
             if(mappingFailures.Count<16)mappingFailures.Add(new {kind,turn,
                 card=Get(plan,"CardId"),potion=Get(plan,"PotionId"),slot=Get(plan,"PotionSlot"),
@@ -358,21 +295,13 @@ internal sealed class BeamAdvisor
         if(Get(plan,"TurnStartChoices") is System.Collections.IEnumerable turnChoices)
             foreach(var choice in turnChoices)pendingChoices.Enqueue(choice);
         Count("plan_actions_used");Count("advisor_hit");LastMissReason="none";
-        if(StrictF1)Count("f1_winner_actions_mapped");
         return mapped;
         }
         return Miss("mapping_retry_exhausted");
     }
-    public JsonNode? SuggestSelection(CombatState? state,CardModel[] options,JsonNode[] legal,CardSelectionPurpose purpose)
+    public JsonNode? SuggestSelection(CardModel[] options,JsonNode[] legal,CardSelectionPurpose purpose)
     {
-        if(state!=null&&state!=lastCombat) {
-            // Asked before this combat's first decision: no plan exists yet and
-            // any queued choice is stale. The native policy decides this one;
-            // the first Suggest of the combat then plans from the live state.
-            EnterCombat(state,"new_combat_selection");
-            Count("selection_before_first_combat_decision");Count("selection_miss");return null;
-        }
-        if(!pendingChoices.TryDequeue(out var choice)) {RequireNoForcedF1Fallback("unplanned_nested_selection");Invalidate("unplanned_nested_selection");Count("selection_miss");return null;}
+        if(!pendingChoices.TryDequeue(out var choice)) {Invalidate("unplanned_nested_selection");Count("selection_miss");return null;}
         string effect=Get(choice,"Effect")!.ToString()!;
         bool purposeMatches=purpose switch {
             CardSelectionPurpose.Exhaust=>effect=="Exhaust",
@@ -403,8 +332,7 @@ internal sealed class BeamAdvisor
         var action=JsonSerializer.SerializeToNode(new {kind="select_cards",indices})!;
         var matched=purposeMatches && indices.Distinct().Count()==indices.Count
             ? legal.FirstOrDefault(a=>JsonNode.DeepEquals(a,action)) : null;
-        if(matched!=null){Count("selection_hit");Count("advisor_hit");if(StrictF1)Count("f1_winner_selections_mapped");return matched;}
-        RequireNoForcedF1Fallback("nested_selection_identity_mismatch");
+        if(matched!=null){Count("selection_hit");Count("advisor_hit");return matched;}
         Invalidate("nested_selection_identity_mismatch");Count("selection_miss");return null;
     }
     static bool TargetMatches(JsonNode action,object plan) => JsonNode.DeepEquals(action["target"],JsonSerializer.SerializeToNode(Get(plan,"TargetCombatId")));
@@ -459,20 +387,22 @@ internal sealed class BeamAdvisor
         if(run.CurrentActIndex<run.Acts.Count-1)return false;
         return run.Act.SecondBossEncounter is {} second && second.Id!=state.Encounter!.Id;
     }
-    // Boss fights of the last act use the plan named "FinalBoss" when the request has one: there
-    // the first boss decides the HP of the second and the second one ends the run. Allocation of
-    // members only; the fight is still an ordinary boss fight for every other rule.
+    // Ordinal plans override FinalBoss, which overrides Boss. Determine the
+    // ordinal from the native encounter identity, never from floor heuristics.
     static bool InFinalAct(CombatState state)=>state.RunState is RunState run&&run.CurrentActIndex>=run.Acts.Count-1;
-    // The pre-existing auto selection already chooses best for final F1. The
-    // opt-in only also overrides an explicit first_win there; it does not add
-    // members, widen their budgets or remove the existing escalation guard.
-    internal static string ResolveSelection(string select,bool hpCarries,bool preferHp)
-        =>preferHp&&hpCarries?"best":select=="auto"?(hpCarries?"best":"first_win"):select;
     (Member[] members,string select,bool gate,double? escalateBelow) PlanFor(CombatState state)
     {
         string room=state.Encounter!.RoomType.ToString();
-        if((room=="Boss"&&InFinalAct(state)&&gatePlans.TryGetValue("FinalBoss",out var plan))||gatePlans.TryGetValue(room,out plan)) {
-            string select=ResolveSelection(plan.Select,HpCarriesIntoNextBoss(state),preferF1Hp);
+        GatePlan? plan=null;
+        if(room=="Boss"&&InFinalAct(state)) {
+            var run=(RunState)state.RunState!;
+            string key=run.Act.SecondBossEncounter is {} second && second.Id==state.Encounter!.Id
+                ? "FinalBoss2" : "FinalBoss1";
+            if(!gatePlans.TryGetValue(key,out plan))gatePlans.TryGetValue("FinalBoss",out plan);
+        }
+        if(plan==null)gatePlans.TryGetValue(room,out plan);
+        if(plan!=null) {
+            string select=plan.Select=="auto"?(HpCarriesIntoNextBoss(state)?"best":"first_win"):plan.Select;
             return (plan.Members,select,true,plan.EscalateBelow);
         }
         var member=room=="Monster"&&normalNodes!=null?defaultMember with {Nodes=normalNodes}:defaultMember;
@@ -494,7 +424,7 @@ internal sealed class BeamAdvisor
         object session=Activator.CreateInstance(sessionOptionsType,true)!;
         Set(session,"FixedSearchBudget",true);
         Set(session,"MeasureSearchPhases",measureSearchPhases);
-        Set(session,"VerifyIncrementalSearch",verifyIncrementalSearch);
+        Set(session,"VerifyIncrementalSearch",false);
         Set(session,"SearchBudgetOverrideMilliseconds",(int?)budget);
         Set(session,"SearchMaxDegreeOfParallelism",(int?)dop);
         Set(session,"UseBeamWidthPortfolio",member.Portfolio);
@@ -516,35 +446,6 @@ internal sealed class BeamAdvisor
     }
     void Search(CombatState state,int turn)
     {
-        if(forcedF1Winner!=null&&!forcedF1Loaded)
-        {
-            if(!HpCarriesIntoNextBoss(state))throw RejectF1Winner("F1_WINNER_NOT_FINAL_FIRST_BOSS");
-            string live=(string)Get(captureLive.Invoke(null,[state])!,"StateText")!;
-            if(forcedF1Winner["root_state_text"]?.GetValue<string>()!=live
-                ||forcedF1Winner["entry_turn"]?.GetValue<int>()!=turn
-                ||forcedF1Winner["encounter"]?.GetValue<string>()!=state.Encounter!.Id.Entry)
-                throw RejectF1Winner("F1_WINNER_ROOT_STATE_MISMATCH");
-            if(forcedF1Winner["forecast"]?["won"]?.GetValue<bool>()!=true)
-                throw RejectF1Winner("F1_WINNER_FORECAST_REQUIRED");
-            var actions=forcedF1Winner["route_actions"]?.AsArray()
-                ??throw RejectF1Winner("F1_WINNER_ROUTE_REQUIRED");
-            if(actions.Count==0)throw RejectF1Winner("F1_WINNER_ROUTE_EMPTY");
-            route=actions.Select(a=>JsonSerializer.Deserialize(a!.ToJsonString(),planActionType!,Program.Json)
-                ??throw new InvalidDataException("F1_WINNER_PLAN_ACTION")).ToArray();
-            continuations=(forcedF1Winner["continuations"]?.AsArray()
-                ??throw new InvalidDataException("F1_WINNER_CONTINUATIONS_REQUIRED"))
-                .Select(a=>(object)new RestoredContinuation(a!["StateText"]!.GetValue<string>(),
-                    a["StartTurnNumber"]!.GetValue<int>(),a["ForecastOffset"]!.GetValue<int>())).ToArray();
-            forcedF1Loaded=true;forcedF1Combat=state;pending.Clear();pendingChoices.Clear();needsReplan=false;
-            predictsCompleteCombatVictory=true;EnqueueTurn(turn);Count("f1_winner_routes_loaded");
-            return;
-        }
-        RequireNoForcedF1Fallback("unexpected_search");
-        if(!scalarPowerCowValidated&&validateScalarPowerCow is not null)
-        {
-            _=validateScalarPowerCow.Invoke(null,[state]);
-            scalarPowerCowValidated=true;Count("b1_power_cow_contract_passed");
-        }
         pending.Clear();needsReplan=false;
         Count("search_calls");
         using var timing=PhaseProfiler.Current.Enter("beam_search");
@@ -553,18 +454,14 @@ internal sealed class BeamAdvisor
         var (members,select,gate,escalateBelow)=PlanFor(state);
         if(gate)Count("gate_search_calls");
         decimal liveEnemyHp=state.Enemies.Where(e=>e.IsAlive).Sum(e=>e.CurrentHp);
-        bool captureThisRoot=captureF1Winners&&HpCarriesIntoNextBoss(state)&&!ReferenceEquals(capturedF1Combat,state);
-        string? f1RootText=captureThisRoot?(string)Get(captureLive.Invoke(null,[state])!,"StateText")!:null;
         object? chosen=null;Forecast best=default;int chosenIndex=-1;
-        var rows=new List<(int index,Member member,object outcome,Forecast forecast,object? copy)>();
+        var rows=new List<(int index,Member member,object outcome,Forecast forecast)>();
         for(int index=0;index<members.Length;index++)
         {
             Apply(members[index],budget);
-            copyWorkProbe?.GetMethod("BeginSearch",All)!.Invoke(null,null);
             var outcome=search.Invoke(null,[state,options,loop,null])!;
-            object? copyMetrics=copyWorkProbe?.GetMethod("EndSearch",All)!.Invoke(null,null);
             var forecast=Describe(Get(outcome,"Result")!);
-            rows.Add((index,members[index],outcome,forecast,copyMetrics));
+            rows.Add((index,members[index],outcome,forecast));
             // Strictly better only: ties keep the earlier (cheaper) member.
             if(chosen==null||forecast.BetterThan(best)) {chosen=outcome;best=forecast;chosenIndex=index;}
             Count("member_searches");
@@ -582,30 +479,11 @@ internal sealed class BeamAdvisor
         // Receding-horizon mode re-solves incomplete/death forecasts next turn;
         // predicted complete wins STILL require exact live StateText equality.
         predictsCompleteCombatVictory=best.Won;
-        if(captureThisRoot)
-        {
-            Count("f1_winner_roots_captured");
-            capturedF1Combat=state;
-            foreach(var row in rows.Where(r=>r.forecast.Won))
-            {
-                availableF1Winners.Add(new JsonObject {
-                    ["schema"]="spire-f1-winner/v1",["root_state_text"]=f1RootText,["entry_turn"]=turn,
-                    ["encounter"]=state.Encounter!.Id.Entry,["member_index"]=row.index,
-                    ["member"]=JsonSerializer.SerializeToNode(row.member.Describe(),Program.Json),
-                    ["forecast"]=JsonSerializer.SerializeToNode(row.forecast.Describe(),Program.Json),
-                    ["forecast_native_json"]=JsonSerializer.Serialize(row.forecast.Describe(),Program.Json),
-                    ["selected"]=row.index==chosenIndex,
-                    ["route_actions"]=JsonSerializer.SerializeToNode((object[])Get(row.outcome,"RouteActions")!,Program.Json),
-                    ["continuations"]=JsonSerializer.SerializeToNode((object[])Get(row.outcome,"Continuations")!,Program.Json),
-                    ["forecast_is_unverified_proposal"]=true
-                });
-            }
-        }
         if(gate) { Count(best.Won?"gate_forecast_win":"gate_forecast_no_win"); if(chosenIndex>0)Count("gate_selected_later_member"); }
         foreach(var row in rows)
         {
             var result=Get(row.outcome,"Result")!;
-            object entry=new {turn,budget_ms=budget,beam_override=row.member.Beam,wall_us=(long)((double)Get(row.outcome,"WallSeconds")!*1_000_000),
+            searchRecords.Add(new {turn,budget_ms=budget,beam_override=row.member.Beam,wall_us=(long)((double)Get(row.outcome,"WallSeconds")!*1_000_000),
                 expanded_nodes=Get(result,"TotalExpandedNodes"),searched_turns=Get(result,"SearchedTurns"),
                 boundary=Get(result,"BoundaryReason")?.ToString(),time_boundary=Get(row.outcome,"TimeBoundaryObserved"),
                 worker_yields=Get(result,"WorkerYieldCount"),frame_waits=Get(result,"FrameRecoveryWaitCount"),
@@ -617,14 +495,7 @@ internal sealed class BeamAdvisor
                 only_death_routes_found=Get(result,"OnlyDeathRoutesFound"),runtime_processor_count=Environment.ProcessorCount,
                 predicts_complete_combat_victory=row.forecast.Won,
                 room,encounter=state.Encounter!.Id.Entry,gate,select,member_index=row.index,member_count=members.Length,
-                member=row.member.Describe(),forecast=row.forecast.Describe(),selected=row.index==chosenIndex};
-            if(row.copy is not null)
-            {
-                var json=(JsonObject)JsonSerializer.SerializeToNode(entry)!;
-                json["copy_diagnostics"]=JsonSerializer.SerializeToNode(row.copy);
-                searchRecords.Add(json);
-            }
-            else searchRecords.Add(entry);
+                member=row.member.Describe(),forecast=row.forecast.Describe(),selected=row.index==chosenIndex});
         }
         PhaseProfiler.Current.Count("advisor_search_calls");
         EnqueueTurn(turn);

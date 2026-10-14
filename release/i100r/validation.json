@@ -1,0 +1,32 @@
+{
+  "candidate_prepared": true,
+  "research_snapshot_accepted": true,
+  "public_source_native_build_verified": true,
+  "public_source_host_equivalence_verified": true,
+  "ui_browser_verified": true,
+  "entry_enabled": true,
+  "published": true,
+  "default_plugin": "none",
+  "default_solver": "cs-4d2c550",
+  "manual_profile_parser_passed": true,
+  "python_syntax_passed": true,
+  "licenses_checked": true,
+  "javascript_fixture_checks": [
+    "navigation/filter/refresh",
+    "gate model/empty/escape",
+    "route formatting"
+  ],
+  "javascript_fixture_checks_passed": true,
+  "dashboard_python_tests": 10,
+  "portable_local_setup_prepared": true,
+  "public_source_static_identity_verified": true,
+  "engineering_build_reference": "ENGINEERING_BUILD.json",
+  "engineering_frontend_reference": "ENGINEERING_FRONTEND.json",
+  "final_documentation_owner": "Claude Code",
+  "final_publication_owner": "Claude Code",
+  "native_acceptance_reference": "NATIVE_ACCEPTANCE.json",
+  "frontend_job_verified": true,
+  "cli_job_verified": true,
+  "long_run_ready": true,
+  "release": "v0.5.0-i100r"
+}

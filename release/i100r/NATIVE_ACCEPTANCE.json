@@ -1,0 +1,135 @@
+{
+  "schema": "spire-i100r-native-acceptance/v1",
+  "date": "2026-10-14",
+  "build": "this repository compiled by tools/setup_source.py in a fresh directory (Python 3.12.14, .NET SDK 9.0.318); see ENGINEERING_BUILD.json",
+  "host_equivalence": {
+    "tool": "tools/speed_calibration.py --other-host --worker-memory-policy hard --worker-mib 1536",
+    "references": "iteration-105 arm A recordings of seeds 1102482246, 1115766205, 1244814671, 125889448, 1353996582",
+    "host_sha256": "f15c023e6ecd1a8dea6ad303c8c5030410a7dafeeb01138d2a932fb8f72e651f",
+    "reference_host_sha256": "4c89920086315b25aad8d97ac56d52e1ab5076b5c5f110fa5de09471791e3e73",
+    "harness_sha256": "15089e5dba03796f480cd7b74ab36e04bd5fb965bb421e2cc625df5b2a4ad070",
+    "capabilities": [
+      "gate_plans.final_boss_ordinal",
+      "replay.state_dump",
+      "replay.stop_after_combat"
+    ],
+    "workers": 7,
+    "cpus": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14
+    ],
+    "memory_policy": "hard",
+    "requests": [
+      {
+        "label": "ab105-A-1102482246/eval-0002-root_policy",
+        "identical": true,
+        "wall_seconds": 14.379516200000126
+      },
+      {
+        "label": "ab105-A-1102482246/eval-0000-baseline",
+        "identical": true,
+        "wall_seconds": 27.814093299999968
+      },
+      {
+        "label": "ab105-A-1102482246/eval-0001-root_policy",
+        "identical": true,
+        "wall_seconds": 37.4494536000002
+      },
+      {
+        "label": "ab105-A-1115766205/eval-0002-root_policy",
+        "identical": true,
+        "wall_seconds": 15.06854229999999
+      },
+      {
+        "label": "ab105-A-1115766205/eval-0001-root_policy",
+        "identical": true,
+        "wall_seconds": 16.64085980000027
+      },
+      {
+        "label": "ab105-A-1115766205/eval-0000-baseline",
+        "identical": true,
+        "wall_seconds": 76.69920680000041
+      },
+      {
+        "label": "ab105-A-1244814671/eval-0002-root_policy",
+        "identical": true,
+        "wall_seconds": 37.04340840000032
+      },
+      {
+        "label": "ab105-A-1244814671/eval-0001-root_policy",
+        "identical": true,
+        "wall_seconds": 27.586519399999816
+      },
+      {
+        "label": "ab105-A-1244814671/eval-0000-baseline",
+        "identical": true,
+        "wall_seconds": 49.05211439999994
+      },
+      {
+        "label": "ab105-A-125889448/eval-0002-root_policy",
+        "identical": true,
+        "wall_seconds": 12.578034399999979
+      },
+      {
+        "label": "ab105-A-125889448/eval-0001-root_policy",
+        "identical": true,
+        "wall_seconds": 26.47032249999984
+      },
+      {
+        "label": "ab105-A-125889448/eval-0000-baseline",
+        "identical": true,
+        "wall_seconds": 34.351804699999775
+      },
+      {
+        "label": "ab105-A-1353996582/eval-0000-baseline",
+        "identical": true,
+        "wall_seconds": 14.820488699999714
+      },
+      {
+        "label": "ab105-A-1353996582/eval-0001-root_policy",
+        "identical": true,
+        "wall_seconds": 31.65232509999987
+      }
+    ],
+    "all_identical": true,
+    "makespan_seconds": 79.517,
+    "note": "Zero-action pool startup is part of this run: all seven workers started from the new build and reported the capabilities above before the first request."
+  },
+  "frontend_job": {
+    "path": "SpireBoard POST /api/jobs on a temporary port, entry enabled, snapshot experiments/frozen-i100r made by tools/prepare_local_entry.py",
+    "seed": "1102482246",
+    "minutes": 3,
+    "settings_equal_iteration_105_arm_A": "all options except --seconds / --task-seconds (budget)",
+    "evaluations": 116,
+    "evaluations_identical_to_iteration_105_record": 116,
+    "compared": "label, actions, observation and expanded combat nodes of every evaluation, in order",
+    "verified_win": false,
+    "censored": true,
+    "exit_code": 124,
+    "wall_seconds": 181.0,
+    "peak_job_commit_bytes": 12419006464,
+    "note": "Stopped by the 180 s safety cap while long fights were in flight (exit 124); iteration-105 arm A shows the same ending in 3 of its 60-minute runs."
+  },
+  "cli_job": {
+    "command": "tools/run_seed.py --seed 1115766205 --minutes 2 --workspace experiments/frozen-i100r --extra --root-policies pick,elo --focus-cluster-cap 2 --final-gate-plan open --worker-memory-policy shared",
+    "exit_code": 0,
+    "verified_win": false,
+    "wall_seconds": 94.7,
+    "evaluations": 65,
+    "note": "From eval-0016 the runs differ because the 2-minute budget gives a 120 s task limit: in-flight tasks end as NATIVE_TASK_TIMEOUT where the 60-minute record finished them, and later proposals follow from those results. The first 16 evaluations are identical in label, actions, observation and combat nodes.",
+    "leading_evaluations_identical_to_iteration_105_record": 16
+  },
+  "game_requests_executed": 195,
+  "not_covered": [
+    "normal Godot game equivalence",
+    "game versions other than v0.111.0",
+    "cs-0.50.1 (dependencies not packaged)",
+    "plugins P1/P2 (experimental, off)"
+  ]
+}

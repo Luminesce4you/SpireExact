@@ -281,23 +281,10 @@ class _Gate:
         self.support = {}       # feature -> centred sum of squares at the last fit, read by novelty()
 
 
-class _JointGateView:
-    """Joint item coefficients with the original optional size/probe extras."""
-    __slots__ = ('joint', 'original')
-
-    def __init__(self, joint, original):
-        self.joint, self.original = joint, original
-
-    def __getattr__(self, name):
-        if name in ('size_z', 'probe_z') and self.original is not None:
-            return getattr(self.original, name)
-        return getattr(self.joint, name)
-
-
 class GateModels:
     def __init__(self, solver_seed: int = 0, *, ridge: float = 3.0, minimum: int = 24, refresh: int = 16,
                  noise: float = 0.75, passes: int = 12, size: bool = False, probes: bool = False,
-                 probe_floor: float = 0.05, probe_minimum: int = 6, f2_joint_model=None):
+                 probe_floor: float = 0.05, probe_minimum: int = 6):
         self.solver_seed = int(solver_seed)
         self.ridge = ridge
         self.minimum = minimum
@@ -322,24 +309,6 @@ class GateModels:
         self.version = 0            # bumps whenever any gate is refitted
         self._cache = {}
         self._labels = None
-        self.f2_joint_model = f2_joint_model
-        self._joint_version = f2_joint_model.version if f2_joint_model is not None else None
-
-    def _sync_joint(self):
-        model = self.f2_joint_model
-        if model is not None and model.version != self._joint_version:
-            self._joint_version = model.version
-            self.version += 1
-            self._cache = {}
-            self._labels = None
-
-    def _effective_gates(self):
-        """Replace F1's one contribution only; real F2 stays its own gate."""
-        self._sync_joint()
-        rows = dict(self.gates)
-        if self.f2_joint_model is not None and self.f2_joint_model.fitted:
-            rows[(2, 0)] = _JointGateView(self.f2_joint_model, self.gates.get((2, 0)))
-        return sorted(rows.items())
 
     # ---- data -----------------------------------------------------------
     def add(self, result: dict, label: str | None = None, parent: str | None = None) -> int:
@@ -482,11 +451,18 @@ class GateModels:
         self._labels = None
 
     # ---- fit ------------------------------------------------------------
+    def _targets(self, gate: _Gate, rows: list, kind: str) -> list:
+        """Model-provider hook: the (features, target) rows one fit of `gate`
+        regresses on, kind 'level' (entries) or 'pairs' (child - parent).
+        The base model returns them unchanged; plugins/permuted.py shuffles
+        the targets."""
+        return rows
+
     def _fit(self, gate: _Gate) -> None:
         for row in gate.entries.values():
             if row[2] is not None:                 # lost fight: one common denominator for the whole gate
                 row[1] = min(1.0, row[2] / gate.total) if gate.total > 0 else 0.0
-        rows = [(row[0], row[1]) for row in gate.entries.values()]
+        rows = self._targets(gate, [(row[0], row[1]) for row in gate.entries.values()], 'level')
         gate.intercept, gate.weights, gate.z, gate.residual = _ridge(rows, self.ridge, self.passes, gate.weights)
         gate.support = _support(rows)
         gate.fitted = len(rows)
@@ -499,6 +475,7 @@ class GateModels:
                 a, b = child[0], parent[0]
                 delta = {key: a.get(key, 0) - b.get(key, 0) for key in set(a) | set(b) if a.get(key, 0) != b.get(key, 0)}
                 differences.append((delta, child[1] - parent[1]))
+            differences = self._targets(gate, differences, 'pairs')
             _, gate.pair_weights, gate.pair_z, _ = _ridge(differences, self.ridge, self.passes, gate.pair_weights)
             gate.pairs_fitted = len(differences)
         gate.dirty = 0
@@ -516,7 +493,7 @@ class GateModels:
 
     # ---- queries --------------------------------------------------------
     def predict(self, gate_id, observation: dict) -> float | None:
-        gate = dict(self._effective_gates()).get(gate_id) if self.f2_joint_model is not None else self.gates.get(gate_id)
+        gate = self.gates.get(gate_id)
         if gate is None or not gate.fitted:
             return None
         return gate.intercept + sum(value * gate.weights.get(key, 0.0) for key, value in entry_features(observation).items())
@@ -566,12 +543,9 @@ class GateModels:
         return probe if learned == 0.0 else 0.5 * (learned + probe)
 
     def labels(self) -> list:
-        if self.f2_joint_model is not None:
-            self._sync_joint()
         if self._labels is None:
             names = {label for label, delta in self.deltas.items() if delta}
-            gates = (gate for _, gate in self._effective_gates()) if self.f2_joint_model is not None else self.gates.values()
-            for gate in gates:
+            for gate in self.gates.values():
                 if self.probes:
                     names.update(gate.probe_z)
                 for key in gate.z:
@@ -590,14 +564,11 @@ class GateModels:
     def z(self, label: str, act: int) -> float:
         """Combined standardised value of a label for every fitted gate at or
         after `act` (equal weights: each remaining gate must be passed)."""
-        if self.f2_joint_model is not None:
-            self._sync_joint()
         key = (label, act)
         cached = self._cache.get(key)
         if cached is not None:
             return cached
-        gates = self._effective_gates() if self.f2_joint_model is not None else sorted(self.gates.items())
-        fitted = [gate for gate_id, gate in gates if self._informed(gate) and gate_id[0] >= act]
+        fitted = [gate for gate_id, gate in sorted(self.gates.items()) if self._informed(gate) and gate_id[0] >= act]
         value = sum(self._value_at(gate, label) for gate in fitted) / math.sqrt(len(fitted)) if fitted else 0.0
         if label in SIZE_LABELS:
             # One step at most without the sampling noise: skip unless a card
@@ -637,14 +608,11 @@ class GateModels:
         before any gate is fitted. It tells an item the ridge left at z = 0
         for want of data from one that many entries say is neutral.
         Allocation signal only."""
-        if self.f2_joint_model is not None:
-            self._sync_joint()
         key = ('novelty', label, act)
         cached = self._cache.get(key)
         if cached is not None:
             return cached
-        rows = self._effective_gates() if self.f2_joint_model is not None else sorted(self.gates.items())
-        gates = [gate for gate_id, gate in rows if gate.fitted and gate_id[0] >= act]
+        gates = [gate for gate_id, gate in sorted(self.gates.items()) if gate.fitted and gate_id[0] >= act]
         keys = self._keys(label) if gates else ()
         value = sum(math.sqrt(self.ridge / (gate.support.get(item, 0.0) + self.ridge)) for gate in gates for item in keys) \
             / (len(gates) * len(keys)) if keys else 0.0
@@ -694,8 +662,7 @@ class GateModels:
         perturbed by reproducible Gaussian noise; |value| >= 2 gives tier +-1
         and >= 4 gives +-2, so strong evidence is nearly always applied, weak
         evidence sometimes, and every rollout samples a different policy."""
-        gates = self._effective_gates() if self.f2_joint_model is not None else self.gates.items()
-        acts = sorted({gate_id[0] for gate_id, gate in gates if self._informed(gate)})
+        acts = sorted({gate_id[0] for gate_id, gate in self.gates.items() if self._informed(gate)})
         if not acts:
             return {}
         last = acts[-1]
@@ -715,8 +682,6 @@ class GateModels:
         return tiers
 
     def snapshot(self, limit: int = 12) -> dict:
-        if self.f2_joint_model is not None:
-            self._sync_joint()
         gates = []
         for gate_id, gate in sorted(self.gates.items()):
             merged = {key: self._item(gate, key) for key in gate.z if not key.startswith('#')}
@@ -735,15 +700,5 @@ class GateModels:
                 gates[-1].update(probe_tables=len(gate.tables), probe_labels=len(gate.probe_z), probes_are='synthetic; allocation only',
                                  probe_top=[[k, round(v, 2)] for k, v in probed[:limit]],
                                  probe_bottom=[[k, round(v, 2)] for k, v in probed[-limit:][::-1]])
-        report = {'gates': gates, 'learned_option_deltas': len(self.deltas), 'version': self.version,
-                  'scope': 'same-seed allocation model; never a bound, proof or cross-seed model'}
-        if self.f2_joint_model is not None:
-            contributions = [(gate_id, gate) for gate_id, gate in self._effective_gates() if self._informed(gate)]
-            last = max((gate_id[0] for gate_id, _ in contributions), default=-1)
-            report['f2_joint_model'] = {**self.f2_joint_model.snapshot(limit),
-                'replaces_gate': [2, 0] if self.f2_joint_model.fitted else None,
-                'tier_sources': [{'act': act, 'gates': [
-                    {'gate': list(gate_id), 'source': 'joint_f1_real_plus_full_hp_f2'
-                     if gate_id == (2, 0) and self.f2_joint_model.fitted else 'real_gate'}
-                    for gate_id, gate in contributions if gate_id[0] >= act]} for act in range(last + 1)]}
-        return report
+        return {'gates': gates, 'learned_option_deltas': len(self.deltas), 'version': self.version,
+                'scope': 'same-seed allocation model; never a bound, proof or cross-seed model'}

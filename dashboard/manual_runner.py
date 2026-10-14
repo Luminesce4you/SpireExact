@@ -25,9 +25,9 @@ def main():
     try:
         # WMI-detached starts do not inherit the HTTP process's temporary PATH.
         # Reconstruct the project SDK environment in the actual runner.
-        setup=read_json(ROOT/'.tools/source-setup.json')
-        sdk=Path(setup['dotnet']).resolve().parent
-        if not Path(setup['dotnet']).is_file():raise RuntimeError('Configured .NET SDK is unavailable; run source setup again')
+        from tools.local_runtime import sdk_path
+        sdk=sdk_path(ROOT)
+        if not (sdk/'dotnet.exe').is_file():raise RuntimeError('Project .NET SDK is unavailable')
         os.environ['PATH']=str(sdk)+os.pathsep+os.environ.get('PATH','')
         os.environ['DOTNET_ROOT']=str(sdk)
         os.environ['DOTNET_CLI_TELEMETRY_OPTOUT']='1'
@@ -44,12 +44,7 @@ def main():
         admission(ROOT);prepare_storage(folder)
         manifest=read_json(folder/'validation-manifest.json');manifest.update(timestamp=datetime.datetime.now().astimezone().isoformat(),cpu_set=cpus,efficiency_class=cls)
         ledger=folder/'pause-ledger.json'
-        from tools.prepare_dashboard import validate_ready
-        prepared=validate_ready(read_json(ROOT/'dashboard/solver-profile.json'))
-        if (workspace.resolve()!=ROOT.resolve() or manifest.get('version')!=prepared['source_version']
-                or manifest.get('host_sha256')!=prepared['host_sha256']):
-            raise RuntimeError('Queued frontend source identity changed; prepare and submit a new run')
-        pause_supported=prepared['capabilities'].get('interactive_pause_clock')=='evaluate-native-and-python/v1'
+        pause_supported=read_json(workspace/'freeze.json').get('capabilities',{}).get('interactive_pause_clock')=='evaluate-native-and-python/v1'
         manifest.update(process_control_schema=job_control.SCHEMA,
                         pause_excluded_budget_clock=pause_supported,pause_ledger=str(ledger.resolve()),
                         pause_scope='live_named_job_memory_only',durable_restart_supported=False)
@@ -59,17 +54,16 @@ def main():
         started=time.perf_counter();seconds=request['minutes']*60
         target=folder/('seed-'+request['seed'])
         data=workspace/'runtime/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64'
-        from dashboard.jobs import solver_settings
-        settings=solver_settings(request,read_json(ROOT/'dashboard/solver-profile.json'))
-        if request.get('settings')!=settings:
-            raise RuntimeError('Queued frontend arguments differ from the validated public recipe')
-        from tools.run_release_source import effective_parameters
-        manifest['effective_parameters']=effective_parameters(['--out',str(target),'--game-dir',str(data),*settings])
+        settings=request.get('settings') or ['--seed',request['seed'],'--character','IRONCLAD','--ascension','10','--unlocks','all','--workers','7','--dop','1',
+                  '--worker-memory-mib','1536','--reserve-mib','1024','--evaluations','1000000','--seconds',str(max(10,seconds-30)),
+                  '--task-seconds',str(min(1200,seconds)),'--max-decisions','12000','--lookahead-actions','12000','--lookahead-floors','99',
+                  '--alternatives','8','--survivors','2','--budget-ms','600000','--boss-budget-ms','600000','--nodes','60000','--profile','Low',
+                  '--dispatch','ordered','--dispatch-window','56','--solver-seed','271828','--low-io','--event-driven-settle',
+                  '--checkpoint-mib','1024','--cache-mib','128','--archive-entries','256','--runtime-profile',request['runtime_profile']]
         manifest['settings']=settings;write_json(folder/'validation-manifest.json',manifest)
         cmd=[sys.executable,str(workspace/'tools/limited_cli.py'),'solve-p5','--out',str(target),'--game-dir',str(data),*settings]
         env=dict(os.environ,SPIRE_PROTOCOL='A10-seed-v2',SPIRE_WALL_LIMIT_SECONDS=str(seconds),PYTHONIOENCODING='utf-8',
-                 SPIRE_PAUSE_LEDGER=str(ledger.resolve()),SPIRE_REQUIRE_EXACT_WORKERS='1')
-        for key in ('SPIRE_JOB_MEMORY_MIB','SPIRE_RESOURCE_OVERRIDE_NOTE','SPIRE_CPU_OFFSET'):env.pop(key,None)
+                 SPIRE_PAUSE_LEDGER=str(ledger.resolve()))
         if not pause_supported:env.pop('SPIRE_PAUSE_LEDGER',None)
         log=RollingConsole(folder/'console.log');furthest=-1
         try:

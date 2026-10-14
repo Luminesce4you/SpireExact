@@ -1,0 +1,68 @@
+{
+  "schema": "spire-i100r-engineering-build/v1",
+  "prepared_on": "2026-10-14",
+  "source_release": "i100-r/r3-i054a-shm",
+  "python": "3.12.14",
+  "dotnet_sdk": "9.0.318",
+  "compiled": true,
+  "static_identity_check_passed": true,
+  "projects": [
+    {
+      "project": "static_contract_inspector",
+      "exit_code": 0,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "project": "native_host",
+      "exit_code": 0,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "project": "combat_solver",
+      "exit_code": 0,
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "project": "offline_harness",
+      "exit_code": 0,
+      "warnings": 0,
+      "errors": 0
+    }
+  ],
+  "build_cpu_set": [
+    28,
+    29
+  ],
+  "artifacts": {
+    "native_host": {
+      "relative_path": "native/SpireNativeHost/bin/Release/net9.0/SpireNativeHost.dll",
+      "exists": true,
+      "sha256": "f15c023e6ecd1a8dea6ad303c8c5030410a7dafeeb01138d2a932fb8f72e651f"
+    },
+    "combat_solver": {
+      "relative_path": "vendor/CombatSolver/.godot/mono/temp/bin/Release/CombatSolver.dll",
+      "exists": true,
+      "sha256": "6a6a66731ec83aab9fa6157ba518c4894397b118da77871689c0acc842e0d05f"
+    },
+    "offline_harness": {
+      "relative_path": "vendor/CombatSolver/tools/OfflineSearchHarness/bin/Release/net9.0/OfflineSearchHarness.dll",
+      "exists": true,
+      "sha256": "401a537003cbcdb5fc7a4bd8fded0d863d416306729c3cae4af7728f2d538214"
+    },
+    "static_contract_inspector": {
+      "relative_path": "tools/solver_contract/bin/Release/net9.0/SolverContract.dll",
+      "exists": true,
+      "sha256": "793f5bceaec96c9cfbd565da8dd5d35a46355a0d2ace75dff1173bfb314f67b8"
+    }
+  },
+  "upstream_commit": "4d2c55069f2cf9f8c621631594857b412cf9660f",
+  "dependencies_match_locked_bytes": true,
+  "solver_guard_accepted_static_contract": true,
+  "game_requests_executed": 0,
+  "full_seed_or_probe_experiments_executed": 0,
+  "fresh_host_gameplay_equivalence_verified": false,
+  "scope": "Four-project build and static identity/contract eligibility, not new gameplay or replay evidence"
+}

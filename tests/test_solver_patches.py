@@ -3,12 +3,14 @@ from pathlib import Path
 import unittest
 from tools.solver_patches import lazy_hook_contexts
 
+HOOK_MIRRORS = Path(__file__).resolve().parents[1]/'vendor/CombatSolver/src/Engine/InCombat/Mirrors/HookMirrors.cs'
 
+
+@unittest.skipUnless(HOOK_MIRRORS.is_file(), 'CombatSolver checkout not fetched yet (tools/setup_source.py)')
 class SolverPatchContractTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.source = (Path(__file__).resolve().parents[1]/
-            'vendor/CombatSolver/src/Engine/InCombat/Mirrors/HookMirrors.cs').read_text(encoding='utf-8')
+        cls.source = HOOK_MIRRORS.read_text(encoding='utf-8')
 
     def test_does_not_defer_side_effecting_initializer(self):
         mutant = self.source.replace('Amount = amount,', 'Amount = Math.Abs(amount),', 1)
