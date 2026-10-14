@@ -133,19 +133,19 @@ class F2Reroll(Plugin):
         self.seen = set()
         self.counts = {'f2_losses_seen': 0, 'without_alternative': 0, 'proposed': 0, 'duplicates': 0, 'dispatched': 0}
 
-    def attach(self, s):
-        stamp = getattr(s.pool, 'stamp', None) or {}
-        if CAPABILITY not in (stamp.get('capabilities') or ()):
+    def attach(self, ctx):
+        if CAPABILITY not in ctx.native_capabilities:
             raise ContractError(self.name + ': the native host does not declare ' + CAPABILITY +
                                 ' (FinalBoss1 / FinalBoss2 gate plans); refusing to run')
-        if s.ev.advisor is None or not last_act_boss_plan(s.ev.advisor):
+        advisor = ctx.advisor
+        if advisor is None or not last_act_boss_plan(advisor):
             raise ContractError(self.name + ': needs the combat advisor with a boss gate plan')
         # A component's door is a scope too; re-rolls start at an F1 entry the
         # request played, so never before the door (f1_alternatives).
-        if s.scope_prefix is not None and getattr(s, 'component', None) is None:
+        if ctx.scoped and not ctx.component_mode:
             raise ContractError(self.name + ': needs an unscoped search or component mode')
 
-    def observe(self, s, spec, candidate, label, classification, family):
+    def observe(self, ctx, spec, candidate, label, classification, family):
         if classification != 'NATIVE_ROUTE_DEATH':
             return
         request = spec['request']
@@ -160,7 +160,7 @@ class F2Reroll(Plugin):
         floor = f1['entry'].get('floor')
         if not plan or floor is None:
             return
-        cfg = s.config
+        cfg = ctx.config
         prefix = candidate['trace'][:f1['index']]
         for rank, record in enumerate(alternatives):
             j = int(record['member_index'])
@@ -172,11 +172,11 @@ class F2Reroll(Plugin):
                 self.counts['duplicates'] += 1
                 continue
             self.seen.add(key)
-            base = deepcopy((s.ev.advisor or {}).get('gate_plans') or {})
+            base = deepcopy((ctx.advisor or {}).get('gate_plans') or {})
             patch = {'gate_plans': {**base, 'FinalBoss1': {'members': [member], 'select': 'first_win'}}}
             self.queue.append({'kind': 'f2_reroll', 'category': 'failure', 'priority': utility(candidate), 'family': family,
                 'repair': {'source': label, 'floor': floor, 'room': 'Boss', 'member': j, 'rank': rank},
-                'request': s.ev.request(prefix, policy=0, horizon=floor + cfg.lookahead_floors,
+                'request': ctx.request(prefix, policy=0, horizon=floor + cfg.lookahead_floors,
                     actions=min(cfg.max_decisions, len(prefix) + cfg.lookahead_actions), advisor_patch=patch)})
             self.counts['proposed'] += 1
 
@@ -188,12 +188,12 @@ class F2Reroll(Plugin):
         self.counts['dispatched'] += 1
         return self.queue.pop(index)
 
-    def sources(self, s):
+    def sources(self, ctx):
         from ..core import Source
         share = self.params['share']
         return [Source(self.name, self.pop, pending=lambda: bool(self.queue), share=share / 100 if share else None, kinds=KINDS)]
 
-    def metrics(self, s):
+    def metrics(self, ctx):
         return {**self.counts, 'pending': len(self.queue)}
 
     def reaches(self, result):

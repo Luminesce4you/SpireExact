@@ -20,6 +20,7 @@ from .io import write_json
 from .policies import NATIVE
 from .repairs import RepairQueue
 from .mechanisms import CombatProbe, Deepen, GateProbes, GateRetry
+from .plugins.context import PluginContext
 
 # Records that do not count as valid evaluations in the run report.
 INVALID = frozenset({'UNKNOWN', 'MECHANISM_OR_HOST_GAP', 'RESTORE_OR_REPLAY_MISMATCH', 'TIMEOUT', 'RESOURCE_LIMIT',
@@ -153,10 +154,13 @@ class Search:
         self.mechanisms = [m for m in (self.gate_probes,) if m is not None]
         self.mechanisms.append(GateRetry(self) if config.repair_mode == 'gate' else CombatProbe(self))
         self.deepen = Deepen(self)
+        # Built-in mechanisms retain the frozen i054a Search contract.
+        # Optional plugins receive a narrow, capability-only facade.
+        self.plugin_context = PluginContext(self)
         for plugin in self.plugins:
-            plugin.attach(self)
-        self.mechanisms.extend(self.plugins)
-        self.allocator = PriorityAllocator(default_sources(self, [source for plugin in self.plugins for source in plugin.sources(self)]))
+            plugin.attach(self.plugin_context)
+        self.allocator = PriorityAllocator(default_sources(
+            self, [source for plugin in self.plugins for source in plugin.sources(self.plugin_context)]))
         # evaluation label -> root policy of its lineage (only labels that are not native)
         self.families = {}
         self.portfolio = (NATIVE, *config.root_policies)
@@ -256,6 +260,8 @@ class Search:
                     'entry_prefix_length': len(probe['prefix']) if probe else None})
             for mechanism in self.mechanisms:
                 mechanism.observe(self, spec, candidate, label, classification, family)
+            for plugin in self.plugins:
+                plugin.observe(self.plugin_context, spec, candidate, label, classification, family)
             passed = (self.component is not None and self.component.passed_at is None
                       and self.component.passed(candidate))
             if passed:
@@ -297,7 +303,7 @@ class Search:
         if self.gate_probes is not None:
             metrics['gate_probes'] = self.gate_probes.metrics(self)
         if self.plugins:
-            metrics['plugins'] = {plugin.name: plugin.metrics(self) for plugin in self.plugins}
+            metrics['plugins'] = {plugin.name: plugin.metrics(self.plugin_context) for plugin in self.plugins}
         # The append-only ledger keeps every record. Live snapshots have bounded
         # record history; completion publishes the full report exactly once.
         live_tail = cfg.low_io and not force and len(records) > 64
@@ -327,7 +333,7 @@ class Search:
         before it is counted and dispatched (the cache key covers the edit)."""
         for plugin in self.plugins:
             for spec in specs:
-                plugin.patch_request(self, spec)
+                plugin.patch_request(self.plugin_context, spec)
         return specs
 
     def run_batch(self, specs):
@@ -395,7 +401,7 @@ class Search:
                 break
             self.deepen.after_collect(self, trials)
             for plugin in self.plugins:
-                plugin.after_collect(self, trials)
+                plugin.after_collect(self.plugin_context, trials)
         self.result['stop_reason'] = ('verified_boolean_maximum' if self.certificate else
                                       'component_gate_passed' if self.component is not None and self.component.passed_at else
                                       'component_exhausted' if self.component is not None and self.component.exhausted_at else

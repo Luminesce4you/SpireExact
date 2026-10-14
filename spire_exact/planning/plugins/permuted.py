@@ -68,16 +68,16 @@ class PermutedPredictor(Plugin):
     def model_class(self, base):
         return permuted(base)
 
-    def attach(self, s):
-        cfg = s.config
-        if s.models is None:
+    def attach(self, ctx):
+        cfg = ctx.config
+        if not ctx.has_gate_model:
             raise ContractError(self.name + ': the run has no gate model (needs --prior or --scheduler focus)')
         if cfg.focus_family or cfg.focus_optimism or cfg.gate_probe_schedule:
             raise ContractError(self.name + ': --focus-family, --focus-optimism and gate probes read the gate model '
                                 'outside its fits; a permuted arm must not use them')
 
-    def metrics(self, s):
-        return {'permuted_fits': dict(getattr(s.models, 'permuted_fits', {})), 'model_version': s.models.version}
+    def metrics(self, ctx):
+        return ctx.gate_model_metrics()
 
     def reaches(self, result):
         """A run reached P2 when some gate had enough entries to be fitted

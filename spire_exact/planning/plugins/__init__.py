@@ -1,16 +1,17 @@
 """Optional planner mechanisms (plugins).
 
 A plugin is one mechanism that the default configuration (configs/i054a-shm.toml)
-does not contain. It reaches the search only through five hooks (PLAN-v2 R1):
+does not contain. It reaches the search only through five hooks (PLAN-v2 R1). Runtime hooks receive
+PluginContext (context.py), not the mutable core.Search object:
 
-1. request patch   patch_request(s, spec): edit spec['request'] before it is
+1. request patch   patch_request(ctx, spec): edit spec['request'] before it is
                    counted and dispatched (core.Search.prepare).
-2. proposer        observe(s, spec, candidate, label, classification, family)
+2. proposer        observe(ctx, spec, candidate, label, classification, family)
                    for every absorbed real result, after the built-in mechanisms;
-                   after_collect(s, trials) once per collected batch, after Deepen.
+                   after_collect(ctx, trials) once per collected batch, after Deepen.
                    A proposer pushes request specs to s.urgent, s.repairs or a
                    queue of its own that one of its sources pops.
-3. source          sources(s): extra core.Source objects for the allocator,
+3. source          sources(ctx): extra core.Source objects for the allocator,
                    placed after the failure repairs and before the strategic
                    scheduler; a source may hold a share of everything scheduled.
 4. model provider  model_class(base): a subclass of the gate model class to use
@@ -49,21 +50,21 @@ class Plugin:
 
     # Hooks (no-ops by default) -------------------------------------------
 
-    def attach(self, s):
+    def attach(self, ctx):
         """Called once by core.Search after the built-in mechanisms exist and
         before the allocator is built. Refuse unsupported searches here."""
 
-    def patch_request(self, s, spec):
+    def patch_request(self, ctx, spec):
         """Request-patch hook. Edit spec['request'] in place; never mutate an
         object the request shares with others (replace it with a copy)."""
 
-    def observe(self, s, spec, candidate, label, classification, family):
+    def observe(self, ctx, spec, candidate, label, classification, family):
         """Proposer hook, per absorbed real result (never synthetic probes)."""
 
-    def after_collect(self, s, trials):
+    def after_collect(self, ctx, trials):
         """Proposer hook, once per collected batch."""
 
-    def sources(self, s):
+    def sources(self, ctx):
         """Allocator sources (core.Source) this plugin adds."""
         return ()
 
@@ -77,7 +78,7 @@ class Plugin:
 
     # Reporting -----------------------------------------------------------
 
-    def metrics(self, s):
+    def metrics(self, ctx):
         """Plugin counters for search_metrics.plugins[name]."""
         return {}
 
