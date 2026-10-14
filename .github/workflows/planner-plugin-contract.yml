@@ -1,0 +1,23 @@
+name: Planner plugin contract
+
+on:
+  pull_request:
+    branches: [i100r-release]
+  push:
+    branches: [refactor/**]
+
+permissions:
+  contents: read
+
+jobs:
+  offline-plugin-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Plugin context unit tests
+        run: python -m unittest discover -s tests -p 'test_plugin_context.py' -v
+      - name: Planner refactor regression tests
+        run: python -m unittest discover -s tests -p 'test_refactor_plugins.py' -v
