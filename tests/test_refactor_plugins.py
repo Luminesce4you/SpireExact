@@ -19,6 +19,7 @@ from spire_exact.planning.configs import CONFIG_DIR, config_argv, resolve
 from spire_exact.planning.core import PriorityAllocator, Source, default_sources
 from spire_exact.planning.gatemodel import GateModels, _Gate
 from spire_exact.planning.plugins import Plugin, load, parse, register_tables
+from spire_exact.planning.plugins.context import PluginContext
 from spire_exact.planning.plugins import permuted as p2
 from spire_exact.planning.plugins import reroll as p1
 from spire_exact.planning.search import SearchConfig
@@ -321,13 +322,13 @@ class PermutedPredictorTests(unittest.TestCase):
     def test_attach_refusals(self):
         plugin = p2.PermutedPredictor()
         good = SimpleNamespace(focus_family=False, focus_optimism=0, gate_probe_schedule=())
-        plugin.attach(SimpleNamespace(models=object(), config=good))
+        plugin.attach(PluginContext(SimpleNamespace(models=object(), config=good)))
         for s in (SimpleNamespace(models=None, config=good),
                   SimpleNamespace(models=object(), config=SimpleNamespace(**{**vars(good), 'focus_family': True})),
                   SimpleNamespace(models=object(), config=SimpleNamespace(**{**vars(good), 'focus_optimism': 50})),
                   SimpleNamespace(models=object(), config=SimpleNamespace(**{**vars(good), 'gate_probe_schedule': (8,)}))):
             with self.assertRaises(ContractError):
-                plugin.attach(s)
+                plugin.attach(PluginContext(s))
 
     def test_reaches(self):
         plugin = p2.PermutedPredictor()
@@ -416,15 +417,18 @@ class F2RerollTests(unittest.TestCase):
         self.assertEqual(self.alternatives(result=self.without('B1')), (None, []))           # searches do not match fights
         self.assertEqual(self.alternatives(rows=[ROWS[0], ROWS[1], ROWS[3]]), (None, []))    # no F1 row
 
-    def search(self, capabilities=(p1.CAPABILITY,), advisor=ADVISOR, scope=None):
+    def search(self, capabilities=(p1.CAPABILITY,), advisor=ADVISOR, scope=None, stamp_present=True):
         class Ev:
             def __init__(self, advisor):
                 self.advisor = advisor
             def request(self, prefix, **kwargs):
                 return {'prefix': list(prefix), **kwargs}
-        return SimpleNamespace(pool=SimpleNamespace(stamp={'capabilities': list(capabilities)}), ev=Ev(advisor),
-                               scope_prefix=scope, config=SimpleNamespace(lookahead_floors=99, max_decisions=12000,
-                                                                          lookahead_actions=12000))
+        pool = (SimpleNamespace(stamp={'capabilities': list(capabilities)}) if stamp_present
+                else SimpleNamespace())
+        return PluginContext(SimpleNamespace(
+            pool=pool, ev=Ev(advisor), scope_prefix=scope, component=None,
+            config=SimpleNamespace(lookahead_floors=99, max_decisions=12000,
+                                   lookahead_actions=12000)))
 
     def test_attach(self):
         plugin = p1.F2Reroll()
@@ -433,10 +437,8 @@ class F2RerollTests(unittest.TestCase):
                   self.search(scope=[1, 2])):
             with self.assertRaises(ContractError):
                 plugin.attach(s)
-        s = self.search()
-        s.pool = SimpleNamespace()
         with self.assertRaises(ContractError):
-            plugin.attach(s)
+            plugin.attach(self.search(stamp_present=False))
 
     def observe(self, plugin, s, classification='NATIVE_ROUTE_DEATH', advisor=ADVISOR):
         with patch.object(p1, 'boss_fight_rows', return_value=ROWS), patch.object(p1, 'utility', return_value=(1, 7)):
